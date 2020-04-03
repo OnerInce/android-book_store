@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/login">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/kithub"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:scaleType="centerCrop"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <Button
+            android:id="@+id/back_main_login"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_margin="20dp"
+            android:background="@color/kithub"
+            android:drawableStart="@drawable/ic_arrow_back" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="256dp"
+            android:layout_height="261dp"
+            android:layout_margin="5dp"
+            app:srcCompat="@drawable/kithub_small" />
+
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_margin="10dp"
+            android:background="@color/gray"
+            android:ems="20"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            android:padding="10dp" />
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_margin="10dp"
+            android:background="@color/gray"
+            android:ems="10"
+            android:hint="Parola"
+            android:inputType="textPassword"
+            android:padding="10dp" />
+
+        <TextView
+            android:id="@+id/unuttum"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:text="Parolamı unuttum"
+            android:clickable="true"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:focusable="true" />
+
+
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:text="Giriş yap" />
+
+        <TextView
+            android:id="@+id/kaydol"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="30dp"
+            android:clickable="true"
+            android:gravity="center"
+            android:text="Kaydol"
+            android:textColor="@color/white"
+            android:textSize="23sp" />
+
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
