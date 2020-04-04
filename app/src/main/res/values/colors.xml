@@ -5,9 +5,18 @@
     <color name="champagne">#F4E8D0</color>
     <color name="deep_champagne">#F4CDA6</color>
     <color name="pink">#F6A8A6</color>
+
+
     <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>
-    <color name="gray">#ECECEC</color>
-    <color name="blue">#1C1C84</color>
-    <color name="kithub">#FF5661</color>
+
+
+
+    <color name="orange">#ff5e3a</color>
+    <color name="light">#f2f2f0</color>
+    <color name="darkblue">#272e4f</color>
+    <color name="blue">#2c365d</color>
+
+
+
 </resources>

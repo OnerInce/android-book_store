@@ -18,7 +18,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/gray"
+                android:background="@color/light"
                 android:orientation="vertical">
 
                 <LinearLayout
@@ -209,7 +209,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:background="@color/blue_ice"
+        android:background="@color/darkblue"
         android:gravity="center"
         android:orientation="horizontal">
 
@@ -218,6 +218,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:textColor="@color/light"
             android:gravity="center"
             android:text="Ara Toplam:"
             android:textSize="30dp" />
@@ -227,6 +228,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:textColor="@color/light"
             android:text="65,28 TL"
             android:textSize="30dp" />
     </LinearLayout>
@@ -234,6 +236,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:backgroundTint="@color/light"
         android:orientation="horizontal">
 
         <Button
@@ -241,8 +244,12 @@
             android:layout_width="wrap_content"
             android:layout_height="70dp"
             android:layout_weight="1"
+            android:background="@drawable/rounded_corners_orange"
+            android:textColor="@color/light"
             android:text="SATIN AL"
             android:textSize="30dp" />
+
+
     </LinearLayout>
 
 </LinearLayout>

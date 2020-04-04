@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,10 +10,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/kithub"
-        android:gravity="center_horizontal"
+        android:background="@color/orange"
+        android:gravity="center"
         android:orientation="vertical"
-        android:scaleType="centerCrop"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="0dp">
 
@@ -23,22 +23,22 @@
             android:layout_height="wrap_content"
 
             android:layout_margin="20dp"
-            android:background="@color/kithub"
+            android:background="@color/orange"
             android:drawableStart="@drawable/ic_arrow_back" />
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="256dp"
-            android:layout_height="261dp"
-            android:layout_margin="5dp"
-            app:srcCompat="@drawable/kithub_small" />
+            android:layout_width="204dp"
+            android:layout_height="154dp"
+            android:layout_marginBottom="5dp"
+            app:srcCompat="@drawable/kithub_text_logo_light" />
 
         <EditText
             android:id="@+id/email"
             android:layout_width="300dp"
             android:layout_height="50dp"
             android:layout_margin="10dp"
-            android:background="@color/gray"
+            android:background="@drawable/rounded_corners"
             android:ems="20"
             android:hint="Email"
             android:inputType="textEmailAddress"
@@ -49,41 +49,45 @@
             android:layout_width="300dp"
             android:layout_height="50dp"
             android:layout_margin="10dp"
-            android:background="@color/gray"
+            android:background="@drawable/rounded_corners"
             android:ems="10"
             android:hint="Parola"
             android:inputType="textPassword"
             android:padding="10dp" />
 
-        <TextView
-            android:id="@+id/unuttum"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:text="Parolamı unuttum"
-            android:clickable="true"
-            android:textColor="@color/white"
-            android:textSize="15sp"
-            android:focusable="true" />
-
-
 
         <Button
             android:id="@+id/button"
-            android:layout_width="wrap_content"
+            android:layout_width="302dp"
             android:layout_height="50dp"
+            android:layout_margin="40dp"
+            android:background="@drawable/rounded_corner_blue"
             android:gravity="center"
-            android:text="Giriş yap" />
+            android:text="Giriş yap"
+            android:textColor="@color/light" />
+
+        <TextView
+            android:id="@+id/unuttum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:text="Parolamı Unuttum!"
+            android:textColor="@color/light"
+            android:textSize="15sp" />
 
         <TextView
             android:id="@+id/kaydol"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="30dp"
             android:clickable="true"
             android:gravity="center"
-            android:text="Kaydol"
-            android:textColor="@color/white"
+            android:text="Hesap Oluştur."
+            android:textColor="@color/light"
             android:textSize="23sp" />
+
 
 
     </LinearLayout>

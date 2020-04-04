@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/kithub"
+    android:background="@color/orange"
     android:gravity="center"
     android:orientation="vertical">
 
@@ -12,7 +12,15 @@
         android:layout_width="400dp"
         android:layout_height="400dp"
         android:visibility="visible"
+        app:srcCompat="@drawable/kithub_text_logo_light" />
 
-        app:srcCompat="@drawable/kithub" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/fliping"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/white_book_flip"/>
 
 </LinearLayout>

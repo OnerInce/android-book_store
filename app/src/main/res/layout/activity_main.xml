@@ -6,8 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:openDrawer="end
-">
+    tools:openDrawer="end">
 
     <LinearLayout
         android:id="@+id/base"
@@ -16,6 +15,8 @@
         android:orientation="vertical"
         tools:layout_editor_absoluteX="1dp"
         tools:layout_editor_absoluteY="1dp">
+
+
 
         <ScrollView
             android:id="@+id/main_ver_scroll"
@@ -28,31 +29,59 @@
                 android:orientation="vertical">
 
                 <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:background="@color/light"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:visibility="visible"
+                        app:srcCompat="@drawable/kithub_logo_blue" />
+
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="15dp"
+                        android:visibility="visible"
+                        app:srcCompat="@drawable/kithub_text_blue" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
                     android:id="@+id/arama_layout"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:background="@color/white"
+                    android:background="@color/light"
                     android:gravity="center"
                     android:orientation="horizontal">
 
                     <Button
                         android:id="@+id/button_drawer"
                         android:layout_width="50dp"
+                        android:backgroundTint="@color/blue"
                         android:layout_height="50dp"
-                        android:drawableLeft="@drawable/bena_bu_lazim_idi_menu" />
+                        android:drawableLeft="@drawable/hamburger" />
 
                     <SearchView
                         android:id="@+id/search_tool"
-                        android:layout_width="280dp"
+                        android:layout_width="263dp"
                         android:layout_height="match_parent"
+                        android:background="@color/light"
                         android:gravity="center"
                         android:inputType="textPersonName"
-                        android:orientation="horizontal" />
+                        android:orientation="horizontal"
+                        android:queryHint="Tür, Yazar, Kitap adı ..." />
 
                     <Button
                         android:id="@+id/login"
                         android:layout_width="0dp"
+                        android:background="@drawable/rounded_corner_blue"
                         android:layout_height="50dp"
+                        android:textColor="@color/light"
                         android:layout_weight="1"
                         android:text="Giriş" />
 
@@ -61,7 +90,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:background="@color/gray"
+                    android:background="@color/orange"
                     android:gravity="center"
                     android:orientation="horizontal">
 
@@ -71,6 +100,7 @@
                         android:gravity="center"
                         android:layout_height="wrap_content"
                         android:text="Öne Çıkanlar"
+                        android:textColor="@color/light"
                         android:textSize="40dp" />
 
                     <Button
@@ -78,7 +108,8 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="@color/gray"
+                        android:textColor="@color/light"
+                        android:backgroundTint="@color/orange"
                         android:text="daha fazla" />
                 </LinearLayout>
 
@@ -90,7 +121,7 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:background="@color/pink"
+                        android:background="@color/light"
                         android:gravity="center"
                         android:orientation="vertical">
 
@@ -105,7 +136,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:background="@color/gray"
+                    android:background="@color/orange"
                     android:gravity="center"
                     android:orientation="horizontal">
 
@@ -114,6 +145,7 @@
                         android:layout_width="300dp"
                         android:gravity="center"
                         android:layout_height="wrap_content"
+                        android:textColor="@color/light"
                         android:text="Çok satanlar"
                         android:textSize="40dp" />
 
@@ -122,7 +154,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="@color/gray"
+                        android:textColor="@color/light"
+                        android:backgroundTint="@color/orange"
                         android:text="daha fazla" />
                 </LinearLayout>
 
@@ -134,7 +167,7 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:background="@color/blue_ice"
+                        android:background="@color/light"
                         android:gravity="center"
                         android:orientation="vertical">
 
@@ -149,7 +182,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:background="@color/gray"
+                    android:background="@color/orange"
                     android:gravity="center"
                     android:orientation="horizontal">
 
@@ -157,6 +190,7 @@
                         android:id="@+id/felsefe_id"
                         android:layout_width="300dp"
                         android:gravity="center"
+                        android:textColor="@color/light"
                         android:layout_height="wrap_content"
                         android:text="Yeni ürünler"
                         android:textSize="40dp" />
@@ -166,7 +200,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="@color/gray"
+                        android:textColor="@color/light"
+                        android:backgroundTint="@color/orange"
                         android:text="@string/more" />
                 </LinearLayout>
 
@@ -178,7 +213,7 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:background="@color/champagne"
+                        android:background="@color/light"
                         android:gravity="center"
                         android:orientation="vertical">
 
@@ -193,7 +228,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:background="@color/gray"
+                    android:background="@color/orange"
                     android:gravity="center"
                     android:orientation="horizontal">
 
@@ -203,14 +238,16 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="Elektronik"
+                        android:textColor="@color/light"
                         android:textSize="40dp" />
 
                     <Button
                         android:id="@+id/button_5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textColor="@color/light"
                         android:layout_weight="1"
-                        android:background="@color/gray"
+                        android:backgroundTint="@color/orange"
                         android:text="@string/more" />
                 </LinearLayout>
 
@@ -222,7 +259,7 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:background="@color/deep_champagne"
+                        android:background="@color/light"
                         android:gravity="center"
                         android:orientation="vertical">
 
@@ -237,7 +274,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:background="@color/gray"
+                    android:background="@color/orange"
                     android:gravity="center"
                     android:orientation="horizontal">
 
@@ -245,6 +282,8 @@
                         android:id="@+id/text_7"
                         android:layout_width="300dp"
                         android:layout_height="wrap_content"
+                        android:textColor="@color/light"
+                        android:gravity="center"
                         android:text="Hobi"
                         android:textSize="40dp" />
 
@@ -254,7 +293,8 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:layout_weight="1"
-                        android:background="@color/gray"
+                        android:textColor="@color/light"
+                        android:backgroundTint="@color/orange"
                         android:text="@string/more" />
                 </LinearLayout>
 
@@ -266,7 +306,7 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:background="@color/blue_ice"
+                        android:background="@color/light"
                         android:gravity="center"
                         android:orientation="vertical">
 
@@ -282,7 +322,7 @@
                     android:id="@+id/son"
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
-                    android:background="@color/pink"
+                    android:background="@color/orange"
                     android:gravity="center"
                     android:orientation="horizontal">
 
@@ -290,7 +330,8 @@
                         android:id="@+id/son_yazısı"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="© Copyright 1876-2020 Sikim-Sonik Kitap Mağazacılık ve Pazarlama A.Ş. Tüm hakları saklıdır." />
+                        android:textColor="@color/light"
+                        android:text="© Copyright 2020 KitHub Kitap Mağazacılık ve Pazarlama A.Ş. Tüm hakları saklıdır." />
 
                 </LinearLayout>
 
@@ -303,8 +344,9 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="@color/gray"
+        android:background="@color/orange"
         android:fitsSystemWindows="true"
+        app:itemTextColor="@color/light"
         app:menu="@menu/drawer_menu" />
 
 
