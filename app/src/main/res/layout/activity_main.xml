@@ -29,6 +29,8 @@
                 android:orientation="vertical">
 
 
+
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
@@ -56,46 +58,54 @@
 
                     </LinearLayout>
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:background="@color/light"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
+
+
+
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
 
                         <ImageButton
                             android:id="@+id/button_drawer"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
-                            android:layout_marginLeft="160dp"
-                            android:scaleType="fitXY"
+                            android:layout_marginEnd="15dp"
                             android:background="@color/light"
-                            app:srcCompat="@drawable/hamburger" />
+                            android:scaleType="fitXY"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:srcCompat="@drawable/hamburger"
+                            tools:layout_editor_absoluteY="5dp" />
 
-                    </LinearLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:id="@+id/arama_layout"
+
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
                     android:background="@color/light"
-                    android:gravity="center"
-                    android:orientation="horizontal">
+                    android:layout_height="50dp">
+
 
                     <SearchView
                         android:id="@+id/search_tool"
                         android:layout_width="400dp"
                         android:layout_height="match_parent"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
                         android:background="@color/light"
                         android:gravity="center"
                         android:inputType="textPersonName"
                         android:orientation="horizontal"
-                        android:queryHint="Tür, Yazar, Kitap adı ..." />
+                        android:queryHint="Tür, Yazar, Kitap adı ..."
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-
-                </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
