@@ -1,30 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/login">
+    android:orientation="vertical"
+    android:background="@color/orange"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:layout_width="70dp"
+        android:layout_height="80dp"
+        android:background="@color/orange"
+        android:gravity="bottom"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/go_back"
+            android:layout_width="0dp"
+            android:background="@color/orange"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/ic_arrow_back" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/orange"
         android:gravity="center"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp">
+        android:orientation="vertical">
 
-        <Button
-            android:id="@+id/back_main_login"
-            style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            android:layout_margin="20dp"
-            android:background="@color/orange"
-            android:drawableStart="@drawable/ic_arrow_back" />
 
         <ImageView
             android:id="@+id/imageView"
@@ -39,10 +45,13 @@
             android:layout_height="50dp"
             android:layout_margin="10dp"
             android:background="@drawable/rounded_corners"
+            android:drawableLeft="@drawable/ic_person"
+            android:textColor="@color/darkblue"
             android:ems="20"
-            android:hint="Email"
+            android:hint="  Email"
             android:inputType="textEmailAddress"
-            android:padding="10dp" />
+            android:padding="10dp"
+            android:textColorHint="@color/orange" />
 
         <EditText
             android:id="@+id/password"
@@ -50,10 +59,13 @@
             android:layout_height="50dp"
             android:layout_margin="10dp"
             android:background="@drawable/rounded_corners"
+            android:drawableLeft="@drawable/ic_lock"
+            android:textColor="@color/darkblue"
             android:ems="10"
-            android:hint="Parola"
+            android:hint="  Parola"
             android:inputType="textPassword"
-            android:padding="10dp" />
+            android:padding="10dp"
+            android:textColorHint="@color/orange" />
 
 
         <Button
@@ -89,6 +101,5 @@
             android:textSize="23sp" />
 
 
-
     </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

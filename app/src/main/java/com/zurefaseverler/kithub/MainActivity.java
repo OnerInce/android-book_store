@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 import com.google.android.material.navigation.NavigationView;
 
@@ -33,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(i);
                 break;
             case R.id.profil:
-                i = new Intent(this,profil.class );
+                i = new Intent(this,login.class );
                 startActivity(i);
                 break;
         }
@@ -43,9 +44,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onBackPressed() {
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
+        if (drawer.isDrawerOpen(GravityCompat.END)) {
 
-            drawer.closeDrawer(GravityCompat.START);
+            drawer.closeDrawer(GravityCompat.END);
 
         } else {
 
@@ -76,10 +77,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
 
-        Button button_drawer = findViewById(R.id.button_drawer);
+        ImageButton button_drawer = findViewById(R.id.button_drawer);
         button_drawer.setOnClickListener(this);
-        Button one_cikanlar = findViewById(R.id.login);
-        one_cikanlar.setOnClickListener(this);
+
 
     }
 
@@ -88,12 +88,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.button_drawer:
-                drawer.openDrawer(GravityCompat.START);
-                break;
-
-            case R.id.login:
-                Intent i = new Intent(this,login.class);
-                startActivity(i);
+                drawer.openDrawer(GravityCompat.END);
                 break;
 
 

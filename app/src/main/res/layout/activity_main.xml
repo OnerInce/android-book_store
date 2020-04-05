@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:openDrawer="end">
+    tools:openDrawer="start">
 
     <LinearLayout
         android:id="@+id/base"
@@ -28,26 +28,51 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
+
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:background="@color/light"
                     android:orientation="horizontal">
 
-                    <ImageView
-                        android:layout_width="50dp"
+                    <LinearLayout
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:visibility="visible"
-                        app:srcCompat="@drawable/kithub_logo_blue" />
+                        android:orientation="horizontal">
 
-                    <ImageView
-                        android:layout_width="100dp"
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="20dp"
+                            android:visibility="visible"
+                            app:srcCompat="@drawable/kithub_logo_blue" />
+
+                        <ImageView
+                            android:layout_width="100dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="15dp"
+                            android:visibility="visible"
+                            app:srcCompat="@drawable/kithub_text_blue" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_marginLeft="15dp"
-                        android:visibility="visible"
-                        app:srcCompat="@drawable/kithub_text_blue" />
+                        android:background="@color/light"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
 
+                        <ImageButton
+                            android:id="@+id/button_drawer"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_marginLeft="160dp"
+                            android:scaleType="fitXY"
+                            android:background="@color/light"
+                            app:srcCompat="@drawable/hamburger" />
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
@@ -59,16 +84,9 @@
                     android:gravity="center"
                     android:orientation="horizontal">
 
-                    <Button
-                        android:id="@+id/button_drawer"
-                        android:layout_width="50dp"
-                        android:backgroundTint="@color/blue"
-                        android:layout_height="50dp"
-                        android:drawableLeft="@drawable/hamburger" />
-
                     <SearchView
                         android:id="@+id/search_tool"
-                        android:layout_width="263dp"
+                        android:layout_width="400dp"
                         android:layout_height="match_parent"
                         android:background="@color/light"
                         android:gravity="center"
@@ -76,41 +94,34 @@
                         android:orientation="horizontal"
                         android:queryHint="Tür, Yazar, Kitap adı ..." />
 
-                    <Button
-                        android:id="@+id/login"
-                        android:layout_width="0dp"
-                        android:background="@drawable/rounded_corner_blue"
-                        android:layout_height="50dp"
-                        android:textColor="@color/light"
-                        android:layout_weight="1"
-                        android:text="Giriş" />
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:background="@color/orange"
+                    android:background="@color/light"
                     android:gravity="center"
                     android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/textView4"
                         android:layout_width="300dp"
-                        android:gravity="center"
                         android:layout_height="wrap_content"
+                        android:gravity="center"
                         android:text="Öne Çıkanlar"
-                        android:textColor="@color/light"
-                        android:textSize="40dp" />
+                        android:textColor="@color/orange"
+                        android:textSize="40sp" />
 
                     <Button
                         android:id="@+id/one_cikanlar"
+                        style="@style/Widget.AppCompat.Button.Borderless"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:textColor="@color/light"
-                        android:backgroundTint="@color/orange"
-                        android:text="daha fazla" />
+                        android:background="@color/light"
+                        android:text="daha fazla"
+                        android:textColor="@color/orange" />
                 </LinearLayout>
 
                 <HorizontalScrollView
@@ -136,27 +147,28 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:background="@color/orange"
+                    android:background="@color/light"
                     android:gravity="center"
                     android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/textView5"
                         android:layout_width="300dp"
-                        android:gravity="center"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/light"
+                        android:gravity="center"
                         android:text="Çok satanlar"
-                        android:textSize="40dp" />
+                        android:textColor="@color/orange"
+                        android:textSize="40sp" />
 
                     <Button
                         android:id="@+id/button3"
+                        style="@style/Widget.AppCompat.Button.Borderless"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:textColor="@color/light"
-                        android:backgroundTint="@color/orange"
-                        android:text="daha fazla" />
+                        android:background="@color/light"
+                        android:text="daha fazla"
+                        android:textColor="@color/orange" />
                 </LinearLayout>
 
                 <HorizontalScrollView
@@ -182,27 +194,28 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:background="@color/orange"
+                    android:background="@color/light"
                     android:gravity="center"
                     android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/felsefe_id"
                         android:layout_width="300dp"
-                        android:gravity="center"
-                        android:textColor="@color/light"
                         android:layout_height="wrap_content"
+                        android:gravity="center"
                         android:text="Yeni ürünler"
-                        android:textSize="40dp" />
+                        android:textColor="@color/orange"
+                        android:textSize="40sp" />
 
                     <Button
                         android:id="@+id/felsefe_button"
+                        style="@style/Widget.AppCompat.Button.Borderless"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:textColor="@color/light"
-                        android:backgroundTint="@color/orange"
-                        android:text="@string/more" />
+                        android:background="@color/light"
+                        android:text="@string/more"
+                        android:textColor="@color/orange" />
                 </LinearLayout>
 
                 <HorizontalScrollView
@@ -228,7 +241,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:background="@color/orange"
+                    android:background="@color/light"
                     android:gravity="center"
                     android:orientation="horizontal">
 
@@ -238,17 +251,18 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="Elektronik"
-                        android:textColor="@color/light"
-                        android:textSize="40dp" />
+                        android:textColor="@color/orange"
+                        android:textSize="40sp" />
 
                     <Button
                         android:id="@+id/button_5"
                         android:layout_width="wrap_content"
+                        style="@style/Widget.AppCompat.Button.Borderless"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/light"
                         android:layout_weight="1"
-                        android:backgroundTint="@color/orange"
-                        android:text="@string/more" />
+                        android:background="@color/light"
+                        android:text="@string/more"
+                        android:textColor="@color/orange" />
                 </LinearLayout>
 
                 <HorizontalScrollView
@@ -274,7 +288,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:background="@color/orange"
+                    android:background="@color/light"
                     android:gravity="center"
                     android:orientation="horizontal">
 
@@ -282,20 +296,21 @@
                         android:id="@+id/text_7"
                         android:layout_width="300dp"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/light"
                         android:gravity="center"
                         android:text="Hobi"
-                        android:textSize="40dp" />
+                        android:textColor="@color/orange"
+                        android:textSize="40sp" />
 
                     <Button
                         android:id="@+id/button_6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
+                        style="@style/Widget.AppCompat.Button.Borderless"
                         android:layout_weight="1"
-                        android:textColor="@color/light"
-                        android:backgroundTint="@color/orange"
-                        android:text="@string/more" />
+                        android:background="@color/light"
+                        android:gravity="center"
+                        android:text="@string/more"
+                        android:textColor="@color/orange" />
                 </LinearLayout>
 
                 <HorizontalScrollView
@@ -322,7 +337,7 @@
                     android:id="@+id/son"
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
-                    android:background="@color/orange"
+                    android:background="@color/light"
                     android:gravity="center"
                     android:orientation="horizontal">
 
@@ -330,8 +345,8 @@
                         android:id="@+id/son_yazısı"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:textColor="@color/light"
-                        android:text="© Copyright 2020 KitHub Kitap Mağazacılık ve Pazarlama A.Ş. Tüm hakları saklıdır." />
+                        android:text="© Copyright 2020 KitHub Kitap Mağazacılık ve Pazarlama A.Ş. Tüm hakları saklıdır."
+                        android:textColor="@color/orange" />
 
                 </LinearLayout>
 
@@ -343,7 +358,7 @@
         android:id="@+id/nav_view"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_gravity="start"
+        android:layout_gravity="right"
         android:background="@color/orange"
         android:fitsSystemWindows="true"
         app:itemTextColor="@color/light"
