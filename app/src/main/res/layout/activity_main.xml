@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/drawer_layout"
+    android:background="@color/light"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
@@ -16,8 +17,6 @@
         tools:layout_editor_absoluteX="1dp"
         tools:layout_editor_absoluteY="1dp">
 
-
-
         <ScrollView
             android:id="@+id/main_ver_scroll"
             android:layout_width="match_parent"
@@ -27,7 +26,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-
 
 
 
@@ -63,6 +61,7 @@
 
 
                     <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/test"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
 
@@ -71,12 +70,16 @@
                             android:id="@+id/button_drawer"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
+                            android:layout_marginTop="1dp"
                             android:layout_marginEnd="15dp"
+                            android:layout_marginBottom="1dp"
                             android:background="@color/light"
                             android:scaleType="fitXY"
+                            app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
                             app:srcCompat="@drawable/hamburger"
-                            tools:layout_editor_absoluteY="5dp" />
+                            android:contentDescription="@string/open_drawer" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -92,10 +95,10 @@
 
                     <SearchView
                         android:id="@+id/search_tool"
-                        android:layout_width="400dp"
+                        android:layout_width="380dp"
                         android:layout_height="match_parent"
-                        android:layout_marginStart="5dp"
-                        android:layout_marginEnd="5dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
                         android:background="@color/light"
                         android:gravity="center"
                         android:inputType="textPersonName"
@@ -118,10 +121,11 @@
                         android:id="@+id/textView4"
                         android:layout_width="300dp"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/nexa_bold"
                         android:gravity="center"
                         android:text="Öne Çıkanlar"
                         android:textColor="@color/orange"
-                        android:textSize="40sp" />
+                        android:textSize="30sp" />
 
                     <Button
                         android:id="@+id/one_cikanlar"
@@ -130,6 +134,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@color/light"
+                        android:fontFamily="@font/nexa_light"
                         android:text="daha fazla"
                         android:textColor="@color/orange" />
                 </LinearLayout>
@@ -165,15 +170,17 @@
                         android:id="@+id/textView5"
                         android:layout_width="300dp"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/nexa_bold"
                         android:gravity="center"
                         android:text="Çok satanlar"
                         android:textColor="@color/orange"
-                        android:textSize="40sp" />
+                        android:textSize="30sp" />
 
                     <Button
                         android:id="@+id/button3"
                         style="@style/Widget.AppCompat.Button.Borderless"
                         android:layout_width="wrap_content"
+                        android:fontFamily="@font/nexa_light"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@color/light"
@@ -212,10 +219,11 @@
                         android:id="@+id/felsefe_id"
                         android:layout_width="300dp"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/nexa_bold"
                         android:gravity="center"
                         android:text="Yeni ürünler"
                         android:textColor="@color/orange"
-                        android:textSize="40sp" />
+                        android:textSize="30sp" />
 
                     <Button
                         android:id="@+id/felsefe_button"
@@ -224,6 +232,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@color/light"
+                        android:fontFamily="@font/nexa_light"
                         android:text="@string/more"
                         android:textColor="@color/orange" />
                 </LinearLayout>
@@ -259,10 +268,11 @@
                         android:id="@+id/yazi_bes"
                         android:layout_width="300dp"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/nexa_bold"
                         android:gravity="center"
                         android:text="Elektronik"
                         android:textColor="@color/orange"
-                        android:textSize="40sp" />
+                        android:textSize="30sp" />
 
                     <Button
                         android:id="@+id/button_5"
@@ -271,6 +281,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@color/light"
+                        android:fontFamily="@font/nexa_light"
                         android:text="@string/more"
                         android:textColor="@color/orange" />
                 </LinearLayout>
@@ -306,10 +317,11 @@
                         android:id="@+id/text_7"
                         android:layout_width="300dp"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/nexa_bold"
                         android:gravity="center"
                         android:text="Hobi"
                         android:textColor="@color/orange"
-                        android:textSize="40sp" />
+                        android:textSize="30sp" />
 
                     <Button
                         android:id="@+id/button_6"
@@ -318,6 +330,7 @@
                         style="@style/Widget.AppCompat.Button.Borderless"
                         android:layout_weight="1"
                         android:background="@color/light"
+                        android:fontFamily="@font/nexa_light"
                         android:gravity="center"
                         android:text="@string/more"
                         android:textColor="@color/orange" />
@@ -355,8 +368,9 @@
                         android:id="@+id/son_yazısı"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:fontFamily="@font/nexa_light"
                         android:text="© Copyright 2020 KitHub Kitap Mağazacılık ve Pazarlama A.Ş. Tüm hakları saklıdır."
-                        android:textColor="@color/orange" />
+                        android:textColor="@color/darkblue" />
 
                 </LinearLayout>
 
@@ -369,6 +383,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="right"
+        android:fontFamily="@font/nexa_bold"
         android:background="@color/orange"
         android:fitsSystemWindows="true"
         app:itemTextColor="@color/light"
