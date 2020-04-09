@@ -33,8 +33,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Intent i = new Intent(this, Sepet.class);
                 startActivity(i);
                 break;
+
             case R.id.profil:
                 i = new Intent(this,login.class );
+                startActivity(i);
+                break;
+
+            case  R.id.kategoriler:
+                i = new Intent(this, Kategoriler.class);
+                startActivity(i);
+                break;
+
+            case  R.id.siparisler:
+                i = new Intent(this, login.class);
                 startActivity(i);
                 break;
         }
@@ -72,10 +83,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         NavigationView navigationView =  findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-
-
-
 
         ImageButton button_drawer = findViewById(R.id.button_drawer);
         button_drawer.setOnClickListener(this);

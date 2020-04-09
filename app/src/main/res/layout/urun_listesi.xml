@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light"
+
+    android:orientation="vertical">
+
+    // kitap kategorisi ustte bulunacak
+    <TextView
+        android:id="@+id/kitap_turu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:background="@color/light"
+        android:textSize="20sp"
+        android:textColor="@color/blue"
+        android:fontFamily="@font/nexa_bold"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="10dp"
+        android:text="Kitap turu gozukecek" />
+
+    // kitaplari asagi kaydirmak icin
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        // Scrolun icindeki zorunlu linear
+
+        <LinearLayout
+            android:id="@+id/parent_double_book"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"/>
+
+
+    </ScrollView>
+</LinearLayout>

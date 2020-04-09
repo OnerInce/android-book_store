@@ -21,7 +21,7 @@
         android:icon="@drawable/ic_writers"
         android:title="Yazarlar"/>
 
-    <item android:id="@+id/turler"
+    <item android:id="@+id/kategoriler"
         android:icon="@drawable/ic_kategoriler"
         android:title="Kategoriler"/>
 

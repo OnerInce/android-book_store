@@ -28,7 +28,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/orange"
-        android:gravity="center"
+        android:gravity="center_horizontal"
         android:orientation="vertical">
 
 
@@ -36,6 +36,7 @@
             android:id="@+id/imageView"
             android:layout_width="204dp"
             android:layout_height="154dp"
+            android:layout_marginTop="80dp"
             android:layout_marginBottom="5dp"
             app:srcCompat="@drawable/kithub_text_logo_light" />
 
@@ -49,9 +50,10 @@
             android:textColor="@color/darkblue"
             android:ems="20"
             android:hint="  Email"
+            android:fontFamily="@font/nexa_light"
             android:inputType="textEmailAddress"
             android:padding="10dp"
-            android:textColorHint="@color/orange" />
+            android:textColorHint="@color/blue" />
 
         <EditText
             android:id="@+id/password"
@@ -62,10 +64,11 @@
             android:drawableLeft="@drawable/ic_lock"
             android:textColor="@color/darkblue"
             android:ems="10"
+            android:fontFamily="@font/nexa_light"
             android:hint="  Parola"
             android:inputType="textPassword"
             android:padding="10dp"
-            android:textColorHint="@color/orange" />
+            android:textColorHint="@color/blue" />
 
 
         <Button
@@ -76,6 +79,7 @@
             android:background="@drawable/rounded_corner_blue"
             android:gravity="center"
             android:text="Giriş yap"
+            android:fontFamily="@font/nexa_light"
             android:textColor="@color/light" />
 
         <TextView
@@ -84,22 +88,46 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:clickable="true"
+            android:fontFamily="@font/nexa_light"
             android:focusable="true"
             android:gravity="center"
             android:text="Parolamı Unuttum!"
             android:textColor="@color/light"
             android:textSize="15sp" />
 
-        <TextView
-            android:id="@+id/kaydol"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:clickable="true"
-            android:gravity="center"
-            android:text="Hesap Oluştur."
-            android:textColor="@color/light"
-            android:textSize="23sp" />
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/text1572"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/nexa_light"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:text="Üye değil misin?"
+                android:textColor="@color/light"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/kaydol"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nexa_bold"
+                android:layout_marginTop="10dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:text=" Hesap oluştur."
+                android:textColor="@color/light"
+                android:textSize="15sp"  />
+
+        </LinearLayout>
 
 
     </LinearLayout>
