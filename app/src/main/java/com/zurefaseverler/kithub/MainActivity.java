@@ -10,21 +10,19 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+
 import android.widget.ImageButton;
 import android.widget.Toast;
+
 import com.google.android.material.navigation.NavigationView;
 
 /*  Toast.makeText(context, "test toast message",Toast.LENGTH_SHORT).show();   */
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener{
-
-
     private static int Splash_time_out = 5000;
     private DrawerLayout drawer;
     private ActionBarDrawerToggle toggle;
     Context context = this;
-
-
 
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -35,7 +33,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.profil:
-                i = new Intent(this,login.class );
+
+                i = new Intent(this,ProfilePage.class );
                 startActivity(i);
                 break;
 
@@ -45,7 +44,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case  R.id.siparisler:
-                i = new Intent(this, login.class);
+
+                i = new Intent(this, ProfilePage.class );
+
                 startActivity(i);
                 break;
         }
@@ -72,8 +73,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-
         /*  drawer  */
         drawer = findViewById(R.id.drawer_layout);
         toggle= new ActionBarDrawerToggle(this, drawer, R.string.open_drawer,R.string.close_drawer);
@@ -84,12 +83,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         NavigationView navigationView =  findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+
         ImageButton button_drawer = findViewById(R.id.button_drawer);
         button_drawer.setOnClickListener(this);
 
-
     }
-
 
     @Override
     public void onClick(View v) {
@@ -97,8 +95,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.button_drawer:
                 drawer.openDrawer(GravityCompat.END);
                 break;
-
-
         }
 
     }

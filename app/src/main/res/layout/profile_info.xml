@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profile_image"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/profile_info_pp"
+        app:civ_border_color="#FF000000"
+        app:civ_border_width="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="sans-serif-thin"
+        android:text="Ad Soyad"
+        android:textColor="#0C0000"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profile_image" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="329dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="30dp"
+        android:background="@drawable/profile_info_textbox"
+        android:drawableStart="@drawable/profile_info_account"
+        android:drawablePadding="5dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:ems="10"
+        android:fontFamily="sans-serif-medium"
+        android:inputType="textPersonName"
+        android:text="İbrahim AKAR"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="12dp"
+        android:fontFamily="sans-serif-thin"
+        android:text="Telefon Numarası"
+        android:textColor="#0C0000"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="11dp"
+        android:fontFamily="sans-serif-thin"
+        android:text="Parola"
+        android:textColor="#0C0000"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText4" />
+
+    <EditText
+        android:id="@+id/editText8"
+        android:layout_width="329dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="30dp"
+        android:background="@drawable/profile_info_textbox"
+        android:drawableStart="@drawable/profile_info_phone"
+        android:drawablePadding="5dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:ems="10"
+        android:inputType="phone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="12dp"
+        android:fontFamily="sans-serif-thin"
+        android:text="Mail"
+        android:textColor="#0C0000"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText8" />
+
+    <EditText
+        android:id="@+id/editText9"
+        android:layout_width="329dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="30dp"
+        android:background="@drawable/profile_info_textbox"
+        android:drawableStart="@drawable/profile_info_email"
+        android:drawablePadding="5dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="11dp"
+        android:fontFamily="sans-serif-thin"
+        android:text="Adres"
+        android:textColor="#0C0000"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText9" />
+
+    <EditText
+        android:id="@+id/editText4"
+        android:layout_width="329dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="30dp"
+        android:background="@drawable/profile_info_textbox"
+        android:drawableStart="@drawable/profile_info_edit_location"
+        android:drawablePadding="5dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:ems="10"
+        android:fontFamily="sans-serif-medium"
+        android:inputType="textMultiLine"
+        android:text="blablabla sokak"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <TextView
+        android:id="@+id/passwordChange"
+        android:layout_width="329dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="30dp"
+        android:background="@drawable/profile_info_textbox"
+        android:drawableStart="@drawable/profile_info_lock"
+        android:drawablePadding="5dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:ems="10"
+        android:gravity="center|fill"
+        android:text="**********"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/profile_info_orange_button"
+        android:foreground="?attr/selectableItemBackground"
+        android:text="değişiklikleri kaydet"
+        android:textColor="#E8DADA"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
