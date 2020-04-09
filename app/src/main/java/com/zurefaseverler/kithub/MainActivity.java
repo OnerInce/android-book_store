@@ -11,6 +11,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import android.widget.ImageButton;
+import android.widget.Toast;
+
 import com.google.android.material.navigation.NavigationView;
 
 /*  Toast.makeText(context, "test toast message",Toast.LENGTH_SHORT).show();   */
@@ -28,8 +31,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Intent i = new Intent(this, Sepet.class);
                 startActivity(i);
                 break;
+
             case R.id.profil:
+
+                i = new Intent(this,ProfilePage.class );
+                startActivity(i);
+                break;
+
+            case  R.id.kategoriler:
+                i = new Intent(this, Kategoriler.class);
+                startActivity(i);
+                break;
+
+            case  R.id.siparisler:
+
                 i = new Intent(this, ProfilePage.class );
+
                 startActivity(i);
                 break;
         }
@@ -39,9 +56,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onBackPressed() {
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
+        if (drawer.isDrawerOpen(GravityCompat.END)) {
 
-            drawer.closeDrawer(GravityCompat.START);
+            drawer.closeDrawer(GravityCompat.END);
 
         } else {
 
@@ -66,24 +83,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         NavigationView navigationView =  findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        Button button_drawer = findViewById(R.id.button_drawer);
+
+        ImageButton button_drawer = findViewById(R.id.button_drawer);
         button_drawer.setOnClickListener(this);
-        Button one_cikanlar = findViewById(R.id.login);
-        one_cikanlar.setOnClickListener(this);
+
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.button_drawer:
-                drawer.openDrawer(GravityCompat.START);
-                break;
-
-            case R.id.login:
-                Intent i = new Intent(this,login.class);
-                startActivity(i);
+                drawer.openDrawer(GravityCompat.END);
                 break;
         }
 
     }
+
 }

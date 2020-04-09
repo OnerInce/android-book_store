@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="blue_ice">#B4DAE3</color>
-    <color name="green">#C0ECCB</color>
-    <color name="champagne">#F4E8D0</color>
-    <color name="deep_champagne">#F4CDA6</color>
-    <color name="pink">#F6A8A6</color>
-
+    <color name="gray">#e0e0e0</color>
 
     <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>
@@ -16,7 +11,6 @@
     <color name="light">#f2f2f0</color>
     <color name="darkblue">#272e4f</color>
     <color name="blue">#2c365d</color>
-
 
 
 </resources>
