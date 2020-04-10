@@ -36,6 +36,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 i = new Intent(this,profil.class );
                 startActivity(i);
                 break;
+            case R.id.turler:
+                i = new Intent(this, Kategoriler.class);
+                startActivity(i);
+                break;
         }
 
         return true;

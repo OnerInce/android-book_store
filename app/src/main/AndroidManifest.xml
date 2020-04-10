@@ -18,6 +18,9 @@
         <activity android:name=".profil" />
         <activity android:name=".Sepet" />
         <activity android:name=".login" />
+        <activity android:name=".Kategoriler" />
+        <activity android:name=".urun_listesi" />
+        <activity android:name=".urun_sayfasi" />
         <activity
             android:name=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
