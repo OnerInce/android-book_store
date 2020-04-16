@@ -46,7 +46,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case  R.id.siparisler:
 
                 i = new Intent(this, ProfilePage.class );
+                startActivity(i);
+                break;
 
+            case  R.id.admin_drawer:
+
+                i = new Intent(this, admin.class);
                 startActivity(i);
                 break;
         }

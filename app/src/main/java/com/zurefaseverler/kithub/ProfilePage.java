@@ -15,7 +15,7 @@ import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public class ProfilePage extends AppCompatActivity{
+public class ProfilePage extends AppCompatActivity  {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +26,7 @@ public class ProfilePage extends AppCompatActivity{
         backToMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(ProfilePage.this,MainActivity.class));
+                onBackPressed();
             }
         });
 

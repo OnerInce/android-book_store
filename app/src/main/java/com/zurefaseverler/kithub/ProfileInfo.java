@@ -40,7 +40,7 @@ public class ProfileInfo extends AppCompatActivity {
                 mBuilder.setView(mView);
                 final AlertDialog dialog = mBuilder.create();
                 dialog.show();
-                Objects.requireNonNull(dialog.getWindow()).setLayout(1100,775);
+                Objects.requireNonNull(dialog.getWindow()).setLayout(1440,900);
                 mLogin.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {

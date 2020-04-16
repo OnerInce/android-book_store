@@ -21,7 +21,6 @@ public class adapter_kategoriler extends BaseExpandableListAdapter {
     // ayrica adminin yeni kategori ekleyebilmesi lazim
     private String[] kitap_Kategorileri = {"Edebiyat", "Çocuk ve Gençlik", "Eğitim ve Gelişim", "Araştırma ve Tarih", "Din Tasavvuf", "Yabancı Dil", "Ders ve Sınav", "Sanat - Tasarım", "Felsefe", "Bilim", "Mizah",
              "Sesli kitap"};
-    String[] yazi = {"Roman", "Siir", "Hikaye", "Deneme", "Biyografi", "Polisiye", "Elestiri", "Cizgi Roman"};
 
     private String[][] alt_kategoriler = {{"Roman", "Siir", "Deneme", "Öykü", "Edebiyat İnceleme", "Biyografi & Oto biyografi", "Anlatı", "Dergi"},     // Edebiyat
             {"Okul Çağı 6-10 Yaş", "Okul Öncesi 6 Ay-5 Yaş", "Gençlik 10+ Yaş", "Okul Kitapları"},                                                      // Çocuk ve Gençlik
