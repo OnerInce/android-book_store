@@ -29,5 +29,9 @@
         android:icon="@drawable/ic_hot"
         android:title="Fırsat ürünü"/>
 
+    <item android:id="@+id/admin_drawer"
+        android:icon="@drawable/ic_hot"
+        android:title="Admin"/>
+
 
 </menu>
