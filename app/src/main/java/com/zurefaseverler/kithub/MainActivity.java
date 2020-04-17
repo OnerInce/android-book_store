@@ -44,7 +44,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case  R.id.siparisler:
-
                 i = new Intent(this, ProfilePage.class );
                 startActivity(i);
                 break;
