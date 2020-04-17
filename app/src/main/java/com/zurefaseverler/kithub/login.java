@@ -69,7 +69,6 @@ public class login extends AppCompatActivity implements View.OnClickListener {
         Typeface nexa_bold = Typeface.createFromAsset(getAssets(),"nexa_bold.otf");
 
     }
-
     private void loginUser(final String email, final String pass) {
         String url = "https://kit-hub.000webhostapp.com/public_html/db/login.php";
         StringRequest request = new StringRequest(Request.Method.POST, url,
