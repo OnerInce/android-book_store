@@ -7,4 +7,16 @@
     <string name="open_drawer">open drawer</string>
     <string name="close_drawer">close drawer</string>
     <string name="logout">Çıkış yap</string>
+
+    <string name="category_add_success">Kategori başarıyla eklendi</string>
+    <string name="category_add_confirm">EKLEME ONAYI</string>
+    <string name="category_add_cancel">İptal</string>
+    <string name="category_add_enter_name">Lütfen kategori ismi giriniz</string>
+    <string name="category_add_error">HATA</string>
+    <string name="category_add_ok">Tamam</string>
+    <string name="category_add_sure">\" isimli kategoriyi eklemek istediğinize emin misiniz?\"</string>
+    <string name="category_add_verify">Onayla</string>
+    <string name="category_add_sure2">%1$s kategorisine %2$s kitap türünü eklemek istediğinize emin misiniz?"</string>
+
+
 </resources>
