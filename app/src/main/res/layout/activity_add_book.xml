@@ -4,112 +4,231 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/light"
     tools:context=".add_book">
 
 
+    <TextView
+
+        android:id="@+id/baslik"
+        android:paddingStart="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="Kitap Ekleme"
+        android:textSize="30sp"
+        android:fontFamily="@font/nexa_bold"
+        android:textColor="@color/light"
+        android:background="@color/orange"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginTop="100dp"
+        app:layout_constraintTop_toBottomOf="@+id/baslik">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
-                android:text="Seri numarası (ISBN)" />
+                android:layout_marginStart="5dp"
+                android:fontFamily="@font/nexa_bold"
+                android:text="Seri numarası (ISBN)"
+                android:textColor="@color/blue"
+                android:textSize="20sp" />
 
             <EditText
                 android:id="@+id/ISBN"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:maxLength="13"
+                android:layout_margin="5dp"
+                android:background="@drawable/bounded_text_background"
                 android:ems="10"
-                android:inputType="numberDecimal" />
+                android:fontFamily="@font/nexa_light"
+                android:inputType="numberDecimal"
+                android:maxLength="13"
+                android:padding="8dp"
+                android:textColor="@color/darkblue"
+                android:textSize="20sp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Kitap ismi" />
+                android:layout_margin="5dp"
+                android:fontFamily="@font/nexa_bold"
+                android:text="Kitap ismi"
+                android:textColor="@color/blue"
+                android:textSize="20sp" />
 
             <EditText
                 android:id="@+id/admin_add_book_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/bounded_text_background"
                 android:ems="10"
+                android:fontFamily="@font/nexa_light"
                 android:inputType="textPersonName"
-                android:maxLength="40"/>
+                android:maxLength="40"
+                android:padding="8dp"
+                android:textColor="@color/darkblue"
+                android:textSize="20sp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Yazar adı" />
+                android:layout_margin="5dp"
+                android:fontFamily="@font/nexa_bold"
+                android:text="Yazar adı"
+                android:textColor="@color/blue"
+                android:textSize="20sp" />
 
             <EditText
-                android:id="@+id/admin_add_book_author_id"
+                android:id="@+id/admin_add_book_author"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:maxLength="13"
-                android:ems="10" />
+                android:layout_margin="5dp"
+                android:background="@drawable/bounded_text_background"
+                android:ems="10"
+                android:fontFamily="@font/nexa_light"
+                android:maxLength="40"
+                android:padding="8dp"
+                android:textColor="@color/darkblue"
+                android:textSize="20sp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Stok miktarı" />
+                android:layout_margin="5dp"
+                android:fontFamily="@font/nexa_bold"
+                android:text="Stok miktarı"
+                android:textColor="@color/blue"
+                android:textSize="20sp" />
 
             <EditText
                 android:id="@+id/admin_add_book_stock_quantity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:maxLength="13"
+                android:layout_margin="5dp"
+                android:background="@drawable/bounded_text_background"
                 android:ems="10"
-                android:inputType="numberDecimal" />
+                android:fontFamily="@font/nexa_light"
+                android:inputType="numberDecimal"
+                android:padding="8dp"
+                android:textColor="@color/darkblue"
+                android:textSize="20sp" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Kategori" />
+                android:layout_margin="5dp"
+                android:fontFamily="@font/nexa_bold"
+                android:text="Kategori"
+                android:textColor="@color/blue"
+                android:textSize="20sp" />
 
             <EditText
-                android:id="@+id/admin_add_book_category_id"
+                android:id="@+id/admin_add_book_category"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:maxLength="13"
+                android:layout_margin="5dp"
+                android:background="@drawable/bounded_text_background"
                 android:ems="10"
-                android:inputType="numberDecimal" />
+                android:maxLength="40"
+                android:padding="8dp"
+                android:textColor="@color/darkblue"
+                android:textSize="20sp"
+                android:fontFamily="@font/nexa_light"/>
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Fiyat" />
+                android:layout_margin="5dp"
+                android:fontFamily="@font/nexa_bold"
+                android:text="Kitap türü"
+                android:textColor="@color/blue"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/admin_add_book_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/bounded_text_background"
+                android:ems="10"
+                android:maxLength="40"
+                android:padding="8dp"
+                android:textColor="@color/darkblue"
+                android:textSize="20sp"
+                android:fontFamily="@font/nexa_light"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:fontFamily="@font/nexa_bold"
+                android:text="Fiyat"
+                android:textColor="@color/blue"
+                android:textSize="20sp" />
 
             <EditText
                 android:id="@+id/admin_add_book_price"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:maxLength="13"
+                android:layout_margin="5dp"
+                android:background="@drawable/bounded_text_background"
                 android:ems="10"
-                android:inputType="numberDecimal" />
+                android:inputType="numberDecimal"
+                android:maxLength="12"
+                android:padding="8dp"
+                android:textColor="@color/darkblue"
+                android:textSize="20sp"
+                android:fontFamily="@font/nexa_light"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Kitap hakkında kısa bilgi" />
+                android:layout_margin="5dp"
+                android:fontFamily="@font/nexa_bold"
+                android:text="Kitap hakkında kısa bilgi"
+                android:textColor="@color/blue"
+                android:textSize="20sp" />
 
             <EditText
                 android:id="@+id/admin_add_book_ozet"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
-                android:maxLength="500"
-                android:ems="10"
+                android:layout_margin="5dp"
+                android:background="@drawable/bounded_text_background"
                 android:gravity="start|top"
-                android:inputType="textMultiLine" />
+                android:inputType="textMultiLine"
+                android:maxLength="500"
+                android:padding="8dp"
+                android:textColor="@color/darkblue"
+                android:textSize="20sp"
+                android:fontFamily="@font/nexa_light"/>
+
+            <Button
+                android:layout_margin="30dp"
+                android:id="@+id/add_book_ekle_button"
+                android:background="@drawable/rounded_corners_orange"
+                android:textColor="@color/light"
+                android:textSize="20sp"
+                android:fontFamily="@font/nexa_bold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Kitap Ekle" />
+
 
         </LinearLayout>
     </ScrollView>
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

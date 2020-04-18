@@ -191,7 +191,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 app:layout_constraintTop_toBottomOf="@id/urun_sayfasi_yazar_ozet_layout"
                 tools:layout_editor_absoluteX="16dp"
@@ -209,12 +209,15 @@
 
                 <TextView
                     android:id="@+id/textView21"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_margin="5dp"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nexa_light"
                     android:text="@string/lorem_ipsum"
-                    android:textColor="@color/darkblue" />
+                    android:textColor="@color/darkblue"
+                    android:padding="10dp"/>
+
+
             </LinearLayout>
 
 
