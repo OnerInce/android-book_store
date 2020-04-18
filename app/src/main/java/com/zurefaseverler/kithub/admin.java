@@ -68,5 +68,17 @@ public class admin extends AppCompatActivity {
 
     }
 
+    public void add_author(View view){
+
+
+
+    }
+
+    public void delete_author(View view){
+
+
+
+    }
+
     //                                                                                      ###################
 }
