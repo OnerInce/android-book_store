@@ -31,7 +31,7 @@
         app:layout_constraintTop_toBottomOf="@+id/profile_image" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/info_name"
         android:layout_width="329dp"
         android:layout_height="50dp"
         android:layout_marginStart="30dp"
@@ -58,7 +58,7 @@
         android:textColor="#0C0000"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
+        app:layout_constraintTop_toBottomOf="@+id/info_name" />
 
     <TextView
         android:id="@+id/textView9"
@@ -71,10 +71,10 @@
         android:textColor="#0C0000"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText4" />
+        app:layout_constraintTop_toBottomOf="@+id/info_address" />
 
     <EditText
-        android:id="@+id/editText8"
+        android:id="@+id/info_phone"
         android:layout_width="329dp"
         android:layout_height="50dp"
         android:layout_marginStart="30dp"
@@ -99,10 +99,10 @@
         android:textColor="#0C0000"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText8" />
+        app:layout_constraintTop_toBottomOf="@+id/info_phone" />
 
     <EditText
-        android:id="@+id/editText9"
+        android:id="@+id/info_mail"
         android:layout_width="329dp"
         android:layout_height="50dp"
         android:layout_marginStart="30dp"
@@ -127,10 +127,10 @@
         android:textColor="#0C0000"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText9" />
+        app:layout_constraintTop_toBottomOf="@+id/info_mail" />
 
     <EditText
-        android:id="@+id/editText4"
+        android:id="@+id/info_address"
         android:layout_width="329dp"
         android:layout_height="50dp"
         android:layout_marginStart="30dp"
@@ -164,7 +164,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/saveChanges"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/profile_info_orange_button"
