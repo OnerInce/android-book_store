@@ -3,24 +3,19 @@ package com.zurefaseverler.kithub;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.graphics.Typeface;
-import android.graphics.fonts.Font;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
 
-
 public class adapter_kategoriler extends BaseExpandableListAdapter {
-
-    Context context;
-
-
 
     // kategoriler veri tabani geldiginde oraya aktarilacak
     // ayrica adminin yeni kategori ekleyebilmesi lazim
     private String[] kitap_Kategorileri = {"Edebiyat", "Çocuk ve Gençlik", "Eğitim ve Gelişim", "Araştırma ve Tarih", "Din Tasavvuf", "Yabancı Dil", "Ders ve Sınav", "Sanat - Tasarım", "Felsefe", "Bilim", "Mizah",
              "Sesli kitap"};
+
+
 
     private String[][] alt_kategoriler = {{"Roman", "Siir", "Deneme", "Öykü", "Edebiyat İnceleme", "Biyografi & Oto biyografi", "Anlatı", "Dergi"},     // Edebiyat
             {"Okul Çağı 6-10 Yaş", "Okul Öncesi 6 Ay-5 Yaş", "Gençlik 10+ Yaş", "Okul Kitapları"},                                                      // Çocuk ve Gençlik
@@ -32,7 +27,7 @@ public class adapter_kategoriler extends BaseExpandableListAdapter {
             {"Tiyatro", "Müzik", "Sinema", "Sanat Tarihi ve Kuramı", "Mimari", "Senaryo"},                                                              // Sanat - Tasarım
             {"Felsefe Bilimi", "Felsefeciler", "Felsefi Romanlar"},                                                                                     // Felsefe
             {"Popüler Bilim", "Matematik", "Mühendislik", "Bilim Tarihi ve Felsefesi", "Arkeoloji", "Antropoloji", "Biyoloji", "Fizik",                 // Bilim
-            "Coğrafya","Bilim İnsan","Jeoloji","Kimya","Astronomi","Zooloji"},
+                    "Coğrafya","Bilim İnsan","Jeoloji","Kimya","Astronomi","Zooloji"},
             {"Mizah Ramanı-Öykü", "Karikatür", "Fıkra"},                                                                                                 // Mizah
             {"Sesli Çocuk Kitabı"}                                                                                                                       // Sesli kitap
     };
@@ -84,17 +79,11 @@ public class adapter_kategoriler extends BaseExpandableListAdapter {
 
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
-
         TextView tv_kitap_kategorileri = new TextView(c);
-
-        Typeface nexa = Typeface.createFromAsset(c.getAssets(),"nexa_bold.otf");
-        tv_kitap_kategorileri.setTypeface(nexa, Typeface.NORMAL);
-
         tv_kitap_kategorileri.setText(kitap_Kategorileri[groupPosition]);
         tv_kitap_kategorileri.setTextSize(20);
         tv_kitap_kategorileri.setPadding(140,10,10, 10);
-        tv_kitap_kategorileri.setTextColor(Color.parseColor("#2c365d")); //blue text_color
-        tv_kitap_kategorileri.setBackgroundColor(Color.parseColor("#f2f2f0"));//light background
+        tv_kitap_kategorileri.setTextColor(Color.parseColor("#ff5e3a"));
         return tv_kitap_kategorileri;
     }
 
@@ -104,12 +93,7 @@ public class adapter_kategoriler extends BaseExpandableListAdapter {
         tv_alt_kategorileri.setText(alt_kategoriler[groupPosition][childPosition]);
         tv_alt_kategorileri.setTextSize(16);
         tv_alt_kategorileri.setPadding(170,10,10, 10);
-        tv_alt_kategorileri.setTextColor(Color.parseColor("#272e4f"));  //darkblue textcolor
-
-        Typeface nexa = Typeface.createFromAsset(c.getAssets(),"nexa_light.otf");
-        tv_alt_kategorileri.setTypeface(nexa, Typeface.NORMAL);
-
-        tv_alt_kategorileri.setBackgroundColor(Color.parseColor("#f2f2f0"));//light background
+        tv_alt_kategorileri.setTextColor(Color.parseColor("#272e4f"));
         return tv_alt_kategorileri;
     }
 
