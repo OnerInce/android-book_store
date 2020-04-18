@@ -2,6 +2,7 @@ package com.zurefaseverler.kithub;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ExpandableListView;
@@ -36,11 +37,16 @@ public class delete_category extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delete_category);
-
+        final Button deleteButton = findViewById(R.id.delete_button);
         final ExpandableListView kategoriler = (ExpandableListView) findViewById(R.id.acilirKategoriler);
+        final TextView sil_text = findViewById(R.id.sil_tur);
+
         kategoriler.setAdapter(new adapter_kategoriler(this,adapter_kategoriler.categories,adapter_kategoriler.bookTypes));
 
-        final TextView sil_text = findViewById(R.id.sil_tur);
+        if(adapter_kategoriler.categories.size() == 0) {
+            deleteButton.setVisibility(View.INVISIBLE);
+            sil_text.setText("Kategori Bulunamadı.");
+        }
 
         kategoriler.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
             @Override
@@ -83,10 +89,12 @@ public class delete_category extends AppCompatActivity {
             }
         });
 
-        Button add = findViewById(R.id.delete_button);
-        add.setOnClickListener(new View.OnClickListener() {
+
+
+        deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d("abc",book_type+"  "+category);
                 AlertDialog.Builder builder = new AlertDialog.Builder(delete_category.this);
                 builder.setCancelable(true);
                 builder.setMessage(temp+" kategorisini ya da kitap türünü silmek istediğinize emin misiniz?");
@@ -122,9 +130,14 @@ public class delete_category extends AppCompatActivity {
                                                 adapter_kategoriler.bookTypes.get(category).remove(adapter_kategoriler.bookTypes.get(category).indexOf(book_type));
                                             }
                                             kategoriler.setAdapter( new adapter_kategoriler(delete_category.this,adapter_kategoriler.categories,adapter_kategoriler.bookTypes));
+                                            if(adapter_kategoriler.categories.size() == 0) {
+                                                deleteButton.setVisibility(View.INVISIBLE);
+                                                sil_text.setText("Kategori Bulunamadı.");
+                                            }
                                         } catch (JSONException e) {
                                             e.printStackTrace();
                                         }
+
 
                                     }
                                 },
@@ -148,7 +161,6 @@ public class delete_category extends AppCompatActivity {
                     }
                 });
                 builder.show();
-
             }
         });
 
