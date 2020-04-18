@@ -1,13 +1,15 @@
 package com.zurefaseverler.kithub;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.android.volley.RequestQueue;
 
 
 
@@ -17,7 +19,10 @@ import android.widget.TextView;
 
 public class Kategoriler extends AppCompatActivity implements View.OnClickListener{
 
-private int son_Expand_group = -1;
+    private int son_Expand_group = -1;
+
+    private RequestQueue mQueue;
+    private ExpandableListView kategoriler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,11 +32,11 @@ private int son_Expand_group = -1;
         ImageButton go_back = findViewById(R.id.go_back);
         go_back.setOnClickListener(this);
 
+        kategoriler = (ExpandableListView) findViewById(R.id.acilirKategoriler);
 
 
-        final ExpandableListView kategoriler = (ExpandableListView) findViewById(R.id.acilirKategoriler);
-        kategoriler.setAdapter( new adapter_kategoriler(this));
-
+        adapter_kategoriler a = new adapter_kategoriler(this,adapter_kategoriler.categories,adapter_kategoriler.bookTypes);
+        kategoriler.setAdapter(a);
 
         kategoriler.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
             @Override
@@ -58,6 +63,7 @@ private int son_Expand_group = -1;
             }
         });
     }
+
 
     @Override
     public void onClick(View v) {
