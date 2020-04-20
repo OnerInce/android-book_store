@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
@@ -12,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import android.widget.ImageView;
 import android.widget.TextView;
 
 
@@ -24,26 +27,35 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
 public class ProfilePage extends AppCompatActivity  {
-    private String id;
 
+
+    static String id;
+    private TextView twMail;
+    private TextView twName;
+    private ImageView imageView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.profile_page);
 
         /*--------*/
-        id = "3";
+        id = "9";
         /*--------*/
-        getProfileInfo();
 
+        getProfileInfo();
 
         Button backToMain = findViewById(R.id.back_to_main);
         backToMain.setOnClickListener(new View.OnClickListener() {
@@ -88,6 +100,12 @@ public class ProfilePage extends AppCompatActivity  {
         });
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getProfileInfo();
+    }
+
     private void getProfileInfo() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
 
@@ -105,12 +123,19 @@ public class ProfilePage extends AppCompatActivity  {
                             ProfileInfo.getInformation().put("name",jsonObject.getString("complete_name"));
                             ProfileInfo.getInformation().put("phoneNumber",jsonObject.getString("phone"));
                             ProfileInfo.getInformation().put("email",jsonObject.getString("e_mail"));
+                            ProfileInfo.getInformation().put("password",jsonObject.getString("user_password"));
                             ProfileInfo.getInformation().put("address",jsonObject.getString("address"));
+                            ProfileInfo.getInformation().put("imagePath",jsonObject.getString("image"));
 
-                            TextView twMail = findViewById(R.id.email);
-                            TextView twName = findViewById(R.id.name);
+                            twMail = findViewById(R.id.email);
+                            twName = findViewById(R.id.name);
+                            imageView = findViewById(R.id.profilePhoto);
+
                             twMail.setText(jsonObject.getString("e_mail"));
                             twName.setText(jsonObject.getString("complete_name"));
+
+                            String[] temp = jsonObject.getString("image").split("html/");
+                            Picasso.get().load("http://18.204.251.116/"+temp[1]).transform(new CircleTransform()).into(imageView);
 
                         } catch (JSONException e) {
                             e.printStackTrace();
