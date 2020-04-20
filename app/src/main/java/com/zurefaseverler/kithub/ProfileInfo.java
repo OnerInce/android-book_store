@@ -2,14 +2,18 @@ package com.zurefaseverler.kithub;
 
 import android.Manifest;
 import android.app.AlertDialog;
-import android.app.DownloadManager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -23,13 +27,15 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.squareup.picasso.Picasso;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
-import java.util.concurrent.ConcurrentHashMap;
-
-import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ProfileInfo extends AppCompatActivity {
     private static final int IMAGE_CODE = 100;
@@ -40,7 +46,10 @@ public class ProfileInfo extends AppCompatActivity {
     private EditText info_mail;
     private EditText info_phone;
     private EditText info_address;
-
+    private ImageView profileImage;
+    private Bitmap bitmap;
+    private String imagePath;
+    private boolean isPhotoChanged;
     public static void setHashMap() {
         ProfileInfo.information = new HashMap<>();
     }
@@ -58,7 +67,7 @@ public class ProfileInfo extends AppCompatActivity {
         info_mail = findViewById(R.id.info_mail);
         info_phone = findViewById(R.id.info_phone);
         info_address = findViewById(R.id.info_address);
-
+        profileImage = findViewById(R.id.profile_image);
 
         setInformation();
         findViewById(R.id.passwordChange).setOnClickListener(new View.OnClickListener() {
@@ -66,26 +75,22 @@ public class ProfileInfo extends AppCompatActivity {
             public void onClick(View v) {
                 AlertDialog.Builder mBuilder = new AlertDialog.Builder(ProfileInfo.this);
                 View mView = getLayoutInflater().inflate(R.layout.password_change_popup, null);
-                final EditText mEmail = (EditText) mView.findViewById(R.id.etPassword);
-                final EditText mPassword = (EditText) mView.findViewById(R.id.etPassword2);
-                Button mLogin = (Button) mView.findViewById(R.id.btnLogin);
+
+
+                final EditText newPass = (EditText) mView.findViewById(R.id.newPass);
+                final EditText oldPass = (EditText) mView.findViewById(R.id.oldPass);
+                Button savePass = (Button) mView.findViewById(R.id.savePass);
 
                 mBuilder.setView(mView);
                 final AlertDialog dialog = mBuilder.create();
                 dialog.show();
-                Objects.requireNonNull(dialog.getWindow()).setLayout(1440,900);
-                mLogin.setOnClickListener(new View.OnClickListener() {
+
+                savePass.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        if (!mEmail.getText().toString().isEmpty() && !mPassword.getText().toString().isEmpty()) {
-                            Toast.makeText(ProfileInfo.this,
-                                    "Başarılı",
-                                    Toast.LENGTH_SHORT).show();
-                            dialog.dismiss();
-                        } else {
-                            Toast.makeText(ProfileInfo.this,
-                                    "Boşlukları doldurun",
-                                    Toast.LENGTH_SHORT).show();
+                        if(oldPass.getText().toString().equals(information.get("password"))){
+                            information.replace("password",newPass.getText().toString());
+                            dialog.cancel();
                         }
                     }
                 });
@@ -93,7 +98,7 @@ public class ProfileInfo extends AppCompatActivity {
         });
 
 
-        findViewById(R.id.profile_image).setOnClickListener(new View.OnClickListener() {
+        profileImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
@@ -127,7 +132,6 @@ public class ProfileInfo extends AppCompatActivity {
                         information.replace("phoneNumber",info_phone.getText().toString());
                         information.replace("address",info_address.getText().toString());
                         updateDatabase();
-                        setInformation();
                         Toast.makeText(ProfileInfo.this,"Değişiklikler Kaydedildi",Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -138,12 +142,17 @@ public class ProfileInfo extends AppCompatActivity {
 
     private void updateDatabase() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-
         String url = "http://18.204.251.116/profile_page.php";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            information.replace("imagePath",jsonObject.getString("newFilePath"));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
 
                     }
                 },
@@ -160,10 +169,12 @@ public class ProfileInfo extends AppCompatActivity {
                 params.put("phone",information.get("phoneNumber"));
                 params.put("e_mail",information.get("email"));
                 params.put("address",information.get("address"));
-                params.put("id","3");
+                params.put("user_password",information.get("password"));
+                params.put("id",ProfilePage.id);
                 params.put("operation","2");
-
-                return  params;
+                if(!isPhotoChanged) params.put("encodedImage","empty");
+                else    params.put("encodedImage",imageToString(bitmap));
+                return params;
             }
         };
         requestQueue.add(stringRequest);
@@ -182,6 +193,10 @@ public class ProfileInfo extends AppCompatActivity {
         info_mail.setText(information.get("email"));
         info_phone.setText(information.get("phoneNumber"));
         info_address.setText(information.get("address"));
+
+        String[] temp = information.get("imagePath").split("html/");
+        Picasso.get().load("http://18.204.251.116/"+temp[1])
+                .transform(new CircleTransform()).into(profileImage);
     }
 
     @Override
@@ -207,9 +222,24 @@ public class ProfileInfo extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK && requestCode == IMAGE_CODE) {
             if (data != null) {
-                CircleImageView imageView = findViewById(R.id.profile_image);
-                imageView.setImageURI(data.getData());
+                ImageView imageView = findViewById(R.id.profile_image);
+                Uri selectedImage = data.getData();
+                try {
+                    bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImage);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                isPhotoChanged = true;
+                Picasso.get().load(selectedImage).transform(new CircleTransform()).into(imageView);
             }
         }
+    }
+
+
+    private String imageToString(Bitmap bitmap){
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG,50,outputStream);
+        byte[] imageBytes = outputStream.toByteArray();
+        return Base64.encodeToString(imageBytes,Base64.DEFAULT);
     }
 }
