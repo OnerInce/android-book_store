@@ -1,5 +1,6 @@
 package com.zurefaseverler.kithub;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
@@ -95,15 +96,25 @@ public class ProfilePage extends AppCompatActivity  {
         profileInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(ProfilePage.this,ProfileInfo.class));
+                startActivityForResult(new Intent(ProfilePage.this,ProfileInfo.class),1);
             }
         });
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        getProfileInfo();
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 1 && resultCode == 1){
+            String name = data.getStringExtra("name");
+            String mail = data.getStringExtra("mail");
+            String image = data.getStringExtra("image");
+
+            twName.setText(name);
+            twMail.setText(mail);
+
+            String[] temp = image.split("html/");
+            Picasso.get().load("http://18.204.251.116/"+temp[1]).transform(new CircleTransform()).into(imageView);
+        }
     }
 
     private void getProfileInfo() {

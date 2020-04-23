@@ -6,9 +6,12 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
@@ -41,15 +44,18 @@ public class ProfileInfo extends AppCompatActivity {
     private static final int IMAGE_CODE = 100;
     private static final int PERMISSION_CODE = 101;
 
-    private static HashMap<String,String> information;
-    private EditText info_name;
-    private EditText info_mail;
-    private EditText info_phone;
-    private EditText info_address;
+    private EditText info_name,info_mail,info_phone,info_address;
     private ImageView profileImage;
+
     private Bitmap bitmap;
-    private String imagePath;
+
+    private String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+    private String phonePattern = "5[0-9]+";
+
     private boolean isPhotoChanged;
+    private boolean err = false;
+
+    private static HashMap<String,String> information;
     public static void setHashMap() {
         ProfileInfo.information = new HashMap<>();
     }
@@ -57,6 +63,15 @@ public class ProfileInfo extends AppCompatActivity {
         return information;
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent();
+        intent.putExtra("name",information.get("name"));
+        intent.putExtra("mail",information.get("email"));
+        intent.putExtra("image",information.get("imagePath"));
+        setResult(1,intent);
+        finish();
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -70,6 +85,7 @@ public class ProfileInfo extends AppCompatActivity {
         profileImage = findViewById(R.id.profile_image);
 
         setInformation();
+
         findViewById(R.id.passwordChange).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,10 +96,54 @@ public class ProfileInfo extends AppCompatActivity {
                 final EditText newPass = (EditText) mView.findViewById(R.id.newPass);
                 final EditText oldPass = (EditText) mView.findViewById(R.id.oldPass);
                 Button savePass = (Button) mView.findViewById(R.id.savePass);
-
                 mBuilder.setView(mView);
                 final AlertDialog dialog = mBuilder.create();
                 dialog.show();
+
+                oldPass.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                        if(!oldPass.getText().toString().equals(information.get("password")))   oldPass.setError("Eski şifrenizi yanlış girdiniz.");
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable s) {
+
+                    }
+                });
+                newPass.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                        int strength = checkPassStrength(newPass.getText().toString());
+                        if(strength == -1)  newPass.setTextColor(Color.RED);
+                        else if(strength == 0)  newPass.setTextColor(Color.parseColor("#ffa41b"));
+                        else if(strength == 1)  newPass.setTextColor(Color.GREEN);
+                    }
+
+                    private int checkPassStrength(String pass) {
+                        String weak = "[a-z]+";
+                        String medium = "[a-z0-9]+";
+                        String strong = "[a-zA-Z0-9]+";
+                        if(pass.matches(weak))    return -1;
+                        else if(pass.matches(medium))   return 0;
+                        else     return 1;
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable s) {
+
+                    }
+                });
 
                 savePass.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -113,29 +173,66 @@ public class ProfileInfo extends AppCompatActivity {
 
             }
         });
+        info_phone.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(!info_phone.getText().toString().matches(phonePattern) || info_phone.getText().toString().length() != 10){
+                    info_phone.setError("Geçersiz telefon numarası \n 5 ile başlayıp 10 haneli olmalı.");
+                    err = true;
+                }
+                else    err = false;
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
+        info_mail.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(!info_mail.getText().toString().matches(emailPattern)){
+                    info_mail.setError("Geçersiz mail");
+                    err = true;
+                }
+                else    err = false;
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
 
         findViewById(R.id.saveChanges).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder builder = alertDialog();
-                builder.setNegativeButton("Vazgeç", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                });
-                builder.setPositiveButton("Kaydet", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        information.replace("name",info_name.getText().toString());
-                        information.replace("email",info_mail.getText().toString());
-                        information.replace("phoneNumber",info_phone.getText().toString());
-                        information.replace("address",info_address.getText().toString());
-                        updateDatabase();
-                        Toast.makeText(ProfileInfo.this,"Değişiklikler Kaydedildi",Toast.LENGTH_SHORT).show();
-                    }
-                });
-                builder.show();
+                if(err){
+                    Toast.makeText(getApplicationContext(),"Bilgileri tekrar kontrol edin",Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    AlertDialog.Builder builder = alertDialog();
+                    builder.setNegativeButton("Vazgeç", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
+                    builder.setPositiveButton("Kaydet", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            information.replace("name",info_name.getText().toString());
+                            information.replace("email",info_mail.getText().toString());
+                            information.replace("phoneNumber",info_phone.getText().toString());
+                            information.replace("address",info_address.getText().toString());
+                            updateDatabase();
+                            Toast.makeText(ProfileInfo.this,"Değişiklikler Kaydedildi",Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                    builder.show();
+                }
             }
         });
     }
@@ -149,7 +246,8 @@ public class ProfileInfo extends AppCompatActivity {
                     public void onResponse(String response) {
                         try {
                             JSONObject jsonObject = new JSONObject(response);
-                            information.replace("imagePath",jsonObject.getString("newFilePath"));
+                            if(jsonObject.getString("imageChanged").equals("1"))
+                                information.replace("imagePath",jsonObject.getString("newFilePath"));
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
