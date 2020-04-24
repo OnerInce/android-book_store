@@ -6,7 +6,7 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class admin extends AppCompatActivity {
+public class Admin extends AppCompatActivity {
 
     Intent i;
 
@@ -18,10 +18,10 @@ public class admin extends AppCompatActivity {
 
 
 
-    // admin ana sayfa button foksiyonları burada çalışıyor                                 #################
+    // Admin ana sayfa button foksiyonları burada çalışıyor                                 #################
     public void add_book(View view){
 
-        i = new Intent(this,add_book.class);
+        i = new Intent(this, AddBook.class);
         startActivity(i);
 
     }
@@ -56,14 +56,14 @@ public class admin extends AppCompatActivity {
 
     public void add_category(View view){
 
-        i = new Intent(this,add_category.class);
+        i = new Intent(this, AddCategory.class);
         startActivity(i);
 
     }
 
     public void delete_category(View view){
 
-        i = new Intent(this,delete_category.class);
+        i = new Intent(this, DeleteCategory.class);
         startActivity(i);
 
     }

@@ -25,93 +25,81 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class delete_category extends AppCompatActivity {
+public class DeleteCategory extends AppCompatActivity {
 
     private int son_Expand_group = -1;
-    private String category;            //üst kategori  (kitap kategorisi)
-    private String book_type;           //alt kategori (kitap türü)
+    private String category;
+    private String book_type;
     private String temp;
-    final String ara = "  /  ";
+    final String sep = "  /  ";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delete_category);
         final Button deleteButton = findViewById(R.id.delete_button);
-        final ExpandableListView kategoriler = (ExpandableListView) findViewById(R.id.acilirKategoriler);
+        final ExpandableListView categories = findViewById(R.id.acilirKategoriler);
         final TextView sil_text = findViewById(R.id.sil_tur);
 
-        kategoriler.setAdapter(new adapter_kategoriler(this,adapter_kategoriler.categories,adapter_kategoriler.bookTypes));
+        categories.setAdapter(new AdapterCategories(this, AdapterCategories.categories, AdapterCategories.bookTypes));
 
-        if(adapter_kategoriler.categories.size() == 0) {
+        if(AdapterCategories.categories.size() == 0) {
             deleteButton.setVisibility(View.INVISIBLE);
-            sil_text.setText("Kategori Bulunamadı.");
+            sil_text.setText(R.string.category_delete_not_found);
         }
 
-        kategoriler.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
+        categories.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
             @Override
             public void onGroupExpand(int groupPosition) {
                 if(son_Expand_group != -1 && groupPosition != son_Expand_group){
-
-                    kategoriler.collapseGroup(son_Expand_group);
-
-
+                    categories.collapseGroup(son_Expand_group);
                 }
                 son_Expand_group = groupPosition;
             }
         });
 
-        kategoriler.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
+        categories.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
             @Override
             public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
-
                 category = ((TextView) v).getText().toString();
                 temp = category;
                 sil_text.setText(category);
                 book_type = null;
+
                 return false;
             }
         });
 
-
-
-        kategoriler.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+        categories.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             @Override
             public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
-
-
                 book_type = ((TextView) v).getText().toString();
-                temp = category + ara + book_type;
+                temp = category + sep + book_type;
                 sil_text.setText(temp);
-
 
                 return false;
             }
         });
-
-
 
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("abc",book_type+"  "+category);
-                AlertDialog.Builder builder = new AlertDialog.Builder(delete_category.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(DeleteCategory.this);
                 builder.setCancelable(true);
-                builder.setMessage(temp+" kategorisini ya da kitap türünü silmek istediğinize emin misiniz?");
-                builder.setTitle("SİLME ONAYI");
+                builder.setMessage(temp + getString(R.string.category_delete_sure));
+                builder.setTitle(R.string.category_delete_confirm);
 
-                builder.setNegativeButton("İptal", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton(R.string.category_delete_cancel, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
                     }
                 });
 
-                builder.setPositiveButton("Onayla", new DialogInterface.OnClickListener() {
+                builder.setPositiveButton(R.string.category_delete_ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        final String[] success = {"0","0","0"};
-                        RequestQueue mQueue = Volley.newRequestQueue(delete_category.this);
+                        RequestQueue mQueue = Volley.newRequestQueue(DeleteCategory.this);
                         String url = "http://18.204.251.116/delete_category.php";
                         StringRequest request = new StringRequest(Request.Method.POST, url,
                                 new Response.Listener<String>() {
@@ -119,26 +107,21 @@ public class delete_category extends AppCompatActivity {
                                     public void onResponse(String response) {
                                         try {
                                             JSONObject jsonObject = new JSONObject(response);
-                                            success[0] = jsonObject.getString("success");
                                             if(book_type == null){
-                                                success[2] = category;
-                                                adapter_kategoriler.bookTypes.remove(category);
-                                                adapter_kategoriler.categories.remove(adapter_kategoriler.categories.indexOf(category));
+                                                AdapterCategories.bookTypes.remove(category);
+                                                AdapterCategories.categories.remove(AdapterCategories.categories.indexOf(category));
                                             }
                                             else{
-                                                success[1] = book_type;
-                                                adapter_kategoriler.bookTypes.get(category).remove(adapter_kategoriler.bookTypes.get(category).indexOf(book_type));
+                                                AdapterCategories.bookTypes.get(category).remove(AdapterCategories.bookTypes.get(category).indexOf(book_type));
                                             }
-                                            kategoriler.setAdapter( new adapter_kategoriler(delete_category.this,adapter_kategoriler.categories,adapter_kategoriler.bookTypes));
-                                            if(adapter_kategoriler.categories.size() == 0) {
+                                            categories.setAdapter( new AdapterCategories(DeleteCategory.this, AdapterCategories.categories, AdapterCategories.bookTypes));
+                                            if(AdapterCategories.categories.size() == 0) {
                                                 deleteButton.setVisibility(View.INVISIBLE);
-                                                sil_text.setText("Kategori Bulunamadı.");
+                                                sil_text.setText(R.string.category_delete_not_found);
                                             }
                                         } catch (JSONException e) {
                                             e.printStackTrace();
                                         }
-
-
                                     }
                                 },
                                 new Response.ErrorListener() {
@@ -148,7 +131,7 @@ public class delete_category extends AppCompatActivity {
                                     }
                                 }){
                             @Override
-                            protected Map<String, String> getParams() throws AuthFailureError {
+                            protected Map<String, String> getParams(){
                                 Map<String,String> params = new HashMap<>();
                                 if(book_type!=null){
                                     params.put("book_type_name",book_type);
@@ -163,8 +146,5 @@ public class delete_category extends AppCompatActivity {
                 builder.show();
             }
         });
-
-
     }
-
 }

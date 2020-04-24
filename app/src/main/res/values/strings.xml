@@ -18,5 +18,33 @@
     <string name="category_add_verify">Onayla</string>
     <string name="category_add_sure2">%1$s kategorisine %2$s kitap türünü eklemek istediğinize emin misiniz?"</string>
 
+    <string name="book_add_error">Tüm bilgileri girdiğinizden emin olun !</string>
+    <string name="book_add_sure">\" adlı kitabı eklemek istediğinize emin misiniz?\"</string>
+    <string name="book_add_confirm">EKLEME ONAYI</string>
+    <string name="book_add_cancel">İptal</string>
+    <string name="book_add_ok">Onayla</string>
+    <string name="book_add_success">Kitap başarıyla eklendi</string>
+
+    <string name="category_delete_not_found">Kategori Bulunamadı.</string>
+    <string name="category_delete_sure">\ kategorisini ya da kitap türünü silmek istediğinize emin misiniz?\"</string>
+    <string name="category_delete_confirm">SİLME ONAYI</string>
+    <string name="category_delete_cancel">İptal</string>
+    <string name="category_delete_ok">Onayla</string>
+
+    <string name="profile_info_wrong_pw">Eski şifrenizi yanlış girdiniz.</string>
+    <string name="profile_info_wrong_phone">Geçersiz telefon numarası \n 5 ile başlayıp 10 haneli olmalı.</string>
+    <string name="profile_info_wrong_mail">Geçersiz mail</string>
+    <string name="profile_info_check_again">Bilgileri tekrar kontrol edin</string>
+    <string name="profile_info_cancel">Vazgeç</string>
+    <string name="profile_info_save">Kaydet</string>
+    <string name="profile_info_success">Değişiklikler Kaydedildi</string>
+    <string name="profile_info_sure">Değişiklikleri kaydetmek istediğinize emin misiniz?</string>
+    <string name="profile_info_confirm">Değişiklikleri Kaydet</string>
+    <string name="profile_info_permission">Bu yetkiyi ayarlardan değişebilirsin.</string>
+
+    <string name="profile_page_log_out">Çıkış yapmak istediğinize emin misiniz?</string>
+    <string name="profile_page_no">Hayır</string>
+    <string name="profile_page_yes">Evet</string>
+
 
 </resources>

@@ -21,12 +21,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 
-public class start_up extends AppCompatActivity {
+public class StartUp extends AppCompatActivity {
     RequestQueue mQueue;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.start_up);
+        setContentView(R.layout.activity_start_up);
 
         Thread timeTread = new Thread(){
             public void run(){
@@ -36,7 +36,7 @@ public class start_up extends AppCompatActivity {
                 }catch(InterruptedException e){
                     e.printStackTrace();
                 }finally {
-                    Intent i = new Intent(start_up.this, MainActivity.class);
+                    Intent i = new Intent(StartUp.this, MainActivity.class);
                     startActivity(i);
                 }
             }
@@ -44,8 +44,8 @@ public class start_up extends AppCompatActivity {
         timeTread.start();
     }
     public void fillArrays(){
-        adapter_kategoriler.categories = new ArrayList<>();
-        adapter_kategoriler.bookTypes = new HashMap<>();
+        AdapterCategories.categories = new ArrayList<>();
+        AdapterCategories.bookTypes = new HashMap<>();
 
         mQueue = Volley.newRequestQueue(this);
         String url = "http://18.204.251.116/categories.php";
@@ -58,23 +58,21 @@ public class start_up extends AppCompatActivity {
                             JSONObject jsonObject = new JSONObject(response);
                             Iterator<String> keys = jsonObject.keys();
                             while(keys.hasNext()){
-                                adapter_kategoriler.categories.add(keys.next());
+                                AdapterCategories.categories.add(keys.next());
                             }
-                            for(int i =0 ;i<adapter_kategoriler.categories.size();i++){
-                                JSONArray jsonArray = jsonObject.getJSONArray(adapter_kategoriler.categories.get(i));
+                            for(int i = 0; i< AdapterCategories.categories.size(); i++){
+                                JSONArray jsonArray = jsonObject.getJSONArray(AdapterCategories.categories.get(i));
 
-                                String currentCategory = adapter_kategoriler.categories.get(i);
+                                String currentCategory = AdapterCategories.categories.get(i);
                                 ArrayList<String> arr = new ArrayList<>();
                                 for(int j=0;j<jsonArray.length();j++){
                                     arr.add(jsonArray.getString(j));
                                 }
-                                adapter_kategoriler.bookTypes.put(currentCategory,arr);
+                                AdapterCategories.bookTypes.put(currentCategory,arr);
                             }
                         } catch (JSONException e) {
-
+                            e.printStackTrace();
                         }
-
-
                     }
                 },
                 new Response.ErrorListener() {

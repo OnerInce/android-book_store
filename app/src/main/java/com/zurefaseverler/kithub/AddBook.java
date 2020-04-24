@@ -1,6 +1,5 @@
 package com.zurefaseverler.kithub;
 
-
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
@@ -11,9 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-public class add_book extends AppCompatActivity {
+public class AddBook extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +26,8 @@ public class add_book extends AppCompatActivity {
         final EditText i_7 = findViewById(R.id.admin_add_book_price);
         final EditText i_8 = findViewById(R.id.admin_add_book_ozet);
 
-        Button eklebuttonu = findViewById(R.id.add_book_ekle_button);
-        eklebuttonu.setOnClickListener(new View.OnClickListener() {
+        Button addButton = findViewById(R.id.add_book_ekle_button);
+        addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -41,40 +38,37 @@ public class add_book extends AppCompatActivity {
                 String category = i_5.getText().toString();
                 String type = i_6.getText().toString();
                 String price = i_7.getText().toString();
-                String ozet = i_8.getText().toString();
+                String summary = i_8.getText().toString();
 
                 if(ISBN.equals("") | book_name.equals("") | author.equals("") | quantity.equals("") | category.equals("") | type.equals("") | price.equals("") |
-                        ozet.equals("") ){
+                        summary.equals("") ){
 
-                    Toast.makeText(add_book.this, "Tüm bilgileri girdiğinizden emin olun !",Toast.LENGTH_LONG).show();
+                    Toast.makeText(AddBook.this, R.string.book_add_error,Toast.LENGTH_LONG).show();
                     return;
                 }
 
-
-                AlertDialog.Builder builder = new AlertDialog.Builder(add_book.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(AddBook.this);
                 builder.setCancelable(true);
-                builder.setMessage(book_name +" adlı kitabı eklemek istediğinize emin misiniz?");
-                builder.setTitle("EKLEME ONAYI");
+                builder.setMessage(book_name +getString(R.string.book_add_sure));
+                builder.setTitle(R.string.book_add_confirm);
 
-                builder.setNegativeButton("İptal", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton(R.string.book_add_cancel, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
                     }
                 });
 
-                builder.setPositiveButton("Onayla", new DialogInterface.OnClickListener() {
+                builder.setPositiveButton(R.string.book_add_ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
 
 
-                        //kitap ekleme kısmı buraya
+                        // database operations here
 
 
-
-
-                        Toast.makeText(add_book.this, "Kitap başarıyla eklendi",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AddBook.this, R.string.book_add_success,Toast.LENGTH_SHORT).show();
 
                     }
                 });

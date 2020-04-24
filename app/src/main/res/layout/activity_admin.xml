@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/light"
-    tools:context=".admin">
+    tools:context=".Admin">
 
     <TextView
         android:id="@+id/textView19"

@@ -49,7 +49,7 @@ public class ProfileInfo extends AppCompatActivity {
 
     private Bitmap bitmap;
 
-    private String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+(\\.[a-z]+)+";
+    private String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
     private String phonePattern = "5[0-9]+";
 
     private boolean isPhotoChanged;
@@ -76,7 +76,7 @@ public class ProfileInfo extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.profile_info);
+        setContentView(R.layout.activity_profile_info);
 
         info_name = findViewById(R.id.info_name);
         info_mail = findViewById(R.id.info_mail);
@@ -92,10 +92,9 @@ public class ProfileInfo extends AppCompatActivity {
                 AlertDialog.Builder mBuilder = new AlertDialog.Builder(ProfileInfo.this);
                 View mView = getLayoutInflater().inflate(R.layout.password_change_popup, null);
 
-
-                final EditText newPass = (EditText) mView.findViewById(R.id.newPass);
-                final EditText oldPass = (EditText) mView.findViewById(R.id.oldPass);
-                Button savePass = (Button) mView.findViewById(R.id.savePass);
+                final EditText newPass = mView.findViewById(R.id.newPass);
+                final EditText oldPass = mView.findViewById(R.id.oldPass);
+                Button savePass = mView.findViewById(R.id.savePass);
                 mBuilder.setView(mView);
                 final AlertDialog dialog = mBuilder.create();
                 dialog.show();
@@ -103,12 +102,12 @@ public class ProfileInfo extends AppCompatActivity {
                 oldPass.addTextChangedListener(new TextWatcher() {
                     @Override
                     public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
                     }
 
                     @Override
                     public void onTextChanged(CharSequence s, int start, int before, int count) {
-                        if(!oldPass.getText().toString().equals(information.get("password")))   oldPass.setError("Eski şifrenizi yanlış girdiniz.");
+                        if(!oldPass.getText().toString().equals(information.get("password")))
+                            oldPass.setError(getString(R.string.profile_info_wrong_pw));
                     }
 
                     @Override
@@ -133,7 +132,7 @@ public class ProfileInfo extends AppCompatActivity {
                     private int checkPassStrength(String pass) {
                         String weak = "[a-z]+";
                         String medium = "[a-z0-9]+";
-                        String strong = "^[A-Za-z0-9]{8,20}$";
+                        String strong = "[a-zA-Z0-9]+";
                         if(pass.matches(weak))    return -1;
                         else if(pass.matches(medium))   return 0;
                         else     return 1;
@@ -157,7 +156,6 @@ public class ProfileInfo extends AppCompatActivity {
             }
         });
 
-
         profileImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -180,10 +178,11 @@ public class ProfileInfo extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if(!info_phone.getText().toString().matches(phonePattern) || info_phone.getText().toString().length() != 10){
-                    info_phone.setError("Geçersiz telefon numarası \n 5 ile başlayıp 10 haneli olmalı.");
+                    info_phone.setError(getString(R.string.profile_info_wrong_phone));
                     err = true;
                 }
-                else    err = false;
+                else
+                    err = false;
             }
             @Override
             public void afterTextChanged(Editable s) {
@@ -196,10 +195,11 @@ public class ProfileInfo extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if(!info_mail.getText().toString().matches(emailPattern)){
-                    info_mail.setError("Geçersiz mail");
+                    info_mail.setError(getString(R.string.profile_info_wrong_mail));
                     err = true;
                 }
-                else    err = false;
+                else
+                    err = false;
             }
             @Override
             public void afterTextChanged(Editable s) {
@@ -210,17 +210,17 @@ public class ProfileInfo extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(err){
-                    Toast.makeText(getApplicationContext(),"Bilgileri tekrar kontrol edin",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), R.string.profile_info_check_again,Toast.LENGTH_SHORT).show();
                 }
                 else{
                     AlertDialog.Builder builder = alertDialog();
-                    builder.setNegativeButton("Vazgeç", new DialogInterface.OnClickListener() {
+                    builder.setNegativeButton(R.string.profile_info_cancel, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             dialog.cancel();
                         }
                     });
-                    builder.setPositiveButton("Kaydet", new DialogInterface.OnClickListener() {
+                    builder.setPositiveButton(R.string.profile_info_save, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             information.replace("name",info_name.getText().toString());
@@ -228,7 +228,7 @@ public class ProfileInfo extends AppCompatActivity {
                             information.replace("phoneNumber",info_phone.getText().toString());
                             information.replace("address",info_address.getText().toString());
                             updateDatabase();
-                            Toast.makeText(ProfileInfo.this,"Değişiklikler Kaydedildi",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ProfileInfo.this, R.string.profile_info_success,Toast.LENGTH_SHORT).show();
                         }
                     });
                     builder.show();
@@ -261,7 +261,7 @@ public class ProfileInfo extends AppCompatActivity {
                     }
                 }){
             @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
+            protected Map<String, String> getParams(){
                 HashMap<String,String> params = new HashMap<>();
                 params.put("complete_name",information.get("name"));
                 params.put("phone",information.get("phoneNumber"));
@@ -281,8 +281,8 @@ public class ProfileInfo extends AppCompatActivity {
     private AlertDialog.Builder alertDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(ProfileInfo.this);
         builder.setCancelable(true);
-        builder.setMessage("Değişiklikleri kaydetmek istediğinize emin misiniz?");
-        builder.setTitle("Değişiklikleri Kaydet");
+        builder.setMessage(R.string.profile_info_sure);
+        builder.setTitle(R.string.profile_info_confirm);
         return builder;
     }
 
@@ -304,8 +304,7 @@ public class ProfileInfo extends AppCompatActivity {
             pickImage();
         }
         else {
-            Toast.makeText(this,"Bu yetkiyi ayarlardan değişebilirsin.",Toast.LENGTH_SHORT).show();
-
+            Toast.makeText(this, R.string.profile_info_permission,Toast.LENGTH_SHORT).show();
         }
     }
 

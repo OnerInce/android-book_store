@@ -7,12 +7,12 @@ import android.widget.ImageButton;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class Sepet extends AppCompatActivity implements  View.OnClickListener{
+public class Cart extends AppCompatActivity implements  View.OnClickListener{
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.sepet);
+        setContentView(R.layout.activity_cart);
 
         ImageButton go_back = findViewById(R.id.go_back);
         go_back.setOnClickListener(this);

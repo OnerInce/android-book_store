@@ -11,18 +11,18 @@
         android:supportsRtl="true"
         android:usesCleartextTraffic="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".start_up">
+        <activity android:name=".StartUp">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
         <activity android:name=".ProfilePage" />
-        <activity android:name=".Sepet" />
-        <activity android:name=".urun_sayfasi" />
-        <activity android:name=".Kategoriler"/>
-        <activity android:name=".urun_listesi" />
-        <activity android:name=".login" />
+        <activity android:name=".Cart" />
+        <activity android:name=".BookPage" />
+        <activity android:name=".Categories"/>
+        <activity android:name=".BookList" />
+        <activity android:name=".Login" />
         <activity
             android:name=".ProfileInfo"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
@@ -31,10 +31,10 @@
             android:name=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
-        <activity android:name=".admin" />
-        <activity android:name=".delete_category" />
-        <activity android:name=".add_book" />
-        <activity android:name=".add_category" />
+        <activity android:name=".Admin" />
+        <activity android:name=".DeleteCategory" />
+        <activity android:name=".AddBook" />
+        <activity android:name=".AddCategory" />
 
         <uses-library android:name="org.apache.http.legacy" android:required="false" />
     </application>

@@ -1,21 +1,19 @@
 package com.zurefaseverler.kithub;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import android.widget.ImageView;
 import android.widget.TextView;
 
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -24,6 +22,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -32,18 +31,21 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ProfilePage extends AppCompatActivity  {
-    private String id;
 
+    static String id;
+    private TextView twMail;
+    private TextView twName;
+    private ImageView imageView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.profile_page);
+        setContentView(R.layout.activity_profile_page);
 
         /*--------*/
-        id = "3";
+        id = "9";
         /*--------*/
+
         getProfileInfo();
-
 
         Button backToMain = findViewById(R.id.back_to_main);
         backToMain.setOnClickListener(new View.OnClickListener() {
@@ -58,15 +60,15 @@ public class ProfilePage extends AppCompatActivity  {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder alert = new AlertDialog.Builder(ProfilePage.this);
-                alert.setMessage("Çıkış yapmak istediğinize emin misiniz?");
+                alert.setMessage(R.string.profile_page_log_out);
                 alert.setCancelable(true);
-                alert.setNegativeButton("Hayır", new DialogInterface.OnClickListener() {
+                alert.setNegativeButton(R.string.profile_page_no, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
                     }
                 });
-                alert.setPositiveButton("Evet", new DialogInterface.OnClickListener() {
+                alert.setPositiveButton(R.string.profile_page_yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         startActivity(new Intent(ProfilePage.this,MainActivity.class));
@@ -83,9 +85,25 @@ public class ProfilePage extends AppCompatActivity  {
         profileInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(ProfilePage.this,ProfileInfo.class));
+                startActivityForResult(new Intent(ProfilePage.this,ProfileInfo.class),1);
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 1 && resultCode == 1){
+            String name = data.getStringExtra("name");
+            String mail = data.getStringExtra("mail");
+            String image = data.getStringExtra("image");
+
+            twName.setText(name);
+            twMail.setText(mail);
+
+            String[] temp = image.split("html/");
+            Picasso.get().load("http://18.204.251.116/" + temp[1]).transform(new CircleTransform()).into(imageView);
+        }
     }
 
     private void getProfileInfo() {
@@ -105,12 +123,19 @@ public class ProfilePage extends AppCompatActivity  {
                             ProfileInfo.getInformation().put("name",jsonObject.getString("complete_name"));
                             ProfileInfo.getInformation().put("phoneNumber",jsonObject.getString("phone"));
                             ProfileInfo.getInformation().put("email",jsonObject.getString("e_mail"));
+                            ProfileInfo.getInformation().put("password",jsonObject.getString("user_password"));
                             ProfileInfo.getInformation().put("address",jsonObject.getString("address"));
+                            ProfileInfo.getInformation().put("imagePath",jsonObject.getString("image"));
 
-                            TextView twMail = findViewById(R.id.email);
-                            TextView twName = findViewById(R.id.name);
+                            twMail = findViewById(R.id.email);
+                            twName = findViewById(R.id.name);
+                            imageView = findViewById(R.id.profilePhoto);
+
                             twMail.setText(jsonObject.getString("e_mail"));
                             twName.setText(jsonObject.getString("complete_name"));
+
+                            String[] temp = jsonObject.getString("image").split("html/");
+                            Picasso.get().load("http://18.204.251.116/"+temp[1]).transform(new CircleTransform()).into(imageView);
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -124,7 +149,7 @@ public class ProfilePage extends AppCompatActivity  {
                     }
                 }){
             @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
+            protected Map<String, String> getParams(){
                 Map<String,String> params = new HashMap<>();
                 params.put("id",id);
                 params.put("operation","1");
