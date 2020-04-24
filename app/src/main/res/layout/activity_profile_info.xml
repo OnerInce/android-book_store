@@ -5,24 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/profile_image"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="16dp"
-        android:src="@drawable/profile_info_pp"
-        app:civ_border_color="#FF000000"
-        app:civ_border_width="2dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="20dp"
         android:fontFamily="sans-serif-thin"
         android:text="Ad Soyad"
         android:textColor="#0C0000"
@@ -31,7 +19,7 @@
         app:layout_constraintTop_toBottomOf="@+id/profile_image" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/info_name"
         android:layout_width="329dp"
         android:layout_height="50dp"
         android:layout_marginStart="30dp"
@@ -58,7 +46,7 @@
         android:textColor="#0C0000"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
+        app:layout_constraintTop_toBottomOf="@+id/info_name" />
 
     <TextView
         android:id="@+id/textView9"
@@ -71,10 +59,10 @@
         android:textColor="#0C0000"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText4" />
+        app:layout_constraintTop_toBottomOf="@+id/info_address" />
 
     <EditText
-        android:id="@+id/editText8"
+        android:id="@+id/info_phone"
         android:layout_width="329dp"
         android:layout_height="50dp"
         android:layout_marginStart="30dp"
@@ -99,10 +87,10 @@
         android:textColor="#0C0000"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText8" />
+        app:layout_constraintTop_toBottomOf="@+id/info_phone" />
 
     <EditText
-        android:id="@+id/editText9"
+        android:id="@+id/info_mail"
         android:layout_width="329dp"
         android:layout_height="50dp"
         android:layout_marginStart="30dp"
@@ -127,10 +115,10 @@
         android:textColor="#0C0000"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText9" />
+        app:layout_constraintTop_toBottomOf="@+id/info_mail" />
 
     <EditText
-        android:id="@+id/editText4"
+        android:id="@+id/info_address"
         android:layout_width="329dp"
         android:layout_height="50dp"
         android:layout_marginStart="30dp"
@@ -164,7 +152,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/saveChanges"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/profile_info_orange_button"
@@ -175,5 +163,15 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/profile_image"
+        android:layout_width="156dp"
+        android:layout_height="137dp"
+        android:layout_marginTop="34dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_account_circle" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
