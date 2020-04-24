@@ -1,6 +1,5 @@
 package com.zurefaseverler.kithub;
 
-
 import android.content.Context;
 import android.graphics.Color;
 import android.view.View;
@@ -11,20 +10,17 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Map;
 
-public class adapter_kategoriler extends BaseExpandableListAdapter {
+public class AdapterCategories extends BaseExpandableListAdapter {
 
-    // kategoriler veri tabani geldiginde oraya aktarilacak
-    // ayrica adminin yeni kategori ekleyebilmesi lazim
     static ArrayList<String> categories;
     static Map<String,ArrayList<String>> bookTypes;
     private Context c;
 
-
-    public adapter_kategoriler(Context c,ArrayList<String> categories,Map<String,ArrayList<String>> bookTypes){
+    AdapterCategories(Context c, ArrayList<String> categories, Map<String, ArrayList<String>> bookTypes){
         this.c = c;
-        adapter_kategoriler.categories = categories;
-        adapter_kategoriler.bookTypes = bookTypes;
-    };
+        AdapterCategories.categories = categories;
+        AdapterCategories.bookTypes = bookTypes;
+    }
 
     @Override
     public boolean hasStableIds() {
@@ -65,22 +61,22 @@ public class adapter_kategoriler extends BaseExpandableListAdapter {
 
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
-        TextView tv_kitap_kategorileri = new TextView(c);
-        tv_kitap_kategorileri.setText(categories.get(groupPosition));
-        tv_kitap_kategorileri.setTextSize(20);
-        tv_kitap_kategorileri.setPadding(140,10,10, 10);
-        tv_kitap_kategorileri.setTextColor(Color.parseColor("#ff5e3a"));
-        return tv_kitap_kategorileri;
+        TextView tv_book_categories = new TextView(c);
+        tv_book_categories.setText(categories.get(groupPosition));
+        tv_book_categories.setTextSize(20);
+        tv_book_categories.setPadding(140,10,10, 10);
+        tv_book_categories.setTextColor(Color.parseColor("#ff5e3a"));
+        return tv_book_categories;
     }
 
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
-        TextView tv_alt_kategorileri = new TextView(c);
-        tv_alt_kategorileri.setText(bookTypes.get(categories.get(groupPosition)).get(childPosition));
-        tv_alt_kategorileri.setTextSize(16);
-        tv_alt_kategorileri.setPadding(170,10,10, 10);
-        tv_alt_kategorileri.setTextColor(Color.parseColor("#272e4f"));
-        return tv_alt_kategorileri;
+        TextView tv_sub_categories = new TextView(c);
+        tv_sub_categories.setText(bookTypes.get(categories.get(groupPosition)).get(childPosition));
+        tv_sub_categories.setTextSize(16);
+        tv_sub_categories.setPadding(170,10,10, 10);
+        tv_sub_categories.setTextColor(Color.parseColor("#272e4f"));
+        return tv_sub_categories;
     }
 
     @Override

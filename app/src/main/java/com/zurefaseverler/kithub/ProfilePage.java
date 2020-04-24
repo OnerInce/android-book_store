@@ -6,20 +6,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 import android.widget.ImageView;
 import android.widget.TextView;
 
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -33,15 +27,10 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
 public class ProfilePage extends AppCompatActivity  {
-
 
     static String id;
     private TextView twMail;
@@ -50,7 +39,7 @@ public class ProfilePage extends AppCompatActivity  {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.profile_page);
+        setContentView(R.layout.activity_profile_page);
 
         /*--------*/
         id = "9";
@@ -71,15 +60,15 @@ public class ProfilePage extends AppCompatActivity  {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder alert = new AlertDialog.Builder(ProfilePage.this);
-                alert.setMessage("Çıkış yapmak istediğinize emin misiniz?");
+                alert.setMessage(R.string.profile_page_log_out);
                 alert.setCancelable(true);
-                alert.setNegativeButton("Hayır", new DialogInterface.OnClickListener() {
+                alert.setNegativeButton(R.string.profile_page_no, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
                     }
                 });
-                alert.setPositiveButton("Evet", new DialogInterface.OnClickListener() {
+                alert.setPositiveButton(R.string.profile_page_yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         startActivity(new Intent(ProfilePage.this,MainActivity.class));
@@ -113,7 +102,7 @@ public class ProfilePage extends AppCompatActivity  {
             twMail.setText(mail);
 
             String[] temp = image.split("html/");
-            Picasso.get().load("http://18.204.251.116/"+temp[1]).transform(new CircleTransform()).into(imageView);
+            Picasso.get().load("http://18.204.251.116/" + temp[1]).transform(new CircleTransform()).into(imageView);
         }
     }
 
@@ -160,7 +149,7 @@ public class ProfilePage extends AppCompatActivity  {
                     }
                 }){
             @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
+            protected Map<String, String> getParams(){
                 Map<String,String> params = new HashMap<>();
                 params.put("id",id);
                 params.put("operation","1");

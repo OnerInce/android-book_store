@@ -25,9 +25,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class add_category extends AppCompatActivity {
+public class AddCategory extends AppCompatActivity {
 
-    private String category;            // üst kategori  (kitap kategorisi)
+    private String category;
     private String book_type;
 
     @Override
@@ -47,8 +47,7 @@ public class add_category extends AppCompatActivity {
                 category = category_edit.getText().toString();
                 book_type = type_edit.getText().toString();
 
-
-                AlertDialog.Builder builder = new AlertDialog.Builder(add_category.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(AddCategory.this);
                 builder.setCancelable(true);
 
                 if (category.matches("")) {
@@ -82,7 +81,7 @@ public class add_category extends AppCompatActivity {
                     builder.setPositiveButton(R.string.category_add_verify, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            RequestQueue mQueue = Volley.newRequestQueue(add_category.this);
+                            RequestQueue mQueue = Volley.newRequestQueue(AddCategory.this);
                             String url = "http://18.204.251.116/add_category.php";
                             StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
                                 @Override
@@ -102,22 +101,22 @@ public class add_category extends AppCompatActivity {
                                     }
                                     ){
                                 @Override
-                                protected Map<String, String> getParams() throws AuthFailureError {
-                                    if (!adapter_kategoriler.categories.contains(category))
-                                        adapter_kategoriler.categories.add(category);
+                                protected Map<String, String> getParams(){
+                                    if (!AdapterCategories.categories.contains(category))
+                                        AdapterCategories.categories.add(category);
 
                                     Map<String,String> params = new HashMap<>();
                                     if(book_type != null){
-                                        params.put("book_type_name",book_type);
-                                        ArrayList<String> old_list = adapter_kategoriler.bookTypes.get(category);
+                                        params.put("book_type_name", book_type);
+                                        ArrayList<String> old_list = AdapterCategories.bookTypes.get(category);
                                         if (old_list != null){
                                             old_list.add(book_type);
-                                            adapter_kategoriler.bookTypes.put(category, old_list);
+                                            AdapterCategories.bookTypes.put(category, old_list);
                                         }
                                         else {
                                             ArrayList<String> new_list = new ArrayList<>();
                                             new_list.add(book_type);
-                                            adapter_kategoriler.bookTypes.put(category, new_list);
+                                            AdapterCategories.bookTypes.put(category, new_list);
 
                                         }
                                     }
@@ -126,7 +125,7 @@ public class add_category extends AppCompatActivity {
                                 }
                             };
                             mQueue.add(request);
-                            Toast.makeText(add_category.this, R.string.category_add_success,Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AddCategory.this, R.string.category_add_success,Toast.LENGTH_SHORT).show();
                         }
                     }
                 );
