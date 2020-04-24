@@ -44,6 +44,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 i = new Intent(this, Admin.class);
                 startActivity(i);
                 break;
+
+            case  R.id.yazarlar:
+                i = new Intent(this, Authors.class );
+                startActivity(i);
+                break;
         }
 
         return true;
@@ -86,8 +91,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.button_drawer:
                 drawer.openDrawer(GravityCompat.END);
                 break;
+
         }
 
     }
+
 
 }

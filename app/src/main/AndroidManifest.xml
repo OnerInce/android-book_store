@@ -35,6 +35,8 @@
         <activity android:name=".DeleteCategory" />
         <activity android:name=".AddBook" />
         <activity android:name=".AddCategory" />
+        <activity android:name=".Authors" />
+        <activity android:name=".AuthorsPage"/>
 
         <uses-library android:name="org.apache.http.legacy" android:required="false" />
     </application>
