@@ -68,6 +68,7 @@ public class StartUp extends AppCompatActivity {
                                 for(int j=0;j<jsonArray.length();j++){
                                     arr.add(jsonArray.getString(j));
                                 }
+                                if(arr.get(0).equals("null"))  arr.clear();
                                 AdapterCategories.bookTypes.put(currentCategory,arr);
                             }
                         } catch (JSONException e) {
