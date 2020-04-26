@@ -18,11 +18,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".ProfilePage" />
-        <activity android:name=".Cart" />
         <activity android:name=".BookPage" />
         <activity android:name=".Categories"/>
         <activity android:name=".BookList" />
         <activity android:name=".Login" />
+        <activity android:name=".CartActivity"/>
         <activity
             android:name=".ProfileInfo"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"

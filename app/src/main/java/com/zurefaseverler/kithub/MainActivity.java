@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public boolean onNavigationItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.sepet:
-                Intent i = new Intent(this, Login.class);
+                Intent i = new Intent(this, CartActivity.class);
                 startActivity(i);
                 break;
 

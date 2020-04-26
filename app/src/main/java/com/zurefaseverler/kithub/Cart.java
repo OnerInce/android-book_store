@@ -1,31 +1,64 @@
 package com.zurefaseverler.kithub;
 
-import android.os.Bundle;
-import android.view.View;
-import android.widget.ImageButton;
+public class Cart {
+    private int imageId;
+    private String pid,pname, price,quantity,discount;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
-public class Cart extends AppCompatActivity implements  View.OnClickListener{
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cart);
-
-        ImageButton go_back = findViewById(R.id.go_back);
-        go_back.setOnClickListener(this);
-
+    public Cart(String pid, String pname, String price, String quantity, String discount, int imageId) {
+        this.pid = pid;
+        this.pname = pname;
+        this.price = price;
+        this.quantity = quantity;
+        this.discount = discount;
     }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
 
-            case R.id.go_back:
-                onBackPressed();
-                break;
-        }
+
+    public int getImageId() {
+        return imageId;
+    }
+
+    public void setImageId(int imageId) {
+        this.imageId = imageId;
+    }
+    public String getPid() {
+        return pid;
+    }
+
+    public void setPid(String pid) {
+        this.pid = pid;
+    }
+
+    public String getPname() {
+        return pname;
+    }
+
+    public void setPname(String pname) {
+        this.pname = pname;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public String getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(String quantity) {
+        this.quantity = quantity;
+    }
+
+    public String getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(String discount) {
+        this.discount = discount;
     }
 }
