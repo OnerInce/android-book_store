@@ -389,7 +389,7 @@
         android:background="@color/orange"
         android:fitsSystemWindows="true"
         app:itemTextColor="@color/light"
-        app:menu="@menu/drawer_menu" />
+        app:menu="@menu/drawer_menu_guest" />
 
 
 </androidx.drawerlayout.widget.DrawerLayout>

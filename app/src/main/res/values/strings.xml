@@ -54,5 +54,10 @@
         evlenmiştir.1920 yılında ilk polisiye romanı olan “The Mysterious Affair Style” kitabını yayımlamıştır. Meşhur Kahramanı olan Hercule Poirot bu romanında hayat bulmuştur. Bir çok eserinde bu kahramanı
         kullanmıştır. Günümüzde Türkçe olarak “Altın Kitaplar” yayınevi tarafından “Ölüm Sessiz Geldi” ismiyle yayımlanmaktadır.</string>
 
+    <string name="login_success">Giriş başarılı\nAna sayfaya yönlendiriliyorsunuz</string>
+    <string name="login_fail">Giriş başarısız\nLütfen e-mail ve şifrefinizi kontrol ediniz</string>
+
+    <string name="logout_success">Hesabınızdan başarıyla çıkış yapıldı\nAna sayfaya yönlendiriliyorsunuz</string>
+
 
 </resources>

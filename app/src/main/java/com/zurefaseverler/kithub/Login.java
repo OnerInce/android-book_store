@@ -1,6 +1,9 @@
 package com.zurefaseverler.kithub;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -55,14 +58,20 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                     public void onResponse(String response) {
                         try {
                             JSONObject jsonObject = new JSONObject(response);
-                            String mail = jsonObject.getString("e_mail");
+                            String id = jsonObject.getString("id");
                             String success = jsonObject.getString("success");
 
                             if(success.equals("1")){
-                                Toast.makeText(getApplicationContext(),"Success. Email="+mail,Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), R.string.login_success, Toast.LENGTH_SHORT).show();
+
+                                SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                                SharedPreferences.Editor editor = sharedPref.edit();
+                                editor.putInt("id", Integer.parseInt(id));
+                                editor.apply();
+                                startActivity(new Intent(Login.this, MainActivity.class));
                             }
                             else{
-                                Toast.makeText(getApplicationContext(),"başarısız",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), R.string.login_fail,Toast.LENGTH_SHORT).show();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();

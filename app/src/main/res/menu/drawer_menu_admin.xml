@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view"
+    >
+
+    <item android:id="@+id/yazarlar"
+        android:icon="@drawable/ic_writers"
+        android:title="Yazarlar"/>
+
+    <item android:id="@+id/kategoriler"
+        android:icon="@drawable/ic_kategoriler"
+        android:title="Kategoriler"/>
+
+    <item android:id="@+id/sicak_fırsat"
+        android:icon="@drawable/ic_hot"
+        android:title="Fırsat ürünü"/>
+
+    <item android:id="@+id/admin_drawer"
+        android:icon="@drawable/ic_hot"
+        android:title="Admin"/>
+
+
+</menu>
