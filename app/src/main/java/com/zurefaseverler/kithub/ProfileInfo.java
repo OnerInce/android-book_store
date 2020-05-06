@@ -49,7 +49,7 @@ public class ProfileInfo extends AppCompatActivity {
 
     private Bitmap bitmap;
 
-    private String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+    private String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+(\\.[a-z]+)+";
     private String phonePattern = "5[0-9]+";
 
     private boolean isPhotoChanged;
@@ -124,18 +124,18 @@ public class ProfileInfo extends AppCompatActivity {
                     @Override
                     public void onTextChanged(CharSequence s, int start, int before, int count) {
                         int strength = checkPassStrength(newPass.getText().toString());
+                        if(newPass.getText().toString().length() > 20)  newPass.setError("Parola 20 karakterden uzun olamaz.");
                         if(strength == -1)  newPass.setTextColor(Color.RED);
                         else if(strength == 0)  newPass.setTextColor(Color.parseColor("#ffa41b"));
                         else if(strength == 1)  newPass.setTextColor(Color.GREEN);
                     }
 
                     private int checkPassStrength(String pass) {
-                        String weak = "[a-z]+";
-                        String medium = "[a-z0-9]+";
-                        String strong = "[a-zA-Z0-9]+";
-                        if(pass.matches(weak))    return -1;
+                        String medium = "^(?=.*[0-9]).{6,20}$";
+                        String strong = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,20}$";
+                        if(pass.matches(strong))    return 1;
                         else if(pass.matches(medium))   return 0;
-                        else     return 1;
+                        else     return -1;
                     }
 
                     @Override
@@ -148,8 +148,10 @@ public class ProfileInfo extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         if(oldPass.getText().toString().equals(information.get("password"))){
-                            information.replace("password",newPass.getText().toString());
-                            dialog.cancel();
+                            if(newPass.getText().toString().length() <= 20){
+                                information.replace("password",newPass.getText().toString());
+                                dialog.cancel();
+                            }
                         }
                     }
                 });

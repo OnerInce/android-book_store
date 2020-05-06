@@ -61,8 +61,20 @@ public class AddCategory extends AppCompatActivity {
                     });
                 }
 
-                else
-                    {
+                else if(AdapterCategories.categories.contains(category) && (book_type.matches("") || AdapterCategories.bookTypes.get(category).contains(book_type))){
+
+                    builder.setMessage(R.string.category_add_exist);
+                    builder.setTitle(R.string.category_add_error);
+                    builder.setNegativeButton(R.string.category_add_ok, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
+
+                }
+
+                else {
                     if (book_type.matches(""))
                         builder.setMessage(category + getString(R.string.category_add_sure));
                     else {
