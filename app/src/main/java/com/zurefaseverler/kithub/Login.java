@@ -58,10 +58,10 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                     public void onResponse(String response) {
                         try {
                             JSONObject jsonObject = new JSONObject(response);
-                            String id = jsonObject.getString("id");
                             String success = jsonObject.getString("success");
 
                             if(success.equals("1")){
+                                String id = jsonObject.getString("id");
                                 Toast.makeText(getApplicationContext(), R.string.login_success, Toast.LENGTH_SHORT).show();
 
                                 SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
