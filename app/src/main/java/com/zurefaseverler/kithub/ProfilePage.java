@@ -6,13 +6,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.android.volley.AuthFailureError;
@@ -36,13 +39,15 @@ public class ProfilePage extends AppCompatActivity  {
     private TextView twMail;
     private TextView twName;
     private ImageView imageView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_page);
 
         /*--------*/
-        id = "9";
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        id = Integer.toString(sharedPref.getInt("id",-1));
         /*--------*/
 
         getProfileInfo();
@@ -71,7 +76,13 @@ public class ProfilePage extends AppCompatActivity  {
                 alert.setPositiveButton(R.string.profile_page_yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        startActivity(new Intent(ProfilePage.this,MainActivity.class));
+                        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                        SharedPreferences.Editor editor = sharedPref.edit();
+                        editor.remove("id");
+                        editor.apply();
+
+                        Toast.makeText(getApplicationContext(), R.string.logout_success, Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(ProfilePage.this, MainActivity.class));
                     }
                 });
                 AlertDialog dialog = alert.create();
