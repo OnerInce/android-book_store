@@ -55,7 +55,7 @@
         kullanmıştır. Günümüzde Türkçe olarak “Altın Kitaplar” yayınevi tarafından “Ölüm Sessiz Geldi” ismiyle yayımlanmaktadır.</string>
 
     <string name="login_success">Giriş başarılı\nAna sayfaya yönlendiriliyorsunuz</string>
-    <string name="login_fail">Giriş başarısız\nLütfen e-mail ve şifrefinizi kontrol ediniz</string>
+    <string name="login_fail">Giriş başarısız\nLütfen e-mail ve şifrenizi kontrol ediniz</string>
 
     <string name="logout_success">Hesabınızdan başarıyla çıkış yapıldı\nAna sayfaya yönlendiriliyorsunuz</string>
 
