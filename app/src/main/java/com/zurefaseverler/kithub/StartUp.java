@@ -47,7 +47,6 @@ public class StartUp extends AppCompatActivity {
         AdapterCategories.categories = new ArrayList<>();
         AdapterCategories.bookTypes = new HashMap<>();
 
-        mQueue = Volley.newRequestQueue(this);
         String url = "http://18.204.251.116/categories.php";
         StringRequest request = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
@@ -82,7 +81,7 @@ public class StartUp extends AppCompatActivity {
                         error.printStackTrace();
                     }
                 });
-        mQueue.add(request);
+        NetworkRequests.getInstance(this).addToRequestQueue(request);
     }
 
     @Override
