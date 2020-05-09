@@ -105,7 +105,7 @@
                 android:id="@+id/text1572"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
                 android:fontFamily="@font/nexa_light"
                 android:clickable="true"
                 android:focusable="true"
@@ -114,18 +114,25 @@
                 android:textColor="@color/light"
                 android:textSize="15sp" />
 
+
+
+
+
             <TextView
                 android:id="@+id/kaydol"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/nexa_bold"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
                 android:clickable="true"
                 android:focusable="true"
                 android:gravity="center"
+                android:onClick="sign_up_attempt"
                 android:text=" Hesap oluştur."
                 android:textColor="@color/light"
                 android:textSize="15sp"  />
+
+
 
         </LinearLayout>
 

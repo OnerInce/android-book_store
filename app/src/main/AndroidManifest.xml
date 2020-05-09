@@ -1,44 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.zurefaseverler.kithub">
+
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:usesCleartextTraffic="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".SignUp"
+            android:windowSoftInputMode="adjustResize"/>
+
         <activity android:name=".StartUp">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".ProfilePage" />
         <activity android:name=".BookPage" />
-        <activity android:name=".Categories"/>
+        <activity android:name=".Categories" />
         <activity android:name=".BookList" />
         <activity android:name=".Login" />
-        <activity android:name=".CartActivity"/>
+        <activity android:name=".CartActivity" />
         <activity
             android:name=".ProfileInfo"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:parentActivityName=".ProfilePage"/>
+            android:parentActivityName=".ProfilePage"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".Admin" />
         <activity android:name=".DeleteCategory" />
         <activity android:name=".AddBook" />
         <activity android:name=".AddCategory" />
         <activity android:name=".Authors" />
-        <activity android:name=".AuthorsPage"/>
+        <activity android:name=".AuthorsPage" />
 
-        <uses-library android:name="org.apache.http.legacy" android:required="false" />
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
     </application>
 
 </manifest>
