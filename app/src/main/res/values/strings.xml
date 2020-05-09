@@ -43,6 +43,8 @@
     <string name="profile_info_confirm">Değişiklikleri Kaydet</string>
     <string name="profile_info_permission">Bu yetkiyi ayarlardan değişebilirsin.</string>
 
+    <string name="mismatched_password">Sifreleriniz birbiri ile uyusmamaktadir.</string>
+
     <string name="profile_page_log_out">Çıkış yapmak istediğinize emin misiniz?</string>
     <string name="profile_page_no">Hayır</string>
     <string name="profile_page_yes">Evet</string>

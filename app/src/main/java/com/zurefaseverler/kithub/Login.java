@@ -10,7 +10,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
-import com.android.volley.AuthFailureError;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -34,8 +34,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         go_back.setOnClickListener(this);
         TextView forgot = findViewById(R.id.unuttum);
         forgot.setOnClickListener(this);
-        TextView register =  findViewById(R.id.kaydol);
-        register.setOnClickListener(this);
+
+
 
         mQueue = Volley.newRequestQueue(this);
         findViewById(R.id.login_button).setOnClickListener(new View.OnClickListener() {
@@ -107,10 +107,12 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                 Toast.makeText(Login.this, "(0)))",Toast.LENGTH_SHORT).show();
                 break;
 
-            case R.id.kaydol:
-                Toast.makeText(Login.this, "Kayıt sayfasına yönlendirme yapılacak",Toast.LENGTH_SHORT).show();
-                break;
 
         }
+    }
+
+    public void sign_up_attempt(View view) {
+        Intent intent = new Intent(getApplicationContext(), SignUp.class);
+        startActivity(intent);
     }
 }
