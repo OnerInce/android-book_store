@@ -1,31 +1,33 @@
 package com.zurefaseverler.kithub;
 public class Book {
-    private int book_id, author_id, stockQuantity, category_id, bookType_id, price, sales, ratedCount;
+    private int book_id, stockQuantity, price, sales, ratedCount;
     private float rating;
-    private String ISBN, title, summary, image;
+    private String ISBN, title, summary, image ,author, category, bookType;
 
-    public Book(String title) {
+    public Book(int book_id, String author, int stockQuantity, String category, String bookType,
+                int price, int sales, int ratedCount, float rating, String ISBN, String title,
+                String summary, String image) {
+        this.book_id = book_id;
+        this.author = author;
+        this.stockQuantity = stockQuantity;
+        this.category = category;
+        this.bookType = bookType;
+        this.price = price;
+        this.sales = sales;
+        this.ratedCount = ratedCount;
+        this.rating = rating;
+        this.ISBN = ISBN;
         this.title = title;
+        this.summary = summary;
+        this.image = image;
     }
 
     public int getBook_id() {
         return book_id;
     }
 
-    public int getAuthor_id() {
-        return author_id;
-    }
-
     public int getStockQuantity() {
         return stockQuantity;
-    }
-
-    public int getCategory_id() {
-        return category_id;
-    }
-
-    public int getBookType_id() {
-        return bookType_id;
     }
 
     public int getPrice() {
@@ -60,6 +62,15 @@ public class Book {
         return image;
     }
 
+    public String getAuthor() {
+        return author;
+    }
 
+    public String getCategory() {
+        return category;
+    }
 
+    public String getBookType() {
+        return bookType;
+    }
 }

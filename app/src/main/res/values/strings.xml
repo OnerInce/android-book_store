@@ -59,6 +59,8 @@
 
     <string name="logout_success">Hesabınızdan başarıyla çıkış yapıldı\nAna sayfaya yönlendiriliyorsunuz</string>
     <string name="add_book_already">Eklemeye çalıştığınız kitap zaten ekli</string>
+    <string name="book_page_remindMe">Stoğa Gelince Bildir</string>
+    <string name="book_page_addCart">Sepete Ekle</string>
 
 
 </resources>
