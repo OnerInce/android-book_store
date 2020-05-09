@@ -25,5 +25,4 @@
         android:icon="@drawable/ic_hot"
         android:title="Admin"/>
 
-
 </menu>
