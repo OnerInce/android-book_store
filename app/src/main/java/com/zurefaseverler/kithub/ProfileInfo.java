@@ -53,7 +53,8 @@ public class ProfileInfo extends AppCompatActivity {
     private String phonePattern = "5[0-9]+";
 
     private boolean isPhotoChanged;
-    private boolean err = false;
+    private boolean errPhone = false;
+    private boolean errEmail = false;
 
     private static HashMap<String,String> information;
     public static void setHashMap() {
@@ -181,10 +182,10 @@ public class ProfileInfo extends AppCompatActivity {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if(!info_phone.getText().toString().matches(phonePattern) || info_phone.getText().toString().length() != 10){
                     info_phone.setError(getString(R.string.profile_info_wrong_phone));
-                    err = true;
+                    errPhone = true;
                 }
                 else
-                    err = false;
+                    errPhone = false;
             }
             @Override
             public void afterTextChanged(Editable s) {
@@ -198,10 +199,10 @@ public class ProfileInfo extends AppCompatActivity {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if(!info_mail.getText().toString().matches(emailPattern)){
                     info_mail.setError(getString(R.string.profile_info_wrong_mail));
-                    err = true;
+                    errEmail = true;
                 }
                 else
-                    err = false;
+                    errEmail = false;
             }
             @Override
             public void afterTextChanged(Editable s) {
@@ -211,7 +212,7 @@ public class ProfileInfo extends AppCompatActivity {
         findViewById(R.id.saveChanges).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(err){
+                if(errEmail || errPhone){
                     Toast.makeText(getApplicationContext(), R.string.profile_info_check_again,Toast.LENGTH_SHORT).show();
                 }
                 else{
