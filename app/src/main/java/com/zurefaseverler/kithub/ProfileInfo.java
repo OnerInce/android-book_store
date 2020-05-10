@@ -17,13 +17,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -230,8 +230,21 @@ public class ProfileInfo extends AppCompatActivity {
                             information.replace("email",info_mail.getText().toString());
                             information.replace("phoneNumber",info_phone.getText().toString());
                             information.replace("address",info_address.getText().toString());
-                            updateDatabase();
+                            final ProgressBar progressBar = findViewById(R.id.profileInfo_progressBar);
+                            progressBar.setVisibility(View.VISIBLE);
+                            updateDatabase(new VolleyResponseListener(){
+                                @Override
+                                public void onResponse(String response) {
+                                    try {
+                                        Thread.sleep(1000);
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
+                                    }
+                                    progressBar.setVisibility(View.GONE);
+                                }
+                            });
                             Toast.makeText(ProfileInfo.this, R.string.profile_info_success,Toast.LENGTH_SHORT).show();
+
                         }
                     });
                     builder.show();
@@ -240,7 +253,7 @@ public class ProfileInfo extends AppCompatActivity {
         });
     }
 
-    private void updateDatabase() {
+    private void updateDatabase(final VolleyResponseListener listener) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         String url = "http://18.204.251.116/profile_page.php";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
@@ -251,6 +264,7 @@ public class ProfileInfo extends AppCompatActivity {
                             JSONObject jsonObject = new JSONObject(response);
                             if(jsonObject.getString("imageChanged").equals("1"))
                                 information.replace("imagePath",jsonObject.getString("newFilePath"));
+                            listener.onResponse("done");
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

@@ -64,7 +64,7 @@ public class BookPage extends AppCompatActivity implements View.OnClickListener 
                             JSONObject jsonObject = new JSONObject(response);
 
                             Book book = new Book(jsonObject.getInt("id"),
-                                    jsonObject.getString("first_name")+jsonObject.getString("last_name"),
+                                    jsonObject.getString("first_name") + jsonObject.getString("last_name"),
                                     jsonObject.getInt("stock_quantity"), jsonObject.getString("category_name"),
                                     jsonObject.getString("book_type_name"), jsonObject.getInt("price"),
                                     jsonObject.getInt("sales"), jsonObject.getInt("no_people_rated"),

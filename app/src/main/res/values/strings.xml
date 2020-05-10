@@ -63,6 +63,8 @@
     <string name="add_book_already">Eklemeye çalıştığınız kitap zaten ekli</string>
     <string name="book_page_remindMe">Stoğa Gelince Bildir</string>
     <string name="book_page_addCart">Sepete Ekle</string>
+    <string name="signUp_already">mail ya da telefon numarası zaten var</string>
+    <string name="signUp_registered">Kayit basarili...</string>
 
 
 </resources>

@@ -24,7 +24,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ProfilePage" />
+        <activity android:name=".ProfilePage"
+            android:parentActivityName=".MainActivity"/>
         <activity android:name=".BookPage" />
         <activity android:name=".Categories" />
         <activity android:name=".BookList" />
@@ -36,7 +37,7 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".Admin" />
         <activity android:name=".DeleteCategory" />
         <activity android:name=".AddBook" />
