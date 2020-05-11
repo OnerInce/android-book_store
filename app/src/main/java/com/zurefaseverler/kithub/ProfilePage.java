@@ -2,6 +2,7 @@ package com.zurefaseverler.kithub;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NavUtils;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -41,6 +42,11 @@ public class ProfilePage extends AppCompatActivity  {
     private ImageView imageView;
 
     @Override
+    public void onBackPressed() {
+        NavUtils.navigateUpFromSameTask(this);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_page);
@@ -56,7 +62,7 @@ public class ProfilePage extends AppCompatActivity  {
         backToMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onBackPressed();
+                startActivity(new Intent(ProfilePage.this, MainActivity.class));
             }
         });
 

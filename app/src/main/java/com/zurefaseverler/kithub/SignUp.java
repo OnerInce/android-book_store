@@ -2,19 +2,31 @@ package com.zurefaseverler.kithub;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.TextView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class SignUp extends AppCompatActivity implements  View.OnClickListener {
 
@@ -22,7 +34,6 @@ public class SignUp extends AppCompatActivity implements  View.OnClickListener {
 
     private String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+(\\.[a-z]+)+";
     private String phonePattern = "5[0-9]+";
-
     private boolean err_mail = false, err_phone = false, err_pass = false;
 
     @Override
@@ -35,7 +46,6 @@ public class SignUp extends AppCompatActivity implements  View.OnClickListener {
 
         Button sign_up_confirm = findViewById(R.id.sign_up_confirm);
         sign_up_confirm.setOnClickListener((View.OnClickListener) this);
-
 
 
         info_name = findViewById(R.id.name);
@@ -144,10 +154,10 @@ public class SignUp extends AppCompatActivity implements  View.OnClickListener {
                 if(info_name.getText().toString().length() < 1){
                     Toast.makeText(getApplicationContext(),"Isim bilgisi eksik",Toast.LENGTH_SHORT).show();
                 }
-                else if(info_sur_name.getText().toString().length() < 1 || err_mail){
+                else if(info_sur_name.getText().toString().length() < 1 ){
                     Toast.makeText(getApplicationContext(),"Soy isim bilgisi eksik",Toast.LENGTH_SHORT).show();
                 }
-                else if(info_e_mail.getText().toString().length() < 1){
+                else if(info_e_mail.getText().toString().length() < 1 || err_mail){
                     Toast.makeText(getApplicationContext(),"E mail bilgisi eksik",Toast.LENGTH_SHORT).show();
                 }
                 else if(info_password_attempt.getText().toString().length() < 1){
@@ -160,19 +170,73 @@ public class SignUp extends AppCompatActivity implements  View.OnClickListener {
                     Toast.makeText(getApplicationContext(),"Numara bilgisi eksik",Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    Toast.makeText(getApplicationContext(), "Kayit basarili...",Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(getApplicationContext(), ProfilePage.class);
-                    startActivity(intent);
+                    final ProgressBar progressBar = findViewById(R.id.signUp_progressBar);
+                    progressBar.setVisibility(View.VISIBLE);
+                    newUser_toDatabase(new VolleyResponseListener() {
+                        @Override
+                        public void onResponse(String response) {
+                            if(response.equals("1")){
+                                Toast.makeText(getApplicationContext(), R.string.signUp_registered,Toast.LENGTH_SHORT).show();
+                                progressBar.setVisibility(View.GONE);
+                                Intent intent = new Intent(getApplicationContext(), ProfilePage.class);
+                                startActivity(intent);
+                            }
+                            else{
+                                Toast.makeText(getApplicationContext(), R.string.signUp_already, Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
                 }
             }
         });
-
-
-
-
-
     }
 
+
+
+    private void newUser_toDatabase(final VolleyResponseListener listener) {
+        String url = "http://18.204.251.116/sign_up.php";
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            String success = jsonObject.getString("success");
+                            if(success.equals("-1")) {
+                                listener.onResponse("-1");
+                            }
+                            else{
+                                String id = jsonObject.getString("id");
+                                SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                                SharedPreferences.Editor editor = sharedPref.edit();
+                                editor.putInt("id", Integer.parseInt(id));
+                                editor.apply();
+                                listener.onResponse("1");
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                HashMap<String, String> params = new HashMap<>();
+                params.put("name", info_name.getText().toString() + " " + info_sur_name.getText().toString());
+                params.put("phone", info_phone_num.getText().toString());
+                params.put("mail", info_e_mail.getText().toString());
+                params.put("password", info_password_attempt.getText().toString());
+                return params;
+            }
+        };
+        NetworkRequests.getInstance(this).addToRequestQueue(stringRequest);
+    }
 
 
     @Override

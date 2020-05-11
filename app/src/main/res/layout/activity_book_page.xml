@@ -25,7 +25,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
                 android:fontFamily="@font/nexa_bold"
-                android:text="Kitap adı"
                 android:textColor="@color/blue"
                 android:textSize="30sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -39,8 +38,7 @@
                 android:layout_marginTop="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/bookPage_bookName"
-                app:srcCompat="@drawable/seytani_uyandirma" />
+                app:layout_constraintTop_toBottomOf="@+id/bookPage_bookName" />
 
             <TextView
                 android:id="@+id/bookPage_author_type"
@@ -48,7 +46,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/nexa_light"
-                android:text="Yazar adı / kitap türü"
                 android:textColor="@color/blue"
                 android:textSize="15sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -61,8 +58,9 @@
                 android:layout_height="97dp"
                 android:layout_marginTop="20dp"
                 android:background="@color/gray"
-                app:layout_constraintTop_toBottomOf="@+id/bookPage_ratingBar"
-                tools:layout_editor_absoluteX="-1dp">
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bookPage_ratingBar">
 
                 <TextView
                     android:id="@+id/textView16"
@@ -86,7 +84,6 @@
                     android:layout_marginTop="36dp"
                     android:layout_marginEnd="50dp"
                     android:fontFamily="@font/nexa_bold"
-                    android:text="49.99 tl"
                     android:textColor="@color/blue"
                     android:textSize="20sp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -125,7 +122,6 @@
                 android:background="@drawable/rounded_corners_orange"
                 android:fontFamily="@font/nexa_bold"
                 android:padding="3dp"
-                android:text="sepete ekle/stok bildir"
                 android:textColor="@color/light"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
