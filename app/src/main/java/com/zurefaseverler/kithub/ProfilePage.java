@@ -175,4 +175,12 @@ public class ProfilePage extends AppCompatActivity  {
         };
         requestQueue.add(request);
     }
+
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.go_back:
+                onBackPressed();
+                break;
+        }
+    }
 }

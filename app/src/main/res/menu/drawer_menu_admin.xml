@@ -5,6 +5,18 @@
     tools:showIn="navigation_view"
     >
 
+    <item android:id="@+id/profil"
+        android:icon="@drawable/ic_account_circle"
+        android:title="Profil"/>
+
+    <item android:id="@+id/sepet"
+        android:icon="@drawable/ic_shopping_cart"
+        android:title="Sepet" />
+
+    <item android:id="@+id/siparisler"
+        android:icon="@drawable/ic_siparisler"
+        android:title="Siparişler"/>
+
     <item android:id="@+id/yazarlar"
         android:icon="@drawable/ic_writers"
         android:title="Yazarlar"/>
