@@ -183,6 +183,7 @@ public class SignUp extends AppCompatActivity implements  View.OnClickListener {
                             }
                             else{
                                 Toast.makeText(getApplicationContext(), R.string.signUp_already, Toast.LENGTH_SHORT).show();
+                                progressBar.setVisibility(View.GONE);
                             }
                         }
                     });
@@ -245,9 +246,6 @@ public class SignUp extends AppCompatActivity implements  View.OnClickListener {
             case R.id.go_back:
                 onBackPressed();
                 break;
-
-
-
         }
     }
 }

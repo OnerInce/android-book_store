@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private DrawerLayout drawer;
     private ActionBarDrawerToggle toggle;
     int loggedInId;
+    int isAdmin;
     NavigationView navigationView;
 
     @Override
@@ -80,6 +81,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         loggedInId = sharedPref.getInt("id",-1);
+        isAdmin = sharedPref.getInt("isAdmin",0);
 
         /*  drawer  */
         drawer = findViewById(R.id.drawer_layout);
@@ -94,9 +96,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ImageButton button_drawer = findViewById(R.id.button_drawer);
         button_drawer.setOnClickListener(this);
 
-        if(loggedInId == -1) {
+        if (loggedInId == -1) {
             navigationView.getMenu().clear();
             navigationView.inflateMenu(R.menu.drawer_menu_guest);
+        }
+        else if (isAdmin == 1) {
+            navigationView.getMenu().clear();
+            navigationView.inflateMenu(R.menu.drawer_menu_admin);
+
         }
         else {
             navigationView.getMenu().clear();
@@ -112,6 +119,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         loggedInId = sharedPref.getInt("id",-1);
+        isAdmin = sharedPref.getInt("isAdmin",0);
 
         /*  drawer  */
         drawer = findViewById(R.id.drawer_layout);
@@ -126,15 +134,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ImageButton button_drawer = findViewById(R.id.button_drawer);
         button_drawer.setOnClickListener(this);
 
-        if(loggedInId == -1) {
+        if (loggedInId == -1) {
             navigationView.getMenu().clear();
             navigationView.inflateMenu(R.menu.drawer_menu_guest);
+        }
+        else if (isAdmin == 1) {
+            navigationView.getMenu().clear();
+            navigationView.inflateMenu(R.menu.drawer_menu_admin);
+
         }
         else {
             navigationView.getMenu().clear();
             navigationView.inflateMenu(R.menu.drawer_menu_user);
 
         }
+
     }
 
     @Override
