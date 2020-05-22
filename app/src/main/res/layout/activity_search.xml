@@ -48,11 +48,13 @@
         android:indeterminateBehavior="cycle"
         android:visibility="gone" />
 
-    <androidx.appcompat.widget.SearchView
+    <SearchView
         android:id="@+id/mSearchView"
         app:queryHint="Search.."
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:iconifiedByDefault="false"
+        />
 
     <ListView
         android:id="@+id/mListView"

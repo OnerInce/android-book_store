@@ -11,12 +11,12 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SearchView;
 
 import com.google.gson.annotations.SerializedName;
 import com.squareup.picasso.Picasso;
@@ -200,6 +200,8 @@ public class Search extends AppCompatActivity {
                 mProgressBar.setVisibility(View.GONE);
             }
         });
+        mSearchView.setFocusable(true);
+        mSearchView.requestFocusFromTouch();
 
         mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
