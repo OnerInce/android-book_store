@@ -5,13 +5,19 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.content.SharedPreferences;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.google.android.material.navigation.NavigationView;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener{
     private DrawerLayout drawer;
@@ -19,6 +25,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     int loggedInId;
     int isAdmin;
     NavigationView navigationView;
+
+    ArrayList<MainPageBook> list = new ArrayList<>();
 
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -108,14 +116,32 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         else {
             navigationView.getMenu().clear();
             navigationView.inflateMenu(R.menu.drawer_menu_user);
-
         }
+
+        doldur();
+        LinearLayoutManager layoutManageronecikanlar = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        RecyclerView LayoutOneCikanlar = findViewById(R.id.main_page_best_discount);
+        LayoutOneCikanlar.setLayoutManager(layoutManageronecikanlar);
+        MainPageRecyclerViewAdapter adapteronecikanlar = new MainPageRecyclerViewAdapter(this,list);
+        LayoutOneCikanlar.setAdapter(adapteronecikanlar);
+
+        LinearLayoutManager layoutManagercoksatanlar = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        RecyclerView Layoutcoksatanlar = findViewById(R.id.main_page_best_seller);
+        Layoutcoksatanlar.setLayoutManager(layoutManagercoksatanlar);
+        MainPageRecyclerViewAdapter adaptercoksatanlar = new MainPageRecyclerViewAdapter(this,list);
+        Layoutcoksatanlar.setAdapter(adaptercoksatanlar);
+
+        LinearLayoutManager layoutManageryeniurunler = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        RecyclerView Layoutyeniurunler = findViewById(R.id.main_page_new_books);
+        Layoutyeniurunler.setLayoutManager(layoutManageryeniurunler);
+        MainPageRecyclerViewAdapter adapteryeniurunler = new MainPageRecyclerViewAdapter(this,list);
+        Layoutyeniurunler.setAdapter(adapteryeniurunler);
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        setContentView(R.layout.activity_main);
+
 
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         loggedInId = sharedPref.getInt("id",-1);
@@ -133,6 +159,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         ImageButton button_drawer = findViewById(R.id.button_drawer);
         button_drawer.setOnClickListener(this);
+
+        Button test = findViewById(R.id.one_cikanlar);
+        test.setOnClickListener(this);
 
         if (loggedInId == -1) {
             navigationView.getMenu().clear();
@@ -162,5 +191,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
+    public void doldur(){
+        int i;
+
+        for(i = 0; i < 5 ; i++ ){
+
+            MainPageBook item = new MainPageBook("123","adem","adem","%20","50");
+            list.add(item);
+
+        }
+    }
 
 }
