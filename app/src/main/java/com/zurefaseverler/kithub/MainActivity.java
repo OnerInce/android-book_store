@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     int loggedInId;
     int isAdmin;
     NavigationView navigationView;
+    ImageButton searchButton;
 
     ArrayList<MainPageBook> list = new ArrayList<>();
 
@@ -86,6 +87,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        final Intent toSearch = new Intent(this, Search.class);
+        searchButton = findViewById(R.id.Main_search_button);
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(toSearch);
+            }
+        });
 
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         loggedInId = sharedPref.getInt("id",-1);
