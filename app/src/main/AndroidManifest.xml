@@ -15,8 +15,7 @@
         android:usesCleartextTraffic="true">
         <activity
             android:name=".SignUp"
-            android:windowSoftInputMode="adjustResize"/>
-
+            android:windowSoftInputMode="adjustResize" />
         <activity android:name=".StartUp">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,8 +23,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ProfilePage"
-            android:parentActivityName=".MainActivity"/>
+        <activity
+            android:name=".ProfilePage"
+            android:parentActivityName=".MainActivity" />
         <activity android:name=".BookPage" />
         <activity android:name=".Categories" />
         <activity android:name=".BookList" />
@@ -37,15 +37,16 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Admin" />
         <activity android:name=".DeleteCategory" />
-        <activity android:name=".AddBook" />
+        <activity
+            android:name=".AddBook"
+            android:windowSoftInputMode="adjustResize" />
         <activity android:name=".AddCategory" />
         <activity android:name=".Authors" />
-        <activity android:name=".AuthorsPage"/>
+        <activity android:name=".AuthorsPage" />
         <activity android:name=".Book" />
-
 
         <uses-library
             android:name="org.apache.http.legacy"
