@@ -10,6 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 public class MainPageRecyclerViewAdapter extends RecyclerView.Adapter<MainPageRecyclerViewAdapter.ViewHolder>{
@@ -31,12 +33,13 @@ public class MainPageRecyclerViewAdapter extends RecyclerView.Adapter<MainPageRe
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
-        holder.bookimage.setImageResource(R.drawable.seytani_uyandirma);        //resim işi nasıl olacak ibo???
         holder.bookname.setText(list.get(position).getBookname());
         holder.authorname.setText(list.get(position).getAuthorname());
         holder.discountamount.setText(list.get(position).getDiscountamount());
         holder.price.setText(list.get(position).getPrice());
+
+        String[] temp = list.get(position).getImagepath().split("html/");
+        Picasso.get().load("http://18.204.251.116/"+temp[1]).into(holder.bookimage);
     }
 
     @Override

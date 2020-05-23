@@ -23,7 +23,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.google.android.material.navigation.NavigationView;
-import com.google.gson.JsonArray;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -143,24 +142,32 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             navigationView.inflateMenu(R.menu.drawer_menu_user);
         }
 
-        doldur();
-        LinearLayoutManager layoutManageronecikanlar = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-        RecyclerView LayoutOneCikanlar = findViewById(R.id.main_page_best_discount);
-        LayoutOneCikanlar.setLayoutManager(layoutManageronecikanlar);
-        MainPageRecyclerViewAdapter adapteronecikanlar = new MainPageRecyclerViewAdapter(this, mostDiscountList);
-        LayoutOneCikanlar.setAdapter(adapteronecikanlar);
+        doldur(new VolleyResponseListener() {
+            @Override
+            public void onResponse(String response) {
+                LinearLayoutManager layoutManageronecikanlar = new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false);
+                RecyclerView LayoutOneCikanlar = findViewById(R.id.main_page_best_discount);
+                LayoutOneCikanlar.setLayoutManager(layoutManageronecikanlar);
+                MainPageRecyclerViewAdapter adapteronecikanlar = new MainPageRecyclerViewAdapter(MainActivity.this, mostDiscountList);
+                LayoutOneCikanlar.setAdapter(adapteronecikanlar);
 
-        LinearLayoutManager layoutManagercoksatanlar = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-        RecyclerView Layoutcoksatanlar = findViewById(R.id.main_page_best_seller);
-        Layoutcoksatanlar.setLayoutManager(layoutManagercoksatanlar);
-        MainPageRecyclerViewAdapter adaptercoksatanlar = new MainPageRecyclerViewAdapter(this, mostSellersList);
-        Layoutcoksatanlar.setAdapter(adaptercoksatanlar);
+                LinearLayoutManager layoutManagercoksatanlar = new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false);
+                RecyclerView Layoutcoksatanlar = findViewById(R.id.main_page_best_seller);
+                Layoutcoksatanlar.setLayoutManager(layoutManagercoksatanlar);
+                MainPageRecyclerViewAdapter adaptercoksatanlar = new MainPageRecyclerViewAdapter(MainActivity.this, mostSellersList);
+                Layoutcoksatanlar.setAdapter(adaptercoksatanlar);
 
-        LinearLayoutManager layoutManageryeniurunler = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-        RecyclerView Layoutyeniurunler = findViewById(R.id.main_page_new_books);
-        Layoutyeniurunler.setLayoutManager(layoutManageryeniurunler);
-        MainPageRecyclerViewAdapter adapteryeniurunler = new MainPageRecyclerViewAdapter(this, newComersList);
-        Layoutyeniurunler.setAdapter(adapteryeniurunler);
+                LinearLayoutManager layoutManageryeniurunler = new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false);
+                RecyclerView Layoutyeniurunler = findViewById(R.id.main_page_new_books);
+                Layoutyeniurunler.setLayoutManager(layoutManageryeniurunler);
+                MainPageRecyclerViewAdapter adapteryeniurunler = new MainPageRecyclerViewAdapter(MainActivity.this, newComersList);
+                Layoutyeniurunler.setAdapter(adapteryeniurunler);
+
+            }
+        });
+
+
+
     }
 
     @Override
@@ -216,7 +223,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    public void doldur(){
+    public void doldur(final VolleyResponseListener listener){
 
         String url = "http://18.204.251.116/main_page_books.php";
         StringRequest request = new StringRequest(Request.Method.GET, url,
@@ -238,6 +245,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                     newComersList.add(item);
 
                             }
+                            listener.onResponse(response);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
