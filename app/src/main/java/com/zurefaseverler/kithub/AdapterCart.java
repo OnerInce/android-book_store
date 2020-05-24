@@ -3,6 +3,7 @@ package com.zurefaseverler.kithub;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,10 +28,12 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+interface OnAdapterItemClickListener {
+    void onItemClicked();
+}
 
 public class AdapterCart extends RecyclerView.Adapter<AdapterCart.designCard> {
 
-    private int  totalPrice=0;
     private Context context;
     private ArrayList<Cart> list;
 
@@ -47,7 +50,7 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.designCard> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final designCard holder, int position) {
+    public void onBindViewHolder(@NonNull final designCard holder, final int position) {
         holder.kitapadi.setText(list.get(position).getPname());
         holder.fiyat.setText( new StringBuilder(list.get(position).getPrice()).append(" TL"));
         holder.adet.setNumber(list.get(position).getQuantity());
@@ -55,18 +58,28 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.designCard> {
         String[] temp = list.get(position).getImage().split("html/");
         Picasso.get().load("http://18.204.251.116/"+temp[1]).fit().into(holder.img);
 
-       holder.update_quantity.setOnClickListener(new View.OnClickListener() {
+        holder.update_quantity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context.getApplicationContext());
                 String customer_id = Integer.toString(sharedPref.getInt("id", -1));
-                changeItemQuantity(customer_id, holder.adet.getNumber());
+                changeItemQuantity(customer_id, holder.adet.getNumber(), list.get(position).getPid());
             }
         });
 
-        int oneTypeProductPrice = ((Integer.parseInt(list.get(position).getPrice())) * Integer.parseInt(list.get(position).getQuantity()));
-        totalPrice = totalPrice + oneTypeProductPrice;
-
+        holder.adet.setOnValueChangeListener(new ElegantNumberButton.OnValueChangeListener() {
+            @Override
+            public void onValueChange(ElegantNumberButton view, int oldValue, int newValue) {
+                int newTotal = newValue * Integer.parseInt(list.get(position).getPrice());
+                list.get(position).setTotalPrice(newTotal);
+                int total = 0;
+                for(int i=0; i<list.size(); i++){
+                    total += list.get(i).getTotalPrice();
+                }
+                String total_ = total + " TL";
+                CartActivity.totalPrice.setText(total_);
+            }
+        });
     }
 
     @Override
@@ -82,7 +95,6 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.designCard> {
         ElegantNumberButton adet;
         Button update_quantity;
 
-
         public designCard(@NonNull View itemView) {
             super(itemView);
             img = itemView.findViewById(R.id.cart_product_photo);
@@ -93,7 +105,7 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.designCard> {
         }
 
     }
-    public void changeItemQuantity(final String customer_id, final String number){
+    public void changeItemQuantity(final String customer_id, final String number, final String book_id){
         String url = "http://18.204.251.116/update_cart.php";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
@@ -118,8 +130,10 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.designCard> {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 HashMap<String, String> params = new HashMap<>();
+
                 params.put("operation", "change_quantity");
                 params.put("customer_id", customer_id);
+                params.put("p_id", book_id);
                 params.put("quantity", number);
                 return params;
             }

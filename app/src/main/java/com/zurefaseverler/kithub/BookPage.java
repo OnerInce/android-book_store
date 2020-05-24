@@ -42,7 +42,7 @@ public class BookPage extends AppCompatActivity implements View.OnClickListener 
         setContentView(R.layout.activity_book_page);
 
         /*-------*/
-        String bookName = "Perili Köşk";
+        String bookName = "Kumarbaz";
         getBookInfo(bookName);
         /*-------*/
         ImageButton go_back = findViewById(R.id.go_back);

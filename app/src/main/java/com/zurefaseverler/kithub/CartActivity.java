@@ -35,7 +35,10 @@ public class CartActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
     private Button NextProcessBtn;
-    private TextView totalPrice;
+
+
+
+    public static TextView totalPrice;
     private Button updateQuantity;
     private ImageButton back;
     private String customer_id;
@@ -79,11 +82,7 @@ public class CartActivity extends AppCompatActivity {
         getCurrentCustomerCart(new VolleyResponseListener() {
             @Override
             public void onResponse(String response) {
-                int total = 0;
-                for(int i=0; i < cartList.size(); i++)
-                    total += cartList.get(i).getTotalPrice();
-                String total_ = total + " TL";
-                totalPrice.setText(total_);
+                setNewTotalPrice();
                 findViewById(R.id.cartActivity_progressBar).setVisibility(View.GONE);
                 adapter = new AdapterCart(CartActivity.this, cartList);
                 recyclerView.setAdapter(adapter);
@@ -91,6 +90,13 @@ public class CartActivity extends AppCompatActivity {
         });
     }
 
+    private void setNewTotalPrice() {
+        int total = 0;
+        for(int i=0; i < cartList.size(); i++)
+            total += cartList.get(i).getTotalPrice();
+        String total_ = total + " TL";
+        totalPrice.setText(total_);
+    }
 
 
     private void getCurrentCustomerCart(final VolleyResponseListener listener) {
@@ -151,6 +157,7 @@ public class CartActivity extends AppCompatActivity {
             int position = viewHolder.getAdapterPosition();
             deleteCart_fromDatabase(cartList.get(position).getPid());
             cartList.remove(position);
+            setNewTotalPrice();
             adapter.notifyDataSetChanged();
         }
     };
