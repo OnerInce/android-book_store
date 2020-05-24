@@ -81,7 +81,7 @@ public class BookList extends Activity implements View.OnClickListener{
 
         for(int i = 0; i<20 ; i++){
 
-            MainPageBook item = new MainPageBook("http://18.204.251.116/var/www/html/images/book/4547546457456_9730.png","adem","adem","%20","50");
+            MainPageBook item = new MainPageBook("12", "http://18.204.251.116/var/www/html/images/book/4547546457456_9730.png","adem","adem","%20","50");
             list.add(item);
 
         }
@@ -96,4 +96,5 @@ public class BookList extends Activity implements View.OnClickListener{
                 break;
         }
     }
+
 }

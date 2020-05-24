@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.content.SharedPreferences;
+import android.widget.Toast;
+
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
@@ -28,14 +30,13 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener{
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
     private DrawerLayout drawer;
     private ActionBarDrawerToggle toggle;
     int loggedInId;
     int isAdmin;
     NavigationView navigationView;
     ImageButton searchButton;
-
     ArrayList<MainPageBook> mostDiscountList = new ArrayList<>();
     ArrayList<MainPageBook> newComersList = new ArrayList<>();
     ArrayList<MainPageBook> mostSellersList = new ArrayList<>();
@@ -139,6 +140,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             navigationView.inflateMenu(R.menu.drawer_menu_user);
         }
 
+
         doldur(new VolleyResponseListener() {
             @Override
             public void onResponse(String response) {
@@ -231,7 +233,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                                 JSONObject book = jsonArray.getJSONObject(i);
                                 String author_name = book.getString("first_name") + " " + book.getString("last_name");
-                                MainPageBook item = new MainPageBook(book.getString("image"),book.getString("title"), author_name, "%20",book.getString("price"));
+                                MainPageBook item = new MainPageBook(book.getString("id"), book.getString("image"),
+                                         book.getString("title"), author_name, "%20", book.getString("price"));
                                 if(i < 5)
                                     mostDiscountList.add(item);
                                 else if (i < 10)
@@ -253,4 +256,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 );
         NetworkRequests.getInstance(this).addToRequestQueue(request);
     }
+
+
 }

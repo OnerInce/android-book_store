@@ -1,5 +1,7 @@
 package com.zurefaseverler.kithub;
 
+
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -40,11 +42,13 @@ public class BookPage extends AppCompatActivity implements View.OnClickListener 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_page);
+        Intent intent = getIntent();
 
 
-        String bookName = "Hayvan Çiftliği";
-      
-        getBookInfo(bookName);
+        /*-------*/
+        String id = intent.getStringExtra("book_id");
+        getBookInfo(id);
+
         /*-------*/
         ImageButton go_back = findViewById(R.id.go_back);
         go_back.setOnClickListener(this);
@@ -62,7 +66,7 @@ public class BookPage extends AppCompatActivity implements View.OnClickListener 
 
     }
 
-    private void getBookInfo(final String bookName) {
+    private void getBookInfo(final String id) {
         String url = "http://18.204.251.116/books.php";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
@@ -77,7 +81,7 @@ public class BookPage extends AppCompatActivity implements View.OnClickListener 
                                     jsonObject.getString("book_type_name"), jsonObject.getInt("price"),
                                     jsonObject.getInt("sales"), jsonObject.getInt("no_people_rated"),
                                     Float.parseFloat(jsonObject.getString("rating")), jsonObject.getString("ISBN"),
-                                    bookName, jsonObject.getString("summary"),
+                                    jsonObject.getString("title"), jsonObject.getString("summary"),
                                     jsonObject.getString("image"));
 
                             setBookInfo(book);
@@ -95,7 +99,7 @@ public class BookPage extends AppCompatActivity implements View.OnClickListener 
             @Override
             protected Map<String, String> getParams() {
                 HashMap<String, String> params = new HashMap<>();
-                params.put("title", bookName);
+                params.put("id", id);
                 return params;
             }
         };
