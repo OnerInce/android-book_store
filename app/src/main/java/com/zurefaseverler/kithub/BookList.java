@@ -4,35 +4,96 @@ package com.zurefaseverler.kithub;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
-public class BookList extends Activity {
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class BookList extends Activity implements View.OnClickListener{
+
+    List<MainPageBook> list = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_list);
 
-        ViewGroup parent_double_book = findViewById(R.id.parent_double_book);
-        LayoutInflater inflater = LayoutInflater.from(this);
+        TextView title = findViewById(R.id.book_list_title);
+        ImageButton goback = findViewById(R.id.go_back);
+        goback.setOnClickListener(this);
 
-        for(int i = 0 ; i < 10 ; i++) {
-            inflater.inflate(R.layout.double_book_view, parent_double_book);
-        }
 
-        TextView text = findViewById(R.id.kitap_turu);
+        fill();
+        RecyclerView view = findViewById(R.id.book_list_recycler_view);
+        MainPageRecyclerViewAdapter adapter = new MainPageRecyclerViewAdapter(this,list);
+        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this,2);
+        view.setLayoutManager(layoutManager);
+        view.setAdapter(adapter);
 
-        Intent i = getIntent();
-        String info = i.getStringExtra("mesaj");
-        text.setText(info);
+        view.addOnScrollListener(scrollListener);
 
     }
-    public void gonder(View view) {
 
-        Intent intent = new Intent(getApplicationContext(), BookPage.class);
-        startActivity(intent);
+    private RecyclerView.OnScrollListener scrollListener = new RecyclerView.OnScrollListener() {
 
+        @Override
+        public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+            super.onScrollStateChanged(recyclerView, newState);
+        }
+
+        @Override
+        public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+            super.onScrolled(recyclerView, dx, dy);
+
+            if(islastItemDispalying(recyclerView)){
+                Log.i("Listeden geliyor","daha fazla yükle");
+                //                                                                                  get data request atılacak bir adamın videosu üzerinden yaptım aynı fonksiypn buraya uyarlanacak
+                //                                                                                  video linki :    https://www.youtube.com/watch?v=hJZClhRzjAo ardından https://www.youtube.com/watch?v=hFkFBjS7-vQ
+                //                                                                                  ilk video req kısmı ve getData() adındaki fonksiyon ikinci kısmı biraz uyguladım zaten sadece yazılan getData() fonksiyonu burada çağırılacak
+
+            }
+        }
+    };
+
+    private boolean islastItemDispalying(RecyclerView recyclerView){
+
+        if(recyclerView.getAdapter().getItemCount() != 0){
+
+            int lastVisibleItemPos = ((GridLayoutManager)recyclerView.getLayoutManager()).findLastCompletelyVisibleItemPosition();
+            if(lastVisibleItemPos != RecyclerView.NO_POSITION && lastVisibleItemPos == recyclerView.getAdapter().getItemCount() - 1){
+                return true;
+            }
+        }
+
+     return false;
+    }
+
+    public void fill(){
+
+        for(int i = 0; i<20 ; i++){
+
+            MainPageBook item = new MainPageBook("http://18.204.251.116/var/www/html/images/book/4547546457456_9730.png","adem","adem","%20","50");
+            list.add(item);
+
+        }
+    }
+
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.go_back:
+                onBackPressed();
+                break;
+        }
     }
 }

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView android:orientation="horizontal"
+    android:layout_width="match_parent"
+
+    android:layout_margin="5dp"
+    card_view:cardCornerRadius="10dp"
+    card_view:cardElevation="5dp"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:id="@+id/searchResultImageView"
+            android:padding="5dp"
+            android:scaleType="fitXY"
+           />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Book Name"
+            android:id="@+id/nameTextView"
+            android:padding="5dp"
+            android:textColor="@color/orange"
+            android:fontFamily="@font/nexa_bold"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/searchResultImageView" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Author Name"
+            android:textStyle="italic"
+            android:id="@+id/authorTextView"
+            android:padding="5dp"
+            android:layout_alignBottom="@+id/searchResultImageView"
+            android:layout_toEndOf="@+id/searchResultImageView" />
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>
