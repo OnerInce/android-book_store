@@ -36,7 +36,7 @@ public class MainPageRecyclerViewAdapter extends RecyclerView.Adapter<MainPageRe
         holder.bookname.setText(list.get(position).getBookname());
         holder.authorname.setText(list.get(position).getAuthorname());
         holder.discountamount.setText(list.get(position).getDiscountamount());
-        holder.price.setText(list.get(position).getPrice());
+        holder.price.setText(list.get(position).getPrice() + " ₺");
 
         String[] temp = list.get(position).getImagepath().split("html/");
         Picasso.get().load("http://18.204.251.116/"+temp[1]).into(holder.bookimage);
@@ -52,6 +52,9 @@ public class MainPageRecyclerViewAdapter extends RecyclerView.Adapter<MainPageRe
         public ImageView bookimage;
         public TextView bookname,authorname,discountamount,price;
         public ViewHolder(@NonNull View itemView) {
+
+            // BURADA ON CLICK OLACAK
+
             super(itemView);
             bookimage = itemView.findViewById(R.id.BookImageMainPage);
             bookname = itemView.findViewById(R.id.BookNameMainPage);

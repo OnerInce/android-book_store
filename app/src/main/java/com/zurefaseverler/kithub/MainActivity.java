@@ -235,11 +235,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             for(int i = 0; i < jsonArray.length(); i++){
 
                                 JSONObject book = jsonArray.getJSONObject(i);
-                                String author_name = book.getString("first_name") + " " + book.getString("first_name");
+                                String author_name = book.getString("first_name") + " " + book.getString("last_name");
                                 MainPageBook item = new MainPageBook(book.getString("image"),book.getString("title"), author_name, "%20",book.getString("price"));
-                                if(i < 3)
+                                if(i < 5)
                                     mostDiscountList.add(item);
-                                else if (i < 6)
+                                else if (i < 10)
                                     mostSellersList.add(item);
                                 else
                                     newComersList.add(item);
