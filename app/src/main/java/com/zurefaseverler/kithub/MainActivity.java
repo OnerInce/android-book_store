@@ -1,5 +1,6 @@
 package com.zurefaseverler.kithub;
 
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -15,7 +16,15 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.google.android.material.navigation.NavigationView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -27,7 +36,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     NavigationView navigationView;
     ImageButton searchButton;
 
-    ArrayList<MainPageBook> list = new ArrayList<>();
+    ArrayList<MainPageBook> mostDiscountList = new ArrayList<>();
+    ArrayList<MainPageBook> newComersList = new ArrayList<>();
+    ArrayList<MainPageBook> mostSellersList = new ArrayList<>();
 
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -128,30 +139,37 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             navigationView.inflateMenu(R.menu.drawer_menu_user);
         }
 
-        doldur();
-        LinearLayoutManager layoutManageronecikanlar = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-        RecyclerView LayoutOneCikanlar = findViewById(R.id.main_page_best_discount);
-        LayoutOneCikanlar.setLayoutManager(layoutManageronecikanlar);
-        MainPageRecyclerViewAdapter adapteronecikanlar = new MainPageRecyclerViewAdapter(this,list);
-        LayoutOneCikanlar.setAdapter(adapteronecikanlar);
+        doldur(new VolleyResponseListener() {
+            @Override
+            public void onResponse(String response) {
+                LinearLayoutManager layoutManageronecikanlar = new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false);
+                RecyclerView LayoutOneCikanlar = findViewById(R.id.main_page_best_discount);
+                LayoutOneCikanlar.setLayoutManager(layoutManageronecikanlar);
+                MainPageRecyclerViewAdapter adapteronecikanlar = new MainPageRecyclerViewAdapter(MainActivity.this, mostDiscountList);
+                LayoutOneCikanlar.setAdapter(adapteronecikanlar);
 
-        LinearLayoutManager layoutManagercoksatanlar = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-        RecyclerView Layoutcoksatanlar = findViewById(R.id.main_page_best_seller);
-        Layoutcoksatanlar.setLayoutManager(layoutManagercoksatanlar);
-        MainPageRecyclerViewAdapter adaptercoksatanlar = new MainPageRecyclerViewAdapter(this,list);
-        Layoutcoksatanlar.setAdapter(adaptercoksatanlar);
+                LinearLayoutManager layoutManagercoksatanlar = new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false);
+                RecyclerView Layoutcoksatanlar = findViewById(R.id.main_page_best_seller);
+                Layoutcoksatanlar.setLayoutManager(layoutManagercoksatanlar);
+                MainPageRecyclerViewAdapter adaptercoksatanlar = new MainPageRecyclerViewAdapter(MainActivity.this, mostSellersList);
+                Layoutcoksatanlar.setAdapter(adaptercoksatanlar);
 
-        LinearLayoutManager layoutManageryeniurunler = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-        RecyclerView Layoutyeniurunler = findViewById(R.id.main_page_new_books);
-        Layoutyeniurunler.setLayoutManager(layoutManageryeniurunler);
-        MainPageRecyclerViewAdapter adapteryeniurunler = new MainPageRecyclerViewAdapter(this,list);
-        Layoutyeniurunler.setAdapter(adapteryeniurunler);
+                LinearLayoutManager layoutManageryeniurunler = new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false);
+                RecyclerView Layoutyeniurunler = findViewById(R.id.main_page_new_books);
+                Layoutyeniurunler.setLayoutManager(layoutManageryeniurunler);
+                MainPageRecyclerViewAdapter adapteryeniurunler = new MainPageRecyclerViewAdapter(MainActivity.this, newComersList);
+                Layoutyeniurunler.setAdapter(adapteryeniurunler);
+
+            }
+        });
+
+
+
     }
 
     @Override
     public void onResume() {
         super.onResume();
-
 
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         loggedInId = sharedPref.getInt("id",-1);
@@ -201,15 +219,38 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    public void doldur(){
-        int i;
+    public void doldur(final VolleyResponseListener listener){
+        String url = "http://18.204.251.116/main_page_books.php";
+        StringRequest request = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONArray jsonArray = new JSONArray(response);
+                            for(int i = 0; i < jsonArray.length(); i++){
 
-        for(i = 0; i < 5 ; i++ ){
-
-            MainPageBook item = new MainPageBook("123","adem","adem","%20","50");
-            list.add(item);
-
-        }
+                                JSONObject book = jsonArray.getJSONObject(i);
+                                String author_name = book.getString("first_name") + " " + book.getString("last_name");
+                                MainPageBook item = new MainPageBook(book.getString("image"),book.getString("title"), author_name, "%20",book.getString("price"));
+                                if(i < 5)
+                                    mostDiscountList.add(item);
+                                else if (i < 10)
+                                    mostSellersList.add(item);
+                                else
+                                    newComersList.add(item);
+                            }
+                            listener.onResponse(response);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                    }
+                }
+                );
+        NetworkRequests.getInstance(this).addToRequestQueue(request);
     }
-
 }
