@@ -8,36 +8,38 @@
 
     android:orientation="vertical">
 
-    // kitap kategorisi ustte bulunacak
-    <TextView
-        android:id="@+id/kitap_turu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:background="@color/light"
-        android:textSize="20sp"
-        android:textColor="@color/blue"
-        android:fontFamily="@font/nexa_bold"
-        android:layout_marginLeft="20dp"
-        android:layout_marginBottom="10dp"
-        android:text="Kitap turu gozukecek" />
-
-    // kitaplari asagi kaydirmak icin
-
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="75dp"
+        android:gravity="center_vertical">
+
+        <ImageButton
+            android:id="@+id/go_back"
+            android:layout_width="51dp"
+            android:layout_height="47dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/light"
+            app:srcCompat="@drawable/ic_arrow_back_dark" />
+
+        <TextView
+            android:id="@+id/book_list_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/light"
+            android:fontFamily="@font/nexa_bold"
+            android:text="title"
+            android:textColor="@color/blue"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/book_list_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 
-        // Scrolun icindeki zorunlu linear
-
-        <LinearLayout
-            android:id="@+id/parent_double_book"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"/>
-
-
-
-    </ScrollView>
 </LinearLayout>
