@@ -73,11 +73,9 @@ public class MainPageRecyclerViewAdapter extends RecyclerView.Adapter<MainPageRe
                     int pos = getAdapterPosition();
 
                     if(pos != RecyclerView.NO_POSITION){
-                        MainPageBook clickedDataItem = list.get(pos);
                         Intent intent = new Intent(context.getApplicationContext(), BookPage.class);
                         intent.putExtra("book_id", list.get(pos).getId());
                         context.startActivity(intent);
-                        Toast.makeText(v.getContext(), "You clicked " + clickedDataItem.getBookname(), Toast.LENGTH_SHORT).show();
                     }
                 }
             });

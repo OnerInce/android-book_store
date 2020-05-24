@@ -62,7 +62,7 @@
         />
 
     <GridView
-        android:id="@+id/mListView"
+        android:id="@+id/mGridView"
         android:layout_weight="0.5"
         android:numColumns="2"
         android:layout_gravity="center"

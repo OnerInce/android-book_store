@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -38,52 +39,48 @@ import retrofit2.http.FormUrlEncoded;
 public class Search extends AppCompatActivity {
     private static final String BASE_URL = "http://18.204.251.116";
 
-    class SearchResults {
+    static class SearchResults {
+
+        @SerializedName("id")
+        private String id;
         @SerializedName("title")
         private String title;
-        @SerializedName("ISBN")
-        private String ISBN;
         @SerializedName("first_name")
         private String first_name;
         @SerializedName("last_name")
         private String last_name;
-        @SerializedName("image")
-        private String image;
         @SerializedName("price")
         private String price;
 
-        public SearchResults(String title, String ISBN, String first_name, String last_name,
-                             String image, String price) {
+        public SearchResults(String id, String title, String first_name, String last_name,
+                             String price) {
+            this.id = id;
             this.title = title;
-            this.ISBN = ISBN;
             this.first_name = first_name;
             this.last_name = last_name;
-            this.image = image;
             this.price = price;
         }
 
+        public String getId() {
+            return id;
+        }
         public String getTitle() {
             return title;
         }
-
-        public String getISBN() {
-            return ISBN;
-        }
-
-        public String getFirst_name() {
+        String getFirst_name() {
             return first_name;
         }
-
-        public String getLast_name() {
+        String getLast_name() {
             return last_name;
         }
-
-        public String getImage() {
-            return image;
-        }
-
         public String getPrice() {
             return price;
+        }
+
+        @NonNull
+        @Override
+        public String toString() {
+            return getTitle();
         }
     }
 
@@ -96,7 +93,7 @@ public class Search extends AppCompatActivity {
     static class RetrofitClientInstance {
         private static Retrofit retrofit;
 
-        public static Retrofit getRetrofitInstance() {
+        static Retrofit getRetrofitInstance() {
             if (retrofit == null) {
                 retrofit = new Retrofit.Builder()
                         .baseUrl(BASE_URL)
@@ -106,12 +103,12 @@ public class Search extends AppCompatActivity {
             return retrofit;
         }
     }
-    class ListViewAdapter extends BaseAdapter {
+    static class ListViewAdapter extends BaseAdapter {
 
         private List<SearchResults> books;
         private Context context;
 
-        public ListViewAdapter(Context context, List<SearchResults> books) {
+        ListViewAdapter(Context context, List<SearchResults> books) {
             this.context = context;
             this.books = books;
         }
@@ -147,24 +144,17 @@ public class Search extends AppCompatActivity {
             nameTxt.setText(thisBook.getTitle());
             txtAuthor.setText(thisBook.getFirst_name() + " " + thisBook.getLast_name());
 
-            /*if (thisBook.getImageURL() != null && thisBook.getImageURL().length() > 0) {
-                Picasso.get().load(FULL_URL + "/images/" + thisBook.getImageURL()).placeholder(R.drawable.placeholder).into(spacecraftImageView);
-            } else {
-                Toast.makeText(context, "Empty Image URL", Toast.LENGTH_LONG).show();
-                Picasso.get().load(R.drawable.placeholder).into(spacecraftImageView);
-            }*/
-
             return view;
         }
 
     }
 
-    private GridView mListView;
+    private GridView mGridView;
     private ProgressBar mProgressBar;
     private SearchView mSearchView;
 
     private void initializeWidgets(){
-        mListView = findViewById(R.id.mListView);
+        mGridView = findViewById(R.id.mGridView);
         mProgressBar = findViewById(R.id.mProgressBar);
         mProgressBar.setIndeterminate(true);
         mProgressBar.setVisibility(View.VISIBLE);
@@ -172,9 +162,9 @@ public class Search extends AppCompatActivity {
         mSearchView.setIconified(true);
     }
 
-    private void populateListView(List<SearchResults> spacecraftList) {
-        ListViewAdapter adapter = new ListViewAdapter(this, spacecraftList);
-        mListView.setAdapter(adapter);
+    private void populateListView(List<SearchResults> bookList) {
+        ListViewAdapter adapter = new ListViewAdapter(this, bookList);
+        mGridView.setAdapter(adapter);
     }
 
     @Override
@@ -202,7 +192,6 @@ public class Search extends AppCompatActivity {
         });
         mSearchView.setFocusable(true);
         mSearchView.requestFocusFromTouch();
-
         mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -230,6 +219,17 @@ public class Search extends AppCompatActivity {
                     return false;
             }
             return false;
+            }
+        });
+
+        mGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                SearchResults book = (SearchResults) mGridView.getItemAtPosition(position);
+
+                Intent intent = new Intent(getApplicationContext(), BookPage.class);
+                intent.putExtra("book_id", book.getId());
+                startActivity(intent);
             }
         });
     }
