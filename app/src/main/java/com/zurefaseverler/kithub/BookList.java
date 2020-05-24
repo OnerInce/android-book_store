@@ -18,7 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BookList extends Activity implements View.OnClickListener, MainPageRecyclerViewAdapter.MainPageBookListener{
+public class BookList extends Activity implements View.OnClickListener{
 
     List<MainPageBook> list = new ArrayList<>();
 
@@ -34,7 +34,7 @@ public class BookList extends Activity implements View.OnClickListener, MainPage
 
         fill();
         RecyclerView view = findViewById(R.id.book_list_recycler_view);
-        MainPageRecyclerViewAdapter adapter = new MainPageRecyclerViewAdapter(this,list, this);
+        MainPageRecyclerViewAdapter adapter = new MainPageRecyclerViewAdapter(this,list);
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this,2);
         view.setLayoutManager(layoutManager);
         view.setAdapter(adapter);
@@ -97,8 +97,4 @@ public class BookList extends Activity implements View.OnClickListener, MainPage
         }
     }
 
-    @Override
-    public void onBookClick(int position) {
-
-    }
 }
