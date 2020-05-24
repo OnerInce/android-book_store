@@ -77,7 +77,8 @@ public class Admin extends AppCompatActivity {
 
     public void delete_author(View view){
 
-
+        i = new Intent(this, OrderDetails.class);
+        startActivity(i);
 
     }
 
