@@ -63,19 +63,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 i = new Intent(this, Categories.class);
                 startActivity(i);
                 break;
-
-            case R.id.siparisler:
-                i = new Intent(this, ProfilePage.class );
-                startActivity(i);
-                break;
-
+                
             case R.id.admin_drawer:
                 i = new Intent(this, Admin.class);
-                startActivity(i);
-                break;
-
-            case  R.id.yazarlar:
-                i = new Intent(this, Authors.class );
                 startActivity(i);
                 break;
         }

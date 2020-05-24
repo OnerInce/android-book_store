@@ -9,16 +9,10 @@
         android:icon="@drawable/ic_account_circle"
         android:title="Giriş yap"/>
 
-    <item android:id="@+id/yazarlar"
-        android:icon="@drawable/ic_writers"
-        android:title="Yazarlar"/>
 
     <item android:id="@+id/kategoriler"
         android:icon="@drawable/ic_kategoriler"
         android:title="Kategoriler"/>
 
-    <item android:id="@+id/sicak_fırsat"
-        android:icon="@drawable/ic_hot"
-        android:title="Fırsat ürünü"/>
 
 </menu>

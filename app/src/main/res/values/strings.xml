@@ -66,6 +66,7 @@
     <string name="signUp_already">Bu Mail Adresi ya da Telefon Numarası Sistemde Mevcut</string>
     <string name="signUp_registered">Kayit basarili...</string>
     <string name="login_admin">Admin girişi başarılı</string>
+    <string name="order_confirm_page_title">Onay Bekleyen Siparişler</string>
 
 
 </resources>

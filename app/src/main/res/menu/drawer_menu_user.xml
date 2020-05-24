@@ -13,21 +13,10 @@
         android:icon="@drawable/ic_shopping_cart"
         android:title="Sepet" />
 
-    <item android:id="@+id/siparisler"
-        android:icon="@drawable/ic_siparisler"
-        android:title="Siparişler"/>
-
-    <item android:id="@+id/yazarlar"
-        android:icon="@drawable/ic_writers"
-        android:title="Yazarlar"/>
-
     <item android:id="@+id/kategoriler"
         android:icon="@drawable/ic_kategoriler"
         android:title="Kategoriler"/>
 
-    <item android:id="@+id/sicak_fırsat"
-        android:icon="@drawable/ic_hot"
-        android:title="Fırsat ürünü"/>
 
 
 </menu>

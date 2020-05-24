@@ -6,20 +6,21 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/light"
+    android:fitsSystemWindows="true"
     tools:context=".Admin">
 
     <TextView
         android:id="@+id/textView19"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:padding="7dp"
-        android:gravity="center"
-        android:textSize="30sp"
+        android:layout_marginTop="20dp"
         android:background="@color/orange"
-        android:textColor="@color/light"
         android:fontFamily="@font/nexa_bold"
-        android:text="Yönetici Sayfası" />
+        android:gravity="center"
+        android:padding="7dp"
+        android:text="Yönetici Sayfası"
+        android:textColor="@color/light"
+        android:textSize="30sp" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -255,7 +256,7 @@
                 android:layout_marginTop="24dp"
                 android:background="@color/blue"
                 android:gravity="center_vertical"
-                android:onClick="add_author"
+                android:onClick="confirm_order"
                 android:orientation="horizontal"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/admin_kategori_ekle">
@@ -265,7 +266,7 @@
                     android:layout_height="50dp"
                     android:layout_marginStart="10dp"
                     android:padding="2dp"
-                    app:srcCompat="@drawable/admin_add_author" />
+                    app:srcCompat="@drawable/admin_page_order_confirm" />
 
                 <TextView
                     android:layout_width="0dp"
@@ -273,7 +274,7 @@
                     android:layout_marginStart="10dp"
                     android:layout_weight="1"
                     android:fontFamily="@font/nexa_bold"
-                    android:text="Yazar ekle"
+                    android:text="Sipariş Onayla"
                     android:textColor="@color/light"
                     android:textSize="20sp" />
 
@@ -284,6 +285,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="24dp"
+                android:layout_marginBottom="24dp"
                 android:background="@color/blue"
                 android:gravity="center_vertical"
                 android:onClick="delete_author"
