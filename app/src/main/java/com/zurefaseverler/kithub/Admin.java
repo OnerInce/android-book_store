@@ -68,9 +68,10 @@ public class Admin extends AppCompatActivity {
 
     }
 
-    public void add_author(View view){
+    public void confirm_order(View view){
 
-
+        i = new Intent(this, OrderConfirm.class);
+        startActivity(i);
 
     }
 

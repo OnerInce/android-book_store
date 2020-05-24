@@ -1,47 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView android:orientation="horizontal"
-    android:layout_width="match_parent"
-
-    android:layout_margin="5dp"
-    card_view:cardCornerRadius="10dp"
-    card_view:cardElevation="5dp"
-    android:layout_height="match_parent"
+<androidx.cardview.widget.CardView xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:layout_width="200dp"
+    android:layout_height="110dp"
+    android:layout_gravity="center"
+    android:elevation="0dp"
+    card_view:cardElevation="0dp"
+    card_view:cardBackgroundColor="@color/light"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <ImageView
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:id="@+id/searchResultImageView"
-            android:padding="5dp"
-            android:scaleType="fitXY"
-           />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="190dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/search_item_background">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Book Name"
             android:id="@+id/nameTextView"
-            android:padding="5dp"
-            android:textColor="@color/orange"
-            android:fontFamily="@font/nexa_bold"
-            android:layout_alignParentTop="true"
-            android:layout_toEndOf="@+id/searchResultImageView" />
-
-        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Author Name"
-            android:textStyle="italic"
-            android:id="@+id/authorTextView"
-            android:padding="5dp"
-            android:layout_alignBottom="@+id/searchResultImageView"
-            android:layout_toEndOf="@+id/searchResultImageView" />
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/nexa_bold"
+            android:text="Book Name"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/blue"
+            android:textSize="20sp"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toTopOf="parent" />
 
-    </RelativeLayout>
+        <TextView
+            android:id="@+id/authorTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Author Name"
+            android:textColor="@color/darkblue"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textStyle="italic"
+            android:textSize="12sp"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toBottomOf="@+id/nameTextView" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

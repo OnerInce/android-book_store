@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -140,7 +141,6 @@ public class Search extends AppCompatActivity {
 
             TextView nameTxt = view.findViewById(R.id.nameTextView);
             TextView txtAuthor = view.findViewById(R.id.authorTextView);
-            ImageView imageBook = view.findViewById(R.id.searchResultImageView);
 
             final SearchResults thisBook = books.get(position);
 
@@ -159,7 +159,7 @@ public class Search extends AppCompatActivity {
 
     }
 
-    private ListView mListView;
+    private GridView mListView;
     private ProgressBar mProgressBar;
     private SearchView mSearchView;
 
