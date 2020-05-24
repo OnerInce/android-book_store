@@ -15,20 +15,23 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 public class MainPageRecyclerViewAdapter extends RecyclerView.Adapter<MainPageRecyclerViewAdapter.ViewHolder>{
-
     @NonNull
     private Context context;
     private List<MainPageBook> list;
+    private MainPageBookListener MainBookListener;
+    private String tag;
 
-    public MainPageRecyclerViewAdapter(@NonNull Context context, List<MainPageBook> list) {
+    public MainPageRecyclerViewAdapter(@NonNull Context context, List<MainPageBook> list, MainPageBookListener mainPageListener, String tag) {
         this.context = context;
         this.list = list;
+        this.MainBookListener = mainPageListener;
+        this.tag = tag;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.main_page_book_layout, parent, false);
-        return new ViewHolder(view);
+        return new ViewHolder(view, MainBookListener);
     }
 
     @Override
@@ -47,21 +50,36 @@ public class MainPageRecyclerViewAdapter extends RecyclerView.Adapter<MainPageRe
         return list.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder implements MainPageBookListener{
 
         public ImageView bookimage;
-        public TextView bookname,authorname,discountamount,price;
-        public ViewHolder(@NonNull View itemView) {
+        public TextView bookname, authorname, discountamount, price;
+        MainPageBookListener mainPageListener;
 
-            // BURADA ON CLICK OLACAK
-
+        public ViewHolder(@NonNull View itemView, MainPageBookListener mainPageListener) {
             super(itemView);
+
+            itemView.setOnClickListener(this);
+            this.mainPageListener = mainPageListener;
+
             bookimage = itemView.findViewById(R.id.BookImageMainPage);
             bookname = itemView.findViewById(R.id.BookNameMainPage);
             authorname = itemView.findViewById(R.id.AuthorNameMainPage);
             discountamount = itemView.findViewById(R.id.discountAmountMainPage);
             price = itemView.findViewById(R.id.mainPagePrice);
 
+            itemView.setOnClickListener();
+
         }
+
+
+        @Override
+        public void onClick(int position, String tag) {
+
+        }
+    }
+
+    public interface MainPageBookListener{
+        void onClick(int position, String tag);
     }
 }

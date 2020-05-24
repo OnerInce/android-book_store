@@ -2,7 +2,15 @@ package com.zurefaseverler.kithub;
 
 public class MainPageBook {
 
-    private String imagepath, bookname, authorname, discountamount, price;
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    private String id, imagepath, bookname, authorname, discountamount, price;
 
     public String getImagepath() {
         return imagepath;
@@ -44,7 +52,8 @@ public class MainPageBook {
         this.price = price;
     }
 
-    public MainPageBook(String imagepath, String bookname, String authorname, String discountamount, String price) {
+    public MainPageBook(String id, String imagepath, String bookname, String authorname, String discountamount, String price) {
+        this.id = id;
         this.imagepath = imagepath;
         this.bookname = bookname;
         this.authorname = authorname;

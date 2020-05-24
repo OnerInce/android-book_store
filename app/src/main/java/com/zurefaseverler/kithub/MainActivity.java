@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.content.SharedPreferences;
+import android.widget.Toast;
+
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
@@ -28,7 +30,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener{
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener, MainPageRecyclerViewAdapter.MainPageBookListener {
     private DrawerLayout drawer;
     private ActionBarDrawerToggle toggle;
     int loggedInId;
@@ -124,6 +126,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         ImageButton button_drawer = findViewById(R.id.button_drawer);
         button_drawer.setOnClickListener(this);
+        MainPageRecyclerViewAdapter adapteronecikanlar = new MainPageRecyclerViewAdapter(MainActivity.this, mostDiscountList, this);
 
         if (loggedInId == -1) {
             navigationView.getMenu().clear();
@@ -139,25 +142,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             navigationView.inflateMenu(R.menu.drawer_menu_user);
         }
 
+
         doldur(new VolleyResponseListener() {
             @Override
             public void onResponse(String response) {
                 LinearLayoutManager layoutManageronecikanlar = new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false);
                 RecyclerView LayoutOneCikanlar = findViewById(R.id.main_page_best_discount);
                 LayoutOneCikanlar.setLayoutManager(layoutManageronecikanlar);
-                MainPageRecyclerViewAdapter adapteronecikanlar = new MainPageRecyclerViewAdapter(MainActivity.this, mostDiscountList);
+                MainPageRecyclerViewAdapter adapteronecikanlar = new MainPageRecyclerViewAdapter(MainActivity.this, mostDiscountList, MainActivity.this);
                 LayoutOneCikanlar.setAdapter(adapteronecikanlar);
 
                 LinearLayoutManager layoutManagercoksatanlar = new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false);
                 RecyclerView Layoutcoksatanlar = findViewById(R.id.main_page_best_seller);
                 Layoutcoksatanlar.setLayoutManager(layoutManagercoksatanlar);
-                MainPageRecyclerViewAdapter adaptercoksatanlar = new MainPageRecyclerViewAdapter(MainActivity.this, mostSellersList);
+                MainPageRecyclerViewAdapter adaptercoksatanlar = new MainPageRecyclerViewAdapter(MainActivity.this, mostSellersList, MainActivity.this);
                 Layoutcoksatanlar.setAdapter(adaptercoksatanlar);
 
                 LinearLayoutManager layoutManageryeniurunler = new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false);
                 RecyclerView Layoutyeniurunler = findViewById(R.id.main_page_new_books);
                 Layoutyeniurunler.setLayoutManager(layoutManageryeniurunler);
-                MainPageRecyclerViewAdapter adapteryeniurunler = new MainPageRecyclerViewAdapter(MainActivity.this, newComersList);
+                MainPageRecyclerViewAdapter adapteryeniurunler = new MainPageRecyclerViewAdapter(MainActivity.this, newComersList, MainActivity.this);
                 Layoutyeniurunler.setAdapter(adapteryeniurunler);
 
             }
@@ -231,7 +235,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                                 JSONObject book = jsonArray.getJSONObject(i);
                                 String author_name = book.getString("first_name") + " " + book.getString("last_name");
-                                MainPageBook item = new MainPageBook(book.getString("image"),book.getString("title"), author_name, "%20",book.getString("price"));
+                                MainPageBook item = new MainPageBook(book.getString("id"), book.getString("image"),
+                                         book.getString("title"), author_name, "%20", book.getString("price"));
                                 if(i < 5)
                                     mostDiscountList.add(item);
                                 else if (i < 10)
@@ -252,5 +257,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 );
         NetworkRequests.getInstance(this).addToRequestQueue(request);
+    }
+
+    @Override
+    public void onBookClick(int position, String tag) {
+
+
+        Intent intent = new Intent(this, BookPage.class);
+        intent.putExtra("book_id", newComersList.get(position).getId());
+        intent.putExtra("tag", tag);
+        Toast.makeText(getApplicationContext(), "hoppp", Toast.LENGTH_SHORT).show();
+        startActivity(intent);
+
     }
 }
