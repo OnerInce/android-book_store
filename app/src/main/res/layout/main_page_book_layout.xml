@@ -5,9 +5,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="190dp"
     android:layout_height="190dp"
-    android:elevation="5dp"
+    android:elevation="10dp"
     android:layout_margin="5dp"
-    android:background="@color/light">
+    android:background="@color/light"
+    app:cardCornerRadius="10dp">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
