@@ -13,7 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".OrderConfirm"/>
+        <activity android:name=".OrderDetails"></activity>
+        <activity android:name=".OrderConfirm" />
         <activity
             android:name=".SignUp"
             android:windowSoftInputMode="adjustResize" />
@@ -30,8 +31,9 @@
         <activity android:name=".BookPage" />
         <activity android:name=".Categories" />
         <activity android:name=".BookList" />
-        <activity android:name=".Login"
-            android:windowSoftInputMode="adjustResize"/>
+        <activity
+            android:name=".Login"
+            android:windowSoftInputMode="adjustResize" />
         <activity android:name=".Search" />
         <activity android:name=".CartActivity" />
         <activity

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".OrderDetails"
+    android:fitsSystemWindows="true"
+    android:background="@color/light">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/order_details_orderid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nexa_bold"
+            android:textColor="@color/darkblue"
+            android:textSize="20sp"
+            android:layout_weight="1"
+            android:text="order id: 12321" />
+
+        <TextView
+            android:id="@+id/order_details_userid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nexa_bold"
+            android:textColor="@color/darkblue"
+            android:textSize="20sp"
+            android:layout_weight="1"
+            android:text="user id: 64243" />
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/order_details_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/gray">
+
+
+        <TextView
+            android:id="@+id/order_details_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="Date: 12.12.2020"
+            android:fontFamily="@font/nexa_bold"
+            android:textColor="@color/darkblue"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/order_details_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="Amount: 165.68 TL"
+            android:fontFamily="@font/nexa_bold"
+            android:textColor="@color/darkblue"
+            android:textSize="20sp"
+            app:layout_constraintStart_toEndOf="@+id/order_details_date"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/order_details_button_confirm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="80dp"
+            android:layout_marginTop="32dp"
+            android:text="Onayla"
+            android:background="@android:color/holo_green_dark"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/order_details_date" />
+
+        <Button
+            android:id="@+id/order_details_button_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="80dp"
+            android:text="İptal"
+            android:background="@android:color/holo_red_dark"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/order_details_amount" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>
