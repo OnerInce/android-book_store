@@ -1,12 +1,11 @@
 package com.zurefaseverler.kithub;
 
-import android.app.DownloadManager;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.textclassifier.TextClassification;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.content.SharedPreferences;
@@ -20,7 +19,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.google.android.material.navigation.NavigationView;
 
@@ -28,7 +26,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.sql.SQLTransactionRollbackException;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener{
@@ -174,7 +171,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onResume() {
         super.onResume();
 
-
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         loggedInId = sharedPref.getInt("id",-1);
         isAdmin = sharedPref.getInt("isAdmin",0);
@@ -224,7 +220,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void doldur(final VolleyResponseListener listener){
-
         String url = "http://18.204.251.116/main_page_books.php";
         StringRequest request = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
@@ -243,7 +238,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                     mostSellersList.add(item);
                                 else
                                     newComersList.add(item);
-
                             }
                             listener.onResponse(response);
                         } catch (JSONException e) {
@@ -254,19 +248,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-
                     }
                 }
                 );
-
         NetworkRequests.getInstance(this).addToRequestQueue(request);
-        /*int i;
-        for(i = 0; i < 5 ; i++ ){
-
-            MainPageBook item = new MainPageBook("123","adem","adem","%20","50");
-            //list.add(item);
-
-        }*/
     }
-
 }
