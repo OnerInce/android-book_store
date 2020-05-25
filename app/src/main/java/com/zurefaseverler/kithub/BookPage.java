@@ -76,7 +76,7 @@ public class BookPage extends AppCompatActivity implements View.OnClickListener 
                             JSONObject jsonObject = new JSONObject(response);
 
                             book = new Book(jsonObject.getInt("id"),
-                                    jsonObject.getString("first_name") + jsonObject.getString("last_name"),
+                                    jsonObject.getString("first_name") + " " + jsonObject.getString("last_name"),
                                     jsonObject.getInt("stock_quantity"), jsonObject.getString("category_name"),
                                     jsonObject.getString("book_type_name"), jsonObject.getInt("price"),
                                     jsonObject.getInt("sales"), jsonObject.getInt("no_people_rated"),
@@ -122,7 +122,12 @@ public class BookPage extends AppCompatActivity implements View.OnClickListener 
         summary.setText(book.getSummary());
 
         String[] temp = book.getImage().split("html/");
-        Picasso.get().load("http://18.204.251.116/"+temp[1]).into(bookImage);
+        if(temp.length == 1){
+            Picasso.get().load(book.getImage()).into(bookImage);
+        }
+        else{
+            Picasso.get().load("http://18.204.251.116/" + temp[1]).into(bookImage);
+        }
 
         if(book.getStockQuantity() == 0) addCart.setText(R.string.book_page_remindMe);
         else addCart.setText(R.string.book_page_addCart);

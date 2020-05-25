@@ -14,6 +14,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
 
+import java.io.IOException;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.List;
 
 public class MainPageRecyclerViewAdapter extends RecyclerView.Adapter<MainPageRecyclerViewAdapter.ViewHolder>{
@@ -41,10 +44,16 @@ public class MainPageRecyclerViewAdapter extends RecyclerView.Adapter<MainPageRe
         holder.discountamount.setText(list.get(position).getDiscountamount());
         holder.price.setText(list.get(position).getPrice() + " ₺");
 
+
         String[] temp = list.get(position).getImagepath().split("html/");
-        Picasso.get().load("http://18.204.251.116/"+temp[1]).into(holder.bookimage);
 
-
+        if(temp.length == 1){
+            Picasso.get().load(list.get(position).getImagepath()).into(holder.bookimage);
+        }
+        else{
+            Picasso.get().load("http://18.204.251.116/" + temp[1]).into(holder.bookimage);
+        }
+        
     }
 
     @Override

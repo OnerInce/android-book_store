@@ -56,7 +56,12 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.designCard> {
         holder.adet.setNumber(list.get(position).getQuantity());
 
         String[] temp = list.get(position).getImage().split("html/");
-        Picasso.get().load("http://18.204.251.116/"+temp[1]).fit().into(holder.img);
+        if(temp.length == 1){
+            Picasso.get().load(list.get(position).getImage()).into(holder.img);
+        }
+        else{
+            Picasso.get().load("http://18.204.251.116/" + temp[1]).into(holder.img);
+        }
 
         holder.update_quantity.setOnClickListener(new View.OnClickListener() {
             @Override
