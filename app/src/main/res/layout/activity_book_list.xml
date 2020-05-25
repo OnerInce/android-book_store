@@ -13,15 +13,26 @@
         android:layout_height="75dp"
         android:gravity="center_vertical">
 
-        <ImageButton
-            android:id="@+id/go_back"
-            android:layout_width="51dp"
-            android:layout_height="47dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="5dp"
-            android:background="@color/light"
-            app:srcCompat="@drawable/ic_arrow_back_dark" />
+<!--        <ImageButton-->
+<!--            android:id="@+id/go_back"-->
+<!--            android:layout_width="51dp"-->
+<!--            android:layout_height="47dp"-->
+<!--            android:layout_marginStart="8dp"-->
+<!--            android:layout_marginTop="5dp"-->
+<!--            android:background="@color/light"-->
+<!--            app:srcCompat="@drawable/ic_arrow_back_dark" />-->
 
+        <TextView
+            android:id="@+id/goback"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/ic_arrow_back_dark"
+            android:fontFamily="@font/nexa_bold"
+            android:onClick="goback"
+            android:textColor="@color/blue"
+            android:textSize="20sp" />
         <TextView
             android:id="@+id/book_list_title"
             android:layout_width="wrap_content"

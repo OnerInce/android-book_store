@@ -28,8 +28,8 @@ public class BookList extends Activity implements View.OnClickListener{
         setContentView(R.layout.activity_book_list);
 
         TextView title = findViewById(R.id.book_list_title);
-        ImageButton goback = findViewById(R.id.go_back);
-        goback.setOnClickListener(this);
+//        ImageButton goback = findViewById(R.id.go_back);
+//        goback.setOnClickListener(this);
 
 
         fill();
@@ -90,11 +90,14 @@ public class BookList extends Activity implements View.OnClickListener{
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.go_back:
-                onBackPressed();
-                break;
-        }
+//        switch (v.getId()) {
+//            case R.id.go_back:
+//                onBackPressed();
+//                break;
+//        }
+    }
+    public void goback(View view) {
+        onBackPressed();
     }
 
 }
