@@ -9,6 +9,8 @@ import android.widget.ImageButton;
 import androidx.appcompat.app.AppCompatActivity;
 import com.android.volley.RequestQueue;
 
+import java.util.Objects;
+
 
 public class Categories extends AppCompatActivity implements View.OnClickListener{
 
@@ -38,12 +40,15 @@ public class Categories extends AppCompatActivity implements View.OnClickListene
                 lastExpandGroup = groupPosition;
             }
         });
-
         categories.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             @Override
             public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
 
                 Intent i = new Intent(getApplicationContext(), BookList.class);
+                String category_name = AdapterCategories.categories.get(groupPosition);
+                String book_type = Objects.requireNonNull(AdapterCategories.bookTypes.get(category_name)).get(childPosition);
+                i.putExtra("book_type", book_type);
+                i.putExtra("category_name",category_name);
                 startActivity(i);
                 return false;
             }
