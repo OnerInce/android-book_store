@@ -34,7 +34,7 @@ public class BookList extends Activity implements View.OnClickListener{
 
         fill();
         RecyclerView view = findViewById(R.id.book_list_recycler_view);
-        MainPageRecyclerViewAdapter adapter = new MainPageRecyclerViewAdapter(this,list);
+        MainPageRecyclerViewAdapter adapter = new MainPageRecyclerViewAdapter(this, list);
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this,2);
         view.setLayoutManager(layoutManager);
         view.setAdapter(adapter);
@@ -54,7 +54,7 @@ public class BookList extends Activity implements View.OnClickListener{
         public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
             super.onScrolled(recyclerView, dx, dy);
 
-            if(islastItemDispalying(recyclerView)){
+            if(islastItemDisplaying(recyclerView)){
                 Log.i("Listeden geliyor","daha fazla yükle");
                 //                                                                                  get data request atılacak bir adamın videosu üzerinden yaptım aynı fonksiypn buraya uyarlanacak
                 //                                                                                  video linki :    https://www.youtube.com/watch?v=hJZClhRzjAo ardından https://www.youtube.com/watch?v=hFkFBjS7-vQ
@@ -64,7 +64,7 @@ public class BookList extends Activity implements View.OnClickListener{
         }
     };
 
-    private boolean islastItemDispalying(RecyclerView recyclerView){
+    private boolean islastItemDisplaying(RecyclerView recyclerView){
 
         if(recyclerView.getAdapter().getItemCount() != 0){
 
