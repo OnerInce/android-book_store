@@ -65,6 +65,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
                                 String id = jsonObject.getString("id");
                                 String isAdmin = jsonObject.getString("is_admin");
+                                String name = jsonObject.getString("complete_name");
+
                                 if (isAdmin.equals("1")){
                                     Toast.makeText(getApplicationContext(), R.string.login_admin, Toast.LENGTH_SHORT).show();
                                 }
@@ -75,6 +77,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                                 SharedPreferences.Editor editor = sharedPref.edit();
                                 editor.putInt("id", Integer.parseInt(id));
                                 editor.putInt("isAdmin", Integer.parseInt(isAdmin));
+                                editor.putString("name", name);
                                 editor.apply();
 
                                 Intent intent = new Intent(Login.this, MainActivity.class);
