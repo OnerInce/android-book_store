@@ -15,6 +15,7 @@ public class CartViewHolder extends RecyclerView.ViewHolder implements View.OnCl
     private ImageView imgProductPhoto;
     private ElegantNumberButton quantity;
     private ItemClickListener itemClickListener;
+    private ElegantNumberButton urunsayisi;
 
     public CartViewHolder(View itemView) {
         super(itemView);
