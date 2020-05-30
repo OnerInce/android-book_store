@@ -10,7 +10,7 @@ android {
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
-
+        vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -37,8 +37,11 @@ dependencies {
     implementation 'androidx.gridlayout:gridlayout:1.0.0'
     implementation 'com.android.volley:volley:1.0.0'
     implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation 'com.github.takusemba:multisnaprecyclerview:2.0.2'
     implementation 'com.cepheuen.elegant-number-button:lib:1.0.2'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
 
 }

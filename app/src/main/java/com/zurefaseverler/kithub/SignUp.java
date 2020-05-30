@@ -25,6 +25,7 @@ import com.android.volley.toolbox.StringRequest;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -183,6 +184,7 @@ public class SignUp extends AppCompatActivity implements  View.OnClickListener {
                             }
                             else{
                                 Toast.makeText(getApplicationContext(), R.string.signUp_already, Toast.LENGTH_SHORT).show();
+                                progressBar.setVisibility(View.GONE);
                             }
                         }
                     });
@@ -207,9 +209,11 @@ public class SignUp extends AppCompatActivity implements  View.OnClickListener {
                             }
                             else{
                                 String id = jsonObject.getString("id");
+                                String name = jsonObject.getString("complete_name");
                                 SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                                 SharedPreferences.Editor editor = sharedPref.edit();
                                 editor.putInt("id", Integer.parseInt(id));
+                                editor.putString("name", name);
                                 editor.apply();
                                 listener.onResponse("1");
                             }
@@ -245,9 +249,6 @@ public class SignUp extends AppCompatActivity implements  View.OnClickListener {
             case R.id.go_back:
                 onBackPressed();
                 break;
-
-
-
         }
     }
 }

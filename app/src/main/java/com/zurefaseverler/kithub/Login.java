@@ -17,6 +17,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.navigation.NavigationView;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.HashMap;
@@ -25,6 +27,7 @@ import java.util.Map;
 
 public class Login extends AppCompatActivity implements View.OnClickListener {
     private RequestQueue mQueue;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,8 +37,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         go_back.setOnClickListener(this);
         TextView forgot = findViewById(R.id.unuttum);
         forgot.setOnClickListener(this);
-
-
 
         mQueue = Volley.newRequestQueue(this);
         findViewById(R.id.login_button).setOnClickListener(new View.OnClickListener() {
@@ -61,14 +62,28 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                             String success = jsonObject.getString("success");
 
                             if(success.equals("1")){
+
                                 String id = jsonObject.getString("id");
-                                Toast.makeText(getApplicationContext(), R.string.login_success, Toast.LENGTH_SHORT).show();
+                                String isAdmin = jsonObject.getString("is_admin");
+                                String name = jsonObject.getString("complete_name");
+
+                                if (isAdmin.equals("1")){
+                                    Toast.makeText(getApplicationContext(), R.string.login_admin, Toast.LENGTH_SHORT).show();
+                                }
+                                else
+                                    Toast.makeText(getApplicationContext(), R.string.login_success, Toast.LENGTH_SHORT).show();
 
                                 SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                                 SharedPreferences.Editor editor = sharedPref.edit();
                                 editor.putInt("id", Integer.parseInt(id));
+                                editor.putInt("isAdmin", Integer.parseInt(isAdmin));
+                                editor.putString("name", name);
                                 editor.apply();
-                                startActivity(new Intent(Login.this, MainActivity.class));
+
+                                Intent intent = new Intent(Login.this, MainActivity.class);
+                                intent.putExtra("isAdmin", isAdmin);
+
+                                startActivity(intent);
                             }
                             else{
                                 Toast.makeText(getApplicationContext(), R.string.login_fail,Toast.LENGTH_SHORT).show();

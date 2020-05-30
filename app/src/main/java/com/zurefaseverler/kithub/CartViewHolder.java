@@ -11,8 +11,9 @@ import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
 
 public class CartViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-    public TextView txtProductName, txtProductPrice,txtProductQuantity;
-    public ImageView imgProductPhoto;
+    private TextView txtProductName, txtProductPrice;
+    private ImageView imgProductPhoto;
+    private ElegantNumberButton quantity;
     private ItemClickListener itemClickListener;
     private ElegantNumberButton urunsayisi;
 
@@ -20,7 +21,7 @@ public class CartViewHolder extends RecyclerView.ViewHolder implements View.OnCl
         super(itemView);
         txtProductName =itemView.findViewById(R.id.cart_product_name);
         txtProductPrice =itemView.findViewById(R.id.cart_product_price);
-        urunsayisi =itemView.findViewById(R.id.product_quantity1);
+        quantity = itemView.findViewById(R.id.cartItem_product_quantity1);
         imgProductPhoto =itemView.findViewById(R.id.cart_product_photo);
     }
 
@@ -29,8 +30,6 @@ public class CartViewHolder extends RecyclerView.ViewHolder implements View.OnCl
     public void onClick(View view) {
 
         itemClickListener.onClick(view,getAdapterPosition(),false);
-
-
 
     }
 

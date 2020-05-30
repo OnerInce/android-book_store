@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:elevation="0dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/search_item_background">
+
+            <TextView
+                android:id="@+id/user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/nexa_bold"
+                android:text="User 1"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/users_comment"
+                android:layout_width="370dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/nexa_light"
+                android:text="comment"
+                android:textColor="@color/darkblue"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/user_name" />
+
+            <RatingBar
+                android:id="@+id/users_book_rate"
+                style="?android:attr/ratingBarStyleIndicator"
+                android:layout_width="180dp"
+                android:layout_height="30dp"
+
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:numStars="5"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/comment_date"
+                app:layout_constraintTop_toBottomOf="@+id/users_comment" />
+
+            <TextView
+                android:id="@+id/comment_date"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginStart="64dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:fontFamily="@font/nexa_bold"
+                android:gravity="center"
+                android:text="11.01.2020"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/users_comment" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
