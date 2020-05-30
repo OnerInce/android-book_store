@@ -105,6 +105,14 @@ public class ProfilePage extends AppCompatActivity  {
                 startActivityForResult(new Intent(ProfilePage.this,ProfileInfo.class),1);
             }
         });
+        
+        findViewById(R.id.profilePage_cart).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(ProfilePage.this, CartActivity.class);
+                startActivity(i);
+            }
+        });
     }
 
     @Override
