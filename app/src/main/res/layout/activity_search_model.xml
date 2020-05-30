@@ -19,7 +19,10 @@
 
         <TextView
             android:id="@+id/nameTextView"
-            android:layout_width="wrap_content"
+            android:layout_width="170dp"
+            android:gravity="center"
+            android:maxLines="1"
+            android:ellipsize="end"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:fontFamily="@font/nexa_bold"
@@ -33,7 +36,10 @@
 
         <TextView
             android:id="@+id/authorTextView"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
+            android:gravity="center"
+            android:maxLines="1"
+            android:ellipsize="end"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="Author Name"
