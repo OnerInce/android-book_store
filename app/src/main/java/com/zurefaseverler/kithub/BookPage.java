@@ -294,8 +294,10 @@ public class BookPage extends AppCompatActivity implements View.OnClickListener 
                         try {
                             JSONObject jsonObject = new JSONObject(response);
                             String success = jsonObject.getString("success");
-                            if(Integer.parseInt(success) >= 0)
-                                Toast.makeText(getApplicationContext(),"eklendi",Toast.LENGTH_SHORT).show();
+                            if(Integer.parseInt(success) >= 0){
+                                listener.onResponse(success);
+                            }
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
