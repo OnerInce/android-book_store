@@ -16,7 +16,12 @@
 
         <TextView
             android:id="@+id/cart_product_name"
-            android:layout_width="400dp"
+            android:layout_width="250dp"
+            android:gravity="center"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:fontFamily="@font/nexa_bold"
+            android:textColor="@color/blue"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/cart_product_photo"
             android:layout_alignParentTop="true"
