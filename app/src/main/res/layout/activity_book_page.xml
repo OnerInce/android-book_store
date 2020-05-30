@@ -18,6 +18,29 @@
             android:layout_height="match_parent"
             android:background="@color/light">
 
+            <ImageView
+                android:id="@+id/bookPage_doneCircle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.501"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.304"
+                app:srcCompat="@drawable/done_circle"
+                android:visibility="gone"/>
+
+            <ImageView
+                android:id="@+id/bookPage_done"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                app:layout_constraintBottom_toBottomOf="@+id/bookPage_doneCircle"
+                app:layout_constraintEnd_toEndOf="@+id/bookPage_doneCircle"
+                app:layout_constraintStart_toStartOf="@+id/bookPage_doneCircle"
+                app:layout_constraintTop_toTopOf="@+id/bookPage_doneCircle"
+                app:srcCompat="@drawable/done"
+                android:visibility="gone"/>
 
             <TextView
                 android:id="@+id/bookPage_bookName"
@@ -121,7 +144,7 @@
                 android:layout_marginTop="16dp"
                 android:background="@drawable/rounded_corners_orange"
                 android:fontFamily="@font/nexa_bold"
-                android:padding="3dp"
+                android:padding="10dp"
                 android:textColor="@color/light"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

@@ -3,6 +3,8 @@ package com.zurefaseverler.kithub;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.AnimatedVectorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
@@ -16,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -171,7 +174,32 @@ public class BookPage extends AppCompatActivity implements View.OnClickListener 
 
             case R.id.bookPage_addCartButton:
                 if(book.getStockQuantity() == 0) Toast.makeText(getApplicationContext(),"stokta yok",Toast.LENGTH_SHORT).show();
-                else addItem_intoCart(book.getBook_id());
+                else addItem_intoCart(book.getBook_id(), new VolleyResponseListener() {
+                    @Override
+                    public void onResponse(String response) {
+                        final ImageView done = findViewById(R.id.bookPage_done);
+                        final ImageView doneCircle = findViewById(R.id.bookPage_doneCircle);
+                        Drawable drawable = done.getDrawable();
+                        if(drawable instanceof AnimatedVectorDrawableCompat){
+                            AnimatedVectorDrawableCompat drawableCompat = (AnimatedVectorDrawableCompat) drawable;
+                            drawableCompat.start();
+                        }else if(drawable instanceof AnimatedVectorDrawable){
+                            AnimatedVectorDrawable vectorDrawable = (AnimatedVectorDrawable) drawable;
+                            vectorDrawable.start();
+                        }
+                        doneCircle.bringToFront();
+                        done.bringToFront();
+
+                        done.setVisibility(View.VISIBLE);
+                        doneCircle.setVisibility(View.VISIBLE);
+                        doneCircle.postDelayed(new Runnable() {
+                            public void run() {
+                                done.setVisibility(View.GONE);
+                                doneCircle.setVisibility(View.GONE);
+                            }
+                        }, 1500);
+                    }
+                });
                 break;
 
             case R.id.urun_sayfasi_ozet_button:
@@ -197,7 +225,7 @@ public class BookPage extends AppCompatActivity implements View.OnClickListener 
 
     }
 
-    private void addItem_intoCart(final int book_id) {
+    private void addItem_intoCart(final int book_id, final VolleyResponseListener listener) {
         String url = "http://18.204.251.116/add_to_cart.php";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
@@ -206,7 +234,7 @@ public class BookPage extends AppCompatActivity implements View.OnClickListener 
                         try {
                             JSONObject jsonObject = new JSONObject(response);
                             String success = jsonObject.getString("success");
-                            if(Integer.parseInt(success) >= 0)   Toast.makeText(getApplicationContext(),"eklendi",Toast.LENGTH_SHORT).show();
+                            if(Integer.parseInt(success) >= 0)   listener.onResponse(success);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
