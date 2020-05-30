@@ -13,6 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".UserCommentsHistory"></activity>
         <activity android:name=".OrderDetails" />
         <activity android:name=".OrderConfirm" />
         <activity
