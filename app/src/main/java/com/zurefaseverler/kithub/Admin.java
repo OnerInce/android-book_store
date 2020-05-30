@@ -28,15 +28,15 @@ public class Admin extends AppCompatActivity {
 
     public void delete_book(View view){
 
-
+        i = new Intent(this, DeleteBook.class);
+        startActivity(i);
 
 
     }
 
     public void update_book(View view){
-
-
-
+        i = new Intent(this, UpdateBook.class);
+        startActivity(i);
 
     }
 
