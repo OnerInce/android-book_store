@@ -13,11 +13,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".OrderDetails"></activity>
+        <activity android:name=".OrderDetails" />
         <activity android:name=".OrderConfirm" />
         <activity
             android:name=".SignUp"
-            android:windowSoftInputMode="adjustResize" />
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name=".StartUp">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,12 +28,11 @@
         <activity
             android:name=".ProfilePage"
             android:parentActivityName=".MainActivity" />
-        <activity android:name=".BookPage" />
+        <activity android:name=".BookPage"
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name=".Categories" />
         <activity android:name=".BookList" />
-        <activity
-            android:name=".Login"
-            android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".Login" />
         <activity android:name=".Search" />
         <activity android:name=".CartActivity" />
         <activity
@@ -47,7 +46,7 @@
         <activity android:name=".DeleteCategory" />
         <activity
             android:name=".AddBook"
-            android:windowSoftInputMode="adjustResize" />
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name=".AddCategory" />
         <activity android:name=".Authors" />
         <activity android:name=".AuthorsPage" />
