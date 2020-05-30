@@ -74,6 +74,13 @@ public class CartActivity extends AppCompatActivity {
             }
         });
 
+        NextProcessBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CartActivity.this, Payment.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
@@ -89,21 +96,6 @@ public class CartActivity extends AppCompatActivity {
         });
     }
 
-    public void goNextProcess(){
-
-        Intent intent = new Intent(this, Payment.class);
-        startActivity(intent);
-
-    }
-
-    public void lastProcess(){
-        NextProcessBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                goNextProcess();
-            }
-        });
-    }
 
     private void setNewTotalPrice() {
         int total = 0;
