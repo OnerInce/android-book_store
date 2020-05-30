@@ -114,8 +114,6 @@ public class BookPage extends AppCompatActivity implements View.OnClickListener 
                                 commentList.add(comment);
                             }
 
-
-
                             setBookInfo(book);
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -223,6 +221,14 @@ public class BookPage extends AppCompatActivity implements View.OnClickListener 
                 break;
 
             case R.id.comment_send:
+                SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                int id = sharedPref.getInt("id", -1);
+
+                if(id == -1){
+                    Toast.makeText(getApplicationContext(), R.string.bookpage_comment_login, Toast.LENGTH_SHORT).show();
+                    break;
+                }
+
                 RatingBar commentRatingBar = findViewById(R.id.users_book_rate);
                 int usersRating = (int) commentRatingBar.getRating();
                 EditText comment = findViewById(R.id.users_comment);
