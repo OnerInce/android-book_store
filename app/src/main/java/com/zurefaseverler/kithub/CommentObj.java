@@ -2,9 +2,9 @@ package com.zurefaseverler.kithub;
 
 public class CommentObj {
     private String userName, usersComment, date;
-    private float userRate;
+    private int userRate;
 
-    public CommentObj(String userName, String usersComment, String date, float userRate) {
+    public CommentObj(String userName, String usersComment, String date, int userRate) {
         this.userName = userName;
         this.usersComment = usersComment;
         this.date = date;
@@ -34,11 +34,11 @@ public class CommentObj {
         this.date = date;
     }
 
-    public float getUserRate() {
+    public int getUserRate() {
         return userRate;
     }
 
-    public void setUserRate(float userRate) {
+    public void setUserRate(int userRate) {
         this.userRate = userRate;
     }
 

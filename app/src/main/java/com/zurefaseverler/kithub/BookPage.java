@@ -1,6 +1,7 @@
 package com.zurefaseverler.kithub;
 
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -27,13 +28,18 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.squareup.picasso.Picasso;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TimeZone;
 
 public class BookPage extends AppCompatActivity implements View.OnClickListener {
 
@@ -41,8 +47,10 @@ public class BookPage extends AppCompatActivity implements View.OnClickListener 
     private boolean boolSummary, boolAuthor;
 
     private Book book;
-    private Button addCart, makeComment, expandSummary;
+    private CommentObj comment;
+    private Button addCart, makeComment;
     private RatingBar rating;
+    private String book_id, name;
     List<CommentObj> commentList = new ArrayList<>();
 
     @Override
@@ -51,12 +59,17 @@ public class BookPage extends AppCompatActivity implements View.OnClickListener 
         setContentView(R.layout.activity_book_page);
 
         Intent intent = getIntent();
-        String id = intent.getStringExtra("book_id");
+        book_id = intent.getStringExtra("book_id");
 
-        getBookInfo(id);
+        getBookInfo(book_id);
 
         ImageButton go_back = findViewById(R.id.go_back);
         go_back.setOnClickListener(this);
+
+        TextView userName = findViewById(R.id.users_name);
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        name = sharedPref.getString("name", "");
+        userName.setText(name);
 
         summary = findViewById(R.id.bookPage_summary);
 
@@ -69,26 +82,7 @@ public class BookPage extends AppCompatActivity implements View.OnClickListener 
         makeComment = findViewById(R.id.comment_send);
         makeComment.setOnClickListener(this);
 
-        fill();
-        RecyclerView view = findViewById(R.id.comment_recycler_view);
-        CommentDetailsAdapter adapter = new CommentDetailsAdapter(this,commentList);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-        view.setLayoutManager(layoutManager);
-        view.setAdapter(adapter);
-
     }
-
-    public void fill(){
-
-        for(int i = 0 ; i < 2 ; i++){
-            CommentObj temp = new CommentObj("user1", "sana puanim 3 kanka", "01.01.2020", 3);
-            commentList.add(temp);
-        }
-
-
-    }
-
-
 
     private void getBookInfo(final String id) {
         String url = "http://18.204.251.116/books.php";
@@ -98,15 +92,26 @@ public class BookPage extends AppCompatActivity implements View.OnClickListener 
                     public void onResponse(String response) {
                         try {
                             JSONObject jsonObject = new JSONObject(response);
+                            JSONObject jsonObjectInfo = jsonObject.getJSONObject("book_info");
+                            JSONArray jsonArrayComment = jsonObject.getJSONArray("comments");
 
-                            book = new Book(jsonObject.getInt("id"),
-                                    jsonObject.getString("first_name") + " " + jsonObject.getString("last_name"),
-                                    jsonObject.getInt("stock_quantity"), jsonObject.getString("category_name"),
-                                    jsonObject.getString("book_type_name"), jsonObject.getInt("price"),
-                                    jsonObject.getInt("sales"), jsonObject.getInt("no_people_rated"),
-                                    jsonObject.getInt("rating"), jsonObject.getString("ISBN"),
-                                    jsonObject.getString("title"), jsonObject.getString("summary"),
-                                    jsonObject.getString("image"));
+                            book = new Book(jsonObjectInfo.getInt("id"),
+                                    jsonObjectInfo.getString("first_name") + " " + jsonObjectInfo.getString("last_name"),
+                                    jsonObjectInfo.getInt("stock_quantity"), jsonObjectInfo.getString("category_name"),
+                                    jsonObjectInfo.getString("book_type_name"), jsonObjectInfo.getInt("price"),
+                                    jsonObjectInfo.getInt("sales"), jsonObjectInfo.getInt("no_people_rated"),
+                                    jsonObjectInfo.getInt("rating"), jsonObjectInfo.getString("ISBN"),
+                                    jsonObjectInfo.getString("title"), jsonObjectInfo.getString("summary"),
+                                    jsonObjectInfo.getString("image"));
+
+                            for (int i = 0; i < jsonArrayComment.length(); i++){
+
+                                comment = new CommentObj(jsonArrayComment.getJSONObject(i).getString("complete_name"), jsonArrayComment.getJSONObject(i).getString("review_text"),
+                                        jsonArrayComment.getJSONObject(i).getString("review_date").split("")[0], jsonArrayComment.getJSONObject(i).getInt("rating"));
+                                commentList.add(comment);
+                            }
+
+
 
                             setBookInfo(book);
                         } catch (JSONException e) {
@@ -136,8 +141,9 @@ public class BookPage extends AppCompatActivity implements View.OnClickListener 
         TextView author_type = findViewById(R.id.bookPage_author_type);
         RatingBar ratingBar = findViewById(R.id.bookPage_ratingBar);
         TextView price = findViewById(R.id.bookPage_price);
-
         addCart = findViewById(R.id.bookPage_addCartButton);
+
+        updateComments();
 
         bookName.setText(book.getTitle());
         author_type.setText(String.format("%s / %s", book.getAuthor(), book.getBookType()));
@@ -162,6 +168,15 @@ public class BookPage extends AppCompatActivity implements View.OnClickListener 
         else addCart.setText(R.string.book_page_addCart);
     }
 
+    private void updateComments() {
+
+        RecyclerView view = findViewById(R.id.comment_recycler_view);
+        CommentDetailsAdapter adapter = new CommentDetailsAdapter(this, commentList);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+        view.setLayoutManager(layoutManager);
+        view.setAdapter(adapter);
+    }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()){
@@ -180,21 +195,65 @@ public class BookPage extends AppCompatActivity implements View.OnClickListener 
                 break;
 
             case R.id.comment_send:
-                TextView userName = findViewById(R.id.users_name); // name icin databaseden settext tarzi bisey yapilmasi lazim ama bunun burda degil gonder tusuna basilmadan once yapilmasi lazim
-                String name = userName.getText().toString();
-                EditText comment = findViewById(R.id.users_comment);
-                String usersComment = comment.getText().toString();
-                comment.setText("");
                 RatingBar commentRatingBar = findViewById(R.id.users_book_rate);
-                Float usersRating = commentRatingBar.getRating();
-                commentRatingBar.setRating(0);
-                System.out.println("name " +name);
-                System.out.println("comment " +usersRating);
-                System.out.println("rating " +usersRating);
+                int usersRating = (int) commentRatingBar.getRating();
+                EditText comment = findViewById(R.id.users_comment);
+                String commentContext = comment.getText().toString();
 
+                sendComment(usersRating, commentContext);
+
+                @SuppressLint("SimpleDateFormat") DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+                Date dateobj = new Date();
+
+                CommentObj commentObj = new CommentObj(name, commentContext,
+                        df.format(dateobj), usersRating);
+                commentList.add(commentObj);
+                updateComments();
+
+                comment.setText("");
                 break;
         }
 
+    }
+
+    private void sendComment(final int rate, final String comment) {
+        String url = "http://18.204.251.116/add_comment.php";
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            String success = jsonObject.getString("success");
+                            if(Integer.parseInt(success) == 1)
+                                Toast.makeText(getApplicationContext(), R.string.bookpage_comment_success, Toast.LENGTH_SHORT).show();
+                            else
+                                Toast.makeText(getApplicationContext(), R.string.bookpage_comment_exists, Toast.LENGTH_SHORT).show();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                }){
+            @Override
+            protected Map<String, String> getParams() {
+                HashMap<String, String> params = new HashMap<>();
+                params.put("book_id", book_id);
+                SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                String customer_id = Integer.toString(sharedPref.getInt("id",-1));
+                params.put("customer_id", customer_id);
+                params.put("rate", Integer.toString(rate));
+                params.put("comment", comment);
+
+                return params;
+            }
+        };
+        NetworkRequests.getInstance(this).addToRequestQueue(stringRequest);
     }
 
     private void addItem_intoCart(final int book_id) {
@@ -206,7 +265,8 @@ public class BookPage extends AppCompatActivity implements View.OnClickListener 
                         try {
                             JSONObject jsonObject = new JSONObject(response);
                             String success = jsonObject.getString("success");
-                            if(Integer.parseInt(success) >= 0)   Toast.makeText(getApplicationContext(),"eklendi",Toast.LENGTH_SHORT).show();
+                            if(Integer.parseInt(success) >= 0)
+                                Toast.makeText(getApplicationContext(),"eklendi",Toast.LENGTH_SHORT).show();
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -222,7 +282,7 @@ public class BookPage extends AppCompatActivity implements View.OnClickListener 
             @Override
             protected Map<String, String> getParams() {
                 HashMap<String, String> params = new HashMap<>();
-                params.put("book_id",Integer.toString(book_id));
+                params.put("book_id", Integer.toString(book_id));
 
                 SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                 String customer_id = Integer.toString(sharedPref.getInt("id",-1));

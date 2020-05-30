@@ -209,9 +209,11 @@ public class SignUp extends AppCompatActivity implements  View.OnClickListener {
                             }
                             else{
                                 String id = jsonObject.getString("id");
+                                String name = jsonObject.getString("complete_name");
                                 SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                                 SharedPreferences.Editor editor = sharedPref.edit();
                                 editor.putInt("id", Integer.parseInt(id));
+                                editor.putString("name", name);
                                 editor.apply();
                                 listener.onResponse("1");
                             }
