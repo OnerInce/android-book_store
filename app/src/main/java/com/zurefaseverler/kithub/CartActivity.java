@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -65,8 +66,6 @@ public class CartActivity extends AppCompatActivity {
         new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(recyclerView);
 
 
-
-
         back = findViewById(R.id.back_button);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,6 +74,13 @@ public class CartActivity extends AppCompatActivity {
             }
         });
 
+        NextProcessBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CartActivity.this, Payment.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
@@ -89,6 +95,7 @@ public class CartActivity extends AppCompatActivity {
             }
         });
     }
+
 
     private void setNewTotalPrice() {
         int total = 0;

@@ -14,6 +14,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+
+import java.util.List;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -50,6 +52,7 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.designCard> {
     }
 
     @Override
+
     public void onBindViewHolder(@NonNull final designCard holder, final int position) {
         holder.kitapadi.setText(list.get(position).getPname());
         holder.fiyat.setText( new StringBuilder(list.get(position).getPrice()).append(" TL"));

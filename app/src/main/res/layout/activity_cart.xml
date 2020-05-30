@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".CartActivity"
     android:background="@color/light"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:fitsSystemWindows="true">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -70,6 +71,17 @@
             android:layout_height="wrap_content"
             android:textSize="30sp"
             android:text="Ara Toplam:"
+            >
+
+        </TextView>
+        <TextView
+            android:id="@+id/price1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="30dp"
+            android:layout_marginLeft="200dp"
+
+
             >
 
         </TextView>

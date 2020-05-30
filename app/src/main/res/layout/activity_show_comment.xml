@@ -20,7 +20,7 @@
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/nexa_bold"
                 android:text="User 1"
-                android:textColor="@color/black"
+                android:textColor="@color/darkblue"
                 android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -62,7 +62,7 @@
                 android:fontFamily="@font/nexa_bold"
                 android:gravity="center"
                 android:text="11.01.2020"
-                android:textColor="@color/black"
+                android:textColor="@color/darkblue"
                 android:textSize="15sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

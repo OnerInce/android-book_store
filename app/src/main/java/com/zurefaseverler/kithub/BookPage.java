@@ -110,11 +110,9 @@ public class BookPage extends AppCompatActivity implements View.OnClickListener 
                             for (int i = 0; i < jsonArrayComment.length(); i++){
 
                                 comment = new CommentObj(jsonArrayComment.getJSONObject(i).getString("complete_name"), jsonArrayComment.getJSONObject(i).getString("review_text"),
-                                        jsonArrayComment.getJSONObject(i).getString("review_date").split("")[0], jsonArrayComment.getJSONObject(i).getInt("rating"));
+                                        jsonArrayComment.getJSONObject(i).getString("review_date").split(" ")[0], jsonArrayComment.getJSONObject(i).getInt("rating"));
                                 commentList.add(comment);
                             }
-
-
 
                             setBookInfo(book);
                         } catch (JSONException e) {
@@ -223,20 +221,26 @@ public class BookPage extends AppCompatActivity implements View.OnClickListener 
                 break;
 
             case R.id.comment_send:
+                SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                int id = sharedPref.getInt("id", -1);
+
+                if(id == -1){
+                    Toast.makeText(getApplicationContext(), R.string.bookpage_comment_login, Toast.LENGTH_SHORT).show();
+                    break;
+                }
+
                 RatingBar commentRatingBar = findViewById(R.id.users_book_rate);
                 int usersRating = (int) commentRatingBar.getRating();
                 EditText comment = findViewById(R.id.users_comment);
                 String commentContext = comment.getText().toString();
-
-                sendComment(usersRating, commentContext);
 
                 @SuppressLint("SimpleDateFormat") DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
                 Date dateobj = new Date();
 
                 CommentObj commentObj = new CommentObj(name, commentContext,
                         df.format(dateobj), usersRating);
-                commentList.add(commentObj);
-                updateComments();
+
+                sendComment(usersRating, commentContext, commentObj);
 
                 comment.setText("");
                 break;
@@ -244,7 +248,7 @@ public class BookPage extends AppCompatActivity implements View.OnClickListener 
 
     }
 
-    private void sendComment(final int rate, final String comment) {
+    private void sendComment(final int rate, final String comment, final CommentObj obj) {
         String url = "http://18.204.251.116/add_comment.php";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
@@ -253,8 +257,11 @@ public class BookPage extends AppCompatActivity implements View.OnClickListener 
                         try {
                             JSONObject jsonObject = new JSONObject(response);
                             String success = jsonObject.getString("success");
-                            if(Integer.parseInt(success) == 1)
+                            if(Integer.parseInt(success) == 1) {
                                 Toast.makeText(getApplicationContext(), R.string.bookpage_comment_success, Toast.LENGTH_SHORT).show();
+                                commentList.add(obj);
+                                updateComments();
+                            }
                             else
                                 Toast.makeText(getApplicationContext(), R.string.bookpage_comment_exists, Toast.LENGTH_SHORT).show();
                         } catch (JSONException e) {
