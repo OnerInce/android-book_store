@@ -59,7 +59,6 @@
             android:id="@+id/cart_product_quantity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Ürün Sayısı:"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="150dp"
             >
@@ -82,14 +81,16 @@
         <Button
             android:id="@+id/guncelle"
             android:layout_width="wrap_content"
-            android:layout_height="35dp"
+            android:layout_height="30dp"
             android:layout_alignParentBottom="true"
             android:layout_marginStart="7dp"
             android:layout_marginLeft="7dp"
-            android:layout_marginBottom="1dp"
+            android:layout_marginBottom="6dp"
             android:layout_toEndOf="@+id/product_quantity1"
             android:layout_toRightOf="@+id/product_quantity1"
             android:text="Güncelle"
+            android:textColor="@color/light"
+            android:background="@color/orange"
             android:textSize="11sp">
 
 

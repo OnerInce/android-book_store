@@ -10,6 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
+
 import java.util.List;
 
 public class AdapterCart extends RecyclerView.Adapter<AdapterCart.designCard> {
@@ -31,15 +33,22 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.designCard> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull designCard holder, int position) {
+    public void onBindViewHolder(@NonNull designCard holder, final int position) {
 
 
         holder.img.setImageResource(R.drawable.cart_huzursuzluk);
         holder.kitapadi.setText(list.get(position).getPname());
         holder.fiyat.setText( new StringBuilder(list.get(position).getPrice()).append(" TL"));
-        holder.adet.setText(list.get(position).getQuantity());
+        holder.adet.setOnValueChangeListener(new ElegantNumberButton.OnValueChangeListener() {
+            @Override
+            public void onValueChange(ElegantNumberButton view, int oldValue, int newValue) {
+                Cart cart= list.get(position);
+                cart.setQuantity(String.valueOf(newValue));
+            }
+        });
 
-        int oneTypeProductPrice = ((Integer.valueOf(list.get(position).getPrice())) * Integer.valueOf(list.get(position).getQuantity()));
+        int oneTypeProductPrice = ((Integer.parseInt(list.get(position).getPrice())) * Integer.parseInt(list.get(position).getQuantity()));
+
         totalPrice = totalPrice + oneTypeProductPrice;
 
     }
@@ -55,7 +64,7 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.designCard> {
         ImageView img;
         TextView kitapadi;
         TextView fiyat;
-        TextView adet;
+        ElegantNumberButton adet;
 
 
         public designCard(@NonNull View itemView) {
@@ -63,7 +72,7 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.designCard> {
             img = itemView.findViewById(R.id.cart_product_photo);
             kitapadi =itemView.findViewById(R.id.cart_product_name);
             fiyat=itemView.findViewById(R.id.cart_product_price);
-            adet=itemView.findViewById(R.id.cart_product_quantity);
+            adet=itemView.findViewById(R.id.product_quantity1);
 
         }
     }

@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -25,7 +26,7 @@ public class CartActivity extends AppCompatActivity {
     private TextView txtTotalAmount;
     private Button guncelle;
     private ImageButton back;
-    ElegantNumberButton sayiButon;
+
 
     ArrayList<Cart> liste;
 
@@ -36,19 +37,18 @@ public class CartActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cart);
 
         recyclerView = findViewById(R.id.cart_list);
-        layoutManager= new LinearLayoutManager(this);
+        layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
         liste = new ArrayList<>();
         listeDoldur();
 
 
-
         NextProcessBtn = (Button) findViewById(R.id.next_process_button);
         txtTotalAmount = (TextView) findViewById(R.id.price);
         new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(recyclerView);
 
-        sayiButon = (ElegantNumberButton)findViewById(R.id.product_quantity1);
+
         back = findViewById(R.id.back_button);
 
         back.setOnClickListener(new View.OnClickListener() {
@@ -62,6 +62,23 @@ public class CartActivity extends AppCompatActivity {
 
 
 
+    }
+
+
+    public void goNextProcess(){
+
+        Intent intent = new Intent(this,Payment.class);
+        startActivity(intent);
+
+    }
+
+    public void lastProcess(){
+        NextProcessBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goNextProcess();
+            }
+        });
     }
 
 
