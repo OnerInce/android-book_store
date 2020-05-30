@@ -34,7 +34,7 @@ interface VolleyBookListInterface {
     void onResponse(List<MainPageBook> list);
 }
 
-public class BookList extends Activity implements View.OnClickListener{
+public class BookList extends Activity{
 
     List<MainPageBook> list;
     String category_name;
@@ -49,10 +49,9 @@ public class BookList extends Activity implements View.OnClickListener{
         book_type = getIntent().getStringExtra("book_type");
 
         TextView title = findViewById(R.id.book_list_title);
+
         title.setText(String.format("%s / %s", category_name, book_type));
 
-        ImageButton goback = findViewById(R.id.go_back);
-        goback.setOnClickListener(this);
 
         final RecyclerView view = findViewById(R.id.book_list_recycler_view);
         list = new ArrayList<>();
@@ -148,13 +147,9 @@ public class BookList extends Activity implements View.OnClickListener{
     }
 
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.go_back:
-                onBackPressed();
-                break;
-        }
+
+    public void goback(View view) {
+        onBackPressed();
     }
 
 }

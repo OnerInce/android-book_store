@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/users_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:fontFamily="@font/nexa_bold"
+        android:text="User 1"
+        android:textColor="@color/black"
+        android:textSize="15sp"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/users_comment"
+            android:layout_width="380dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/profile_info_textbox"
+            android:ems="10"
+            android:fontFamily="@font/nexa_light"
+            android:hint="Yorumunuzu giriniz."
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <RatingBar
+            android:id="@+id/users_book_rate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numStars="5"
+            android:scaleY="0.5"
+            android:stepSize="1"
+            android:layout_marginStart="80dp"
+            android:layout_marginTop="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/users_comment" />
+
+        <Button
+            android:id="@+id/comment_send"
+            android:layout_width="70dp"
+            android:layout_height="33dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/nexa_bold"
+            android:foreground="?attr/selectableItemBackgroundBorderless"
+            android:text="Gonder"
+            android:textColor="@color/black"
+            android:textSize="8dp"
+            app:layout_constraintStart_toEndOf="@+id/users_book_rate"
+            app:layout_constraintTop_toBottomOf="@+id/users_comment" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+</LinearLayout>

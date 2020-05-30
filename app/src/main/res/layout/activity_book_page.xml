@@ -182,30 +182,8 @@
                     android:fontFamily="@font/nexa_light"
                     android:text="@string/lorem_ipsum"
                     android:textColor="@color/darkblue"
-                    android:visibility="gone" />
+                    android:visibility="visible" />
 
-                <Button
-                    android:id="@+id/urun_sayfasi_yazar_button"
-                    style="@style/Widget.AppCompat.Button.Borderless"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/light"
-                    android:drawableLeft="@drawable/urun_sayfasi_expand"
-                    android:fontFamily="@font/nexa_bold"
-                    android:gravity="center_vertical"
-                    android:text="Yazar hakkında"
-                    android:textColor="@color/darkblue"
-                    android:textSize="20sp" />
-
-                <TextView
-                    android:id="@+id/bookPage_aboutAuthor"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:fontFamily="@font/nexa_light"
-                    android:text="@string/lorem_ipsum"
-                    android:textColor="@color/darkblue"
-                    android:visibility="gone" />
             </LinearLayout>
 
             <LinearLayout
@@ -215,6 +193,11 @@
                 app:layout_constraintTop_toBottomOf="@id/urun_sayfasi_yazar_ozet_layout"
                 tools:layout_editor_absoluteX="16dp"
                 android:orientation="vertical">
+
+                <include
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    layout="@layout/activity_add_comment" />
 
                 <TextView
                     android:id="@+id/textView22"
@@ -226,15 +209,10 @@
                     android:textColor="@color/darkblue"
                     android:text="Yorumlar" />
 
-                <TextView
-                    android:id="@+id/textView21"
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/comment_recycler_view"
                     android:layout_width="match_parent"
-                    android:layout_margin="5dp"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/nexa_light"
-                    android:text="@string/lorem_ipsum"
-                    android:textColor="@color/darkblue"
-                    android:padding="10dp"/>
+                    android:layout_height="wrap_content"/>
 
 
             </LinearLayout>

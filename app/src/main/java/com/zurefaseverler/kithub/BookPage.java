@@ -10,6 +10,7 @@ import android.preference.PreferenceManager;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RatingBar;
@@ -18,6 +19,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -30,44 +33,65 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class BookPage extends AppCompatActivity implements View.OnClickListener {
 
-    private TextView summary, author;
+    private TextView summary;
     private boolean boolSummary, boolAuthor;
 
     private Book book;
-    private Button addCart;
+    private Button addCart, makeComment, expandSummary;
+    private RatingBar rating;
+    List<CommentObj> commentList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_page);
+
         Intent intent = getIntent();
-
-
-        /*-------*/
         String id = intent.getStringExtra("book_id");
+
         getBookInfo(id);
 
-        /*-------*/
         ImageButton go_back = findViewById(R.id.go_back);
         go_back.setOnClickListener(this);
 
-        author = findViewById(R.id.bookPage_aboutAuthor);
         summary = findViewById(R.id.bookPage_summary);
 
         Button buttonSummary = findViewById(R.id.urun_sayfasi_ozet_button);
-        Button buttonAuthor = findViewById(R.id.urun_sayfasi_yazar_button);
-        buttonAuthor.setOnClickListener(this);
         buttonSummary.setOnClickListener(this);
 
         addCart = findViewById(R.id.bookPage_addCartButton);
         addCart.setOnClickListener(this);
 
+        makeComment = findViewById(R.id.comment_send);
+        makeComment.setOnClickListener(this);
+
+        fill();
+        RecyclerView view = findViewById(R.id.comment_recycler_view);
+        CommentDetailsAdapter adapter = new CommentDetailsAdapter(this,commentList);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+        view.setLayoutManager(layoutManager);
+        view.setAdapter(adapter);
+
     }
+
+    public void fill(){
+
+        for(int i = 0 ; i < 2 ; i++){
+            CommentObj temp = new CommentObj("user1", "sana puanim 3 kanka", "01.01.2020", 3);
+            commentList.add(temp);
+        }
+
+
+    }
+
+
 
     private void getBookInfo(final String id) {
         String url = "http://18.204.251.116/books.php";
@@ -83,7 +107,7 @@ public class BookPage extends AppCompatActivity implements View.OnClickListener 
                                     jsonObject.getInt("stock_quantity"), jsonObject.getString("category_name"),
                                     jsonObject.getString("book_type_name"), jsonObject.getInt("price"),
                                     jsonObject.getInt("sales"), jsonObject.getInt("no_people_rated"),
-                                    Float.parseFloat(jsonObject.getString("rating")), jsonObject.getString("ISBN"),
+                                    jsonObject.getInt("rating"), jsonObject.getString("ISBN"),
                                     jsonObject.getString("title"), jsonObject.getString("summary"),
                                     jsonObject.getString("image"));
 
@@ -121,7 +145,12 @@ public class BookPage extends AppCompatActivity implements View.OnClickListener 
         bookName.setText(book.getTitle());
         author_type.setText(String.format("%s / %s", book.getAuthor(), book.getBookType()));
         price.setText(String.format("%s TL",book.getPrice()));
-        ratingBar.setRating(book.getRating());
+
+        if(book.getRatedCount() != 0)
+            ratingBar.setRating(book.getRating() / book.getRatedCount());
+        else
+            ratingBar.setRating(0);
+
         summary.setText(book.getSummary());
 
         String[] temp = book.getImage().split("html/");
@@ -178,9 +207,19 @@ public class BookPage extends AppCompatActivity implements View.OnClickListener 
                 summary.setVisibility(boolSummary ? View.VISIBLE: View.GONE);
                 break;
 
-            case R.id.urun_sayfasi_yazar_button:
-                boolAuthor = !boolAuthor;
-                author.setVisibility(boolAuthor ? View.VISIBLE: View.GONE);
+            case R.id.comment_send:
+                TextView userName = findViewById(R.id.users_name); // name icin databaseden settext tarzi bisey yapilmasi lazim ama bunun burda degil gonder tusuna basilmadan once yapilmasi lazim
+                String name = userName.getText().toString();
+                EditText comment = findViewById(R.id.users_comment);
+                String usersComment = comment.getText().toString();
+                comment.setText("");
+                RatingBar commentRatingBar = findViewById(R.id.users_book_rate);
+                Float usersRating = commentRatingBar.getRating();
+                commentRatingBar.setRating(0);
+                System.out.println("name " +name);
+                System.out.println("comment " +usersRating);
+                System.out.println("rating " +usersRating);
+
                 break;
         }
 
