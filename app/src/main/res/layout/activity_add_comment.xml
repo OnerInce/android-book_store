@@ -46,6 +46,7 @@
             android:layout_height="wrap_content"
             android:numStars="5"
             android:scaleY="0.5"
+            android:stepSize="1"
             android:layout_marginStart="80dp"
             android:layout_marginTop="0dp"
             app:layout_constraintStart_toStartOf="parent"

@@ -5,7 +5,7 @@ public class Book {
     private String ISBN, title, summary, image ,author, category, bookType;
 
     public Book(int book_id, String author, int stockQuantity, String category, String bookType,
-                int price, int sales, int ratedCount, float rating, String ISBN, String title,
+                int price, int sales, int ratedCount, int rating, String ISBN, String title,
                 String summary, String image) {
         this.book_id = book_id;
         this.author = author;

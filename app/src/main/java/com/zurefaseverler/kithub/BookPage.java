@@ -37,34 +37,30 @@ import java.util.Map;
 
 public class BookPage extends AppCompatActivity implements View.OnClickListener {
 
-    private TextView summary, author;
+    private TextView summary;
     private boolean boolSummary, boolAuthor;
 
     private Book book;
-    private Button addCart, makeComment;
+    private Button addCart, makeComment, expandSummary;
+    private RatingBar rating;
     List<CommentObj> commentList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_page);
+
         Intent intent = getIntent();
-
-
-        /*-------*/
         String id = intent.getStringExtra("book_id");
+
         getBookInfo(id);
 
-        /*-------*/
         ImageButton go_back = findViewById(R.id.go_back);
         go_back.setOnClickListener(this);
 
-        author = findViewById(R.id.bookPage_aboutAuthor);
         summary = findViewById(R.id.bookPage_summary);
 
         Button buttonSummary = findViewById(R.id.urun_sayfasi_ozet_button);
-        Button buttonAuthor = findViewById(R.id.urun_sayfasi_yazar_button);
-        buttonAuthor.setOnClickListener(this);
         buttonSummary.setOnClickListener(this);
 
         addCart = findViewById(R.id.bookPage_addCartButton);
@@ -108,7 +104,7 @@ public class BookPage extends AppCompatActivity implements View.OnClickListener 
                                     jsonObject.getInt("stock_quantity"), jsonObject.getString("category_name"),
                                     jsonObject.getString("book_type_name"), jsonObject.getInt("price"),
                                     jsonObject.getInt("sales"), jsonObject.getInt("no_people_rated"),
-                                    Float.parseFloat(jsonObject.getString("rating")), jsonObject.getString("ISBN"),
+                                    jsonObject.getInt("rating"), jsonObject.getString("ISBN"),
                                     jsonObject.getString("title"), jsonObject.getString("summary"),
                                     jsonObject.getString("image"));
 
@@ -146,7 +142,12 @@ public class BookPage extends AppCompatActivity implements View.OnClickListener 
         bookName.setText(book.getTitle());
         author_type.setText(String.format("%s / %s", book.getAuthor(), book.getBookType()));
         price.setText(String.format("%s TL",book.getPrice()));
-        ratingBar.setRating(book.getRating());
+
+        if(book.getRatedCount() != 0)
+            ratingBar.setRating(book.getRating() / book.getRatedCount());
+        else
+            ratingBar.setRating(0);
+
         summary.setText(book.getSummary());
 
         String[] temp = book.getImage().split("html/");
@@ -176,11 +177,6 @@ public class BookPage extends AppCompatActivity implements View.OnClickListener 
             case R.id.urun_sayfasi_ozet_button:
                 boolSummary = !boolSummary;
                 summary.setVisibility(boolSummary ? View.VISIBLE: View.GONE);
-                break;
-
-            case R.id.urun_sayfasi_yazar_button:
-                boolAuthor = !boolAuthor;
-                author.setVisibility(boolAuthor ? View.VISIBLE: View.GONE);
                 break;
 
             case R.id.comment_send:
