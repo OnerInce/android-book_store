@@ -27,13 +27,12 @@
         <EditText
             android:id="@+id/users_comment"
             android:layout_width="380dp"
-            android:layout_height="80dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:background="@drawable/search_item_background"
             android:fontFamily="@font/nexa_light"
             android:hint="Yorumunuzu giriniz."
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
+            android:padding="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
