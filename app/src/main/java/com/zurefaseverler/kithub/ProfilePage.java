@@ -105,6 +105,16 @@ public class ProfilePage extends AppCompatActivity  {
                 startActivityForResult(new Intent(ProfilePage.this,ProfileInfo.class),1);
             }
         });
+
+        Button comments = findViewById(R.id.yorumlarım);
+        comments.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivityForResult(new Intent(ProfilePage.this,UserCommentsHistory.class),1);
+            }
+        });
+
+
     }
 
     @Override
