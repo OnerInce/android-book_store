@@ -53,7 +53,8 @@ public class MainPageRecyclerViewAdapter extends RecyclerView.Adapter<MainPageRe
         else{
             Picasso.get().load("http://18.204.251.116/" + temp[1]).into(holder.bookimage);
         }
-        
+
+
     }
 
     @Override

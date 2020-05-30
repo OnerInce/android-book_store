@@ -8,6 +8,7 @@ import android.preference.PreferenceManager;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RatingBar;
@@ -15,6 +16,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -27,7 +30,9 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class BookPage extends AppCompatActivity implements View.OnClickListener {
@@ -36,7 +41,8 @@ public class BookPage extends AppCompatActivity implements View.OnClickListener 
     private boolean boolSummary, boolAuthor;
 
     private Book book;
-    private Button addCart;
+    private Button addCart, makeComment;
+    List<CommentObj> commentList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +70,29 @@ public class BookPage extends AppCompatActivity implements View.OnClickListener 
         addCart = findViewById(R.id.bookPage_addCartButton);
         addCart.setOnClickListener(this);
 
+        makeComment = findViewById(R.id.comment_send);
+        makeComment.setOnClickListener(this);
+
+        fill();
+        RecyclerView view = findViewById(R.id.comment_recycler_view);
+        CommentDetailsAdapter adapter = new CommentDetailsAdapter(this,commentList);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+        view.setLayoutManager(layoutManager);
+        view.setAdapter(adapter);
+
     }
+
+    public void fill(){
+
+        for(int i = 0 ; i < 2 ; i++){
+            CommentObj temp = new CommentObj("user1", "sana puanim 3 kanka", "01.01.2020", 3);
+            commentList.add(temp);
+        }
+
+
+    }
+
+
 
     private void getBookInfo(final String id) {
         String url = "http://18.204.251.116/books.php";
@@ -154,6 +182,21 @@ public class BookPage extends AppCompatActivity implements View.OnClickListener 
                 boolAuthor = !boolAuthor;
                 author.setVisibility(boolAuthor ? View.VISIBLE: View.GONE);
                 break;
+
+            case R.id.comment_send:
+                TextView userName = findViewById(R.id.users_name); // name icin databaseden settext tarzi bisey yapilmasi lazim ama bunun burda degil gonder tusuna basilmadan once yapilmasi lazim
+                String name = userName.getText().toString();
+                EditText comment = findViewById(R.id.users_comment);
+                String usersComment = comment.getText().toString();
+                comment.setText("");
+                RatingBar commentRatingBar = findViewById(R.id.users_book_rate);
+                Float usersRating = commentRatingBar.getRating();
+                commentRatingBar.setRating(0);
+                System.out.println("name " +name);
+                System.out.println("comment " +usersRating);
+                System.out.println("rating " +usersRating);
+
+                break;
         }
 
     }
@@ -167,7 +210,7 @@ public class BookPage extends AppCompatActivity implements View.OnClickListener 
                         try {
                             JSONObject jsonObject = new JSONObject(response);
                             String success = jsonObject.getString("success");
-                            if(Integer.parseInt(success) > 0)   Toast.makeText(getApplicationContext(),"eklendi",Toast.LENGTH_SHORT).show();
+                            if(Integer.parseInt(success) >= 0)   Toast.makeText(getApplicationContext(),"eklendi",Toast.LENGTH_SHORT).show();
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
