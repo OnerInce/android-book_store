@@ -13,6 +13,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".UpdateBook"></activity>
+        <activity android:name=".UpdateBookInfo"></activity>
+        <activity android:name=".UpdateBookSearch" />
+        <activity android:name=".DeleteBookSearch" />
+        <activity android:name=".DeleteBook" />
+        <activity android:name=".UserCommentsHistory"></activity>
         <activity android:name=".OrderDetails" />
         <activity android:name=".OrderConfirm" />
         <activity
