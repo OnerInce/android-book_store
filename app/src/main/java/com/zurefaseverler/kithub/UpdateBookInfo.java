@@ -54,7 +54,7 @@ public class UpdateBookInfo extends AppCompatActivity {
         updateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(Integer.parseInt(ISBN.getText().toString()) != 10)   Toast.makeText(getApplicationContext(), "ISBN 10 haneli olmalıdır.", Toast.LENGTH_SHORT).show();
+                if(ISBN.getText().toString().length() != 10)   Toast.makeText(UpdateBookInfo.this, "ISBN 10 haneli olmalıdır.", Toast.LENGTH_SHORT).show();
                 else updateBookInfo(book_id);
             }
         });
