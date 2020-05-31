@@ -1,0 +1,37 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/dialog_rl"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp">
+    <TextView
+        android:id="@+id/dialog_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="Kitabin indirim miktari."
+        android:textSize="15dp"/>
+    <EditText
+        android:id="@+id/discount_amount_et"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Indirim miktarini giriniz."
+        android:textSize="15dp"
+        android:layout_below="@id/dialog_title"/>
+    <Button
+        android:id="@+id/dialog_positive_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Onayla"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/discount_amount_et"/>
+    <Button
+        android:id="@+id/dialog_negative_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Iptal"
+        android:layout_toLeftOf="@id/dialog_positive_btn"
+        android:layout_marginRight="3dp"
+        android:layout_alignBaseline="@id/dialog_positive_btn"/>
+</RelativeLayout>

@@ -12,6 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -39,7 +41,7 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.FormUrlEncoded;
 
-public class UpdateBookSearch extends AppCompatActivity {
+public class DiscountBookSearch extends AppCompatActivity {
     private static final String BASE_URL = "http://18.204.251.116";
 
     static class SearchResults {
@@ -230,30 +232,53 @@ public class UpdateBookSearch extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 final SearchResults book = (SearchResults) mGridView.getItemAtPosition(position);
 
-                String query = book.getTitle()+ " adli kitabin bilgilerini guncellemek istediginizden emin misiniz?";
+                final String bookName = book.getTitle();
 
+                AlertDialog.Builder builder = new AlertDialog.Builder(DiscountBookSearch.this);
 
-                AlertDialog.Builder alert = new AlertDialog.Builder(UpdateBookSearch.this);
-                alert.setTitle("Kitap bilgileri guncellemesi onaylama ekrani");
-                alert.setMessage(query);
+                LayoutInflater inflater = getLayoutInflater();
+                View dialogView = inflater.inflate(R.layout.activity_discount_info,null);
 
-                alert.setPositiveButton("Evet", new DialogInterface.OnClickListener() {
+                TextView dialogTitle = dialogView.findViewById(R.id.dialog_title);
+                String dialogTitleStr = bookName + " adli kitaba indirim uygulamak istediginizden emin misiniz? Eminseniz miktari giriniz.";
+                dialogTitle.setText(dialogTitleStr);
+
+                builder.setCancelable(false);
+
+                builder.setView(dialogView);
+
+                Button btn_positive = (Button) dialogView.findViewById(R.id.dialog_positive_btn);
+                Button btn_negative = (Button) dialogView.findViewById(R.id.dialog_negative_btn);
+                final EditText discount_amount_et = (EditText) dialogView.findViewById(R.id.discount_amount_et);
+
+                final AlertDialog dialog = builder.create();
+
+                btn_positive.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        Toast.makeText(UpdateBookSearch.this, "Gerekli sayfaya yonlendiriliyorsunuz.", Toast.LENGTH_SHORT).show();
+                    public void onClick(View v) {
+                        dialog.cancel();
 
-                        Intent intent = new Intent(UpdateBookSearch.this, UpdateBookInfo.class);
-                        intent.putExtra("book_id", book.getId());
-                        startActivity(intent);
+                        Float discountAmount = Float.parseFloat(discount_amount_et.getText().toString());
+                        Toast.makeText(getApplication(),
+                                bookName+ " adli kitaba % " + discountAmount + " indirim uyguladiniz.", Toast.LENGTH_SHORT).show();
+
+//                        discount islemi burda yapilacak ----------------------------------------------------------------------------------------------------------------------
+
                     }
                 });
-                alert.setNegativeButton("Hayir", new DialogInterface.OnClickListener() {
+
+                btn_negative.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        Toast.makeText(UpdateBookSearch.this, "Islem iptal edildi.", Toast.LENGTH_SHORT).show();
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                        Toast.makeText(getApplication(),
+                                "Islem iptal edildi", Toast.LENGTH_SHORT).show();
                     }
                 });
-                alert.create().show();
+
+                dialog.show();
+
+
             }
         });
     }
