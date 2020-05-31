@@ -23,7 +23,6 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="89dp"
@@ -53,7 +52,7 @@
             android:orientation="vertical">
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="305dp"
                 app:cardElevation="15dp"
                 android:background="@color/light"
 
@@ -175,128 +174,6 @@
 
             </androidx.cardview.widget.CardView>
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="135dp"
-                android:layout_marginTop="20dp"
-                app:cardElevation="15dp"
-                android:background="@color/light"
-                android:clickable="true"
-
-
-                >
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/teslimat"
-                    android:text="Kart Bilgileri"
-                    android:textSize="20sp"
-                    android:textColor="@color/darkblue"
-                    android:layout_marginLeft="15dp"
-                    >
-
-
-                </TextView>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Kart No"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="15dp"
-
-
-                    >
-
-
-                </TextView>
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="50dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="15dp"
-                    android:background="@color/light"
-
-                    >
-
-
-                </EditText>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Son Kullanma Tarihi"
-                    android:layout_marginTop="80dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="15dp"
-
-
-                    >
-
-
-                </TextView>
-
-                <EditText
-                    android:layout_width="50dp"
-                    android:layout_height="wrap_content"
-                    android:hint="Ay"
-                    android:layout_marginTop="100dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="15dp"
-                    android:background="@color/light"
-
-                    >
-
-
-                </EditText>
-
-                <EditText
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    android:hint="Yıl"
-                    android:layout_marginTop="100dp"
-                    android:layout_marginLeft="80dp"
-                    android:layout_marginRight="15dp"
-                    android:background="@color/light"
-
-
-                    >
-
-
-                </EditText>
-
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="CVV"
-                    android:layout_marginTop="80dp"
-                    android:layout_marginLeft="250dp"
-                    android:layout_marginRight="15dp"
-
-
-                    >
-
-
-                </TextView>
-
-                <EditText
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-
-                    android:layout_marginTop="100dp"
-                    android:layout_marginLeft="250dp"
-                    android:layout_marginRight="15dp"
-                    android:background="@color/light"
-
-
-                    >
-
-
-                </EditText>
 
 
 
@@ -304,12 +181,14 @@
 
 
 
-            </androidx.cardview.widget.CardView>
+
+
+
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:background="@color/light"
                 app:cardElevation="15dp"
 
@@ -380,12 +259,14 @@
                 </RadioGroup>
 
 
+
+
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="10dp"
 
 
                 >
@@ -482,6 +363,22 @@
 
             </androidx.cardview.widget.CardView>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="520dp"
+                android:layout_marginTop="10dp"
+                >
+                <com.craftman.cardform.CardForm
+                    android:id="@+id/cardForm"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+
+                    >
+
+                </com.craftman.cardform.CardForm>
+
+            </LinearLayout>
+
 
 
 
@@ -494,44 +391,7 @@
     </ScrollView>
 
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="0dp"
-        android:background="@color/darkblue"
-        android:id="@+id/bottom"
-        >
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginEnd="310dp"
-            android:layout_marginBottom="20dp"
-            android:text="Toplam:"
-            android:textSize="20sp"
-            android:textColor="@color/white">
-
-        </TextView>
-
-
-        <Button
-            android:layout_width="130dp"
-            android:layout_height="40dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginEnd="30dp"
-            android:layout_marginBottom="10dp"
-            android:background="@color/orange"
-            android:text="Onayla ve bitir"
-            android:textColor="@color/white">
-
-        </Button>
-
-
-    </RelativeLayout>
 
 
 </RelativeLayout>
