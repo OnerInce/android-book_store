@@ -13,6 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".DiscountBook"></activity>
+        <activity android:name=".DiscountBookSearch"></activity>
         <activity android:name=".UpdateBook" />
         <activity
             android:name=".UpdateBookInfo"
@@ -36,7 +38,8 @@
         <activity
             android:name=".ProfilePage"
             android:parentActivityName=".MainActivity" />
-        <activity android:name=".BookPage"
+        <activity
+            android:name=".BookPage"
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".Categories" />
         <activity android:name=".BookList" />
@@ -59,8 +62,9 @@
         <activity android:name=".Authors" />
         <activity android:name=".AuthorsPage" />
         <activity android:name=".Book" />
-        <activity android:name=".Payment"
-            android:windowSoftInputMode="adjustPan"/>
+        <activity
+            android:name=".Payment"
+            android:windowSoftInputMode="adjustPan" />
 
         <uses-library
             android:name="org.apache.http.legacy"
