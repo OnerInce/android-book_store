@@ -41,10 +41,8 @@ public class Admin extends AppCompatActivity {
     }
 
     public void stock_view(View view){
-
-
-
-
+        i = new Intent(this, DiscountBook.class);
+        startActivity(i);
     }
 
     public void user_traffic_log(View view){
