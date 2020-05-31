@@ -14,8 +14,6 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:id="@+id/top"
-
-
         >
 
         <TextView
@@ -55,8 +53,6 @@
                 android:layout_height="305dp"
                 app:cardElevation="15dp"
                 android:background="@color/light"
-
-
 
                 >
                 <TextView
@@ -157,6 +153,7 @@
                 </EditText>
 
                 <EditText
+                    android:id="@+id/address"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:hint="Adres"
@@ -385,6 +382,7 @@
 
 
         </LinearLayout>
+
 
 
 
