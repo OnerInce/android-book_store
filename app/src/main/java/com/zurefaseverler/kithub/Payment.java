@@ -110,26 +110,30 @@ public class Payment extends AppCompatActivity {
 
         TextView txtDes = findViewById(R.id.payment_amount);
         TextView txtPayment = findViewById(R.id.payment_amount_holder);
-        Button btnPay = findViewById(R.id.btn_pay);
+        //Button btnPay = findViewById(R.id.btn_pay);
         EditText expiryDate = findViewById(R.id.expiry_date);
         EditText cardNumber = findViewById(R.id.card_number);
         EditText cardName = findViewById(R.id.card_name);
 
+        Intent intent = getIntent();
+        final Bundle bundle = intent.getExtras();
+        TOTAL_PRICE = bundle.getString("TOTAL_ORDER_PRICE");
+
         expiryDate.setHint("Son Kullanma Tarihi");
-        txtDes.setText("100TL");
+        txtDes.setText(TOTAL_PRICE);
         txtPayment.setText("Toplam Ödeme");
         cardNumber.setHint("Kart Numarası");
         cardName.setHint("Kart Sahibi");
       
       
         finish = findViewById(R.id.btn_pay);
-        finish.setText(String.format("Toplam: %s",txtDes.getText()));
+        finish.setText(String.format("Toplam: %s",TOTAL_PRICE));
         radioGroupTaksit = findViewById(R.id.taksitGroup);
         radioGroupShipping = findViewById(R.id.shippingGroup);
         addressText = (EditText) findViewById(R.id.address);
         getAddress(CUSTOMER_ID);
 
-        finish.setPayBtnClickListner(new OnPayBtnClickListner() {
+        cardForm.setPayBtnClickListner(new OnPayBtnClickListner() {
             @Override
             public void onClick(Card card) {
                 int selectedShippingId = radioGroupShipping.getCheckedRadioButtonId();
@@ -147,10 +151,6 @@ public class Payment extends AppCompatActivity {
                 SHIPPER = ((String) selectedShipper.getText()).split(" ")[0];
                 ADDRESS = addressText.getText().toString();
 
-                Intent intent = getIntent();
-                Bundle bundle = intent.getExtras();
-
-
                 int nofItems = bundle.keySet().size() / ITEMS_ON_INTENT;
 
                 for (int i = 0; i < nofItems; i++){
@@ -163,7 +163,7 @@ public class Payment extends AppCompatActivity {
                             Integer.parseInt(quantity), Integer.parseInt(single_price));
                     orderList.add(currentOrder);
                 }
-                TOTAL_PRICE = bundle.getString("TOTAL_ORDER_PRICE");
+
                 RequestMember mem = createjsonObject(orderList);
                 Gson gson = new Gson();
                 orderJSONRequest = gson.toJson(mem);

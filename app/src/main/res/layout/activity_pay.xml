@@ -38,9 +38,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/top"
-        android:layout_above="@id/bottom"
-        >
+        android:layout_below="@id/top">
 
         <LinearLayout
             android:layout_width="400dp"
@@ -48,21 +46,22 @@
 
 
             android:orientation="vertical">
+
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="305dp"
-                app:cardElevation="15dp"
                 android:background="@color/light"
+                app:cardElevation="15dp"
 
                 >
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Teslimat Adresi"
-                    android:textSize="20sp"
-                    android:textColor="@color/darkblue"
                     android:layout_marginLeft="15dp"
-                    >
+                    android:text="Teslimat Adresi"
+                    android:textColor="@color/darkblue"
+                    android:textSize="20sp">
 
 
                 </TextView>
@@ -70,11 +69,11 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Adres Başlığı"
+                    android:layout_marginLeft="15dp"
                     android:layout_marginTop="30dp"
-                    android:layout_marginLeft="15dp"
                     android:layout_marginRight="15dp"
                     android:background="@color/light"
+                    android:hint="Adres Başlığı"
 
                     >
 
@@ -84,11 +83,11 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Ülke"
+                    android:layout_marginLeft="15dp"
                     android:layout_marginTop="60dp"
-                    android:layout_marginLeft="15dp"
                     android:layout_marginRight="15dp"
                     android:background="@color/light"
+                    android:hint="Ülke"
 
                     >
 
@@ -98,11 +97,11 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Şehir"
+                    android:layout_marginLeft="15dp"
                     android:layout_marginTop="90dp"
-                    android:layout_marginLeft="15dp"
                     android:layout_marginRight="15dp"
                     android:background="@color/light"
+                    android:hint="Şehir"
 
                     >
 
@@ -112,11 +111,11 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="İlçe"
-                    android:layout_marginTop="120dp"
                     android:layout_marginLeft="15dp"
+                    android:layout_marginTop="120dp"
                     android:layout_marginRight="15dp"
                     android:background="@color/light"
+                    android:hint="İlçe"
 
                     >
 
@@ -126,11 +125,11 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:hint="Mahalle-Köy"
-                    android:layout_marginTop="150dp"
                     android:layout_marginLeft="15dp"
+                    android:layout_marginTop="150dp"
                     android:layout_marginRight="15dp"
                     android:background="@color/light"
+                    android:hint="Mahalle-Köy"
 
 
                     >
@@ -141,11 +140,11 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Posta Kodu"
-                    android:layout_marginTop="205dp"
                     android:layout_marginLeft="15dp"
+                    android:layout_marginTop="205dp"
                     android:layout_marginRight="15dp"
                     android:background="@color/light"
+                    android:hint="Posta Kodu"
 
                     >
 
@@ -156,11 +155,11 @@
                     android:id="@+id/address"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
-                    android:hint="Adres"
-                    android:layout_marginTop="235dp"
                     android:layout_marginLeft="15dp"
+                    android:layout_marginTop="235dp"
                     android:layout_marginRight="15dp"
                     android:background="@color/light"
+                    android:hint="Adres"
 
                     >
 
@@ -168,18 +167,7 @@
                 </EditText>
 
 
-
             </androidx.cardview.widget.CardView>
-
-
-
-
-
-
-
-
-
-
 
 
             <androidx.cardview.widget.CardView
@@ -205,10 +193,10 @@
                 </TextView>
 
                 <RadioGroup
+                    android:id="@+id/taksitGroup"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
-                    android:id="@+id/taksitGroup"
                     android:layout_marginTop="40dp">
 
                     <RadioButton
@@ -256,8 +244,6 @@
                 </RadioGroup>
 
 
-
-
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
@@ -271,67 +257,62 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Kargo Seçenekleri"
-                    android:textSize="20sp"
-                    android:textColor="@color/darkblue"
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="10dp"
-                    >
+                    android:text="Kargo Seçenekleri"
+                    android:textColor="@color/darkblue"
+                    android:textSize="20sp">
 
 
                 </TextView>
 
                 <RadioGroup
+                    android:id="@+id/shippingGroup"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="40dp"
-                    android:id="@+id/shippingGroup"
-                    android:orientation="horizontal"
-                    >
-
+                    android:orientation="horizontal">
 
 
                     <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="25dp"
-                    android:text="TNT Kargo"
-                    android:id="@+id/tntButton"
-                    >
+                        android:id="@+id/tntButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="25dp"
+                        android:text="TNT Kargo">
 
                     </RadioButton>
 
                     <RadioButton
+                        android:id="@+id/upsButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="50dp"
-                        android:id="@+id/upsButton"
-                        android:text="UPS Kargo"
-                        >
+                        android:text="UPS Kargo">
 
                     </RadioButton>
 
                 </RadioGroup>
 
                 <ImageView
-                android:layout_width="60dp"
-                android:layout_height="30dp"
-                android:scaleType="fitXY"
-                android:layout_marginLeft="40dp"
-                android:layout_marginTop="70dp"
-                android:background="@drawable/shipping1"
+                    android:layout_width="60dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginTop="70dp"
+                    android:background="@drawable/shipping1"
+                    android:scaleType="fitXY"
 
-                >
+                    >
 
                 </ImageView>
 
                 <ImageView
                     android:layout_width="40dp"
                     android:layout_height="50dp"
-                    android:scaleType="fitXY"
                     android:layout_marginLeft="200dp"
                     android:layout_marginTop="70dp"
                     android:background="@drawable/shipping2"
+                    android:scaleType="fitXY"
 
                     >
 
@@ -350,12 +331,10 @@
                 <CheckBox
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Ön Bilgilendirme Koşulları'nı ve Mesafeli Satış Sözleşmesi'ni okudum,onaylıyorum."
-                    >
+                    android:text="Ön Bilgilendirme Koşulları'nı ve Mesafeli Satış Sözleşmesi'ni okudum,onaylıyorum.">
 
 
                 </CheckBox>
-
 
 
             </androidx.cardview.widget.CardView>
@@ -363,8 +342,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="520dp"
-                android:layout_marginTop="10dp"
-                >
+                android:layout_marginTop="10dp">
+
                 <com.craftman.cardform.CardForm
                     android:id="@+id/cardForm"
                     android:layout_width="match_parent"
@@ -377,13 +356,7 @@
             </LinearLayout>
 
 
-
-
-
-
         </LinearLayout>
-
-
 
 
     </ScrollView>
