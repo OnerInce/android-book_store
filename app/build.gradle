@@ -35,7 +35,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation 'com.google.android.material:material:1.1.0'
     implementation 'androidx.gridlayout:gridlayout:1.0.0'
-    implementation 'com.android.volley:volley:1.0.0'
+    implementation 'com.android.volley:volley:1.1.0'
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'com.github.takusemba:multisnaprecyclerview:2.0.2'
     implementation 'com.cepheuen.elegant-number-button:lib:1.0.2'
@@ -43,5 +43,7 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
+    implementation 'com.craftman.cardform:cardform:0.0.2'
+    implementation 'com.braintreepayments:card-form:3.1.1'
 
 }
