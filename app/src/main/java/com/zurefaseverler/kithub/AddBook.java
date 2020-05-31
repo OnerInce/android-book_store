@@ -128,16 +128,14 @@ public class AddBook extends AppCompatActivity {
                             protected Map<String, String> getParams() throws AuthFailureError {
                                 HashMap<String, String> params = new HashMap<>();
                                 String[] authorName = author.split(" ");
+                                StringBuilder first_name = new StringBuilder();
+                                for(int i=0; i<authorName.length-1; i++){
+                                    first_name.append(authorName[i]);
+                                }
                                 params.put("ISBN",ISBN);
                                 params.put("title",book_name);
-                                if (authorName.length == 1){
-                                    params.put("first_name",authorName[0]);
-                                    params.put("last_name","");
-                                }
-                                else {
-                                    params.put("first_name", authorName[0]);
-                                    params.put("last_name", authorName[1]);
-                                }
+                                params.put("first_name", first_name.toString());
+                                params.put("last_name", authorName[authorName.length-1]);
                                 params.put("stock", quantity);
                                 params.put("category_name",category);
                                 params.put("book_type_name",type);

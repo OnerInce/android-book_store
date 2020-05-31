@@ -24,10 +24,19 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.volley.Request;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.google.gson.annotations.SerializedName;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -228,7 +237,7 @@ public class DeleteBookSearch extends AppCompatActivity {
         mGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                SearchResults book = (SearchResults) mGridView.getItemAtPosition(position);
+                final SearchResults book = (SearchResults) mGridView.getItemAtPosition(position);
 
                 String query = book.getTitle()+ " adli kitabi silmek istediginizden emin misiniz?";
 
@@ -240,22 +249,50 @@ public class DeleteBookSearch extends AppCompatActivity {
                 alert.setPositiveButton("Evet", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-//                        kitabin silinecegi kisim
-                        Toast.makeText(DeleteBookSearch.this, "Kitap silinecek.", Toast.LENGTH_SHORT).show();
+                        deleteBookFromDatabase(book);
+                        Toast.makeText(DeleteBookSearch.this, "Kitap sistemden başarıyla silindi.", Toast.LENGTH_SHORT).show();
                     }
                 });
                 alert.setNegativeButton("Hayir", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-
                         Toast.makeText(DeleteBookSearch.this, "Islem iptal edildi.", Toast.LENGTH_SHORT).show();
-
-
                     }
                 });
                 alert.create().show();
             }
         });
+    }
+
+    private void deleteBookFromDatabase(final SearchResults book) {
+        String url = "http://18.204.251.116/delete_book.php";
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                new com.android.volley.Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            String success = jsonObject.getString("success");
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new com.android.volley.Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                }){
+            @Override
+            protected Map<String, String> getParams() {
+                HashMap<String, String> params = new HashMap<>();
+                params.put("book_id",book.getId());
+                return params;
+            }
+        };
+        NetworkRequests.getInstance(this).addToRequestQueue(stringRequest);
     }
 }
 
