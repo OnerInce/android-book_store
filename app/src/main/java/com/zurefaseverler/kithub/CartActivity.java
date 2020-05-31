@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -38,14 +39,13 @@ public class CartActivity extends AppCompatActivity {
     private Button NextProcessBtn;
 
 
-
     public static TextView totalPrice;
     private Button updateQuantity;
     private ImageButton back;
     private String customer_id;
+    private int total;
 
     ArrayList<Cart> cartList;
-
     AdapterCart adapter;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,7 +77,24 @@ public class CartActivity extends AppCompatActivity {
         NextProcessBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(cartList.size() == 0)
+                    Toast.makeText(getApplicationContext(), R.string.cart_no_book, Toast.LENGTH_SHORT).show();
+
                 Intent intent = new Intent(CartActivity.this, Payment.class);
+                for (int i = 0; i < cartList.size(); i++){
+
+                    Cart currentObj = cartList.get(i);
+                    String cartItemID = "ITEM" + i;
+                    String book_id = currentObj.getPid();
+                    String quantity = currentObj.getQuantity();
+                    String book_price = Integer.toString(Integer.parseInt(currentObj.getPrice()));
+
+                    intent.putExtra(cartItemID + " BOOK", book_id);
+                    intent.putExtra(cartItemID + " QUANTITY", quantity);
+                    intent.putExtra(cartItemID + " PRICE", book_price);
+                    intent.putExtra(cartItemID + " CUSTOMER", customer_id);
+                }
+                intent.putExtra("TOTAL_ORDER_PRICE", totalPrice.getText());
                 startActivity(intent);
             }
         });
@@ -98,8 +115,8 @@ public class CartActivity extends AppCompatActivity {
 
 
     private void setNewTotalPrice() {
-        int total = 0;
-        for(int i=0; i < cartList.size(); i++)
+        total = 0;
+        for(int i = 0; i < cartList.size(); i++)
             total += cartList.get(i).getTotalPrice();
         String total_ = total + " TL";
         totalPrice.setText(total_);
@@ -195,9 +212,7 @@ public class CartActivity extends AppCompatActivity {
                 HashMap<String, String> params = new HashMap<>();
 
                 params.put("operation", "remove_item");
-
                 params.put("customer_id", customer_id);
-
                 params.put("p_id", pid);
                 return params;
             }

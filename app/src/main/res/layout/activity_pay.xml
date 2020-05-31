@@ -14,8 +14,6 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:id="@+id/top"
-
-
         >
 
         <TextView
@@ -23,7 +21,6 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="89dp"
@@ -56,8 +53,6 @@
                 android:layout_height="wrap_content"
                 app:cardElevation="15dp"
                 android:background="@color/light"
-
-
 
                 >
                 <TextView
@@ -158,6 +153,7 @@
                 </EditText>
 
                 <EditText
+                    android:id="@+id/address"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:hint="Adres"
@@ -518,6 +514,7 @@
 
 
         <Button
+            android:id="@+id/confirm_order"
             android:layout_width="130dp"
             android:layout_height="40dp"
             android:layout_alignParentEnd="true"

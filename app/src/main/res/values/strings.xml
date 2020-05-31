@@ -70,6 +70,9 @@
     <string name="bookpage_comment_success">Yorumunuz başarıyla eklendi</string>
     <string name="bookpage_comment_exists">Bu kitap için zaten yorum eklemişsiniz</string>
     <string name="bookpage_comment_login">Yorum yapmak için lütfen giriş yapınız</string>
+    <string name="cart_no_book">Sepetinizde ürün bulunmamaktadır</string>
+    <string name="payment_select_shipper">Lütfen bir kargo şirketi seçiniz</string>
+    <string name="pay_select_install">Lütfen taksit sayısı seçiniz</string>
 
 
 </resources>
