@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -115,6 +116,8 @@ public class DeleteCategory extends AppCompatActivity {
                                                 AdapterCategories.bookTypes.get(category).remove(AdapterCategories.bookTypes.get(category).indexOf(book_type));
                                             }
                                             categories.setAdapter( new AdapterCategories(DeleteCategory.this, AdapterCategories.categories, AdapterCategories.bookTypes));
+                                            temp = null;
+                                            sil_text.setText("");
                                             if(AdapterCategories.categories.size() == 0) {
                                                 deleteButton.setVisibility(View.INVISIBLE);
                                                 sil_text.setText(R.string.category_delete_not_found);
@@ -143,7 +146,8 @@ public class DeleteCategory extends AppCompatActivity {
                         mQueue.add(request);
                     }
                 });
-                builder.show();
+                if(temp == null) Toast.makeText(DeleteCategory.this, R.string.select_category_to_delete,Toast.LENGTH_SHORT).show();
+                else builder.show();
             }
         });
     }

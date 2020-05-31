@@ -240,10 +240,9 @@ public class UpdateBookSearch extends AppCompatActivity {
                 alert.setPositiveButton("Evet", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-//                        kitabin silinecegi kisim
                         Toast.makeText(UpdateBookSearch.this, "Gerekli sayfaya yonlendiriliyorsunuz.", Toast.LENGTH_SHORT).show();
 
-                        Intent intent = new Intent(getApplicationContext(), UpdateBookInfo.class);
+                        Intent intent = new Intent(UpdateBookSearch.this, UpdateBookInfo.class);
                         intent.putExtra("book_id", book.getId());
                         startActivity(intent);
                     }
@@ -251,10 +250,7 @@ public class UpdateBookSearch extends AppCompatActivity {
                 alert.setNegativeButton("Hayir", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-
                         Toast.makeText(UpdateBookSearch.this, "Islem iptal edildi.", Toast.LENGTH_SHORT).show();
-
-
                     }
                 });
                 alert.create().show();

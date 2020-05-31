@@ -70,6 +70,7 @@
     <string name="bookpage_comment_success">Yorumunuz başarıyla eklendi</string>
     <string name="bookpage_comment_exists">Bu kitap için zaten yorum eklemişsiniz</string>
     <string name="bookpage_comment_login">Yorum yapmak için lütfen giriş yapınız</string>
+    <string name="select_category_to_delete">Silinecek kategoriyi seçin.</string>
 
 
 </resources>

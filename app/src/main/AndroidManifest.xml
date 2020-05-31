@@ -16,7 +16,9 @@
         <activity android:name=".DiscountBook"></activity>
         <activity android:name=".DiscountBookSearch"></activity>
         <activity android:name=".UpdateBook" />
-        <activity android:name=".UpdateBookInfo" />
+        <activity
+            android:name=".UpdateBookInfo"
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name=".UpdateBookSearch" />
         <activity android:name=".DeleteBookSearch" />
         <activity android:name=".DeleteBook" />
