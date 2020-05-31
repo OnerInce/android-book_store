@@ -9,11 +9,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -30,6 +32,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import com.craftman.cardform.Card;
+import com.craftman.cardform.CardForm;
+import com.craftman.cardform.OnPayBtnClickListner;
 
 class RequestMember
 {
@@ -100,15 +105,33 @@ public class Payment extends AppCompatActivity {
         CUSTOMER_ID = Integer.toString(sharedPref.getInt("id", -1));
 
         setContentView(R.layout.activity_pay);
-        finish = findViewById(R.id.confirm_order);
+
+        CardForm cardForm = findViewById(R.id.cardForm);
+
+        TextView txtDes = findViewById(R.id.payment_amount);
+        TextView txtPayment = findViewById(R.id.payment_amount_holder);
+        Button btnPay = findViewById(R.id.btn_pay);
+        EditText expiryDate = findViewById(R.id.expiry_date);
+        EditText cardNumber = findViewById(R.id.card_number);
+        EditText cardName = findViewById(R.id.card_name);
+
+        expiryDate.setHint("Son Kullanma Tarihi");
+        txtDes.setText("100TL");
+        txtPayment.setText("Toplam Ödeme");
+        cardNumber.setHint("Kart Numarası");
+        cardName.setHint("Kart Sahibi");
+      
+      
+        finish = findViewById(R.id.btn_pay);
+        finish.setText(String.format("Toplam: %s",txtDes.getText()));
         radioGroupTaksit = findViewById(R.id.taksitGroup);
         radioGroupShipping = findViewById(R.id.shippingGroup);
         addressText = (EditText) findViewById(R.id.address);
         getAddress(CUSTOMER_ID);
 
-        finish.setOnClickListener(new View.OnClickListener() {
+        finish.setPayBtnClickListner(new OnPayBtnClickListner() {
             @Override
-            public void onClick(View v) {
+            public void onClick(Card card) {
                 int selectedShippingId = radioGroupShipping.getCheckedRadioButtonId();
                 int selectedInstallId = radioGroupTaksit.getCheckedRadioButtonId();
                 selectedShipper = (RadioButton) findViewById(selectedShippingId);
@@ -126,6 +149,7 @@ public class Payment extends AppCompatActivity {
 
                 Intent intent = getIntent();
                 Bundle bundle = intent.getExtras();
+
 
                 int nofItems = bundle.keySet().size() / ITEMS_ON_INTENT;
 
