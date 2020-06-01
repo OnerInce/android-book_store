@@ -123,6 +123,14 @@ public class ProfilePage extends AppCompatActivity  {
             }
         });
 
+        Button orderHis = findViewById(R.id.button7);
+        orderHis.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivityForResult(new Intent(ProfilePage.this,OrderHistory.class),1);
+            }
+        });
+
     }
 
     @Override
