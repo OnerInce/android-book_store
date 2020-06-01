@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class OrderHistoryAdapter extends RecyclerView.Adapter<OrderHistoryAdapter.setObject> {
 
@@ -18,10 +19,10 @@ public class OrderHistoryAdapter extends RecyclerView.Adapter<OrderHistoryAdapte
 
     Context context;
 
-    ArrayList<OrderHistoryObject> orderHistoryList;
+    List<OrderHistoryObject> orderHistoryList;
 
 
-    public OrderHistoryAdapter(@NonNull Context context, ArrayList<OrderHistoryObject> orderHistoryList) {
+    public OrderHistoryAdapter(@NonNull Context context, List<OrderHistoryObject> orderHistoryList) {
         this.context = context;
         this.orderHistoryList = orderHistoryList;
     }
@@ -34,7 +35,7 @@ public class OrderHistoryAdapter extends RecyclerView.Adapter<OrderHistoryAdapte
 
     @Override
     public void onBindViewHolder(@NonNull setObject holder, int position) {
-        holder.date.setText(orderHistoryList.get(position).getProductDate());
+       // holder.date.setText(orderHistoryList.get(position).getProductDate());
         holder.name.setText(orderHistoryList.get(position).getProductName());
         holder.price.setText(orderHistoryList.get(position).getProductPrice());
         holder.img.setImageResource(R.drawable.cart_huzursuzluk);
@@ -49,14 +50,14 @@ public class OrderHistoryAdapter extends RecyclerView.Adapter<OrderHistoryAdapte
     public class setObject extends RecyclerView.ViewHolder{
 
         ImageView img;
-        TextView date,name,price;
+        TextView name,price;//,date
 
 
 
         public setObject(@NonNull View itemView) {
             super(itemView);
             img=itemView.findViewById(R.id.order_photo);
-            date=itemView.findViewById(R.id.order_date);
+            //date=itemView.findViewById(R.id.order_date);
             name=itemView.findViewById(R.id.order_name);
             price=itemView.findViewById(R.id.order_price);
         }

@@ -13,7 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".StockTracking"></activity>
+        <activity android:name="OrderHistory"/>
+        <activity android:name=".StockTracking"/>
         <activity android:name=".DiscountBookSearch" />
         <activity android:name=".UserInfo"/>
         <activity android:name=".UserShow" />
