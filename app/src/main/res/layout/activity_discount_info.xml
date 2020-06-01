@@ -16,7 +16,7 @@
         android:id="@+id/discount_amount_et"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Indirim miktarini giriniz."
+        android:hint="Indirim miktarini giriniz. % "
         android:textSize="15dp"
         android:layout_below="@id/dialog_title"/>
     <Button

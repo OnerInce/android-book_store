@@ -16,13 +16,11 @@
         android:background="@color/light"
         android:orientation="horizontal">
 
-
         <TextView
-            android:id="@+id/textView14"
+            android:id="@+id/textView12"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="Kitap bilgisi güncelleme"
+            android:text="Stok Durum Takibi"
             android:fontFamily="@font/nexa_bold"
             android:textSize="30sp"
             android:textColor="@color/light"

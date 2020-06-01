@@ -281,23 +281,22 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/kullanici_bilgileri_goruntule"
+                android:id="@+id/admin_discount_publisher"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="24dp"
+                android:layout_marginBottom="0dp"
                 android:background="@color/blue"
                 android:gravity="center_vertical"
-                android:onClick="show_users"
-                android:orientation="horizontal"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/admin_yazar_ekle">
+                android:onClick="discount_publisher"
+                android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginStart="10dp"
                     android:padding="2dp"
-                    app:srcCompat="@drawable/admin_durum_trafik_takibi" />
+                    app:srcCompat="@drawable/ic_discount" />
 
                 <TextView
                     android:layout_width="0dp"
@@ -305,7 +304,7 @@
                     android:layout_marginStart="10dp"
                     android:layout_weight="1"
                     android:fontFamily="@font/nexa_bold"
-                    android:text="Kullanici Bilgilerini Goster"
+                    android:text="İndirim uygula"
                     android:textColor="@color/light"
                     android:textSize="20sp" />
 
