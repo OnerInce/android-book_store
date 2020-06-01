@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -18,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.gson.annotations.SerializedName;
@@ -224,13 +227,55 @@ public class StockTracking extends AppCompatActivity {
         mGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                SearchResults book = (SearchResults) mGridView.getItemAtPosition(position);
+                final StockTracking.SearchResults book = (StockTracking.SearchResults) mGridView.getItemAtPosition(position);
 
-                //gime something useful
+                final String bookName = book.getTitle();
 
-                Intent intent = new Intent(getApplicationContext(), BookPage.class);
-                intent.putExtra("book_id", book.getId());
-                startActivity(intent);
+                AlertDialog.Builder builder = new AlertDialog.Builder(StockTracking.this);
+
+                LayoutInflater inflater = getLayoutInflater();
+                View dialogView = inflater.inflate(R.layout.stock_add_alert_box,null);
+
+                TextView dialogTitle = dialogView.findViewById(R.id.dialog_title);
+                String dialogTitleStr = bookName + " adli kitaba stok eklemek isteğinize emin misiniz? Eminseniz miktari giriniz.";
+                dialogTitle.setText(dialogTitleStr);
+
+                builder.setCancelable(false);
+
+                builder.setView(dialogView);
+
+                Button btn_positive = (Button) dialogView.findViewById(R.id.dialog_positive_btn);
+                Button btn_negative = (Button) dialogView.findViewById(R.id.dialog_negative_btn);
+                final EditText stockAdd = (EditText) dialogView.findViewById(R.id.add_stock_quantity);
+
+                final AlertDialog dialog = builder.create();
+
+                btn_positive.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.cancel();
+
+                        int addstock = Integer.parseInt(stockAdd.getText().toString());
+                        Toast.makeText(getApplication(),
+                                bookName+ " adli kitaba  " + addstock + " stok eklediniz.", Toast.LENGTH_SHORT).show();
+
+//                        stok ekleme islemi burda yapilacak ----------------------------------------------------------------------------------------------------------------------
+
+                    }
+                });
+
+                btn_negative.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                        Toast.makeText(getApplication(),
+                                "Islem iptal edildi", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                dialog.show();
+
+
             }
         });
     }
