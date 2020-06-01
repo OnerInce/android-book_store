@@ -4,9 +4,14 @@
     android:layout_height="175dp"
     android:id="@+id/card_items"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/light"
     android:layout_margin="10dp"
-    app:cardElevation="15dp">
+    app:cardElevation="15dp"
+    android:background="@color/light"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+
+
+    >
 
 
     <RelativeLayout
