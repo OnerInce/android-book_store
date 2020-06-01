@@ -7,18 +7,18 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
-public class DiscountBook extends AppCompatActivity implements View.OnClickListener{
+public class UserShow extends AppCompatActivity implements View.OnClickListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_discount_book);
+        setContentView(R.layout.activity_user_show);
 
         ImageButton go_back = findViewById(R.id.go_back);
         go_back.setOnClickListener(this);
 
-        final Intent toSearch = new Intent(this, DiscountBookSearch.class);
-        ImageButton searchButton = findViewById(R.id.discount_book_search_button);
+        final Intent toSearch = new Intent(this, UserShowSearch.class);
+        ImageButton searchButton = findViewById(R.id.user_show_search_button);
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

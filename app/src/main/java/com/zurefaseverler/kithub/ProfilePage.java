@@ -124,6 +124,15 @@ public class ProfilePage extends AppCompatActivity  {
             }
         });
 
+        Button orderHis = findViewById(R.id.order_history_btn);
+        orderHis.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(ProfilePage.this, OrderHistory.class);
+                startActivity(i);
+            }
+        });
+
     }
 
     @Override

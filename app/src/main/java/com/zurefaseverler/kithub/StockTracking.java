@@ -2,16 +2,15 @@ package com.zurefaseverler.kithub;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -39,7 +38,7 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.FormUrlEncoded;
 
-public class UpdateBookSearch extends AppCompatActivity {
+public class StockTracking extends AppCompatActivity {
     private static final String BASE_URL = "http://18.204.251.116";
 
     static class SearchResults {
@@ -173,7 +172,7 @@ public class UpdateBookSearch extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_update_book);
+        setContentView(R.layout.activity_stock_tracking);
 
         this.initializeWidgets();
         final MyAPIService myAPIService = RetrofitClientInstance.getRetrofitInstance().create(MyAPIService.class);
@@ -228,32 +227,55 @@ public class UpdateBookSearch extends AppCompatActivity {
         mGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                final SearchResults book = (SearchResults) mGridView.getItemAtPosition(position);
+                final StockTracking.SearchResults book = (StockTracking.SearchResults) mGridView.getItemAtPosition(position);
 
-                String query = book.getTitle()+ " adli kitabin bilgilerini guncellemek istediginizden emin misiniz?";
+                final String bookName = book.getTitle();
 
+                AlertDialog.Builder builder = new AlertDialog.Builder(StockTracking.this);
 
-                AlertDialog.Builder alert = new AlertDialog.Builder(UpdateBookSearch.this);
-                alert.setTitle("Kitap bilgileri guncellemesi onaylama ekrani");
-                alert.setMessage(query);
+                LayoutInflater inflater = getLayoutInflater();
+                View dialogView = inflater.inflate(R.layout.stock_add_alert_box,null);
 
-                alert.setPositiveButton("Evet", new DialogInterface.OnClickListener() {
+                TextView dialogTitle = dialogView.findViewById(R.id.dialog_title);
+                String dialogTitleStr = bookName + " adli kitaba stok eklemek isteğinize emin misiniz? Eminseniz miktari giriniz.";
+                dialogTitle.setText(dialogTitleStr);
+
+                builder.setCancelable(false);
+
+                builder.setView(dialogView);
+
+                Button btn_positive = (Button) dialogView.findViewById(R.id.dialog_positive_btn);
+                Button btn_negative = (Button) dialogView.findViewById(R.id.dialog_negative_btn);
+                final EditText stockAdd = (EditText) dialogView.findViewById(R.id.add_stock_quantity);
+
+                final AlertDialog dialog = builder.create();
+
+                btn_positive.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        Toast.makeText(UpdateBookSearch.this, "Gerekli sayfaya yonlendiriliyorsunuz.", Toast.LENGTH_SHORT).show();
+                    public void onClick(View v) {
+                        dialog.cancel();
 
-                        Intent intent = new Intent(UpdateBookSearch.this, UpdateBookInfo.class);
-                        intent.putExtra("book_id", book.getId());
-                        startActivity(intent);
+                        int addstock = Integer.parseInt(stockAdd.getText().toString());
+                        Toast.makeText(getApplication(),
+                                bookName+ " adli kitaba  " + addstock + " stok eklediniz.", Toast.LENGTH_SHORT).show();
+
+//                        stok ekleme islemi burda yapilacak ----------------------------------------------------------------------------------------------------------------------
+
                     }
                 });
-                alert.setNegativeButton("Hayir", new DialogInterface.OnClickListener() {
+
+                btn_negative.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        Toast.makeText(UpdateBookSearch.this, "Islem iptal edildi.", Toast.LENGTH_SHORT).show();
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                        Toast.makeText(getApplication(),
+                                "Islem iptal edildi", Toast.LENGTH_SHORT).show();
                     }
                 });
-                alert.create().show();
+
+                dialog.show();
+
+
             }
         });
     }

@@ -150,7 +150,7 @@
                     android:layout_marginStart="10dp"
                     android:layout_weight="1"
                     android:fontFamily="@font/nexa_bold"
-                    android:text="Stok Durum Takibi ( )"
+                    android:text="Stok Durum Takibi"
                     android:textColor="@color/light"
                     android:textSize="20sp" />
 
@@ -281,6 +281,36 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/admin_discount_publisher"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="0dp"
+                android:background="@color/blue"
+                android:gravity="center_vertical"
+                android:onClick="discount_publisher"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="10dp"
+                    android:padding="2dp"
+                    app:srcCompat="@drawable/ic_discount" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/nexa_bold"
+                    android:text="İndirim uygula"
+                    android:textColor="@color/light"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:id="@+id/admin_yazar_sil"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
@@ -309,6 +339,37 @@
                     android:textSize="20sp" />
 
             </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/kullanici_bilgileri_goruntule"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginBottom="24dp"
+                android:background="@color/blue"
+                android:gravity="center_vertical"
+                android:onClick="show_users"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="10dp"
+                    android:padding="2dp"
+                    app:srcCompat="@drawable/ic_person_light" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/nexa_bold"
+                    android:text="Kullanıcı bilgileri"
+                    android:textColor="@color/light"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+
 
         </LinearLayout>
     </ScrollView>

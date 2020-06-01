@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="3dp"
+        android:background="@color/light">
+
+        <ImageButton
+            android:id="@+id/back_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_arrow_back_dark"
+            tools:ignore="VectorDrawableCompat" />
+
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/siparislerim_string"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="49dp"
+
+        android:layout_marginLeft="49dp"
+        android:layout_marginTop="46dp"
+        android:layout_marginBottom="24dp"
+        android:text="SİPARİŞLERİM"
+        android:textColor="@color/darkblue"
+        android:textSize="25sp"
+        android:textStyle="bold"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/order_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/alt"
+
+        android:layout_below="@id/siparislerim_string"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="1dp">
+
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+
+
+
+
+</RelativeLayout>
+
+
+
+
+
+
