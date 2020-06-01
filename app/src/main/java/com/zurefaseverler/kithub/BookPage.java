@@ -48,11 +48,11 @@ public class BookPage extends AppCompatActivity implements View.OnClickListener 
 
     private TextView summary;
     private boolean boolSummary, boolAuthor;
-
+    private float initialRate;
+    RatingBar ratingBar;
     private Book book;
     private CommentObj comment;
     private Button addCart, makeComment;
-    private RatingBar rating;
     private String book_id, name;
     List<CommentObj> commentList = new ArrayList<>();
 
@@ -98,14 +98,26 @@ public class BookPage extends AppCompatActivity implements View.OnClickListener 
                             JSONObject jsonObjectInfo = jsonObject.getJSONObject("book_info");
                             JSONArray jsonArrayComment = jsonObject.getJSONArray("comments");
 
-                            book = new Book(jsonObjectInfo.getInt("id"),
-                                    jsonObjectInfo.getString("first_name") + " " + jsonObjectInfo.getString("last_name"),
-                                    jsonObjectInfo.getInt("stock_quantity"), jsonObjectInfo.getString("category_name"),
-                                    jsonObjectInfo.getString("book_type_name"), jsonObjectInfo.getInt("price"),
-                                    jsonObjectInfo.getInt("sales"), jsonObjectInfo.getInt("no_people_rated"),
-                                    jsonObjectInfo.getInt("rating"), jsonObjectInfo.getString("ISBN"),
-                                    jsonObjectInfo.getString("title"), jsonObjectInfo.getString("summary"),
-                                    jsonObjectInfo.getString("image"));
+                            try {
+
+                                book = new Book(jsonObjectInfo.getInt("id"),
+                                        jsonObjectInfo.getString("first_name") + " " + jsonObjectInfo.getString("last_name"),
+                                        jsonObjectInfo.getInt("stock_quantity"), jsonObjectInfo.getString("category_name"),
+                                        jsonObjectInfo.getString("book_type_name"), jsonObjectInfo.getInt("price"),
+                                        jsonObjectInfo.getInt("sales"), jsonObjectInfo.getInt("no_people_rated"),
+                                        jsonObjectInfo.getInt("rate"), jsonObjectInfo.getString("ISBN"),
+                                        jsonObjectInfo.getString("title"), jsonObjectInfo.getString("summary"),
+                                        jsonObjectInfo.getString("image"));
+                            } catch (JSONException e) {
+                                book = new Book(jsonObjectInfo.getInt("id"),
+                                        jsonObjectInfo.getString("first_name") + " " + jsonObjectInfo.getString("last_name"),
+                                        jsonObjectInfo.getInt("stock_quantity"), jsonObjectInfo.getString("category_name"),
+                                        jsonObjectInfo.getString("book_type_name"), jsonObjectInfo.getInt("price"),
+                                        jsonObjectInfo.getInt("sales"), jsonObjectInfo.getInt("no_people_rated"),
+                                        0, jsonObjectInfo.getString("ISBN"),
+                                        jsonObjectInfo.getString("title"), jsonObjectInfo.getString("summary"),
+                                        jsonObjectInfo.getString("image"));
+                            }
 
                             for (int i = 0; i < jsonArrayComment.length(); i++){
 
@@ -140,11 +152,12 @@ public class BookPage extends AppCompatActivity implements View.OnClickListener 
         TextView bookName = findViewById(R.id.bookPage_bookName);
         ImageView bookImage = findViewById(R.id.bookPage_bookImage);
         TextView author_type = findViewById(R.id.bookPage_author_type);
-        RatingBar ratingBar = findViewById(R.id.bookPage_ratingBar);
+        ratingBar = findViewById(R.id.bookPage_ratingBar);
+        initialRate = ratingBar.getNumStars();
         TextView price = findViewById(R.id.bookPage_price);
         addCart = findViewById(R.id.bookPage_addCartButton);
 
-        updateComments();
+        updateComments(-1);
 
         bookName.setText(book.getTitle());
         author_type.setText(String.format("%s / %s", book.getAuthor(), book.getBookType()));
@@ -169,13 +182,15 @@ public class BookPage extends AppCompatActivity implements View.OnClickListener 
         else addCart.setText(R.string.book_page_addCart);
     }
 
-    private void updateComments() {
+    private void updateComments(int newRate) {
 
         RecyclerView view = findViewById(R.id.comment_recycler_view);
         CommentDetailsAdapter adapter = new CommentDetailsAdapter(this, commentList);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         view.setLayoutManager(layoutManager);
         view.setAdapter(adapter);
+        if(newRate != -1)
+            ratingBar.setRating(((book.getRating() + newRate) / (book.getRatedCount() + 1)));
     }
 
     @Override
@@ -260,7 +275,7 @@ public class BookPage extends AppCompatActivity implements View.OnClickListener 
                             if(Integer.parseInt(success) == 1) {
                                 Toast.makeText(getApplicationContext(), R.string.bookpage_comment_success, Toast.LENGTH_SHORT).show();
                                 commentList.add(obj);
-                                updateComments();
+                                updateComments(rate);
                             }
                             else
                                 Toast.makeText(getApplicationContext(), R.string.bookpage_comment_exists, Toast.LENGTH_SHORT).show();
