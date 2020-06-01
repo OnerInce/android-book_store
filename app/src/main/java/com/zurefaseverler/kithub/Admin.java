@@ -35,13 +35,14 @@ public class Admin extends AppCompatActivity {
     }
 
     public void update_book(View view){
-        i = new Intent(this, UpdateBook.class);
+        i = new Intent(this, UpdateBookSearch.class);
         startActivity(i);
 
     }
 
     public void stock_view(View view){
-        i = new Intent(this, DiscountBook.class);
+
+        i = new Intent(this, StockTracking.class);
         startActivity(i);
     }
 
@@ -76,6 +77,13 @@ public class Admin extends AppCompatActivity {
     public void delete_author(View view){
 
         i = new Intent(this, OrderDetails.class);
+        startActivity(i);
+
+    }
+
+    public void discount_publisher(View view){
+
+        i = new Intent(this, DiscountBookSearch.class);
         startActivity(i);
 
     }

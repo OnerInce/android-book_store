@@ -2,11 +2,8 @@ package com.zurefaseverler.kithub;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +18,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.gson.annotations.SerializedName;
@@ -39,7 +35,7 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.FormUrlEncoded;
 
-public class UpdateBookSearch extends AppCompatActivity {
+public class StockTracking extends AppCompatActivity {
     private static final String BASE_URL = "http://18.204.251.116";
 
     static class SearchResults {
@@ -173,7 +169,7 @@ public class UpdateBookSearch extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_update_book);
+        setContentView(R.layout.activity_stock_tracking);
 
         this.initializeWidgets();
         final MyAPIService myAPIService = RetrofitClientInstance.getRetrofitInstance().create(MyAPIService.class);
@@ -228,32 +224,13 @@ public class UpdateBookSearch extends AppCompatActivity {
         mGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                final SearchResults book = (SearchResults) mGridView.getItemAtPosition(position);
+                SearchResults book = (SearchResults) mGridView.getItemAtPosition(position);
 
-                String query = book.getTitle()+ " adli kitabin bilgilerini guncellemek istediginizden emin misiniz?";
+                //gime something useful
 
-
-                AlertDialog.Builder alert = new AlertDialog.Builder(UpdateBookSearch.this);
-                alert.setTitle("Kitap bilgileri guncellemesi onaylama ekrani");
-                alert.setMessage(query);
-
-                alert.setPositiveButton("Evet", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        Toast.makeText(UpdateBookSearch.this, "Gerekli sayfaya yonlendiriliyorsunuz.", Toast.LENGTH_SHORT).show();
-
-                        Intent intent = new Intent(UpdateBookSearch.this, UpdateBookInfo.class);
-                        intent.putExtra("book_id", book.getId());
-                        startActivity(intent);
-                    }
-                });
-                alert.setNegativeButton("Hayir", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        Toast.makeText(UpdateBookSearch.this, "Islem iptal edildi.", Toast.LENGTH_SHORT).show();
-                    }
-                });
-                alert.create().show();
+                Intent intent = new Intent(getApplicationContext(), BookPage.class);
+                intent.putExtra("book_id", book.getId());
+                startActivity(intent);
             }
         });
     }
