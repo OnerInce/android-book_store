@@ -15,6 +15,9 @@
         android:usesCleartextTraffic="true">
         <activity android:name=".StockTracking"></activity>
         <activity android:name=".DiscountBookSearch" />
+        <activity android:name=".UserInfo"/>
+        <activity android:name=".UserShow" />
+        <activity android:name=".UserShowSearch" />
         <activity
             android:name=".UpdateBookInfo"
             android:windowSoftInputMode="adjustPan" />

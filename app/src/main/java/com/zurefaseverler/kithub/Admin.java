@@ -81,9 +81,17 @@ public class Admin extends AppCompatActivity {
 
     }
 
+
     public void discount_publisher(View view){
 
         i = new Intent(this, DiscountBookSearch.class);
+        startActivity(i);
+      
+    }
+
+    public void show_users(View view){
+
+        i = new Intent(this, UserShow.class);
         startActivity(i);
 
     }
