@@ -69,24 +69,6 @@
 
         </TextView>
 
-        <TextView
-            android:id="@+id/order_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/cart_product_name"
-            android:layout_marginStart="-81dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginBottom="-66dp"
-            android:layout_toEndOf="@+id/cart_product_photo"
-            android:fontFamily="@font/nexa_bold"
-            android:text="Product Date"
-            android:textColor="@color/blue"
-            android:textSize="15sp">
-
-        </TextView>
-
-
-
 
     </RelativeLayout>
 
