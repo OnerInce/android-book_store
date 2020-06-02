@@ -87,7 +87,7 @@ public class CartActivity extends AppCompatActivity {
                     String cartItemID = "ITEM" + i;
                     String book_id = currentObj.getPid();
                     String quantity = currentObj.getQuantity();
-                    String book_price = Integer.toString(Integer.parseInt(currentObj.getPrice()));
+                    String book_price = Float.toString(currentObj.getPrice());
 
                     intent.putExtra(cartItemID + " BOOK", book_id);
                     intent.putExtra(cartItemID + " QUANTITY", quantity);
@@ -118,7 +118,7 @@ public class CartActivity extends AppCompatActivity {
         total = 0;
         for(int i = 0; i < cartList.size(); i++)
             total += cartList.get(i).getTotalPrice();
-        String total_ = total + " TL";
+        String total_ = total + " ₺";
         totalPrice.setText(total_);
     }
 
@@ -140,8 +140,8 @@ public class CartActivity extends AppCompatActivity {
                                 String quantity = jsonObject.getString("quantity");
                                 String image = jsonObject.getString("image");
 
-                                Cart cartItem = new Cart(p_id, title, price, quantity, "%20", image,
-                                            Integer.parseInt(price) * Integer.parseInt(quantity));
+                                Cart cartItem = new Cart(p_id, title, Float.parseFloat(price), quantity, "%20", image,
+                                            Float.parseFloat(price) * Integer.parseInt(quantity));
                                 cartList.add(cartItem);
                             }
                             listener.onResponse(response);

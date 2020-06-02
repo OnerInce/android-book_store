@@ -160,7 +160,7 @@ public class Payment extends AppCompatActivity {
                     String single_price = bundle.getString(cartItemID + " PRICE");
 
                     Order currentOrder = new Order(Integer.parseInt(book_id),
-                            Integer.parseInt(quantity), Integer.parseInt(single_price));
+                            Integer.parseInt(quantity), Float.parseFloat(single_price));
                     orderList.add(currentOrder);
                 }
 

@@ -30,7 +30,7 @@ public class OrderDetails extends AppCompatActivity {
     public void fill(){
 
         for(int i = 0 ; i < 8 ; i++){
-            OrderDetailsBookObj temp = new OrderDetailsBookObj("haydar dümen ile iftar saati", "12", "72");
+            OrderDetailsBookObj temp = new OrderDetailsBookObj("haydar dümen ile iftar saati", "12", 72);
             list.add(temp);
         }
 
