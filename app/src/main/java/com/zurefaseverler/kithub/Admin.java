@@ -91,7 +91,7 @@ public class Admin extends AppCompatActivity {
 
     public void show_users(View view){
 
-        i = new Intent(this, UserShow.class);
+        i = new Intent(this, UserShowSearch.class);
         startActivity(i);
 
     }
