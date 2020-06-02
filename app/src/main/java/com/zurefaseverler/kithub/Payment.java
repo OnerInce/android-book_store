@@ -174,6 +174,9 @@ public class Payment extends AppCompatActivity {
                 }
                 System.out.println(orderJSONObject);
                 orderToDatabase();
+
+                Intent i = new Intent(Payment.this, PaymentCorrect.class);
+                startActivity(i);
             }
         });
     }

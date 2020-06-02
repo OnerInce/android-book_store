@@ -46,4 +46,8 @@ dependencies {
     implementation 'com.craftman.cardform:cardform:0.0.2'
     implementation 'com.braintreepayments:card-form:3.1.1'
 
+    def lottieVersion = "3.4.0"
+    implementation "com.airbnb.android:lottie:$lottieVersion"
+
+
 }

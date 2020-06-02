@@ -13,7 +13,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name="OrderHistory"/>
+        <activity android:name=".PaymentCorrect"/>
+        <activity android:name=".OrderHistory"/>
+        <activity android:name=".OrderDetailUser"/>
+        <activity android:name=".OrderHistoryAdapter"/>
+
         <activity android:name=".StockTracking"/>
         <activity android:name=".DiscountBookSearch" />
         <activity android:name=".UserInfo"/>

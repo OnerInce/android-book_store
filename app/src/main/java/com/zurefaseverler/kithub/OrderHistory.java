@@ -1,7 +1,10 @@
 package com.zurefaseverler.kithub;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,6 +32,16 @@ public class OrderHistory extends AppCompatActivity {
         RecyclerView.LayoutManager orderHistoryLayout=new LinearLayoutManager(this);
         orderRecycler.setLayoutManager( orderHistoryLayout);
         orderRecycler.setAdapter(adapterOrder);
+
+        adapterOrder.setOnItemClickListener(new OrderHistoryAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                Intent i = new Intent(OrderHistory.this, OrderDetailUser.class);
+                startActivity(i);
+            }
+        });
+
+
 
     }
 
