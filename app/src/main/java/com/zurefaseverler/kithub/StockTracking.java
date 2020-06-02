@@ -134,17 +134,19 @@ public class StockTracking extends AppCompatActivity {
         @Override
         public View getView(int position, View view, ViewGroup viewGroup) {
             if (view == null) {
-                view = LayoutInflater.from(context).inflate(R.layout.activity_search_model,
+                view = LayoutInflater.from(context).inflate(R.layout.stock_search_model,
                         viewGroup, false);
             }
 
             TextView nameTxt = view.findViewById(R.id.nameTextView);
             TextView txtAuthor = view.findViewById(R.id.authorTextView);
+            TextView quantity = view.findViewById(R.id.stock_quantity);
 
             final SearchResults thisBook = books.get(position);
 
             nameTxt.setText(thisBook.getTitle());
             txtAuthor.setText(thisBook.getFirst_name() + " " + thisBook.getLast_name());
+            quantity.setText("Stok miktarı: ");                                             //stok miktarı buraya yazılacak
 
             return view;
         }
