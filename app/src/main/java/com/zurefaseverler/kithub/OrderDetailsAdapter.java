@@ -34,7 +34,7 @@ public class OrderDetailsAdapter extends RecyclerView.Adapter<OrderDetailsAdapte
 
         holder.bookName.setText(list.get(position).getBookName());
         holder.quantity.setText("Adet: "+list.get(position).getQuantity());
-        holder.piecePrice.setText("Adet fiyatı: "+list.get(position).getPiecePrice()+ " TL");
+        holder.piecePrice.setText("Adet fiyatı: "+list.get(position).getPiecePrice()+ " ₺");
 
     }
 

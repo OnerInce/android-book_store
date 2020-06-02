@@ -41,7 +41,10 @@ public class MainPageRecyclerViewAdapter extends RecyclerView.Adapter<MainPageRe
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.bookname.setText(list.get(position).getBookname());
         holder.authorname.setText(list.get(position).getAuthorname());
-        holder.discountamount.setText(list.get(position).getDiscountamount());
+        if(!list.get(position).getDiscountamount().equals(""))
+            holder.discountamount.setText("İndirim: %" + list.get(position).getDiscountamount());
+        else
+            holder.discountamount.setText("");
         holder.price.setText(list.get(position).getPrice() + " ₺");
 
 
@@ -65,7 +68,7 @@ public class MainPageRecyclerViewAdapter extends RecyclerView.Adapter<MainPageRe
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         public ImageView bookimage;
-        public TextView bookname, authorname, discountamount, price;
+        public TextView bookname, authorname, discountamount, price ;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

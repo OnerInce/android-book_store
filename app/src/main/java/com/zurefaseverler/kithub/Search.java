@@ -49,10 +49,10 @@ public class Search extends AppCompatActivity {
         @SerializedName("last_name")
         private String last_name;
         @SerializedName("price")
-        private String price;
+        private float price;
 
         public SearchResults(String id, String title, String first_name, String last_name,
-                             String price) {
+                             float price) {
             this.id = id;
             this.title = title;
             this.first_name = first_name;
@@ -72,7 +72,7 @@ public class Search extends AppCompatActivity {
         String getLast_name() {
             return last_name;
         }
-        public String getPrice() {
+        public float getPrice() {
             return price;
         }
 

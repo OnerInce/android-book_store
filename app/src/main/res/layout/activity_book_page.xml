@@ -104,6 +104,21 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
+
+                <TextView
+                    android:id="@+id/discountText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="36dp"
+                    android:fontFamily="@font/nexa_bold"
+                    android:text="İndirim"
+                    android:textColor="@color/blue"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toStartOf="@+id/bookPage_price"
+                    app:layout_constraintHorizontal_bias="0.51"
+                    app:layout_constraintStart_toEndOf="@+id/textView16"
+                    app:layout_constraintTop_toTopOf="parent" />
+
                 <TextView
                     android:id="@+id/bookPage_price"
                     android:layout_width="wrap_content"

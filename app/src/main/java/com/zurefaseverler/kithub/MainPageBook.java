@@ -2,6 +2,9 @@ package com.zurefaseverler.kithub;
 
 public class MainPageBook {
 
+    private String id, imagepath, bookname, authorname, discountamount;
+    private float price;
+
     public String getId() {
         return id;
     }
@@ -9,8 +12,6 @@ public class MainPageBook {
     public void setId(String id) {
         this.id = id;
     }
-
-    private String id, imagepath, bookname, authorname, discountamount, price;
 
     public String getImagepath() {
         return imagepath;
@@ -44,15 +45,18 @@ public class MainPageBook {
         this.discountamount = discountamount;
     }
 
-    public String getPrice() {
+    public float getPrice() {
+        if(!discountamount.equals("")){
+            return price - (price * Integer.parseInt(discountamount)) / 100;
+        }
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(float price) {
         this.price = price;
     }
 
-    public MainPageBook(String id, String imagepath, String bookname, String authorname, String discountamount, String price) {
+    public MainPageBook(String id, String imagepath, String bookname, String authorname, String discountamount, float price) {
         this.id = id;
         this.imagepath = imagepath;
         this.bookname = bookname;

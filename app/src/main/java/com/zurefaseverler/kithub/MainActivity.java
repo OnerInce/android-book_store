@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     int isAdmin;
     NavigationView navigationView;
     ImageButton searchButton;
+    Button mostDiscountButton, mostSellerButton, newComerButton;
     ArrayList<MainPageBook> mostDiscountList = new ArrayList<>();
     ArrayList<MainPageBook> newComersList = new ArrayList<>();
     ArrayList<MainPageBook> mostSellersList = new ArrayList<>();
@@ -90,6 +91,35 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        final Intent moreIntent = new Intent(getApplicationContext(), BookList.class);
+
+        mostDiscountButton = findViewById(R.id.en_cok_inenler);
+        mostDiscountButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                moreIntent.putExtra("page_type", "En Çok İnenler");
+                startActivity(moreIntent);
+            }
+        });
+
+        mostSellerButton = findViewById(R.id.cok_satanlar);
+        mostSellerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                moreIntent.putExtra("page_type", "Çok Satanlar");
+                startActivity(moreIntent);
+            }
+        });
+
+        newComerButton = findViewById(R.id.yeni_urunler);
+        newComerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                moreIntent.putExtra("page_type", "Yeni Ürünler");
+                startActivity(moreIntent);
+            }
+        });
+
         final Intent toSearch = new Intent(this, Search.class);
         searchButton = findViewById(R.id.Main_search_button);
         searchButton.setOnClickListener(new View.OnClickListener() {
@@ -110,7 +140,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        navigationView =  findViewById(R.id.nav_view);
+        navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         ImageButton button_drawer = findViewById(R.id.button_drawer);
@@ -151,7 +181,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Layoutyeniurunler.setLayoutManager(layoutManageryeniurunler);
                 MainPageRecyclerViewAdapter adapteryeniurunler = new MainPageRecyclerViewAdapter(MainActivity.this, newComersList);
                 Layoutyeniurunler.setAdapter(adapteryeniurunler);
-
             }
         });
 
@@ -179,9 +208,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         ImageButton button_drawer = findViewById(R.id.button_drawer);
         button_drawer.setOnClickListener(this);
-
-        Button test = findViewById(R.id.one_cikanlar);
-        test.setOnClickListener(this);
 
         if (loggedInId == -1) {
             navigationView.getMenu().clear();
@@ -223,14 +249,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                                 JSONObject book = jsonArray.getJSONObject(i);
                                 String author_name = book.getString("first_name") + " " + book.getString("last_name");
-                                MainPageBook item = new MainPageBook(book.getString("id"), book.getString("image"),
-                                         book.getString("title"), author_name, "%20", book.getString("price"));
-                                if(i < 5)
+                                if(i < 5) {
+                                    MainPageBook item = new MainPageBook(book.getString("id"), book.getString("image"),
+                                            book.getString("title"), author_name, book.getString("discount"), Float.parseFloat(book.getString("price")));
                                     mostDiscountList.add(item);
-                                else if (i < 10)
+                                }
+                                else if (i < 10) {
+                                    MainPageBook item = new MainPageBook(book.getString("id"), book.getString("image"),
+                                            book.getString("title"), author_name, "", Float.parseFloat(book.getString("price")));
                                     mostSellersList.add(item);
-                                else
+                                }
+                                else {
+                                    MainPageBook item = new MainPageBook(book.getString("id"), book.getString("image"),
+                                            book.getString("title"), author_name,"", Float.parseFloat(book.getString("price")));
                                     newComersList.add(item);
+                                }
+
                             }
                             listener.onResponse(response);
                         } catch (JSONException e) {
