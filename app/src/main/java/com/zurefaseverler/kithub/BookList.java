@@ -37,37 +37,102 @@ interface VolleyBookListInterface {
 public class BookList extends Activity{
 
     List<MainPageBook> list;
-    String category_name;
-    String book_type;
+    String category_name, book_type, moreType;
+    TextView title, discountText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_list);
+        title = findViewById(R.id.book_list_title);
+        discountText = findViewById(R.id.discountAmountMainPage);
 
         category_name = getIntent().getStringExtra("category_name");
         book_type = getIntent().getStringExtra("book_type");
 
-        TextView title = findViewById(R.id.book_list_title);
+        if(category_name != null && book_type != null) {
+            title.setText(String.format("%s / %s", category_name, book_type));
+            final RecyclerView view = findViewById(R.id.book_list_recycler_view);
+            list = new ArrayList<>();
 
-        title.setText(String.format("%s / %s", category_name, book_type));
+            fillCategory(category_name, book_type, new VolleyBookListInterface() {
+                @Override
+                public void onResponse(List<MainPageBook> list) {
+                    MainPageRecyclerViewAdapter adapter = new MainPageRecyclerViewAdapter(BookList.this, list);
+                    RecyclerView.LayoutManager layoutManager = new GridLayoutManager(BookList.this, 2);
+                    view.setLayoutManager(layoutManager);
+                    view.setAdapter(adapter);
+                    findViewById(R.id.booklist_progressbar).setVisibility(View.GONE);
+                }
+            });
 
+            view.addOnScrollListener(scrollListener);
+        }
 
-        final RecyclerView view = findViewById(R.id.book_list_recycler_view);
-        list = new ArrayList<>();
-        fill(category_name, book_type, new VolleyBookListInterface() {
+        else{
+            moreType = getIntent().getStringExtra("page_type");
+            title.setText(moreType);
+            final RecyclerView view = findViewById(R.id.book_list_recycler_view);
+            list = new ArrayList<>();
+
+            fillMore(moreType, new VolleyBookListInterface() {
+                @Override
+                public void onResponse(List<MainPageBook> list) {
+                    MainPageRecyclerViewAdapter adapter = new MainPageRecyclerViewAdapter(BookList.this, list);
+                    RecyclerView.LayoutManager layoutManager = new GridLayoutManager(BookList.this, 2);
+                    view.setLayoutManager(layoutManager);
+                    view.setAdapter(adapter);
+                    findViewById(R.id.booklist_progressbar).setVisibility(View.GONE);
+                }
+            });
+
+            view.addOnScrollListener(scrollListener);
+
+        }
+    }
+
+    public void fillMore(final String more, final VolleyBookListInterface listener){
+        String url = "http://18.204.251.116/get_more_book.php";
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONArray jsonArray = new JSONArray(response);
+                            for(int i = 0; i < jsonArray.length(); i++){
+                                JSONObject book = jsonArray.getJSONObject(i);
+                                String author_name = book.getString("first_name") + " " + book.getString("last_name");
+                                MainPageBook item;
+                                if(more.equals("En Çok İnenler")) {
+                                    item = new MainPageBook(book.getString("id"), book.getString("image"),
+                                            book.getString("title"), author_name, book.getString("discount"), Float.parseFloat(book.getString("price")));
+                                }
+                                else{
+                                    item = new MainPageBook(book.getString("id"), book.getString("image"),
+                                            book.getString("title"), author_name, "", Float.parseFloat(book.getString("price")));
+                                }
+                                list.add(item);
+                            }
+                            listener.onResponse(list);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                }){
             @Override
-            public void onResponse(List<MainPageBook> list) {
-                MainPageRecyclerViewAdapter adapter = new MainPageRecyclerViewAdapter(BookList.this,list);
-                RecyclerView.LayoutManager layoutManager = new GridLayoutManager(BookList.this,2);
-                view.setLayoutManager(layoutManager);
-                view.setAdapter(adapter);
-                findViewById(R.id.booklist_progressbar).setVisibility(View.GONE);
+            protected Map<String, String> getParams() {
+                HashMap<String, String> params = new HashMap<>();
+                params.put("type", moreType.split(" ")[0]);
+                return params;
             }
-        });
-
-
-        view.addOnScrollListener(scrollListener);
+        };
+        NetworkRequests.getInstance(this).addToRequestQueue(stringRequest);
 
     }
 
@@ -82,7 +147,7 @@ public class BookList extends Activity{
         public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
             super.onScrolled(recyclerView, dx, dy);
 
-            if(islastItemDispalying(recyclerView)){
+            if(islastItemDisplaying(recyclerView)){
                 Log.i("Listeden geliyor","daha fazla yükle");
                 //get data request atılacak bir adamın videosu üzerinden yaptım aynı fonksiypn buraya uyarlanacak
                 //video linki :    https://www.youtube.com/watch?v=hJZClhRzjAo ardından https://www.youtube.com/watch?v=hFkFBjS7-vQ
@@ -92,7 +157,7 @@ public class BookList extends Activity{
         }
     };
 
-    private boolean islastItemDispalying(RecyclerView recyclerView){
+    private boolean islastItemDisplaying(RecyclerView recyclerView){
 
         if(recyclerView.getAdapter().getItemCount() != 0){
 
@@ -105,9 +170,7 @@ public class BookList extends Activity{
      return false;
     }
 
-    public void fill(final String category_name, final String book_type, final VolleyBookListInterface listener){
-        //MainPageBook item = new MainPageBook("12", "http://18.204.251.116/var/www/html/images/book/4547546457456_9730.png","adem","adem","%20","50");
-        //list.add(item);
+    public void fillCategory(final String category_name, final String book_type, final VolleyBookListInterface listener){
         String url = "http://18.204.251.116/get_book_by_category.php";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
@@ -119,7 +182,7 @@ public class BookList extends Activity{
                                 JSONObject book = jsonArray.getJSONObject(i);
                                 String author_name = book.getString("first_name") + " " + book.getString("last_name");
                                 MainPageBook item = new MainPageBook(book.getString("id"), book.getString("image"),
-                                        book.getString("title"), author_name, "%20", book.getString("price"));
+                                        book.getString("title"), author_name, book.getString("discount"), Float.parseFloat(book.getString("price")));
                                 list.add(item);
                             }
                             listener.onResponse(list);

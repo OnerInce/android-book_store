@@ -2,9 +2,10 @@ package com.zurefaseverler.kithub;
 
 public class OrderDetailsBookObj {
 
-    private String bookName, quantity, piecePrice;
+    private String bookName, quantity;
+    private float piecePrice;
 
-    public OrderDetailsBookObj(String bookName, String quantity, String piecePrice) {
+    public OrderDetailsBookObj(String bookName, String quantity, float piecePrice) {
         this.bookName = bookName;
         this.quantity = quantity;
         this.piecePrice = piecePrice;
@@ -26,11 +27,11 @@ public class OrderDetailsBookObj {
         this.quantity = quantity;
     }
 
-    public String getPiecePrice() {
+    public float getPiecePrice() {
         return piecePrice;
     }
 
-    public void setPiecePrice(String piecePrice) {
+    public void setPiecePrice(float piecePrice) {
         this.piecePrice = piecePrice;
     }
 }

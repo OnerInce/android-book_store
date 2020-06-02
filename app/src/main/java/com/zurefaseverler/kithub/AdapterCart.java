@@ -55,7 +55,7 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.designCard> {
 
     public void onBindViewHolder(@NonNull final designCard holder, final int position) {
         holder.kitapadi.setText(list.get(position).getPname());
-        holder.fiyat.setText( new StringBuilder(list.get(position).getPrice()).append(" TL"));
+        holder.fiyat.setText((list.get(position).getPrice() + " ₺"));
         holder.adet.setNumber(list.get(position).getQuantity());
 
         String[] temp = list.get(position).getImage().split("html/");
@@ -78,13 +78,13 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.designCard> {
         holder.adet.setOnValueChangeListener(new ElegantNumberButton.OnValueChangeListener() {
             @Override
             public void onValueChange(ElegantNumberButton view, int oldValue, int newValue) {
-                int newTotal = newValue * Integer.parseInt(list.get(position).getPrice());
+                float newTotal = newValue * list.get(position).getPrice();
                 list.get(position).setTotalPrice(newTotal);
                 int total = 0;
                 for(int i=0; i<list.size(); i++){
                     total += list.get(i).getTotalPrice();
                 }
-                String total_ = total + " TL";
+                String total_ = total + " ₺";
                 CartActivity.totalPrice.setText(total_);
             }
         });

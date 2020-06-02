@@ -143,7 +143,7 @@ public class UpdateBookInfo extends AppCompatActivity {
                                     jsonObjectInfo.getInt("sales"), jsonObjectInfo.getInt("no_people_rated"),
                                     jsonObjectInfo.getInt("rating"), jsonObjectInfo.getString("ISBN"),
                                     jsonObjectInfo.getString("title"), jsonObjectInfo.getString("summary"),
-                                    jsonObjectInfo.getString("image"));
+                                    jsonObjectInfo.getString("image"), Float.parseFloat(jsonObjectInfo.getString("discount_value")));
                             setBookInfo();
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -185,7 +185,7 @@ public class UpdateBookInfo extends AppCompatActivity {
         stock.setText(Integer.toString(book.getStockQuantity()));
         category.setText(book.getCategory());
         bookType.setText(book.getBookType());
-        price.setText(Integer.toString(book.getPrice()));
+        price.setText(Float.toString(book.getPrice()));
         description.setText(book.getSummary());
 
         String[] temp = book.getImage().split("html/");
