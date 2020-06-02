@@ -95,12 +95,18 @@ public class BookPage extends AppCompatActivity implements View.OnClickListener 
                     @Override
                     public void onResponse(String response) {
                         try {
-                            float discountFloat;
+                            float discountFloat = 0;
                             JSONObject jsonObject = new JSONObject(response);
                             JSONObject jsonObjectInfo = jsonObject.getJSONObject("book_info");
                             JSONArray jsonArrayComment = jsonObject.getJSONArray("comments");
 
                             try {
+
+                                try{
+                                    discountFloat = Float.parseFloat(jsonObjectInfo.getString("discount_value"));
+                                } catch (NumberFormatException ex) {
+                                    discountFloat = (float) 0.0;
+                                }
 
                                 book = new Book(jsonObjectInfo.getInt("id"),
                                         jsonObjectInfo.getString("first_name") + " " + jsonObjectInfo.getString("last_name"),
@@ -109,13 +115,8 @@ public class BookPage extends AppCompatActivity implements View.OnClickListener 
                                         jsonObjectInfo.getInt("sales"), jsonObjectInfo.getInt("no_people_rated"),
                                         jsonObjectInfo.getInt("rate"), jsonObjectInfo.getString("ISBN"),
                                         jsonObjectInfo.getString("title"), jsonObjectInfo.getString("summary"),
-                                        jsonObjectInfo.getString("image"), Float.parseFloat(jsonObjectInfo.getString("discount_value")));
+                                        jsonObjectInfo.getString("image"), discountFloat);
                             } catch (JSONException e) {
-                                try{
-                                    discountFloat = Float.parseFloat(jsonObjectInfo.getString("discount_value"));
-                                } catch (NumberFormatException ex) {
-                                    discountFloat = (float) 0.0;
-                                }
                                 book = new Book(jsonObjectInfo.getInt("id"),
                                         jsonObjectInfo.getString("first_name") + " " + jsonObjectInfo.getString("last_name"),
                                         jsonObjectInfo.getInt("stock_quantity"), jsonObjectInfo.getString("category_name"),

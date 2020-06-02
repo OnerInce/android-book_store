@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    tools:context=".Search"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/light"
+        android:orientation="horizontal">
+
+
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Kullanıcı Bilgileri"
+            android:textSize="30sp"
+            android:textColor="@color/light"
+            android:gravity="center"
+            android:background="@color/orange"
+            android:fontFamily="@font/nexa_bold"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/light">
+        <ProgressBar
+            android:id="@+id/mProgressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:indeterminateBehavior="cycle"
+            android:visibility="gone" />
+
+        <SearchView
+            android:id="@+id/mSearchView"
+            app:queryHint="Search.."
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:iconifiedByDefault="false"
+            />
+
+        <GridView
+            android:id="@+id/mGridView"
+            android:layout_weight="0.5"
+            android:numColumns="2"
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="5dp"/>
+
+    </LinearLayout>
+</LinearLayout>
