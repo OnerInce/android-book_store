@@ -29,6 +29,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 interface OnAdapterItemClickListener {
     void onItemClicked();
@@ -54,8 +55,10 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.designCard> {
     @Override
 
     public void onBindViewHolder(@NonNull final designCard holder, final int position) {
+        String s = String.format(Locale.ITALY, "%.2f", list.get(position).getPrice());
+
         holder.kitapadi.setText(list.get(position).getPname());
-        holder.fiyat.setText((list.get(position).getPrice() + " ₺"));
+        holder.fiyat.setText((s + " ₺"));
         holder.adet.setNumber(list.get(position).getQuantity());
 
         String[] temp = list.get(position).getImage().split("html/");
@@ -106,9 +109,9 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.designCard> {
         public designCard(@NonNull View itemView) {
             super(itemView);
             img = itemView.findViewById(R.id.cart_product_photo);
-            kitapadi =itemView.findViewById(R.id.cart_product_name);
-            fiyat=itemView.findViewById(R.id.cart_product_price);
-            adet=itemView.findViewById(R.id.cartItem_product_quantity1);
+            kitapadi = itemView.findViewById(R.id.cart_product_name);
+            fiyat = itemView.findViewById(R.id.cart_product_price);
+            adet = itemView.findViewById(R.id.cartItem_product_quantity1);
             update_quantity = itemView.findViewById(R.id.cartItem_updateQuantity);
         }
 

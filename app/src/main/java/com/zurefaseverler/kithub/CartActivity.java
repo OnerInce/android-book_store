@@ -29,6 +29,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 
@@ -43,7 +44,6 @@ public class CartActivity extends AppCompatActivity {
     private Button updateQuantity;
     private ImageButton back;
     private String customer_id;
-    private int total;
 
     ArrayList<Cart> cartList;
     AdapterCart adapter;
@@ -115,11 +115,11 @@ public class CartActivity extends AppCompatActivity {
 
 
     private void setNewTotalPrice() {
-        total = 0;
+        float total = 0;
         for(int i = 0; i < cartList.size(); i++)
             total += cartList.get(i).getTotalPrice();
-        String total_ = total + " ₺";
-        totalPrice.setText(total_);
+        String s = String.format(Locale.ITALY, "%.2f", total);
+        totalPrice.setText(s + " ₺");
     }
 
 
@@ -131,16 +131,26 @@ public class CartActivity extends AppCompatActivity {
                     public void onResponse(String response) {
                         try {
                             JSONArray jsonArray = new JSONArray(response);
+
                             cartList = new ArrayList<>();
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                String price = jsonObject.getString("price");
+
+                                float discountFloat = 0;
+                                try{
+                                    discountFloat = Float.parseFloat(jsonObject.getString("discount"));
+                                    price = Float.toString(Integer.parseInt(price) - (Integer.parseInt(price) * discountFloat) / 100);
+                                } catch (NumberFormatException ex) {
+                                    discountFloat = (float) 0.0;
+                                }
+
                                 String p_id = jsonObject.getString("p_id");
                                 String title = jsonObject.getString("title");
-                                String price = jsonObject.getString("price");
                                 String quantity = jsonObject.getString("quantity");
                                 String image = jsonObject.getString("image");
 
-                                Cart cartItem = new Cart(p_id, title, Float.parseFloat(price), quantity, "%20", image,
+                                Cart cartItem = new Cart(p_id, title, Float.parseFloat(price), quantity, discountFloat, image,
                                             Float.parseFloat(price) * Integer.parseInt(quantity));
                                 cartList.add(cartItem);
                             }
