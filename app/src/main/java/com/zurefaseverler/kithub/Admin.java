@@ -18,7 +18,7 @@ public class Admin extends AppCompatActivity {
 
 
 
-    // Admin ana sayfa button foksiyonları burada çalışıyor                                 #################
+
     public void add_book(View view){
 
         i = new Intent(this, AddBook.class);
@@ -28,7 +28,7 @@ public class Admin extends AppCompatActivity {
 
     public void delete_book(View view){
 
-        i = new Intent(this, DeleteBook.class);
+        i = new Intent(this, DeleteBookSearch.class);
         startActivity(i);
 
 
@@ -48,8 +48,8 @@ public class Admin extends AppCompatActivity {
 
     public void user_traffic_log(View view){
 
-
-
+        i = new Intent(this,SystemTraffic.class);
+        startActivity(i);
 
     }
 
@@ -89,5 +89,5 @@ public class Admin extends AppCompatActivity {
 
     }
 
-    //                                                                                      ###################
+
 }
