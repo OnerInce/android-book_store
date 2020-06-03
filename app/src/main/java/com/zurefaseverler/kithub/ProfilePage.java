@@ -85,6 +85,7 @@ public class ProfilePage extends AppCompatActivity  {
                         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                         SharedPreferences.Editor editor = sharedPref.edit();
                         editor.remove("id");
+                        editor.remove("name");
                         editor.apply();
 
                         Toast.makeText(getApplicationContext(), R.string.logout_success, Toast.LENGTH_SHORT).show();
