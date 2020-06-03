@@ -59,6 +59,8 @@ public class UserInfo extends AppCompatActivity {
     User thisUser;
     List<OrderConfirmOrders> order_list = new ArrayList<>();
     List<CommentObj> comment_list = new ArrayList<>();
+    String USER_NAME;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,8 +94,6 @@ public class UserInfo extends AppCompatActivity {
 
     }
 
-
-
     private User getUserInfo(Intent intent) {
         return new User(intent.getStringExtra("user_id"),
                 intent.getStringExtra("name"),
@@ -109,6 +109,7 @@ public class UserInfo extends AppCompatActivity {
         TextView address = findViewById(R.id.searchUser_address);
         ImageView image = findViewById(R.id.profilePage_photo);
 
+        USER_NAME = thisUser.getName();
         name.setText(thisUser.getName());
         phone.setText(thisUser.getPhone());
         e_mail.setText(thisUser.getE_mail());
@@ -137,7 +138,7 @@ public class UserInfo extends AppCompatActivity {
                                 String shipperName = jsonObject.getString("shipper_name");
                                 String bookCount = jsonObject.getString("book_count");
 
-                                OrderConfirmOrders temp = new OrderConfirmOrders(order_id, user_id, orderTime, bookCount, totalPrice, address, shipperName);
+                                OrderConfirmOrders temp = new OrderConfirmOrders(order_id, USER_NAME, orderTime, bookCount, Float.parseFloat(totalPrice), address, shipperName);
                                 order_list.add(temp);
                             }
                             listener.onResponse(response);

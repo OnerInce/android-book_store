@@ -1,8 +1,5 @@
 package com.zurefaseverler.kithub;
 
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
-
 public class Book {
     private int book_id, stockQuantity,  sales, ratedCount;
     private float rating, discount, price;

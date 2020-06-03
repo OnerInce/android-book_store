@@ -43,7 +43,8 @@ public class CartActivity extends AppCompatActivity {
     public static TextView totalPrice;
     private Button updateQuantity;
     private ImageButton back;
-    private String customer_id;
+    private String customer_id, s;
+    float total;
 
     ArrayList<Cart> cartList;
     AdapterCart adapter;
@@ -94,7 +95,7 @@ public class CartActivity extends AppCompatActivity {
                     intent.putExtra(cartItemID + " PRICE", book_price);
                     intent.putExtra(cartItemID + " CUSTOMER", customer_id);
                 }
-                intent.putExtra("TOTAL_ORDER_PRICE", totalPrice.getText());
+                intent.putExtra("TOTAL_ORDER_PRICE", total);
                 startActivity(intent);
             }
         });
@@ -115,10 +116,10 @@ public class CartActivity extends AppCompatActivity {
 
 
     private void setNewTotalPrice() {
-        float total = 0;
+        total = 0;
         for(int i = 0; i < cartList.size(); i++)
             total += cartList.get(i).getTotalPrice();
-        String s = String.format(Locale.ITALY, "%.2f", total);
+        s = String.format(Locale.ITALY, "%.2f", total);
         totalPrice.setText(s + " ₺");
     }
 
