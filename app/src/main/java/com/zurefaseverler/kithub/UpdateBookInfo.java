@@ -106,12 +106,10 @@ public class UpdateBookInfo extends AppCompatActivity {
                 params.put("title", book_name.getText().toString());
                 params.put("first_name", first_name.toString().toString());
                 params.put("last_name", authorName[authorName.length-1]);
-                params.put("stock", stock.getText().toString());
                 params.put("category_name", category.getText().toString());
                 params.put("book_type_name", bookType.getText().toString());
                 params.put("price", price.getText().toString());
                 params.put("summary", description.getText().toString());
-                //https://img.kitapyurdu.com/v1/getImage/fn:100395/wi:500/wh:t
                 if(isImageChanged) {
                     params.put("image_changed", "1");
                     params.put("image", imageToString(bitmap));
@@ -135,15 +133,14 @@ public class UpdateBookInfo extends AppCompatActivity {
                         try {
                             JSONObject jsonObject = new JSONObject(response);
                             JSONObject jsonObjectInfo = jsonObject.getJSONObject("book_info");
-
                             book = new Book(jsonObjectInfo.getInt("id"),
                                     jsonObjectInfo.getString("first_name") + " " + jsonObjectInfo.getString("last_name"),
-                                    jsonObjectInfo.getInt("stock_quantity"), jsonObjectInfo.getString("category_name"),
+                                    0, jsonObjectInfo.getString("category_name"),
                                     jsonObjectInfo.getString("book_type_name"), jsonObjectInfo.getInt("price"),
-                                    jsonObjectInfo.getInt("sales"), jsonObjectInfo.getInt("no_people_rated"),
-                                    jsonObjectInfo.getInt("rating"), jsonObjectInfo.getString("ISBN"),
+                                    0, 0,
+                                    0, jsonObjectInfo.getString("ISBN"),
                                     jsonObjectInfo.getString("title"), jsonObjectInfo.getString("summary"),
-                                    jsonObjectInfo.getString("image"), Float.parseFloat(jsonObjectInfo.getString("discount_value")));
+                                    jsonObjectInfo.getString("image"), 0);
                             setBookInfo();
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -169,10 +166,16 @@ public class UpdateBookInfo extends AppCompatActivity {
 
     @SuppressLint("SetTextI18n")
     private void setBookInfo() {
+        stock = (EditText) findViewById(R.id.admin_add_book_stock_quantity);
+        TextView stockText = (TextView) findViewById(R.id.addBook_stockText);
+        stock.setVisibility(View.GONE);
+        stockText.setVisibility(View.GONE);
+
+
         ISBN = (EditText) findViewById(R.id.ISBN);
         book_name = (EditText) findViewById(R.id.admin_add_book_title);
         author = (EditText) findViewById(R.id.admin_add_book_author);
-        stock = (EditText) findViewById(R.id.admin_add_book_stock_quantity);
+
         category = (EditText) findViewById(R.id.admin_add_book_category);
         bookType = (EditText) findViewById(R.id.admin_add_book_type);
         price = (EditText) findViewById(R.id.admin_add_book_price);

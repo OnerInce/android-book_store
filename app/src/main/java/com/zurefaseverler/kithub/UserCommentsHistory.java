@@ -35,11 +35,11 @@ public class UserCommentsHistory extends AppCompatActivity {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         int id = sharedPref.getInt("id", -1);
 
-        getBookInfo(id);
+        getComments(id);
 
     }
 
-    private void getBookInfo(final int id) {
+    private void getComments(final int id) {
         String url = "http://18.204.251.116/user_comments.php";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {

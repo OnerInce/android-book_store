@@ -1,5 +1,6 @@
 package com.zurefaseverler.kithub;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -29,6 +30,7 @@ public class OrderConfirmAdapter extends RecyclerView.Adapter<OrderConfirmAdapte
         return new ViewHolder(view);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
@@ -37,6 +39,9 @@ public class OrderConfirmAdapter extends RecyclerView.Adapter<OrderConfirmAdapte
         holder.date.setText("Tarih: " + list.get(position).getDate());
         holder.numof_book.setText("Kitap sayısı: " + list.get(position).getNumofbook());
         holder.total_amount.setText("Toplam tutar: " + list.get(position).getTotalamount() + " ₺");
+        holder.address.setText("Adres: " + list.get(position).getAddress());
+        holder.shipper.setText(list.get(position).getShipper() + "Kargo");
+
 
     }
 
@@ -47,7 +52,7 @@ public class OrderConfirmAdapter extends RecyclerView.Adapter<OrderConfirmAdapte
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
-        public TextView order_id, user_id, date, numof_book, total_amount;
+        public TextView order_id, user_id, date, numof_book, total_amount, address, shipper;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -57,6 +62,8 @@ public class OrderConfirmAdapter extends RecyclerView.Adapter<OrderConfirmAdapte
             date = itemView.findViewById(R.id.order_layout_order_date);
             numof_book = itemView.findViewById(R.id.order_layout_order_numof_book);
             total_amount = itemView.findViewById(R.id.order_layout_total_amount);
+            address = itemView.findViewById(R.id.order_layout_address);
+            shipper = itemView.findViewById(R.id.order_layout_shipper);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
