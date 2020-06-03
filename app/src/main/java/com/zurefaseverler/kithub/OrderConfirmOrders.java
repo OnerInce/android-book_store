@@ -7,13 +7,25 @@ public class OrderConfirmOrders {
     private String date;
     private String numofbook;
     private String totalamount;
+    private String shipper;
+    private String address;
 
-    public OrderConfirmOrders(String orderid, String userid, String date, String numofbook, String totalamount) {
+    public OrderConfirmOrders(String orderid, String userid, String date, String numofbook, String totalamount, String address, String shipper) {
         this.orderid = orderid;
         this.userid = userid;
         this.date = date;
         this.numofbook = numofbook;
         this.totalamount = totalamount;
+        this.address = address;
+        this.shipper = shipper;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getShipper() {
+        return shipper;
     }
 
     public String getOrderid() {

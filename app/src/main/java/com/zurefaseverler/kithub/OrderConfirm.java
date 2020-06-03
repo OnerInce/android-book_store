@@ -28,12 +28,12 @@ public class OrderConfirm extends AppCompatActivity {
     }
 
     public void fill(){
-
+/*
         for(int i = 0; i < 9; i++){
             OrderConfirmOrders temp = new OrderConfirmOrders("92", "18", "12.12.2020", "8", "152.86");
             list.add(temp);
         }
-
+*/
     }
 
 }
