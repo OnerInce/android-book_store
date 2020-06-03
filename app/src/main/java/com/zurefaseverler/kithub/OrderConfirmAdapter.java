@@ -1,6 +1,7 @@
 package com.zurefaseverler.kithub;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,6 +58,20 @@ public class OrderConfirmAdapter extends RecyclerView.Adapter<OrderConfirmAdapte
             numof_book = itemView.findViewById(R.id.order_layout_order_numof_book);
             total_amount = itemView.findViewById(R.id.order_layout_total_amount);
 
-        }
-    }
-}
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int pos = getAdapterPosition();
+
+                    if (pos != RecyclerView.NO_POSITION) {
+                        Intent intent = new Intent(context.getApplicationContext(), OrderDetails.class);
+
+                        //                                      order id extrası burada verilecek
+                        context.startActivity(intent);
+                    }
+
+                }
+
+
+            });
+        }}}

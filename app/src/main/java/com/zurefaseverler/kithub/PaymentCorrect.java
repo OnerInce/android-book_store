@@ -16,10 +16,23 @@ public class PaymentCorrect extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_correct);
 
+        ImageButton back = findViewById(R.id.back_button);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(PaymentCorrect.this, MainActivity.class);
+                startActivity(i);
+            }
+        });
+
+
+
 
     }
 
-
-
+    public void onBackPressed(){
+        Intent i = new Intent(PaymentCorrect.this, MainActivity.class);
+        startActivity(i);
+    }
 
 }
