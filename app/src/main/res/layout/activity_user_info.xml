@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light"
+    android:background="@color/gray"
     tools:context=".UserInfo">
 
     <ScrollView
@@ -98,7 +98,7 @@
                 android:layout_marginBottom="16dp"
                 android:layout_weight="1"
                 android:fontFamily="@font/nexa_bold"
-                android:text="Siparis Gecmisi"
+                android:text="Sipariş Geçmişi"
                 android:textColor="@color/darkblue"
                 android:textSize="20sp" />
 
@@ -119,7 +119,7 @@
                 android:layout_marginBottom="16dp"
                 android:layout_weight="1"
                 android:fontFamily="@font/nexa_bold"
-                android:text="Kullanicinin Yapmis Oldugu Yorumlar"
+                android:text="Kullanıcının Yapmış Olduğu Yorumlar"
                 android:textColor="@color/darkblue"
                 android:textSize="20sp" />
 
