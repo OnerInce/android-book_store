@@ -4,12 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
+
     <RelativeLayout
         android:id="@+id/top"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-
-        >
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/siparis_detayi"
@@ -17,130 +18,168 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginEnd="201dp"
-            android:layout_marginBottom="25dp"
-            android:layout_weight="1"
+            android:layout_marginEnd="213dp"
+            android:layout_marginBottom="30dp"
             android:fontFamily="@font/nexa_bold"
             android:text="Sipariş Detayı"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:textColor="@color/darkblue"
+            />
 
         <ImageButton
             android:id="@+id/oderDetailBackButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="15dp"
-            android:layout_toStartOf="@+id/siparis_detayi"
+            android:layout_marginEnd="347dp"
+            android:layout_marginBottom="21dp"
             app:srcCompat="@drawable/ic_arrow_back_dark" />
 
-
     </RelativeLayout>
 
 
-    <androidx.cardview.widget.CardView
-        android:layout_below="@+id/top"
-        android:id="@+id/cardViewId"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_marginTop="5dp"
-
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/top"
         >
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
 
-            <TextView
-                android:id="@+id/order_detail_name"
-                android:layout_width="250dp"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/detail_recycler"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/cart_product_photo"
-                android:layout_alignParentTop="true"
-                android:layout_marginStart="14dp"
-                android:layout_marginLeft="14dp"
-                android:layout_marginTop="57dp"
-                android:layout_marginRight="-338dp"
-                android:layout_marginBottom="35dp"
-                android:layout_toEndOf="@+id/order_detail_photo"
-                android:layout_toRightOf="@id/order_detail_photo"
-                android:ellipsize="end"
-                android:fontFamily="@font/nexa_bold"
-                android:gravity="center"
-                android:maxLines="1"
-                android:text="Product Name"
-                android:textColor="@color/blue"
-                android:textSize="15sp">
+                android:layout_below="@id/top"
+            >
 
-            </TextView>
+            </androidx.recyclerview.widget.RecyclerView>
 
-            <ImageView
-                android:id="@+id/order_detail_photo"
-                android:layout_width="70dp"
-                android:layout_height="90dp"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginStart="43dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="50dp">
-
-            </ImageView>
-
-            <TextView
-                android:id="@+id/order_detail_price"
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/order_detail_name"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="108dp"
-                android:layout_marginBottom="-34dp"
-                android:fontFamily="@font/nexa_bold"
-                android:text="Product Price"
-                android:textColor="@color/blue"
-                android:textSize="15sp">
+                android:layout_below="@+id/detail_recycler">
 
-            </TextView>
+                <TextView
+                    android:id="@+id/addressHeader"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Adres Bilgileri"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/nexa_bold"
+                    android:textColor="@color/darkblue"
 
-            <TextView
-                android:id="@+id/order_detail_date"
-                android:layout_width="363dp"
-                android:layout_height="wrap_content"
+                ></TextView>
 
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginEnd="18dp"
-                android:layout_marginBottom="165dp"
-                android:fontFamily="@font/nexa_bold"
-                android:text="Tarih"
-                android:textColor="@color/orange"
-                android:textSize="20sp">
-
-            </TextView>
-
-        </RelativeLayout>
-
-    </androidx.cardview.widget.CardView>
+                <TextView
+                    android:id="@+id/showAddress"
+                    android:layout_marginTop="10dp"
+                    android:layout_below="@+id/addressHeader"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:text="Toros Mahallesi 78111 Sokak Mehmet Çavuş Apartmanı Kat:9 No:27"
+                    android:textSize="17sp"
+                ></TextView>
 
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/cardViewId"
-        android:layout_marginTop="7dp">
-
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/animationView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="378dp"
-            app:lottie_autoPlay="true"
-            app:lottie_loop="true"
-            app:lottie_url="REPLACE_JSON_URL" />
+            </RelativeLayout>
 
 
-    </RelativeLayout>
+            <RelativeLayout
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/CargoHeader"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Kargo Bilgileri"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/nexa_bold"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="15dp"
+                    android:textColor="@color/darkblue"
+
+                    ></TextView>
+
+                <ImageView
+                    android:id="@+id/CargoImage"
+                    android:layout_below="@id/CargoHeader"
+                    android:layout_width="85dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginTop="10dp"
+                    android:scaleType="fitXY"
+                    android:background="@drawable/shipping1"
+
+                    ></ImageView>
+
+
+
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+
+                >
+
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/animationView"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="127dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginEnd="134dp"
+                    android:scaleType="fitXY"
+                    app:lottie_autoPlay="true"
+                    app:lottie_fileName="box_open_loading.json"
+                    app:lottie_loop="true"
+                    app:lottie_url="REPLACE_JSON_URL" />
+
+                <TextView
+                    android:id="@+id/shippingStatus"
+                    android:layout_width="305dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="61dp"
+                    android:layout_marginTop="100dp"
+
+                    android:layout_marginEnd="45dp"
+                    android:fontFamily="@font/nexa_bold"
+                    android:text="Siparişiniz Hazırlanıyor"
+                    android:textColor="@color/blue"
+                    android:textSize="25sp"></TextView>
+
+
+            </RelativeLayout>
+
+
+
+
+        </LinearLayout>
+
+
+
+    </ScrollView>
+
+
+
+
 
 
 </RelativeLayout>
