@@ -66,14 +66,17 @@ public class DiscountBookSearch extends AppCompatActivity {
         private String last_name;
         @SerializedName("price")
         private String price;
+        @SerializedName("discount_value")
+        private String discount;
 
         public SearchResults(String id, String title, String first_name, String last_name,
-                             String price) {
+                             String price, String discount) {
             this.id = id;
             this.title = title;
             this.first_name = first_name;
             this.last_name = last_name;
             this.price = price;
+            this.discount = discount;
         }
 
         public String getId() {
@@ -90,6 +93,9 @@ public class DiscountBookSearch extends AppCompatActivity {
         }
         public String getPrice() {
             return price;
+        }
+        public String getDiscount() {
+            return discount;
         }
 
         @NonNull
@@ -147,18 +153,23 @@ public class DiscountBookSearch extends AppCompatActivity {
         @Override
         public View getView(int position, View view, ViewGroup viewGroup) {
             if (view == null) {
-                view = LayoutInflater.from(context).inflate(R.layout.activity_search_model,
+                view = LayoutInflater.from(context).inflate(R.layout.discount_search_model,
                         viewGroup, false);
             }
 
             TextView nameTxt = view.findViewById(R.id.nameTextView);
             TextView txtAuthor = view.findViewById(R.id.authorTextView);
+            TextView quantity = view.findViewById(R.id.discount_quantity);
 
             final SearchResults thisBook = books.get(position);
 
             nameTxt.setText(thisBook.getTitle());
             txtAuthor.setText(thisBook.getFirst_name() + " " + thisBook.getLast_name());
 
+            if (thisBook.getDiscount() == null)
+                quantity.setText("İndirim miktarı: %0");
+            else
+                quantity.setText("İndirim miktarı: %" + thisBook.getDiscount());
             return view;
         }
 
