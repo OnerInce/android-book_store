@@ -1,11 +1,11 @@
 package com.zurefaseverler.kithub;
 
 public class Cart {
-    private String image, pid, pname, quantity, discount;
-    private float price;
-    private float totalPrice = 0;
+    private String image, pid, pname, quantity;
+    private float discount;
+    private float price, totalPrice = 0;
 
-    public Cart(String pid, String pname, float price, String quantity, String discount, String image, float totalPrice) {
+    public Cart(String pid, String pname, float price, String quantity, float discount, String image, float totalPrice) {
         this.pid = pid;
         this.pname = pname;
         this.price = price;
@@ -39,7 +39,7 @@ public class Cart {
         return quantity;
     }
 
-    public String getDiscount() {
+    public float getDiscount() {
         return discount;
     }
 

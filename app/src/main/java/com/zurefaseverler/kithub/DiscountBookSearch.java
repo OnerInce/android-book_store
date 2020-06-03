@@ -26,10 +26,19 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.volley.Request;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.google.gson.annotations.SerializedName;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -43,6 +52,7 @@ import retrofit2.http.FormUrlEncoded;
 
 public class DiscountBookSearch extends AppCompatActivity {
     private static final String BASE_URL = "http://18.204.251.116";
+    String bookName;
 
     static class SearchResults {
 
@@ -231,8 +241,8 @@ public class DiscountBookSearch extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 final SearchResults book = (SearchResults) mGridView.getItemAtPosition(position);
-
-                final String bookName = book.getTitle();
+                bookName = book.getTitle();
+                final String bookID = book.getId();
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(DiscountBookSearch.this);
 
@@ -240,29 +250,24 @@ public class DiscountBookSearch extends AppCompatActivity {
                 View dialogView = inflater.inflate(R.layout.activity_discount_info,null);
 
                 TextView dialogTitle = dialogView.findViewById(R.id.dialog_title);
-                String dialogTitleStr = bookName + " adli kitaba indirim uygulamak istediginizden emin misiniz? Eminseniz miktari giriniz.";
+                String dialogTitleStr = bookName + getString(R.string.discount_sure);
                 dialogTitle.setText(dialogTitleStr);
 
                 builder.setCancelable(false);
-
                 builder.setView(dialogView);
 
                 Button btn_positive = (Button) dialogView.findViewById(R.id.dialog_positive_btn);
                 Button btn_negative = (Button) dialogView.findViewById(R.id.dialog_negative_btn);
-                final EditText discount_amount_et = (EditText) dialogView.findViewById(R.id.discount_amount_et);
 
+                final EditText discount_amount_et = (EditText) dialogView.findViewById(R.id.discount_amount_et);
                 final AlertDialog dialog = builder.create();
 
                 btn_positive.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         dialog.cancel();
-
-                        Float discountAmount = Float.parseFloat(discount_amount_et.getText().toString());
-                        Toast.makeText(getApplication(),
-                                bookName+ " adli kitaba % " + discountAmount + " indirim uyguladiniz.", Toast.LENGTH_SHORT).show();
-
-//                        discount islemi burda yapilacak ----------------------------------------------------------------------------------------------------------------------
+                        float discountAmount = Float.parseFloat(discount_amount_et.getText().toString());
+                        discountToDatabase(bookID, discountAmount);
 
                     }
                 });
@@ -272,15 +277,52 @@ public class DiscountBookSearch extends AppCompatActivity {
                     public void onClick(View v) {
                         dialog.dismiss();
                         Toast.makeText(getApplication(),
-                                "Islem iptal edildi", Toast.LENGTH_SHORT).show();
+                                R.string.discount_cancel, Toast.LENGTH_SHORT).show();
                     }
                 });
 
                 dialog.show();
 
-
             }
         });
+    }
+
+    private void discountToDatabase(final String book, final float amount) {
+        String url = "http://18.204.251.116/discount.php";
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                new com.android.volley.Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            String success = jsonObject.getString("success");
+                            if(success.equals("1")){
+                                Toast.makeText(getApplication(),
+                                        bookName + " adlı kitaba % " + amount + " indirim uyguladınız.", Toast.LENGTH_SHORT).show();
+                            }
+                            else
+                                Toast.makeText(getApplication(),
+                                        bookName + " adlı kitabın indrimi güncellendi ", Toast.LENGTH_SHORT).show();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new com.android.volley.Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                }){
+            @Override
+            protected Map<String, String> getParams() {
+                HashMap<String, String> params = new HashMap<>();
+                params.put("id", book);
+                params.put("amount", Float.toString(amount));
+                return params;
+            }
+        };
+        NetworkRequests.getInstance(this).addToRequestQueue(stringRequest);
     }
 }
 

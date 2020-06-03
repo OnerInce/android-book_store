@@ -17,7 +17,9 @@ import com.squareup.picasso.Picasso;
 import java.io.IOException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 
 public class MainPageRecyclerViewAdapter extends RecyclerView.Adapter<MainPageRecyclerViewAdapter.ViewHolder>{
     @NonNull
@@ -39,13 +41,16 @@ public class MainPageRecyclerViewAdapter extends RecyclerView.Adapter<MainPageRe
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.bookname.setText(list.get(position).getBookname());
-        holder.authorname.setText(list.get(position).getAuthorname());
-        if(!list.get(position).getDiscountamount().equals(""))
+        if(!list.get(position).getDiscountamount().equals("") && !list.get(position).getDiscountamount().equals("0"))
             holder.discountamount.setText("İndirim: %" + list.get(position).getDiscountamount());
         else
             holder.discountamount.setText("");
-        holder.price.setText(list.get(position).getPrice() + " ₺");
+
+        holder.bookname.setText(list.get(position).getBookname());
+        holder.authorname.setText(list.get(position).getAuthorname());
+
+        String s = String.format(Locale.ITALY, "%.2f", list.get(position).getPrice());
+        holder.price.setText(s + " ₺");
 
 
         String[] temp = list.get(position).getImagepath().split("html/");
