@@ -52,14 +52,14 @@
             card_view:layout_constraintTop_toBottomOf="@+id/nameTextView" />
 
         <TextView
-            android:id="@+id/stock_quantity"
+            android:id="@+id/discount_quantity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:fontFamily="@font/nexa_light"
-            android:text="Stok miktarı: "
+            android:text="İndirim miktarı: "
             android:textColor="@color/darkblue"
-            android:textSize="15sp"
+            android:fontFamily="@font/nexa_light"
+            android:textSize="12sp"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toBottomOf="@+id/authorTextView" />

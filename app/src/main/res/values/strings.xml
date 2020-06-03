@@ -74,6 +74,25 @@
     <string name="payment_select_shipper">Lütfen bir kargo şirketi seçiniz</string>
     <string name="pay_select_install">Lütfen taksit sayısı seçiniz</string>
     <string name="select_category_to_delete">Silinecek kategoriyi seçin.</string>
+    <string name="discount_sure"> adlı kitaba indirim uygulamak istediğinizden emin misiniz?\nEminseniz miktarı giriniz.</string>
+    <string name="discount_cancel">İşlem iptal edildi</string>
+    
+    <string-array name="operation_type">
+        <item>Giriş yapma</item>
+        <item>Çıkış yapma</item>
+        <item>Sepet İşlemleri</item>
+        <item>Sipariş verme</item>
+        <item>Yorum yapma</item>
+        <item>Kullanıcı bilgileri güncelleme</item>
+        <item>Kaydolma</item>
+    </string-array>
 
+    <string-array name="time_filter">
+        <item>24 saat</item>
+        <item>1 hafta</item>
+        <item>1 ay</item>
+        <item>1 yıl</item>
+        <item>Tüm zamanlar</item>
+    </string-array>
 
 </resources>

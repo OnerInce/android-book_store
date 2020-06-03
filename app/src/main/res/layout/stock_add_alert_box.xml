@@ -16,6 +16,7 @@
         android:id="@+id/add_stock_quantity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:inputType="number"
         android:hint="Eklenecek stok miktarı"
         android:textSize="15dp"
         android:layout_below="@id/dialog_title"/>

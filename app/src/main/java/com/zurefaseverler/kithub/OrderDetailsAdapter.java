@@ -33,8 +33,8 @@ public class OrderDetailsAdapter extends RecyclerView.Adapter<OrderDetailsAdapte
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
         holder.bookName.setText(list.get(position).getBookName());
-        holder.quantity.setText("Adet: "+list.get(position).getQuantity());
-        holder.piecePrice.setText("Adet fiyatı: "+list.get(position).getPiecePrice()+ " TL");
+        holder.quantity.setText("Adet: " + list.get(position).getQuantity());
+        holder.piecePrice.setText("Adet fiyatı: " + list.get(position).getPiecePrice() + " ₺");
 
     }
 

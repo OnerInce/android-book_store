@@ -2,20 +2,18 @@ package com.zurefaseverler.kithub;
 
 public class OrderDetailsBookObj {
 
-    private String bookName, quantity, piecePrice;
+    private String bookName, quantity;
+    private float piecePrice, discount;
 
-    public OrderDetailsBookObj(String bookName, String quantity, String piecePrice) {
+    OrderDetailsBookObj(String bookName, String quantity, float piecePrice, float discount) {
         this.bookName = bookName;
         this.quantity = quantity;
         this.piecePrice = piecePrice;
+        this.discount = discount;
     }
 
     public String getBookName() {
         return bookName;
-    }
-
-    public void setBookName(String bookName) {
-        this.bookName = bookName;
     }
 
     public String getQuantity() {
@@ -26,11 +24,11 @@ public class OrderDetailsBookObj {
         this.quantity = quantity;
     }
 
-    public String getPiecePrice() {
+    public float getPiecePrice() {
         return piecePrice;
     }
 
-    public void setPiecePrice(String piecePrice) {
-        this.piecePrice = piecePrice;
+    public float getDiscount() {
+        return discount;
     }
 }

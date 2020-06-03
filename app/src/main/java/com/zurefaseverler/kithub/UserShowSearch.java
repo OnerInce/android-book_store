@@ -42,50 +42,49 @@ public class UserShowSearch extends AppCompatActivity {
 
         @SerializedName("id")
         private String id;
-        @SerializedName("title")
-        private String title;
-        @SerializedName("first_name")
-        private String first_name;
-        @SerializedName("last_name")
-        private String last_name;
-        @SerializedName("price")
-        private String price;
-
-        public SearchResults(String id, String title, String first_name, String last_name,
-                             String price) {
-            this.id = id;
-            this.title = title;
-            this.first_name = first_name;
-            this.last_name = last_name;
-            this.price = price;
-        }
+        @SerializedName("name")
+        private String name;
+        @SerializedName("e_mail")
+        private String e_mail;
+        @SerializedName("phone")
+        private String phone;
+        @SerializedName("address")
+        private String address;
+        @SerializedName("image")
+        private String image;
 
         public String getId() {
             return id;
         }
-        public String getTitle() {
-            return title;
+        public String getName() {
+            return name;
         }
-        String getFirst_name() {
-            return first_name;
+        public String getE_mail() {
+            return e_mail;
         }
-        String getLast_name() {
-            return last_name;
+        public String getPhone() {
+            return phone;
         }
-        public String getPrice() {
-            return price;
+        public String getAddress() {
+            return address;
+        }
+        public String getImage() {
+            return image;
         }
 
-        @NonNull
-        @Override
-        public String toString() {
-            return getTitle();
+        public SearchResults(String id, String name, String e_mail, String phone, String address, String image) {
+            this.id = id;
+            this.name = name;
+            this.e_mail = e_mail;
+            this.phone = phone;
+            this.address = address;
+            this.image = image;
         }
     }
 
     interface MyAPIService {
         @FormUrlEncoded
-        @POST("search_books.php")
+        @POST("search_users.php")
         Call<List<SearchResults>> searchKitHub(@Field("query") String query);
     }
 
@@ -104,22 +103,22 @@ public class UserShowSearch extends AppCompatActivity {
     }
     static class ListViewAdapter extends BaseAdapter {
 
-        private List<SearchResults> books;
+        private List<SearchResults> users;
         private Context context;
 
-        ListViewAdapter(Context context, List<SearchResults> books) {
+        ListViewAdapter(Context context, List<SearchResults> users) {
             this.context = context;
-            this.books = books;
+            this.users = users;
         }
 
         @Override
         public int getCount() {
-            return books.size();
+            return users.size();
         }
 
         @Override
         public Object getItem(int pos) {
-            return books.get(pos);
+            return users.get(pos);
         }
 
         @Override
@@ -138,10 +137,10 @@ public class UserShowSearch extends AppCompatActivity {
             TextView nameTxt = view.findViewById(R.id.nameTextView);
             TextView txtAuthor = view.findViewById(R.id.authorTextView);
 
-            final SearchResults thisBook = books.get(position);
+            final SearchResults thisUser = users.get(position);
 
-            nameTxt.setText(thisBook.getTitle());
-            txtAuthor.setText(thisBook.getFirst_name() + " " + thisBook.getLast_name());
+            nameTxt.setText(thisUser.getName());
+            txtAuthor.setText(thisUser.getE_mail());
 
             return view;
         }
@@ -169,7 +168,7 @@ public class UserShowSearch extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search);
+        setContentView(R.layout.activity_usershowsearch);
 
         this.initializeWidgets();
         final MyAPIService myAPIService = RetrofitClientInstance.getRetrofitInstance().create(MyAPIService.class);
@@ -228,7 +227,12 @@ public class UserShowSearch extends AppCompatActivity {
                 SearchResults user = (SearchResults) mGridView.getItemAtPosition(position);
 
                 Intent intent = new Intent(getApplicationContext(), UserInfo.class);
-                intent.putExtra("book_id", user.getId());
+                intent.putExtra("user_id", user.getId());
+                intent.putExtra("name", user.getName());
+                intent.putExtra("phone", user.getPhone());
+                intent.putExtra("e_mail", user.getE_mail());
+                intent.putExtra("address", user.getAddress());
+                intent.putExtra("image", user.getImage());
                 startActivity(intent);
             }
         });

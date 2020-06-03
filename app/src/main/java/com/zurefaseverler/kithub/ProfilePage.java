@@ -19,7 +19,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -85,6 +84,7 @@ public class ProfilePage extends AppCompatActivity  {
                         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                         SharedPreferences.Editor editor = sharedPref.edit();
                         editor.remove("id");
+                        editor.remove("name");
                         editor.apply();
 
                         Toast.makeText(getApplicationContext(), R.string.logout_success, Toast.LENGTH_SHORT).show();
@@ -173,7 +173,7 @@ public class ProfilePage extends AppCompatActivity  {
 
                             twMail = findViewById(R.id.email);
                             twName = findViewById(R.id.name);
-                            imageView = findViewById(R.id.profilePhoto);
+                            imageView = findViewById(R.id.profilePage_photo);
 
                             twMail.setText(jsonObject.getString("e_mail"));
                             twName.setText(jsonObject.getString("complete_name"));

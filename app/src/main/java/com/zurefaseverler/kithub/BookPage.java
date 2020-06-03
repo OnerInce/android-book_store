@@ -41,12 +41,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.TimeZone;
 
 public class BookPage extends AppCompatActivity implements View.OnClickListener {
 
-    private TextView summary;
+    private TextView summary, discount;
     private boolean boolSummary, boolAuthor;
     private float initialRate;
     RatingBar ratingBar;
@@ -63,6 +64,7 @@ public class BookPage extends AppCompatActivity implements View.OnClickListener 
 
         Intent intent = getIntent();
         book_id = intent.getStringExtra("book_id");
+        discount = findViewById(R.id.discountText);
 
         getBookInfo(book_id);
 
@@ -94,11 +96,18 @@ public class BookPage extends AppCompatActivity implements View.OnClickListener 
                     @Override
                     public void onResponse(String response) {
                         try {
+                            float discountFloat = 0;
                             JSONObject jsonObject = new JSONObject(response);
                             JSONObject jsonObjectInfo = jsonObject.getJSONObject("book_info");
                             JSONArray jsonArrayComment = jsonObject.getJSONArray("comments");
 
                             try {
+
+                                try{
+                                    discountFloat = Float.parseFloat(jsonObjectInfo.getString("discount_value"));
+                                } catch (NumberFormatException ex) {
+                                    discountFloat = (float) 0.0;
+                                }
 
                                 book = new Book(jsonObjectInfo.getInt("id"),
                                         jsonObjectInfo.getString("first_name") + " " + jsonObjectInfo.getString("last_name"),
@@ -107,7 +116,7 @@ public class BookPage extends AppCompatActivity implements View.OnClickListener 
                                         jsonObjectInfo.getInt("sales"), jsonObjectInfo.getInt("no_people_rated"),
                                         jsonObjectInfo.getInt("rate"), jsonObjectInfo.getString("ISBN"),
                                         jsonObjectInfo.getString("title"), jsonObjectInfo.getString("summary"),
-                                        jsonObjectInfo.getString("image"));
+                                        jsonObjectInfo.getString("image"), discountFloat);
                             } catch (JSONException e) {
                                 book = new Book(jsonObjectInfo.getInt("id"),
                                         jsonObjectInfo.getString("first_name") + " " + jsonObjectInfo.getString("last_name"),
@@ -116,7 +125,7 @@ public class BookPage extends AppCompatActivity implements View.OnClickListener 
                                         jsonObjectInfo.getInt("sales"), jsonObjectInfo.getInt("no_people_rated"),
                                         0, jsonObjectInfo.getString("ISBN"),
                                         jsonObjectInfo.getString("title"), jsonObjectInfo.getString("summary"),
-                                        jsonObjectInfo.getString("image"));
+                                        jsonObjectInfo.getString("image"), discountFloat);
                             }
 
                             for (int i = 0; i < jsonArrayComment.length(); i++){
@@ -156,12 +165,18 @@ public class BookPage extends AppCompatActivity implements View.OnClickListener 
         initialRate = ratingBar.getNumStars();
         TextView price = findViewById(R.id.bookPage_price);
         addCart = findViewById(R.id.bookPage_addCartButton);
+        if (book.getDiscount() != 0.0f)
+            discount.setText("-% " + book.getDiscount());
+        else
+            discount.setText("");
 
         updateComments(-1);
 
         bookName.setText(book.getTitle());
         author_type.setText(String.format("%s / %s", book.getAuthor(), book.getBookType()));
-        price.setText(String.format("%s TL",book.getPrice()));
+        String s = String.format(Locale.ITALY, "%.2f", book.getPrice());
+        price.setText(String.format("%s ₺", s));
+
 
         if(book.getRatedCount() != 0)
             ratingBar.setRating(book.getRating() / book.getRatedCount());

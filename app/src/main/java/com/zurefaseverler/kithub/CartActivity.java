@@ -29,6 +29,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 
@@ -42,8 +43,8 @@ public class CartActivity extends AppCompatActivity {
     public static TextView totalPrice;
     private Button updateQuantity;
     private ImageButton back;
-    private String customer_id;
-    private int total;
+    private String customer_id, s;
+    float total;
 
     ArrayList<Cart> cartList;
     AdapterCart adapter;
@@ -87,14 +88,14 @@ public class CartActivity extends AppCompatActivity {
                     String cartItemID = "ITEM" + i;
                     String book_id = currentObj.getPid();
                     String quantity = currentObj.getQuantity();
-                    String book_price = Integer.toString(Integer.parseInt(currentObj.getPrice()));
+                    String book_price = Float.toString(currentObj.getPrice());
 
                     intent.putExtra(cartItemID + " BOOK", book_id);
                     intent.putExtra(cartItemID + " QUANTITY", quantity);
                     intent.putExtra(cartItemID + " PRICE", book_price);
                     intent.putExtra(cartItemID + " CUSTOMER", customer_id);
                 }
-                intent.putExtra("TOTAL_ORDER_PRICE", totalPrice.getText());
+                intent.putExtra("TOTAL_ORDER_PRICE", total);
                 startActivity(intent);
             }
         });
@@ -118,8 +119,8 @@ public class CartActivity extends AppCompatActivity {
         total = 0;
         for(int i = 0; i < cartList.size(); i++)
             total += cartList.get(i).getTotalPrice();
-        String total_ = total + " TL";
-        totalPrice.setText(total_);
+        s = String.format(Locale.ITALY, "%.2f", total);
+        totalPrice.setText(s + " ₺");
     }
 
 
@@ -131,17 +132,27 @@ public class CartActivity extends AppCompatActivity {
                     public void onResponse(String response) {
                         try {
                             JSONArray jsonArray = new JSONArray(response);
+
                             cartList = new ArrayList<>();
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                String price = jsonObject.getString("price");
+
+                                float discountFloat = 0;
+                                try{
+                                    discountFloat = Float.parseFloat(jsonObject.getString("discount"));
+                                    price = Float.toString(Integer.parseInt(price) - (Integer.parseInt(price) * discountFloat) / 100);
+                                } catch (NumberFormatException ex) {
+                                    discountFloat = (float) 0.0;
+                                }
+
                                 String p_id = jsonObject.getString("p_id");
                                 String title = jsonObject.getString("title");
-                                String price = jsonObject.getString("price");
                                 String quantity = jsonObject.getString("quantity");
                                 String image = jsonObject.getString("image");
 
-                                Cart cartItem = new Cart(p_id, title, price, quantity, "%20", image,
-                                            Integer.parseInt(price) * Integer.parseInt(quantity));
+                                Cart cartItem = new Cart(p_id, title, Float.parseFloat(price), quantity, discountFloat, image,
+                                            Float.parseFloat(price) * Integer.parseInt(quantity));
                                 cartList.add(cartItem);
                             }
                             listener.onResponse(response);
