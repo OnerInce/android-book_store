@@ -31,6 +31,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import com.craftman.cardform.Card;
 import com.craftman.cardform.CardForm;
@@ -41,7 +42,7 @@ class RequestMember
     private String customerID;
     private String shipper;
     private String address;
-    private String totalOrderPrice;
+    private float totalOrderPrice;
     private List<Order> orders;
 
     public String getCustomerID() {
@@ -68,11 +69,11 @@ class RequestMember
         this.address = address;
     }
 
-    public String getTotalOrderPrice() {
+    public float getTotalOrderPrice() {
         return totalOrderPrice;
     }
 
-    public void setTotalOrderPrice(String totalOrderPrice) {
+    public void setTotalOrderPrice(float totalOrderPrice) {
         this.totalOrderPrice = totalOrderPrice;
     }
 
@@ -92,7 +93,8 @@ public class Payment extends AppCompatActivity {
     Button finish;
     EditText addressText;
     int ITEMS_ON_INTENT = 4;
-    static String CUSTOMER_ID, SHIPPER, TOTAL_PRICE, ADDRESS;
+    static String CUSTOMER_ID, SHIPPER, ADDRESS;
+    static float TOTAL_PRICE;
     String orderJSONRequest;
     JSONObject orderJSONObject;
     List<Order> orderList = new ArrayList<>();
@@ -117,17 +119,19 @@ public class Payment extends AppCompatActivity {
 
         Intent intent = getIntent();
         final Bundle bundle = intent.getExtras();
-        TOTAL_PRICE = bundle.getString("TOTAL_ORDER_PRICE");
+        TOTAL_PRICE = bundle.getFloat("TOTAL_ORDER_PRICE");
 
         expiryDate.setHint("Son Kullanma Tarihi");
-        txtDes.setText(TOTAL_PRICE);
+
+        String s = String.format(Locale.ITALY, "%.2f",TOTAL_PRICE);
+        txtDes.setText(s);
         txtPayment.setText("Toplam Ödeme");
         cardNumber.setHint("Kart Numarası");
         cardName.setHint("Kart Sahibi");
       
       
         finish = findViewById(R.id.btn_pay);
-        finish.setText(String.format("Toplam: %s",TOTAL_PRICE));
+        finish.setText(String.format("Toplam: %s", s));
         radioGroupTaksit = findViewById(R.id.taksitGroup);
         radioGroupShipping = findViewById(R.id.shippingGroup);
         addressText = (EditText) findViewById(R.id.address);
@@ -183,7 +187,7 @@ public class Payment extends AppCompatActivity {
 
     private static RequestMember createjsonObject(List<Order> orders)
     {
-        RequestMember member= new RequestMember();
+        RequestMember member = new RequestMember();
         member.setAddress(ADDRESS);
         member.setShipper(SHIPPER);
         member.setCustomerID(CUSTOMER_ID);

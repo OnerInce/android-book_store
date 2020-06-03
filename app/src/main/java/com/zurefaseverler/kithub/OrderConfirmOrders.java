@@ -3,16 +3,16 @@ package com.zurefaseverler.kithub;
 public class OrderConfirmOrders {
 
     private String orderid;
-    private String userid;
+    private String userName;
     private String date;
     private String numofbook;
-    private String totalamount;
+    private float totalamount;
     private String shipper;
     private String address;
 
-    public OrderConfirmOrders(String orderid, String userid, String date, String numofbook, String totalamount, String address, String shipper) {
+    public OrderConfirmOrders(String orderid, String userName, String date, String numofbook, float totalamount, String address, String shipper) {
         this.orderid = orderid;
-        this.userid = userid;
+        this.userName = userName;
         this.date = date;
         this.numofbook = numofbook;
         this.totalamount = totalamount;
@@ -32,16 +32,8 @@ public class OrderConfirmOrders {
         return orderid;
     }
 
-    public void setOrderid(String orderid) {
-        this.orderid = orderid;
-    }
-
-    public String getUserid() {
-        return userid;
-    }
-
-    public void setUserid(String userid) {
-        this.userid = userid;
+    public String getUserName() {
+        return userName;
     }
 
     public String getDate() {
@@ -56,15 +48,8 @@ public class OrderConfirmOrders {
         return numofbook;
     }
 
-    public void setNumofbook(String numofbook) {
-        this.numofbook = numofbook;
-    }
-
-    public String getTotalamount() {
+    public float getTotalamount() {
         return totalamount;
     }
 
-    public void setTotalamount(String totalamount) {
-        this.totalamount = totalamount;
-    }
 }

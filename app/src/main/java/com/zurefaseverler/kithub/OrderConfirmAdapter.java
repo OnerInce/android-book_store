@@ -12,11 +12,13 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
+import java.util.Locale;
 
 public class OrderConfirmAdapter extends RecyclerView.Adapter<OrderConfirmAdapter.ViewHolder> {
 
     private Context context;
     private List<OrderConfirmOrders> list;
+    private Intent intent;
 
     public OrderConfirmAdapter(Context context, List<OrderConfirmOrders> list) {
         this.context = context;
@@ -27,6 +29,7 @@ public class OrderConfirmAdapter extends RecyclerView.Adapter<OrderConfirmAdapte
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.confirm_order_layout, parent, false);
+        intent = new Intent(context.getApplicationContext(), OrderDetails.class);
         return new ViewHolder(view);
     }
 
@@ -34,15 +37,15 @@ public class OrderConfirmAdapter extends RecyclerView.Adapter<OrderConfirmAdapte
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
+        String s = String.format(Locale.ITALY, "%.2f", list.get(position).getTotalamount());
+
         holder.order_id.setText("Sipariş no: " + list.get(position).getOrderid());
-        holder.user_id.setText("Kullanıcı no: " + list.get(position).getUserid());
+        holder.user_id.setText("İsim: " + list.get(position).getUserName());
         holder.date.setText("Tarih: " + list.get(position).getDate());
         holder.numof_book.setText("Kitap sayısı: " + list.get(position).getNumofbook());
-        holder.total_amount.setText("Toplam tutar: " + list.get(position).getTotalamount() + " ₺");
+        holder.total_amount.setText("Toplam tutar: " + s + " ₺");
         holder.address.setText("Adres: " + list.get(position).getAddress());
         holder.shipper.setText(list.get(position).getShipper() + "Kargo");
-
-
     }
 
     @Override
@@ -54,7 +57,7 @@ public class OrderConfirmAdapter extends RecyclerView.Adapter<OrderConfirmAdapte
 
         public TextView order_id, user_id, date, numof_book, total_amount, address, shipper;
 
-        public ViewHolder(@NonNull View itemView) {
+        public ViewHolder(@NonNull final View itemView) {
             super(itemView);
 
             order_id = itemView.findViewById(R.id.order_layout_order_id);
@@ -70,10 +73,12 @@ public class OrderConfirmAdapter extends RecyclerView.Adapter<OrderConfirmAdapte
                 public void onClick(View v) {
                     int pos = getAdapterPosition();
 
-                    if (pos != RecyclerView.NO_POSITION) {
-                        Intent intent = new Intent(context.getApplicationContext(), OrderDetails.class);
+                    intent.putExtra("order_id", list.get(pos).getOrderid());
+                    intent.putExtra("date", list.get(pos).getDate());
+                    intent.putExtra("total_price", Float.toString(list.get(pos).getTotalamount()));
+                    intent.putExtra("name", list.get(pos).getUserName());
 
-                        //                                      order id extrası burada verilecek
+                    if (pos != RecyclerView.NO_POSITION) {
                         context.startActivity(intent);
                     }
 

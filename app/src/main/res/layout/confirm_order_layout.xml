@@ -33,7 +33,7 @@
             android:layout_marginTop="4dp"
             android:layout_marginEnd="16dp"
             android:fontFamily="@font/nexa_bold"
-            android:text="user id:xx"
+            android:text="user name:xx"
             android:textColor="@color/darkblue"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
