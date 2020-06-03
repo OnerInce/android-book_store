@@ -26,11 +26,11 @@
         android:background="@drawable/profile_info_textbox"
         android:drawableStart="@drawable/profile_info_account"
         android:drawablePadding="5dp"
-        android:paddingStart="10dp"
-        android:paddingEnd="10dp"
         android:ems="10"
         android:fontFamily="sans-serif-medium"
         android:inputType="textPersonName"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
         android:text="İbrahim AKAR"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />

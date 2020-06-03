@@ -56,10 +56,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:fontFamily="@font/nexa_light"
             android:text="Stok miktarı: "
             android:textColor="@color/darkblue"
-            android:fontFamily="@font/nexa_light"
-            android:textSize="12sp"
+            android:textSize="15sp"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toBottomOf="@+id/authorTextView" />
