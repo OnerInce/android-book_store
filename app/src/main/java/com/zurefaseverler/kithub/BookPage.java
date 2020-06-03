@@ -41,6 +41,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.TimeZone;
 
@@ -173,7 +174,9 @@ public class BookPage extends AppCompatActivity implements View.OnClickListener 
 
         bookName.setText(book.getTitle());
         author_type.setText(String.format("%s / %s", book.getAuthor(), book.getBookType()));
-        price.setText(String.format("%s ₺",book.getPrice()));
+        String s = String.format(Locale.ITALY, "%.2f", book.getPrice());
+        price.setText(String.format("%s ₺", s));
+
 
         if(book.getRatedCount() != 0)
             ratingBar.setRating(book.getRating() / book.getRatedCount());
