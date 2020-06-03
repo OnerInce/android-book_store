@@ -22,19 +22,19 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:id="@+id/profilePhoto"
+                    android:id="@+id/profilePage_photo"
                     android:layout_width="135dp"
                     android:layout_height="130dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="24dp"
-                    android:layout_marginBottom="8dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginEnd="16dp"
+                    app:layout_constraintEnd_toStartOf="@+id/searchUser_name"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/kithub_logo_blue" />
+                    app:srcCompat="@drawable/profile_pp" />
 
                 <TextView
-                    android:id="@+id/User_name"
+                    android:id="@+id/searchUser_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -43,11 +43,11 @@
                     android:text="User name and surname"
                     android:textColor="#0C0000"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toEndOf="@+id/profilePhoto"
+                    app:layout_constraintStart_toEndOf="@+id/profilePage_photo"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/user_email"
+                    android:id="@+id/searchUser_email"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -56,11 +56,11 @@
                     android:text="E-mail"
                     android:textColor="#0C0000"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toEndOf="@+id/profilePhoto"
-                    app:layout_constraintTop_toBottomOf="@+id/User_name" />
+                    app:layout_constraintStart_toEndOf="@+id/profilePage_photo"
+                    app:layout_constraintTop_toBottomOf="@+id/searchUser_name" />
 
                 <TextView
-                    android:id="@+id/user_phone"
+                    android:id="@+id/searchUser_phone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -69,11 +69,11 @@
                     android:text="Telefon Numarası"
                     android:textColor="#0C0000"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toEndOf="@+id/profilePhoto"
-                    app:layout_constraintTop_toBottomOf="@+id/user_email" />
+                    app:layout_constraintStart_toEndOf="@+id/profilePage_photo"
+                    app:layout_constraintTop_toBottomOf="@+id/searchUser_email" />
 
                 <TextView
-                    android:id="@+id/user_address"
+                    android:id="@+id/searchUser_address"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -82,8 +82,8 @@
                     android:text="Adres"
                     android:textColor="#0C0000"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toEndOf="@+id/profilePhoto"
-                    app:layout_constraintTop_toBottomOf="@+id/user_phone" />
+                    app:layout_constraintStart_toEndOf="@+id/profilePage_photo"
+                    app:layout_constraintTop_toBottomOf="@+id/searchUser_phone" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>

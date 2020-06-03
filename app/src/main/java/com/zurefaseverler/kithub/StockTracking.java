@@ -210,8 +210,6 @@ public class StockTracking extends AppCompatActivity {
                 mProgressBar.setVisibility(View.GONE);
             }
         });
-        mSearchView.setFocusable(true);
-        mSearchView.requestFocusFromTouch();
         mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
