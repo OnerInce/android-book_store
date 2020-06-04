@@ -1,9 +1,11 @@
 package com.zurefaseverler.kithub;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NavUtils;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.android.volley.Request;
@@ -25,6 +27,11 @@ public class OrderConfirm extends AppCompatActivity {
     List<OrderConfirmOrders> list = new ArrayList<>();
 
     @Override
+    public void onBackPressed() {
+        NavUtils.navigateUpFromSameTask(this);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_confirm);
@@ -40,6 +47,23 @@ public class OrderConfirm extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        setContentView(R.layout.activity_order_confirm);
+
+        getOrders(new VolleyResponseListener() {
+            @Override
+            public void onResponse(String response) {
+                RecyclerView view_order = findViewById(R.id.confirm_order_recycler_view);
+                OrderConfirmAdapter adapter_order = new OrderConfirmAdapter(OrderConfirm.this, list);
+                RecyclerView.LayoutManager layoutManager_order = new LinearLayoutManager(OrderConfirm.this);
+                view_order.setLayoutManager(layoutManager_order);
+                view_order.setAdapter(adapter_order);
+            }
+        });
     }
 
     public void getOrders(final VolleyResponseListener listener){
@@ -62,7 +86,7 @@ public class OrderConfirm extends AppCompatActivity {
                                 String shipperName = jsonObject.getString("shipper_name");
                                 String bookCount = jsonObject.getString("book_count");
 
-                                OrderConfirmOrders temp = new OrderConfirmOrders(order_id, userName, orderTime, bookCount, Float.parseFloat(totalPrice), address, shipperName);
+                                OrderConfirmOrders temp = new OrderConfirmOrders(order_id, userName, orderTime, bookCount, Float.parseFloat(totalPrice), address, shipperName, "-2");
                                 list.add(temp);
                             }
                             listener.onResponse(response);

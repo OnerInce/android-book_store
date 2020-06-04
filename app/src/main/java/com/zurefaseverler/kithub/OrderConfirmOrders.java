@@ -2,15 +2,10 @@ package com.zurefaseverler.kithub;
 
 public class OrderConfirmOrders {
 
-    private String orderid;
-    private String userName;
-    private String date;
-    private String numofbook;
+    private String orderid, userName, date, numofbook, shipper, address, status;
     private float totalamount;
-    private String shipper;
-    private String address;
 
-    public OrderConfirmOrders(String orderid, String userName, String date, String numofbook, float totalamount, String address, String shipper) {
+    public OrderConfirmOrders(String orderid, String userName, String date, String numofbook, float totalamount, String address, String shipper, String status) {
         this.orderid = orderid;
         this.userName = userName;
         this.date = date;
@@ -18,6 +13,11 @@ public class OrderConfirmOrders {
         this.totalamount = totalamount;
         this.address = address;
         this.shipper = shipper;
+        this.status = status;
+    }
+
+    public String getStatus() {
+        return status;
     }
 
     public String getAddress() {

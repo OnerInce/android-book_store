@@ -137,8 +137,9 @@ public class UserInfo extends AppCompatActivity {
                                 String address = jsonObject.getString("address");
                                 String shipperName = jsonObject.getString("shipper_name");
                                 String bookCount = jsonObject.getString("book_count");
+                                String status = jsonObject.getString("status");
 
-                                OrderConfirmOrders temp = new OrderConfirmOrders(order_id, USER_NAME, orderTime, bookCount, Float.parseFloat(totalPrice), address, shipperName);
+                                OrderConfirmOrders temp = new OrderConfirmOrders(order_id, USER_NAME, orderTime, bookCount, Float.parseFloat(totalPrice), address, shipperName, status);
                                 order_list.add(temp);
                             }
                             listener.onResponse(response);

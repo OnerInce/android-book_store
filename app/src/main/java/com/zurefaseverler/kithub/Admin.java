@@ -16,78 +16,54 @@ public class Admin extends AppCompatActivity {
         setContentView(R.layout.activity_admin);
     }
 
-
-
-
     public void add_book(View view){
-
         i = new Intent(this, AddBook.class);
         startActivity(i);
-
     }
 
     public void delete_book(View view){
-
         i = new Intent(this, DeleteBookSearch.class);
         startActivity(i);
-
-
     }
 
     public void update_book(View view){
         i = new Intent(this, UpdateBookSearch.class);
         startActivity(i);
-
     }
 
     public void stock_view(View view){
-
         i = new Intent(this, StockTracking.class);
         startActivity(i);
     }
 
     public void user_traffic_log(View view){
-
         i = new Intent(this,SystemTraffic.class);
         startActivity(i);
-
     }
 
     public void add_category(View view){
-
         i = new Intent(this, AddCategory.class);
         startActivity(i);
-
     }
 
     public void delete_category(View view){
-
         i = new Intent(this, DeleteCategory.class);
         startActivity(i);
-
     }
 
     public void confirm_order(View view){
-
         i = new Intent(this, OrderConfirm.class);
         startActivity(i);
-
     }
 
-
     public void discount_publisher(View view){
-
         i = new Intent(this, DiscountBookSearch.class);
         startActivity(i);
-      
     }
 
     public void show_users(View view){
-
         i = new Intent(this, UserShowSearch.class);
         startActivity(i);
-
     }
-
 
 }

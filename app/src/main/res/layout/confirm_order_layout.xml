@@ -39,7 +39,8 @@
             android:textColor="@color/darkblue"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:gravity="end"/>
 
         <TextView
             android:id="@+id/order_layout_order_date"
@@ -61,7 +62,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="12dp"
             android:fontFamily="@font/nexa_bold"
-            android:text="number of product: 12"
+            android:text="Adet: 12"
             android:textColor="@color/darkblue"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -94,6 +95,21 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/order_layout_address" />
+
+        <TextView
+            android:id="@+id/order_layout_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/nexa_bold"
+            android:text="durum: onay bekliyor"
+            android:textColor="@color/darkblue"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/order_layout_shipper"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/order_layout_order_numof_book"
+            app:layout_constraintTop_toBottomOf="@+id/order_layout_user_id" />
 
         <TextView
             android:id="@+id/order_layout_shipper"

@@ -46,6 +46,28 @@ public class OrderConfirmAdapter extends RecyclerView.Adapter<OrderConfirmAdapte
         holder.total_amount.setText("Toplam tutar: " + s + " ₺");
         holder.address.setText("Adres: " + list.get(position).getAddress());
         holder.shipper.setText(list.get(position).getShipper() + "Kargo");
+
+        String status = list.get(position).getStatus();
+        if(status.equals("-2")) {
+            holder.status.setText("");
+            intent.putExtra("status", "show");
+        }
+        else {
+            switch (status) {
+                case "0":
+                    intent.putExtra("status", "show");
+                    holder.status.setText("Durum: Onay Bekliyor");
+                    break;
+                case "1":
+                    intent.putExtra("status", "hide");
+                    holder.status.setText("Durum: Onaylandı");
+                    break;
+                case "-1":
+                    intent.putExtra("status", "hide");
+                    holder.status.setText("Durum: Reddedildi");
+                    break;
+            }
+        }
     }
 
     @Override
@@ -55,7 +77,7 @@ public class OrderConfirmAdapter extends RecyclerView.Adapter<OrderConfirmAdapte
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
-        public TextView order_id, user_id, date, numof_book, total_amount, address, shipper;
+        public TextView order_id, user_id, date, numof_book, total_amount, address, shipper, status;
 
         public ViewHolder(@NonNull final View itemView) {
             super(itemView);
@@ -67,6 +89,7 @@ public class OrderConfirmAdapter extends RecyclerView.Adapter<OrderConfirmAdapte
             total_amount = itemView.findViewById(R.id.order_layout_total_amount);
             address = itemView.findViewById(R.id.order_layout_address);
             shipper = itemView.findViewById(R.id.order_layout_shipper);
+            status = itemView.findViewById(R.id.order_layout_status);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

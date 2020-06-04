@@ -20,12 +20,7 @@
         <activity android:name=".OrderDetailUserAdapter"/>
         <activity android:name=".OrderDetailUserObject"/>
         <activity android:name=".StockTracking"/>
-        <activity android:name=".SystemTraffic"></activity>
-        <activity android:name=".PaymentCorrect" />
-        <activity android:name=".OrderHistory" />
-        <activity android:name=".OrderDetailUser" />
-        <activity android:name=".OrderHistoryAdapter" />
-        <activity android:name=".StockTracking" />
+        <activity android:name=".SystemTraffic" />
         <activity android:name=".DiscountBookSearch" />
         <activity android:name=".UserInfo" />
         <activity android:name=".UserShowSearch" />
@@ -35,8 +30,11 @@
         <activity android:name=".UpdateBookSearch" />
         <activity android:name=".DeleteBookSearch" />
         <activity android:name=".UserCommentsHistory" />
-        <activity android:name=".OrderDetails" />
-        <activity android:name=".OrderConfirm" />
+        <activity android:name=".OrderConfirm"
+            android:parentActivityName="com.zurefaseverler.kithub.Admin"/>
+        <activity android:name=".OrderDetails"
+            android:parentActivityName="com.zurefaseverler.kithub.OrderConfirm" />
+
         <activity
             android:name=".SignUp"
             android:windowSoftInputMode="adjustPan" />

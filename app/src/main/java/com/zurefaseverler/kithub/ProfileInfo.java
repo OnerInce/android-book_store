@@ -71,7 +71,7 @@ public class ProfileInfo extends AppCompatActivity {
         intent.putExtra("name",information.get("name"));
         intent.putExtra("mail",information.get("email"));
         intent.putExtra("image",information.get("imagePath"));
-        setResult(1,intent);
+        setResult(1, intent);
         finish();
     }
 
