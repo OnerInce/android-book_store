@@ -128,6 +128,7 @@ public class ProfilePage extends AppCompatActivity  {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(ProfilePage.this, OrderHistory.class);
+                i.putExtra("customer_id",id);
                 startActivity(i);
             }
         });

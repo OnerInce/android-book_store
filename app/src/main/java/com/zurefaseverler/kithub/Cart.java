@@ -1,7 +1,16 @@
 package com.zurefaseverler.kithub;
 
 public class Cart {
-    private String image, pid, pname, quantity;
+    private String image;
+    private String pid;
+    private String pname;
+
+
+
+    private String quantity;
+
+
+
     private float discount;
     private float price, totalPrice = 0;
 
@@ -45,5 +54,8 @@ public class Cart {
 
     public void setTotalPrice(float totalPrice) {
         this.totalPrice = totalPrice;
+    }
+    public void setQuantity(String quantity) {
+        this.quantity = quantity;
     }
 }

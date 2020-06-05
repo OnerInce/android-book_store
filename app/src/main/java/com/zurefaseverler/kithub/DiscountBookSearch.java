@@ -66,6 +66,8 @@ public class DiscountBookSearch extends AppCompatActivity {
         private String last_name;
         @SerializedName("price")
         private String price;
+
+
         @SerializedName("discount_value")
         private String discount;
 
@@ -96,6 +98,9 @@ public class DiscountBookSearch extends AppCompatActivity {
         }
         public String getDiscount() {
             return discount;
+        }
+        public void setDiscount(String discount) {
+            this.discount = discount;
         }
 
         @NonNull
@@ -254,14 +259,14 @@ public class DiscountBookSearch extends AppCompatActivity {
                 final SearchResults book = (SearchResults) mGridView.getItemAtPosition(position);
                 bookName = book.getTitle();
                 final String bookID = book.getId();
-
+                final TextView discount_tv = view.findViewById(R.id.discount_quantity);
                 AlertDialog.Builder builder = new AlertDialog.Builder(DiscountBookSearch.this);
 
                 LayoutInflater inflater = getLayoutInflater();
                 View dialogView = inflater.inflate(R.layout.activity_discount_info,null);
 
                 TextView dialogTitle = dialogView.findViewById(R.id.dialog_title);
-                String dialogTitleStr = bookName + getString(R.string.discount_sure);
+                String dialogTitleStr = bookName + " " + getString(R.string.discount_sure);
                 dialogTitle.setText(dialogTitleStr);
 
                 builder.setCancelable(false);
@@ -274,11 +279,15 @@ public class DiscountBookSearch extends AppCompatActivity {
                 final AlertDialog dialog = builder.create();
 
                 btn_positive.setOnClickListener(new View.OnClickListener() {
+                    @SuppressLint("SetTextI18n")
                     @Override
                     public void onClick(View v) {
                         dialog.cancel();
-                        float discountAmount = Float.parseFloat(discount_amount_et.getText().toString());
+                        String discount = discount_amount_et.getText().toString();
+                        float discountAmount = Float.parseFloat(discount);
                         discountToDatabase(bookID, discountAmount);
+                        discount_tv.setText("İndirim miktarı: %" + discount);
+                        book.setDiscount(discount);
 
                     }
                 });

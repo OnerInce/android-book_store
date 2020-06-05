@@ -23,18 +23,19 @@
             android:id="@+id/order_name"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/cart_product_photo"
+            android:layout_above="@+id/order_price"
             android:layout_alignParentTop="true"
-            android:layout_marginLeft="7dp"
+            android:layout_marginLeft="50dp"
             android:layout_marginTop="80dp"
-            android:layout_marginRight="-338dp"
-            android:layout_marginBottom="35dp"
+            android:layout_marginRight="75dp"
+            android:layout_marginBottom="10dp"
             android:layout_toRightOf="@id/order_photo"
             android:ellipsize="end"
             android:fontFamily="@font/nexa_bold"
             android:gravity="center"
             android:maxLines="1"
             android:text="Product Name"
+            android:textAlignment="center"
             android:textColor="@color/blue"
             android:textSize="15sp">
 
@@ -70,11 +71,14 @@
 
 
             android:layout_alignParentBottom="true"
+            android:layout_marginStart="46dp"
             android:layout_marginLeft="16dp"
-            android:layout_marginEnd="123dp"
-            android:layout_marginBottom="49dp"
+            android:layout_marginEnd="117dp"
+            android:layout_marginBottom="51dp"
+            android:layout_toEndOf="@+id/order_history_quantity"
             android:fontFamily="@font/nexa_bold"
             android:text="Product Price"
+            android:textAlignment="center"
             android:textColor="@color/blue"
             android:textSize="15sp">
 

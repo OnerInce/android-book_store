@@ -2,7 +2,12 @@ package com.zurefaseverler.kithub;
 
 public class Book {
     private int book_id, stockQuantity,  sales, ratedCount;
-    private float rating, discount, price;
+    private float rating;
+
+
+
+    private float discount;
+    private float price;
     private String ISBN, title, summary, image ,author, category, bookType;
 
     public Book(int book_id, String author, int stockQuantity, String category, String bookType,
@@ -23,6 +28,7 @@ public class Book {
         this.image = image;
         this.discount = discount;
     }
+
 
     public float getDiscount() {
         return discount;

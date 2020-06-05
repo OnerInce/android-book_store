@@ -1,5 +1,6 @@
 package com.zurefaseverler.kithub;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -43,12 +46,21 @@ public class OrderHistoryAdapter extends RecyclerView.Adapter<OrderHistoryAdapte
         return new setObject(view,orderListener);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull setObject holder, int position) {
-       holder.date.setText(orderHistoryList.get(position).getProductDate());
+        holder.date.setText(orderHistoryList.get(position).getProductDate());
         holder.name.setText(orderHistoryList.get(position).getProductName());
-        holder.price.setText(orderHistoryList.get(position).getProductPrice());
-        holder.img.setImageResource(R.drawable.cart_huzursuzluk);
+        holder.price.setText(orderHistoryList.get(position).getProductPrice() + " TL");
+        holder.quantity.setText("+" + orderHistoryList.get(position).getBookCount());
+
+        String[] temp = orderHistoryList.get(position).getProductImage().split("html/");
+        if(temp.length == 1){
+            Picasso.get().load(temp[0]).into(holder.img);
+        }
+        else{
+            Picasso.get().load("http://18.204.251.116/" + temp[1]).into(holder.img);
+        }
 
     }
 
@@ -60,16 +72,17 @@ public class OrderHistoryAdapter extends RecyclerView.Adapter<OrderHistoryAdapte
     public class setObject extends RecyclerView.ViewHolder{
 
         ImageView img;
-        TextView name,price,date;
+        TextView name, price, date, quantity;
 
 
 
         public setObject(@NonNull View itemView, final OnItemClickListener listener) {
             super(itemView);
-            img=itemView.findViewById(R.id.order_photo);
-            date=itemView.findViewById(R.id.order_date);
-            name=itemView.findViewById(R.id.order_name);
-            price=itemView.findViewById(R.id.order_price);
+            img = itemView.findViewById(R.id.order_photo);
+            date = itemView.findViewById(R.id.order_date);
+            name = itemView.findViewById(R.id.order_name);
+            price = itemView.findViewById(R.id.order_price);
+            quantity = itemView.findViewById(R.id.order_history_quantity);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

@@ -3,12 +3,17 @@ package com.zurefaseverler.kithub;
 public class OrderDetailUserObject {
 
     private String orderDetailName,orderDetailPrice;
-    private int orderDetailImage;
+    private String orderDetailImage;
 
-    public OrderDetailUserObject(String orderDetailName, String orderDetailPrice, int orderDetailImage) {
+
+
+    private String orderDetailQuantity;
+
+    public OrderDetailUserObject(String orderDetailName, String orderDetailPrice, String orderDetailImage, String orderDetailQuantity) {
         this.orderDetailName = orderDetailName;
         this.orderDetailPrice = orderDetailPrice;
         this.orderDetailImage = orderDetailImage;
+        this.orderDetailQuantity = orderDetailQuantity;
     }
 
 
@@ -19,7 +24,9 @@ public class OrderDetailUserObject {
     public void setOrderDetailName(String orderDetailName) {
         this.orderDetailName = orderDetailName;
     }
-
+    public String getOrderDetailQuantity() {
+        return orderDetailQuantity;
+    }
     public String getOrderDetailPrice() {
         return orderDetailPrice;
     }
@@ -28,11 +35,11 @@ public class OrderDetailUserObject {
         this.orderDetailPrice = orderDetailPrice;
     }
 
-    public int getOrderDetailImage() {
+    public String getOrderDetailImage() {
         return orderDetailImage;
     }
 
-    public void setOrderDetailImage(int orderDetailImage) {
+    public void setOrderDetailImage(String orderDetailImage) {
         this.orderDetailImage = orderDetailImage;
     }
 }
