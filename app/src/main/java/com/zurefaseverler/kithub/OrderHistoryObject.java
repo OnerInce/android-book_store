@@ -1,47 +1,39 @@
 package com.zurefaseverler.kithub;
 
-public class OrderHistoryObject {
+class OrderHistoryObject {
 
     private String productName,productPrice,productDate;
-    private int productImage;
+    private String productImage;
 
-    public OrderHistoryObject(String productName,String  productPrice,String productDate,int productImage){
+    private String order_id;
+    private String bookCount;
+
+    OrderHistoryObject(String productName, String productPrice, String productDate, String productImage, String bookCount, String order_id){
         this.productDate=productDate;
         this.productName=productName;
         this.productPrice=productPrice;
         this.productImage=productImage;
+        this.order_id = order_id;
 
+        int count = Integer.parseInt(bookCount) - 1;
+        this.bookCount = Integer.toString(count);
     }
-
-    public int getProductImage() {
+    String getBookCount() {
+        return bookCount;
+    }
+    String getOrder_id() {
+        return order_id;
+    }
+    String getProductImage() {
         return productImage;
     }
-
-    public void setProductImage(int productImage) {
-        this.productImage = productImage;
-    }
-
-    public String getProductName() {
+    String getProductName() {
         return productName;
     }
-
-    public void setProductName(String productName) {
-        this.productName = productName;
-    }
-
-    public String getProductPrice() {
+    String getProductPrice() {
         return productPrice;
     }
-
-    public void setProductPrice(String productPrice) {
-        this.productPrice = productPrice;
-    }
-
-    public String getProductDate() {
+    String getProductDate() {
         return productDate;
-    }
-
-    public void setProductDate(String productDate) {
-        this.productDate = productDate;
     }
 }

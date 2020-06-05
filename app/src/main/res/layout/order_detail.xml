@@ -156,14 +156,15 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentEnd="true"
-                    android:layout_marginStart="61dp"
+                    android:layout_marginStart="60dp"
                     android:layout_marginTop="100dp"
 
                     android:layout_marginEnd="45dp"
                     android:fontFamily="@font/nexa_bold"
                     android:text="Siparişiniz Hazırlanıyor"
+                    android:textAlignment="center"
                     android:textColor="@color/blue"
-                    android:textSize="25sp"></TextView>
+                    android:textSize="25sp" />
 
 
             </RelativeLayout>
