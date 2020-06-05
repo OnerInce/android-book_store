@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -115,6 +116,7 @@ public class CartActivity extends AppCompatActivity {
     }
 
 
+    @SuppressLint("SetTextI18n")
     private void setNewTotalPrice() {
         total = 0;
         for(int i = 0; i < cartList.size(); i++)

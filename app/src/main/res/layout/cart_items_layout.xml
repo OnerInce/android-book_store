@@ -79,24 +79,6 @@
 
         </com.cepheuen.elegantnumberbutton.view.ElegantNumberButton>
 
-        <Button
-            android:id="@+id/cartItem_updateQuantity"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="7dp"
-            android:layout_marginLeft="7dp"
-            android:layout_marginBottom="1dp"
-            android:layout_toEndOf="@+id/cartItem_product_quantity1"
-            android:layout_toRightOf="@+id/cartItem_product_quantity1"
-            android:text="Güncelle"
-            android:textColor="@color/light"
-            android:background="@color/orange"
-            android:textSize="11sp">
-
-
-        </Button>
-
 
     </RelativeLayout>
 

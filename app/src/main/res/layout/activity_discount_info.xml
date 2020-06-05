@@ -18,6 +18,7 @@
         android:layout_height="wrap_content"
         android:hint="Indirim miktarini giriniz. % "
         android:textSize="15dp"
+        android:inputType="number"
         android:layout_below="@id/dialog_title"/>
     <Button
         android:id="@+id/dialog_positive_btn"
