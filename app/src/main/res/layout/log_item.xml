@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="16dp"
+        android:background="@drawable/rectangle_light_stroke_blue_background">
+
+
+        <TextView
+            android:id="@+id/log_text1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="user id: xxx"
+            android:textSize="15sp"
+            android:fontFamily="@font/nexa_bold"
+            android:textColor="@color/darkblue"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/log_text2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/nexa_bold"
+            android:text="date: 12.12.2020 - 15:15:15"
+            android:textColor="@color/darkblue"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/log_text3"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/nexa_bold"
+            android:maxLines="1"
+            android:text="userEmail/opType/totalAm/commId"
+            android:textColor="@color/darkblue"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/log_text1" />
+
+        <TextView
+            android:id="@+id/log_text4"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:gravity="end"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:fontFamily="@font/nexa_bold"
+            android:text="phone/quantity/numOfBook/commRate"
+            android:textColor="@color/darkblue"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/log_text1" />
+
+        <TextView
+            android:id="@+id/log_text5"
+            android:layout_width="275dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:maxLines="3"
+            android:ellipsize="end"
+            android:fontFamily="@font/nexa_bold"
+            android:text="bookID/orderId/comment/username"
+            android:textColor="@color/darkblue"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/log_text3" />
+
+        <TextView
+            android:id="@+id/log_text6"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="adress"
+            android:textSize="15sp"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:fontFamily="@font/nexa_bold"
+            android:textColor="@color/darkblue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/log_text4" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
