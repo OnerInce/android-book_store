@@ -82,10 +82,10 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.designCard> {
 
                 float newTotal = newValue * list.get(position).getPrice();
                 list.get(position).setTotalPrice(newTotal);
-                float total = 0;
+                CartActivity.total = 0;
                 for(int i = 0; i < list.size(); i++)
-                    total += list.get(i).getTotalPrice();
-                String s = String.format(Locale.ITALY, "%.2f", total);
+                    CartActivity.total += list.get(i).getTotalPrice();
+                String s = String.format(Locale.ITALY, "%.2f", CartActivity.total);
                 CartActivity.totalPrice.setText(s + " ₺");
             }
         });
