@@ -45,7 +45,7 @@ public class CartActivity extends AppCompatActivity {
     private Button updateQuantity;
     private ImageButton back;
     private String customer_id, s;
-    float total;
+    static float total;
 
     ArrayList<Cart> cartList;
     AdapterCart adapter;
