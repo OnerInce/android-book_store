@@ -1,7 +1,5 @@
 package com.zurefaseverler.kithub;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -17,7 +15,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class OrderDetailUserAdapter extends RecyclerView.Adapter<OrderDetailUserAdapter.setDetail> {
 

@@ -1,7 +1,5 @@
 package com.zurefaseverler.kithub;
 
-import java.text.DecimalFormat;
-
 public class MainPageBook {
 
     private String id, imagepath, bookname, authorname, discountamount;

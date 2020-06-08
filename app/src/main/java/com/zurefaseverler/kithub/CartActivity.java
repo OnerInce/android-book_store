@@ -22,7 +22,6 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -37,14 +36,11 @@ import java.util.Map;
 public class CartActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
-    private RecyclerView.LayoutManager layoutManager;
-    private Button NextProcessBtn;
 
 
     public static TextView totalPrice;
     private Button updateQuantity;
-    private ImageButton back;
-    private String customer_id, s;
+    private String customer_id;
     static float total;
 
     ArrayList<Cart> cartList;
@@ -59,16 +55,16 @@ public class CartActivity extends AppCompatActivity {
         totalPrice = findViewById(R.id.totalPrice);
 
         recyclerView = findViewById(R.id.cart_list);
-        layoutManager = new LinearLayoutManager(this);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
         setCartContent();
 
-        NextProcessBtn = findViewById(R.id.next_process_button);
+        Button nextProcessBtn = findViewById(R.id.next_process_button);
         new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(recyclerView);
 
 
-        back = findViewById(R.id.back_button);
+        ImageButton back = findViewById(R.id.back_button);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -76,7 +72,7 @@ public class CartActivity extends AppCompatActivity {
             }
         });
 
-        NextProcessBtn.setOnClickListener(new View.OnClickListener() {
+        nextProcessBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(cartList.size() == 0)
@@ -121,7 +117,7 @@ public class CartActivity extends AppCompatActivity {
         total = 0;
         for(int i = 0; i < cartList.size(); i++)
             total += cartList.get(i).getTotalPrice();
-        s = String.format(Locale.ITALY, "%.2f", total);
+        String s = String.format(Locale.ITALY, "%.2f", total);
         totalPrice.setText(s + " ₺");
     }
 
@@ -140,7 +136,7 @@ public class CartActivity extends AppCompatActivity {
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                                 String price = jsonObject.getString("price");
 
-                                float discountFloat = 0;
+                                float discountFloat;
                                 try{
                                     discountFloat = Float.parseFloat(jsonObject.getString("discount"));
                                     price = Float.toString(Integer.parseInt(price) - (Integer.parseInt(price) * discountFloat) / 100);

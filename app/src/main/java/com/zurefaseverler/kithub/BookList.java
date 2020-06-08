@@ -2,13 +2,9 @@ package com.zurefaseverler.kithub;
 
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -19,7 +15,6 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.google.gson.JsonArray;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -162,9 +157,7 @@ public class BookList extends Activity{
         if(recyclerView.getAdapter().getItemCount() != 0){
 
             int lastVisibleItemPos = ((GridLayoutManager)recyclerView.getLayoutManager()).findLastCompletelyVisibleItemPosition();
-            if(lastVisibleItemPos != RecyclerView.NO_POSITION && lastVisibleItemPos == recyclerView.getAdapter().getItemCount() - 1){
-                return true;
-            }
+            return lastVisibleItemPos != RecyclerView.NO_POSITION && lastVisibleItemPos == recyclerView.getAdapter().getItemCount() - 1;
         }
 
      return false;

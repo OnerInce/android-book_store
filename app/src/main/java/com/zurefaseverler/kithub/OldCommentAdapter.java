@@ -16,11 +16,9 @@ import java.util.List;
 
 public class OldCommentAdapter extends RecyclerView.Adapter<OldCommentAdapter.ViewHolder>{
 
-    private Context context;
     private List<OldCommentsObj> list;
 
     public OldCommentAdapter(Context context, List<OldCommentsObj> list) {
-        this.context = context;
         this.list = list;
     }
 

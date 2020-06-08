@@ -9,7 +9,6 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -23,9 +22,7 @@ import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
@@ -43,17 +40,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.TimeZone;
 
 public class BookPage extends AppCompatActivity implements View.OnClickListener {
 
     private TextView summary, discount;
     private boolean boolSummary, boolAuthor;
-    private float initialRate;
     RatingBar ratingBar;
     private Book book;
     private CommentObj comment;
-    private Button addCart, makeComment;
+    private Button addCart;
     private String book_id, name;
     List<CommentObj> commentList = new ArrayList<>();
 
@@ -84,7 +79,7 @@ public class BookPage extends AppCompatActivity implements View.OnClickListener 
         addCart = findViewById(R.id.bookPage_addCartButton);
         addCart.setOnClickListener(this);
 
-        makeComment = findViewById(R.id.comment_send);
+        Button makeComment = findViewById(R.id.comment_send);
         makeComment.setOnClickListener(this);
 
     }
@@ -162,7 +157,7 @@ public class BookPage extends AppCompatActivity implements View.OnClickListener 
         ImageView bookImage = findViewById(R.id.bookPage_bookImage);
         TextView author_type = findViewById(R.id.bookPage_author_type);
         ratingBar = findViewById(R.id.bookPage_ratingBar);
-        initialRate = ratingBar.getNumStars();
+        float initialRate = ratingBar.getNumStars();
         TextView price = findViewById(R.id.bookPage_price);
         addCart = findViewById(R.id.bookPage_addCartButton);
         if (book.getDiscount() != 0.0f)

@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.content.SharedPreferences;
-import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -228,11 +227,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.button_drawer:
-                drawer.openDrawer(GravityCompat.END);
-                break;
-
+        if (v.getId() == R.id.button_drawer) {
+            drawer.openDrawer(GravityCompat.END);
         }
 
     }

@@ -31,9 +31,6 @@
         android:background="@drawable/correct"
         android:scaleType="fitXY">
 
-        >
-
-
     </ImageView>
 
     <TextView

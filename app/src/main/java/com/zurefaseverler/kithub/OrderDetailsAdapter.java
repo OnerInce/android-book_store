@@ -13,11 +13,9 @@ import java.util.List;
 
 public class OrderDetailsAdapter extends RecyclerView.Adapter<OrderDetailsAdapter.ViewHolder>{
 
-    private Context context;
     private List<OrderDetailsBookObj> list;
 
     public OrderDetailsAdapter(Context context, List<OrderDetailsBookObj> list) {
-        this.context = context;
         this.list = list;
     }
 

@@ -17,10 +17,10 @@
     <string name="category_add_sure">\" isimli kategoriyi eklemek istediğinize emin misiniz?\"</string>
     <string name="category_add_verify">Onayla</string>
     <string name="category_add_sure2">%1$s kategorisine %2$s kitap türünü eklemek istediğinize emin misiniz?"</string>
-    <string name="category_add_exist">Eklemek istediğiniz kategori zaten mevcut !</string>
+    <string name="category_add_exist">Eklemek istediğiniz kategori zaten mevcut</string>
 
     <string name="book_add_error">Tüm bilgileri girdiğinizden emin olun !</string>
-    <string name="book_add_sure">\" adlı kitabı eklemek istediğinize emin misiniz?\"</string>
+    <string name="book_add_sure">adlı kitabı eklemek istediğinize emin misiniz?</string>
     <string name="book_add_confirm">EKLEME ONAYI</string>
     <string name="book_add_cancel">İptal</string>
     <string name="book_add_ok">Onayla</string>
@@ -32,39 +32,32 @@
     <string name="category_delete_cancel">İptal</string>
     <string name="category_delete_ok">Onayla</string>
 
-    <string name="profile_info_wrong_pw">Eski şifrenizi yanlış girdiniz.</string>
+    <string name="profile_info_wrong_pw">Eski şifrenizi yanlış girdiniz</string>
     <string name="profile_info_wrong_phone">Geçersiz telefon numarası \n 5 ile başlayıp 10 haneli olmalı.</string>
     <string name="profile_info_wrong_mail">Geçersiz mail</string>
-    <string name="profile_info_check_again">Bilgileri tekrar kontrol edin</string>
+    <string name="profile_info_check_again">Bilgileri tekrar kontrol ediniz</string>
     <string name="profile_info_cancel">Vazgeç</string>
     <string name="profile_info_save">Kaydet</string>
     <string name="profile_info_success">Değişiklikler Kaydedildi</string>
     <string name="profile_info_sure">Değişiklikleri kaydetmek istediğinize emin misiniz?</string>
     <string name="profile_info_confirm">Değişiklikleri Kaydet</string>
-    <string name="profile_info_permission">Bu yetkiyi ayarlardan değişebilirsin.</string>
+    <string name="profile_info_permission">Bu yetkiyi ayarlardan değiştirebilirsiniz</string>
 
-    <string name="mismatched_password">Sifreleriniz birbiri ile uyusmamaktadir.</string>
+    <string name="mismatched_password">Şifreler uyumlu değil</string>
 
     <string name="profile_page_log_out">Çıkış yapmak istediğinize emin misiniz?</string>
     <string name="profile_page_no">Hayır</string>
     <string name="profile_page_yes">Evet</string>
 
-    <string name="author_info">1890 İngiltere doğumlu olan polisiye roman, kısa öykü yazarı şair Agatha Christie küçük yaşlarında babasını kaybettiği için annesiyle beraber yalnız bir
-        çocukluk geçirmiştir. 16 yaşlarında Paris’e şan dersleri almak için gitmiş fakat bir müddet sonra vaz geçmiştir. 1914 senesinde Kraliyet Hava Kuvvetlerinden “Archibald Christie” ile
-        evlenip Fransa’ya yerleşmiştir. Burada disleksi bozukluğu olmasına rağmen okuma alışkanlığını bırakmamıştır ve polisiye türünde kitaplar okuyup daha iyilerini yazma arzusuyla polisiye türünde
-        kitaplar yazmaya başlamıştır. Kariyerine 80’e yakın roman ve kısa hikaye de katan Agatha Christie, eşiyle beraber geçirdiği 14 yılın ardından 1928 senesinde boşanan Christie “Max Mallowan” ile
-        evlenmiştir.1920 yılında ilk polisiye romanı olan “The Mysterious Affair Style” kitabını yayımlamıştır. Meşhur Kahramanı olan Hercule Poirot bu romanında hayat bulmuştur. Bir çok eserinde bu kahramanı
-        kullanmıştır. Günümüzde Türkçe olarak “Altın Kitaplar” yayınevi tarafından “Ölüm Sessiz Geldi” ismiyle yayımlanmaktadır.</string>
-
     <string name="login_success">Giriş başarılı\nAna sayfaya yönlendiriliyorsunuz</string>
     <string name="login_fail">Giriş başarısız\nLütfen e-mail ve şifrenizi kontrol ediniz</string>
 
     <string name="logout_success">Hesabınızdan başarıyla çıkış yapıldı\nAna sayfaya yönlendiriliyorsunuz</string>
-    <string name="add_book_already">Eklemeye çalıştığınız kitap zaten ekli</string>
+    <string name="add_book_already">Eklemeye çalıştığınız kitap zaten mevcut</string>
     <string name="book_page_remindMe">Stoğa Gelince Bildir</string>
     <string name="book_page_addCart">Sepete Ekle</string>
-    <string name="signUp_already">Bu Mail Adresi ya da Telefon Numarası Sistemde Mevcut</string>
-    <string name="signUp_registered">Kayit basarili...</string>
+    <string name="signUp_already">Bu mail adresi veya telefon numarası sistemde mevcut</string>
+    <string name="signUp_registered">Kayıt başarılı</string>
     <string name="login_admin">Admin girişi başarılı</string>
     <string name="order_confirm_page_title">Onay Bekleyen Siparişler</string>
     <string name="bookpage_comment_success">Yorumunuz başarıyla eklendi</string>
@@ -73,7 +66,7 @@
     <string name="cart_no_book">Sepetinizde ürün bulunmamaktadır</string>
     <string name="payment_select_shipper">Lütfen bir kargo şirketi seçiniz</string>
     <string name="pay_select_install">Lütfen taksit sayısı seçiniz</string>
-    <string name="select_category_to_delete">Silinecek kategoriyi seçin.</string>
+    <string name="select_category_to_delete">Silinecek kategoriyi seçin</string>
     <string name="discount_sure">adlı kitaba indirim uygulamak istediğinizden emin misiniz?\nEminseniz miktarı giriniz.</string>
     <string name="discount_cancel">İşlem iptal edildi</string>
     <string name="order_confirm_yes">Sipariş onaylandı</string>
