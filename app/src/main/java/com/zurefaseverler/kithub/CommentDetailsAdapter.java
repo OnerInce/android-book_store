@@ -14,11 +14,9 @@ import java.util.List;
 
 public class CommentDetailsAdapter extends RecyclerView.Adapter<CommentDetailsAdapter.ViewHolder> {
 
-    private Context context;
     private List<CommentObj> list;
 
     public CommentDetailsAdapter(Context context, List<CommentObj> list) {
-        this.context = context;
         this.list = list;
     }
 

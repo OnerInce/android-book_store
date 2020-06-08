@@ -33,7 +33,13 @@ import java.util.Map;
 public class UpdateBookInfo extends AppCompatActivity {
     private static final int RESULT_LOAD_IMAGE = 1 ;
     private Book book;
-    private EditText ISBN, author, book_name, stock, category, bookType, price, description;
+    private EditText ISBN;
+    private EditText author;
+    private EditText book_name;
+    private EditText category;
+    private EditText bookType;
+    private EditText price;
+    private EditText description;
     private boolean isImageChanged = false;
     private Bitmap bitmap;
     ImageView image;
@@ -104,7 +110,7 @@ public class UpdateBookInfo extends AppCompatActivity {
                 }
                 params.put("ISBN", ISBN.getText().toString());
                 params.put("title", book_name.getText().toString());
-                params.put("first_name", first_name.toString().toString());
+                params.put("first_name", first_name.toString());
                 params.put("last_name", authorName[authorName.length-1]);
                 params.put("category_name", category.getText().toString());
                 params.put("book_type_name", bookType.getText().toString());
@@ -166,7 +172,7 @@ public class UpdateBookInfo extends AppCompatActivity {
 
     @SuppressLint("SetTextI18n")
     private void setBookInfo() {
-        stock = (EditText) findViewById(R.id.admin_add_book_stock_quantity);
+        EditText stock = (EditText) findViewById(R.id.admin_add_book_stock_quantity);
         TextView stockText = (TextView) findViewById(R.id.addBook_stockText);
         stock.setVisibility(View.GONE);
         stockText.setVisibility(View.GONE);

@@ -205,10 +205,8 @@ public class ProfilePage extends AppCompatActivity  {
     }
 
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.go_back:
-                onBackPressed();
-                break;
+        if (v.getId() == R.id.go_back) {
+            onBackPressed();
         }
     }
 }

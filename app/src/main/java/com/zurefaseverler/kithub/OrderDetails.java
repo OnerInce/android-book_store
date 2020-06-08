@@ -135,7 +135,7 @@ public class OrderDetails extends AppCompatActivity {
 
                             list = new ArrayList<>();
                             for (int i = 0; i < jsonArray.length(); i++) {
-                                float discountFloat = 0;
+                                float discountFloat;
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
 
                                 try{

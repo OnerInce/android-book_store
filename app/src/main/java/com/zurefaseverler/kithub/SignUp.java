@@ -25,7 +25,6 @@ import com.android.volley.toolbox.StringRequest;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -245,10 +244,8 @@ public class SignUp extends AppCompatActivity implements  View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.go_back:
-                onBackPressed();
-                break;
+        if (v.getId() == R.id.go_back) {
+            onBackPressed();
         }
     }
 }

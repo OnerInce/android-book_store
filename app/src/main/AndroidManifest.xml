@@ -69,8 +69,6 @@
             android:name=".AddBook"
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".AddCategory" />
-        <activity android:name=".Authors" />
-        <activity android:name=".AuthorsPage" />
         <activity android:name=".Book" />
         <activity
             android:name=".Payment"
