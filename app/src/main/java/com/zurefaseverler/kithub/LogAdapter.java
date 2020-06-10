@@ -1,5 +1,6 @@
 package com.zurefaseverler.kithub;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,6 +30,7 @@ public class LogAdapter extends RecyclerView.Adapter<LogAdapter.setDetails>{
         return new setDetails(view);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull setDetails holder, int position) {
 
@@ -60,7 +62,7 @@ public class LogAdapter extends RecyclerView.Adapter<LogAdapter.setDetails>{
 
                 holder.text3.setText("İşlem türü: " + list.get(position).getCartOpType());
                 holder.text4.setText("Kitap no: " + list.get(position).getBookId());
-                holder.text5.setText("Miktar" + list.get(position).getCartQuantity());
+                holder.text5.setVisibility(View.GONE);
                 holder.text6.setVisibility(View.GONE);
                 break;
             case("Sipariş verme"):

@@ -2,7 +2,7 @@ package com.zurefaseverler.kithub;
 
 public class LogObj {
 
-    private String log_type, userid, username, useremail, phone, adress, logDate, cartOpType, cartQuantity, bookId, totalAmount, numOfBook, orderId, commentID, commentRate, comment;
+    private String log_type, userid, username, useremail, phone, adress, logDate, cartOpType, bookId, totalAmount, numOfBook, orderId, commentID, commentRate, comment;
 
     public String getLog_type() {
         return log_type;
@@ -36,10 +36,6 @@ public class LogObj {
         return cartOpType;
     }
 
-    public String getCartQuantity() {
-        return cartQuantity;
-    }
-
     public String getBookId() {
         return bookId;
     }
@@ -68,7 +64,7 @@ public class LogObj {
         return comment;
     }
 
-    public LogObj(String log_type, String userid, String username, String useremail, String phone, String adress, String date, String cartOpType, String cartQuantity, String bookId, String totalAmount, String numOfBook, String orderId, String commentID, String commentRate, String comment) {
+    public LogObj(String log_type, String userid, String username, String useremail, String phone, String adress, String date, String cartOpType, String bookId, String totalAmount, String numOfBook, String orderId, String commentID, String commentRate, String comment) {
         this.log_type = log_type;
         this.userid = userid;
         this.username = username;
@@ -77,7 +73,6 @@ public class LogObj {
         this.adress = adress;
         this.logDate = date;
         this.cartOpType = cartOpType;
-        this.cartQuantity = cartQuantity;
         this.bookId = bookId;
         this.totalAmount = totalAmount;
         this.numOfBook = numOfBook;
