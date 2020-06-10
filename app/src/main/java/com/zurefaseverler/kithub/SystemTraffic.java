@@ -11,8 +11,21 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.json.JSONStringer;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class SystemTraffic extends AppCompatActivity{
 
@@ -41,11 +54,7 @@ public class SystemTraffic extends AppCompatActivity{
         op.setAdapter(op_type_adapter);
         time.setAdapter(time_filter_adapter);
 
-        RecyclerView recyclerView = findViewById(R.id.system_traffic_recyclerview);
-        final LogAdapter adapter = new LogAdapter(SystemTraffic.this, list);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(adapter);
+
 
         apply.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,21 +63,104 @@ public class SystemTraffic extends AppCompatActivity{
                 time_filter = time.getSelectedItem().toString();
                 Toast.makeText(SystemTraffic.this,operation_type+" "+time_filter, Toast.LENGTH_LONG).show();
                 log_type = operation_type;
-                fill();
-                adapter.notifyDataSetChanged();
+                fill(operation_type, time_filter, new VolleyResponseListener() {
+                    @Override
+                    public void onResponse(String response) throws JSONException {
+                        RecyclerView recyclerView = findViewById(R.id.system_traffic_recyclerview);
+                        final LogAdapter adapter = new LogAdapter(SystemTraffic.this, list);
+                        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(SystemTraffic.this);
+                        recyclerView.setLayoutManager(layoutManager);
+                        recyclerView.setAdapter(adapter);
+                        adapter.notifyDataSetChanged();
+                    }
+                });
+
             }
         });
 
     }
 
-    public void fill(){
+    public void fill(final String operation_type, final String time_filter, final VolleyResponseListener volleyResponseListener){
+        String url = "http://18.204.251.116/get_log_record.php";
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONArray jsonArray = new JSONArray(response);
+                            for(int i=0; i < jsonArray.length(); i++){
+                                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                String actionTime = jsonObject.getString("action_time");
+                                if(operation_type.equals("Giriş yapma") || operation_type.equals("Çıkış Yapma")
+                                        || operation_type.equals("Kaydolma") || operation_type.equals("Kullanıcı bilgileri güncelleme")){
+                                    String customer_id = jsonObject.getString("customer_id");
+                                    String e_mail = jsonObject.getString("e_mail");
+                                    String complete_name = jsonObject.getString("complete_name");
+                                    String phone = jsonObject.getString("phone");
+                                    LogObj temp = new LogObj(operation_type, customer_id, complete_name, e_mail,
+                                            phone, null, actionTime, null, null, null,
+                                            null, null, null, null,
+                                            null);
+                                    list.add(temp);
+                                }
+                                else if(operation_type.equals("Sepet İşlemleri")){
+                                    String customer_id = jsonObject.getString("customer_id");
+                                    String title = jsonObject.getString("title");
+                                    String complete_name = jsonObject.getString("complete_name");
+                                    String event_name = jsonObject.getString("event_name");
+                                    LogObj temp = new LogObj(operation_type, customer_id, complete_name, null,
+                                            null, null, actionTime, event_name, title, null,
+                                            null, null, null, null,
+                                            null);
+                                    list.add(temp);
+                                }
+                                else if(operation_type.equals("Sipariş verme")){
+                                    String order_id = jsonObject.getString("order_id");
+                                    String company_name = jsonObject.getString("company_name");
+                                    String complete_name = jsonObject.getString("complete_name");
+                                    String total_price = jsonObject.getString("total_price");
+                                    String nof_books = jsonObject.getString("nof_books");
+                                    LogObj temp = new LogObj(operation_type, null, complete_name, null,
+                                            null, null, actionTime, null, null, total_price,
+                                            nof_books, order_id, null, null,
+                                            null);
+                                    list.add(temp);
+                                }
+                                else if(operation_type.equals("Yorum yapma")){
+                                    String review_id = jsonObject.getString("review_id");
+                                    String title = jsonObject.getString("title");
+                                    String complete_name = jsonObject.getString("complete_name");
+                                    String review_text = jsonObject.getString("review_text");
+                                    String rating = jsonObject.getString("rating");
+                                    LogObj temp = new LogObj(operation_type, null, complete_name, null,
+                                            null, null, actionTime, null, title, null,
+                                            null, null, review_id, rating,
+                                            review_text);
+                                    list.add(temp);
+                                }
 
-        list.clear();
-        for(int i = 0; i < 7; i++){
-            LogObj temp = new LogObj(log_type,"xxxxx", "xxxxxxxxxxxxxx", "xxxxxx@xxxxx.com", "xxx xxx xx xx", "xxxxxxx xx xxxxx xx xxxxxxxxxx xxxxxxxxxxxx  xxxx x xxxxxx xxxxxx xxxx xxx", "12.12.2020", "add", "7", "xxxxx", "xxx.xx", "xxx", "xxxxxxx", "xxxxxxxxxx", "4", "xxxxxxxxxxxxxx xxxxxxxxxxxxxx xxxxxxxxxxxxxx xxxxxxxxxxxxx xxxxxxxxxxxx xxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxx. xxxxxxxxxxxxxx .xxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxxxx");
-            list.add(temp);
-        }
+                            }
+                            volleyResponseListener.onResponse(response);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
 
+                    }
+                }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                HashMap<String, String> params = new HashMap<>();
+                params.put("time", time_filter);
+                params.put("operation", operation_type);
+                return params;
+            }
+        };
+        NetworkRequests.getInstance(this).addToRequestQueue(stringRequest);
     }
 
 
