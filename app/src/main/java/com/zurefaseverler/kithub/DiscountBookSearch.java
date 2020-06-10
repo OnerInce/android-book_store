@@ -42,8 +42,9 @@ import retrofit2.http.Field;
 import retrofit2.http.POST;
 import retrofit2.http.FormUrlEncoded;
 
+import static com.zurefaseverler.kithub.StartUp.HOST;
+
 public class DiscountBookSearch extends AppCompatActivity {
-    private static final String BASE_URL = "http://18.204.251.116";
     String bookName;
 
     static class SearchResults {
@@ -114,7 +115,7 @@ public class DiscountBookSearch extends AppCompatActivity {
         static Retrofit getRetrofitInstance() {
             if (retrofit == null) {
                 retrofit = new Retrofit.Builder()
-                        .baseUrl(BASE_URL)
+                        .baseUrl(HOST)
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
             }
@@ -300,7 +301,7 @@ public class DiscountBookSearch extends AppCompatActivity {
     }
 
     private void discountToDatabase(final String book, final float amount) {
-        String url = "http://18.204.251.116/discount.php";
+        String url = HOST + "discount.php";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new com.android.volley.Response.Listener<String>() {
                     @Override

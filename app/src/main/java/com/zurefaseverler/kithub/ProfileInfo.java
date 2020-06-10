@@ -40,6 +40,8 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.zurefaseverler.kithub.StartUp.HOST;
+
 public class ProfileInfo extends AppCompatActivity {
     private static final int IMAGE_CODE = 100;
     private static final int PERMISSION_CODE = 101;
@@ -255,7 +257,7 @@ public class ProfileInfo extends AppCompatActivity {
 
     private void updateDatabase(final VolleyResponseListener listener) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        String url = "http://18.204.251.116/profile_page.php";
+        String url = HOST + "profile_page.php";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -310,7 +312,7 @@ public class ProfileInfo extends AppCompatActivity {
         info_address.setText(information.get("address"));
 
         String[] temp = information.get("imagePath").split("html/");
-        Picasso.get().load("http://18.204.251.116/"+temp[1])
+        Picasso.get().load(HOST + temp[1])
                 .transform(new CircleTransform()).into(profileImage);
     }
 

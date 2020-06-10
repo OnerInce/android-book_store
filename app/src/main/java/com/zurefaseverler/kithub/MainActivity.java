@@ -29,6 +29,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import static com.zurefaseverler.kithub.StartUp.HOST;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
     private DrawerLayout drawer;
     private ActionBarDrawerToggle toggle;
@@ -234,7 +236,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void doldur(final VolleyResponseListener listener){
-        String url = "http://18.204.251.116/main_page_books.php";
+        String url = HOST + "main_page_books.php";
         StringRequest request = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override

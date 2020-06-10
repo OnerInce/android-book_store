@@ -20,7 +20,6 @@ public class Categories extends AppCompatActivity implements View.OnClickListene
     ArrayList<String> book_types;
     int num_of_book_type;
 
-    private RequestQueue mQueue;
     private ExpandableListView categories;
 
     @Override

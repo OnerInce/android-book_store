@@ -41,8 +41,9 @@ import retrofit2.http.Field;
 import retrofit2.http.POST;
 import retrofit2.http.FormUrlEncoded;
 
+import static com.zurefaseverler.kithub.StartUp.HOST;
+
 public class DeleteBookSearch extends AppCompatActivity {
-    private static final String BASE_URL = "http://18.204.251.116";
 
     static class SearchResults {
 
@@ -101,7 +102,7 @@ public class DeleteBookSearch extends AppCompatActivity {
         static Retrofit getRetrofitInstance() {
             if (retrofit == null) {
                 retrofit = new Retrofit.Builder()
-                        .baseUrl(BASE_URL)
+                        .baseUrl(HOST)
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
             }
@@ -232,24 +233,24 @@ public class DeleteBookSearch extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 final SearchResults book = (SearchResults) mGridView.getItemAtPosition(position);
 
-                String query = book.getTitle()+ " adlı kitabı silmek istedğinizden emin misiniz?";
+                String query = book.getTitle()+ getString(R.string.delete_book_confirm);
 
 
                 AlertDialog.Builder alert = new AlertDialog.Builder(DeleteBookSearch.this);
-                alert.setTitle("Kitap silme onaylama ekranı");
+                alert.setTitle(R.string.delete_book_confirm_screen);
                 alert.setMessage(query);
 
-                alert.setPositiveButton("Evet", new DialogInterface.OnClickListener() {
+                alert.setPositiveButton(R.string.delete_book_yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         deleteBookFromDatabase(book);
-                        Toast.makeText(DeleteBookSearch.this, "Kitap sistemden başarıyla silindi.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(DeleteBookSearch.this, R.string.delete_book_success, Toast.LENGTH_SHORT).show();
                     }
                 });
-                alert.setNegativeButton("Hayir", new DialogInterface.OnClickListener() {
+                alert.setNegativeButton(R.string.delete_book_no, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        Toast.makeText(DeleteBookSearch.this, "İşlem iptal edildi", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(DeleteBookSearch.this, R.string.delete_book_cancel, Toast.LENGTH_SHORT).show();
                     }
                 });
                 alert.create().show();
@@ -258,7 +259,7 @@ public class DeleteBookSearch extends AppCompatActivity {
     }
 
     private void deleteBookFromDatabase(final SearchResults book) {
-        String url = "http://18.204.251.116/delete_book.php";
+        String url = HOST + "delete_book.php";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new com.android.volley.Response.Listener<String>() {
                     @Override

@@ -19,6 +19,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.zurefaseverler.kithub.StartUp.HOST;
+
 public class OrderConfirm extends AppCompatActivity {
 
     List<OrderConfirmOrders> list = new ArrayList<>();
@@ -64,7 +66,7 @@ public class OrderConfirm extends AppCompatActivity {
     }
 
     public void getOrders(final VolleyResponseListener listener){
-        String url = "http://18.204.251.116/get_waiting_orders.php";
+        String url = HOST + "get_waiting_orders.php";
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override

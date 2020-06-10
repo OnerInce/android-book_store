@@ -23,6 +23,8 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.zurefaseverler.kithub.StartUp.HOST;
+
 
 public class Login extends AppCompatActivity implements View.OnClickListener {
     private RequestQueue mQueue;
@@ -51,7 +53,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
     }
     private void loginUser(final String email, final String pass) {
-        String url = "http://18.204.251.116/login.php";
+        String url = HOST + "login.php";
         StringRequest request = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override

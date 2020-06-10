@@ -31,6 +31,8 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.zurefaseverler.kithub.StartUp.HOST;
+
 public class AddBook extends AppCompatActivity {
     private static int RESULT_LOAD_IMAGE = 1;
     private Bitmap bitmap;
@@ -98,7 +100,7 @@ public class AddBook extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         // database operations here
-                        String url = "http://18.204.251.116/add_book.php";
+                        String url = HOST + "add_book.php";
                         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                                 new Response.Listener<String>() {
                                     @Override
@@ -165,8 +167,6 @@ public class AddBook extends AppCompatActivity {
                 }
                 Picasso.get().load(selectedImageURI).fit().into(imageView);
                 imageAdded = true;
-                //Picasso.with(MainActivity.this).load(selectedImageURI).noPlaceholder().centerCrop().fit()
-                //      .into((ImageView) findViewById(R.id.image_display));
             }
         }
     }

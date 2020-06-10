@@ -21,6 +21,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.zurefaseverler.kithub.StartUp.HOST;
+
 public class UserCommentsHistory extends AppCompatActivity {
 
     List<OldCommentsObj> list = new ArrayList<>();
@@ -35,11 +37,10 @@ public class UserCommentsHistory extends AppCompatActivity {
         int id = sharedPref.getInt("id", -1);
 
         getComments(id);
-
     }
 
     private void getComments(final int id) {
-        String url = "http://18.204.251.116/user_comments.php";
+        String url = HOST + "user_comments.php";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override

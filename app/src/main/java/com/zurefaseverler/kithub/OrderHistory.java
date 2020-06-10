@@ -22,10 +22,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.zurefaseverler.kithub.StartUp.HOST;
+
 public class OrderHistory extends AppCompatActivity {
     List<OrderHistoryObject> orderList = new ArrayList<>();
 
-    OrderHistoryAdapter adapterOrder;
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_history);
@@ -57,7 +58,7 @@ public class OrderHistory extends AppCompatActivity {
     }
 
     public void listFill(final String customer_id, final VolleyResponseListener listener){
-        String url = "http://18.204.251.116/get_orders_by_user_id.php";
+        String url = HOST + "hget_orders_by_user_id.php";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new com.android.volley.Response.Listener<String>() {
                     @Override

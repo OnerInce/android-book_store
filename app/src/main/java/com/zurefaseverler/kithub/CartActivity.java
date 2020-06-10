@@ -32,6 +32,8 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
+import static com.zurefaseverler.kithub.StartUp.HOST;
+
 
 public class CartActivity extends AppCompatActivity {
 
@@ -62,7 +64,6 @@ public class CartActivity extends AppCompatActivity {
 
         Button nextProcessBtn = findViewById(R.id.next_process_button);
         new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(recyclerView);
-
 
         ImageButton back = findViewById(R.id.back_button);
         back.setOnClickListener(new View.OnClickListener() {
@@ -123,7 +124,7 @@ public class CartActivity extends AppCompatActivity {
 
 
     private void getCurrentCustomerCart(final VolleyResponseListener listener) {
-        String url = "http://18.204.251.116/get_customer_cart.php";
+        String url = HOST + "get_customer_cart.php";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -196,7 +197,7 @@ public class CartActivity extends AppCompatActivity {
     };
 
     private void deleteCart_fromDatabase(final String pid) {
-        String url = "http://18.204.251.116/update_cart.php";
+        String url = HOST + "update_cart.php";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override

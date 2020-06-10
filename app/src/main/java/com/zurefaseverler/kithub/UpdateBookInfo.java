@@ -30,16 +30,12 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.zurefaseverler.kithub.StartUp.HOST;
+
 public class UpdateBookInfo extends AppCompatActivity {
     private static final int RESULT_LOAD_IMAGE = 1 ;
     private Book book;
-    private EditText ISBN;
-    private EditText author;
-    private EditText book_name;
-    private EditText category;
-    private EditText bookType;
-    private EditText price;
-    private EditText description;
+    private EditText ISBN, author, book_name, category, bookType, price, description;
     private boolean isImageChanged = false;
     private Bitmap bitmap;
     ImageView image;
@@ -77,7 +73,7 @@ public class UpdateBookInfo extends AppCompatActivity {
     }
 
     private void updateBookInfo(final String book_id) {
-        String url = "http://18.204.251.116/update_book.php";
+        String url = HOST + "update_book.php";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -131,7 +127,7 @@ public class UpdateBookInfo extends AppCompatActivity {
     }
 
     private void getBookInfo(final String book_id) {
-        String url = "http://18.204.251.116/update_book.php";
+        String url = HOST + "update_book.php";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -177,7 +173,6 @@ public class UpdateBookInfo extends AppCompatActivity {
         stock.setVisibility(View.GONE);
         stockText.setVisibility(View.GONE);
 
-
         ISBN = (EditText) findViewById(R.id.ISBN);
         book_name = (EditText) findViewById(R.id.admin_add_book_title);
         author = (EditText) findViewById(R.id.admin_add_book_author);
@@ -202,7 +197,7 @@ public class UpdateBookInfo extends AppCompatActivity {
             Picasso.get().load(book.getImage()).into(image);
         }
         else{
-            Picasso.get().load("http://18.204.251.116/" + temp[1]).into(image);
+            Picasso.get().load(HOST + temp[1]).into(image);
         }
     }
 

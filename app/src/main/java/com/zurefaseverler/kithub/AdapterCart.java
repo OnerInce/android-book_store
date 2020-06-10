@@ -29,6 +29,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+
+import static com.zurefaseverler.kithub.StartUp.HOST;
+
 interface OnAdapterItemClickListener {
     void onItemClicked();
 }
@@ -64,7 +67,7 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.designCard> {
             Picasso.get().load(list.get(position).getImage()).into(holder.img);
         }
         else{
-            Picasso.get().load("http://18.204.251.116/" + temp[1]).into(holder.img);
+            Picasso.get().load(HOST + temp[1]).into(holder.img);
         }
 
         holder.adet.setOnValueChangeListener(new ElegantNumberButton.OnValueChangeListener() {
@@ -112,7 +115,7 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.designCard> {
 
     }
     private void changeItemQuantity(final String customer_id, final String number, final String book_id){
-        String url = "http://18.204.251.116/update_cart.php";
+        String url = HOST + "update_cart.php";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override

@@ -23,10 +23,6 @@ public class PaymentCorrect extends AppCompatActivity {
                 startActivity(i);
             }
         });
-
-
-
-
     }
 
     public void onBackPressed(){

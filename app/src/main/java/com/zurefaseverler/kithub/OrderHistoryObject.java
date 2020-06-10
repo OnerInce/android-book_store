@@ -9,10 +9,10 @@ class OrderHistoryObject {
     private String bookCount;
 
     OrderHistoryObject(String productName, String productPrice, String productDate, String productImage, String bookCount, String order_id){
-        this.productDate=productDate;
-        this.productName=productName;
-        this.productPrice=productPrice;
-        this.productImage=productImage;
+        this.productDate = productDate;
+        this.productName = productName;
+        this.productPrice = productPrice;
+        this.productImage = productImage;
         this.order_id = order_id;
 
         int count = Integer.parseInt(bookCount) - 1;

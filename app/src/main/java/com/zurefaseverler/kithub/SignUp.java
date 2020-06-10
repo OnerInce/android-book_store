@@ -28,6 +28,8 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.zurefaseverler.kithub.StartUp.HOST;
+
 public class SignUp extends AppCompatActivity implements  View.OnClickListener {
 
     private EditText info_name, info_sur_name, info_e_mail, info_password_attempt, info_password_repeat, info_phone_num;
@@ -46,7 +48,6 @@ public class SignUp extends AppCompatActivity implements  View.OnClickListener {
 
         Button sign_up_confirm = findViewById(R.id.sign_up_confirm);
         sign_up_confirm.setOnClickListener((View.OnClickListener) this);
-
 
         info_name = findViewById(R.id.name);
         info_sur_name = findViewById(R.id.sur_name);
@@ -152,19 +153,19 @@ public class SignUp extends AppCompatActivity implements  View.OnClickListener {
             public void onClick(View v) {
 
                 if(info_name.getText().toString().length() < 1){
-                    Toast.makeText(getApplicationContext(),"Isim bilgisi eksik",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"İsim bilgisi eksik",Toast.LENGTH_SHORT).show();
                 }
                 else if(info_sur_name.getText().toString().length() < 1 ){
-                    Toast.makeText(getApplicationContext(),"Soy isim bilgisi eksik",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"Soyisim bilgisi eksik",Toast.LENGTH_SHORT).show();
                 }
                 else if(info_e_mail.getText().toString().length() < 1 || err_mail){
-                    Toast.makeText(getApplicationContext(),"E mail bilgisi eksik",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"E-mail bilgisi eksik",Toast.LENGTH_SHORT).show();
                 }
                 else if(info_password_attempt.getText().toString().length() < 1){
-                    Toast.makeText(getApplicationContext(),"Sifre bilgisi eksik",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"Şifre bilgisi eksik",Toast.LENGTH_SHORT).show();
                 }
                 else if(info_password_repeat.getText().toString().length() < 1 || err_pass){
-                    Toast.makeText(getApplicationContext(),"Sifre tekrar bilgisi eksik",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"Şifre tekrar bilgisi eksik",Toast.LENGTH_SHORT).show();
                 }
                 else if(info_phone_num.getText().toString().length() < 1 || err_phone){
                     Toast.makeText(getApplicationContext(),"Numara bilgisi eksik",Toast.LENGTH_SHORT).show();
@@ -195,7 +196,7 @@ public class SignUp extends AppCompatActivity implements  View.OnClickListener {
 
 
     private void newUser_toDatabase(final VolleyResponseListener listener) {
-        String url = "http://18.204.251.116/sign_up.php";
+        String url = HOST + "sign_up.php";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -209,9 +210,11 @@ public class SignUp extends AppCompatActivity implements  View.OnClickListener {
                             else{
                                 String id = jsonObject.getString("id");
                                 String name = jsonObject.getString("complete_name");
+                                String isAdmin = jsonObject.getString("is_admin");
                                 SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                                 SharedPreferences.Editor editor = sharedPref.edit();
                                 editor.putInt("id", Integer.parseInt(id));
+                                editor.putInt("is_admin", Integer.parseInt(isAdmin));
                                 editor.putString("name", name);
                                 editor.apply();
                                 listener.onResponse("1");

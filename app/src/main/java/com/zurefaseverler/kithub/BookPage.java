@@ -41,6 +41,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import static com.zurefaseverler.kithub.StartUp.HOST;
+
 public class BookPage extends AppCompatActivity implements View.OnClickListener {
 
     private TextView summary, discount;
@@ -85,7 +87,7 @@ public class BookPage extends AppCompatActivity implements View.OnClickListener 
     }
 
     private void getBookInfo(final String id) {
-        String url = "http://18.204.251.116/books.php";
+        String url = HOST + "books.php";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -185,7 +187,7 @@ public class BookPage extends AppCompatActivity implements View.OnClickListener 
             Picasso.get().load(book.getImage()).into(bookImage);
         }
         else{
-            Picasso.get().load("http://18.204.251.116/" + temp[1]).into(bookImage);
+            Picasso.get().load(HOST + temp[1]).into(bookImage);
         }
 
         if(book.getStockQuantity() == 0) addCart.setText(R.string.book_page_remindMe);
@@ -274,7 +276,7 @@ public class BookPage extends AppCompatActivity implements View.OnClickListener 
     }
 
     private void sendComment(final int rate, final String comment, final CommentObj obj) {
-        String url = "http://18.204.251.116/add_comment.php";
+        String url = HOST + "add_comment.php";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -318,7 +320,7 @@ public class BookPage extends AppCompatActivity implements View.OnClickListener 
 
 
     private void addItem_intoCart(final int book_id, final VolleyResponseListener listener) {
-        String url = "http://18.204.251.116/add_to_cart.php";
+        String url = HOST + "add_to_cart.php";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override

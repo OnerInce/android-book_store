@@ -42,8 +42,9 @@ import retrofit2.http.Field;
 import retrofit2.http.POST;
 import retrofit2.http.FormUrlEncoded;
 
+import static com.zurefaseverler.kithub.StartUp.HOST;
+
 public class StockTracking extends AppCompatActivity {
-    private static final String BASE_URL = "http://18.204.251.116";
 
     static class SearchResults {
 
@@ -57,9 +58,6 @@ public class StockTracking extends AppCompatActivity {
         private String last_name;
         @SerializedName("stock")
         private String stock;
-
-
-
 
         public SearchResults(String id, String title, String first_name, String last_name,
                              String stock) {
@@ -108,7 +106,7 @@ public class StockTracking extends AppCompatActivity {
         static Retrofit getRetrofitInstance() {
             if (retrofit == null) {
                 retrofit = new Retrofit.Builder()
-                        .baseUrl(BASE_URL)
+                        .baseUrl(HOST)
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
             }
@@ -156,7 +154,7 @@ public class StockTracking extends AppCompatActivity {
 
             nameTxt.setText(thisBook.getTitle());
             txtAuthor.setText(thisBook.getFirst_name() + " " + thisBook.getLast_name());
-            quantity.setText("Stok miktarı: " + thisBook.getStock());                                             //stok miktarı buraya yazılacak
+            quantity.setText("Stok miktarı: " + thisBook.getStock());
             return view;
         }
 
@@ -249,7 +247,7 @@ public class StockTracking extends AppCompatActivity {
                 View dialogView = inflater.inflate(R.layout.stock_add_alert_box,null);
 
                 TextView dialogTitle = dialogView.findViewById(R.id.dialog_title);
-                String dialogTitleStr = bookName + " adli kitaba stok eklemek isteğinize emin misiniz? Eminseniz miktari giriniz.";
+                String dialogTitleStr = bookName + " adlı kitaba stok eklemek isteğinize emin misiniz? Eminseniz miktarı giriniz.";
                 dialogTitle.setText(dialogTitleStr);
 
                 builder.setCancelable(false);
@@ -269,7 +267,7 @@ public class StockTracking extends AppCompatActivity {
 
                         final String add_stock = stockAdd.getText().toString();
                         Toast.makeText(getApplication(),
-                               bookName+ " adli kitaba  " + add_stock + " stok eklediniz.", Toast.LENGTH_SHORT).show();
+                               bookName+ " adlı kitaba  " + add_stock + " stok eklediniz.", Toast.LENGTH_SHORT).show();
                         updateBookStock(book.getId(), add_stock, new VolleyResponseListener() {
                             @SuppressLint("SetTextI18n")
                             @Override
@@ -287,7 +285,7 @@ public class StockTracking extends AppCompatActivity {
                     public void onClick(View v) {
                         dialog.dismiss();
                         Toast.makeText(getApplication(),
-                                "Islem iptal edildi", Toast.LENGTH_SHORT).show();
+                                "İşlem iptal edildi", Toast.LENGTH_SHORT).show();
                     }
                 });
                 dialog.show();
@@ -295,7 +293,7 @@ public class StockTracking extends AppCompatActivity {
         });
     }
     private void updateBookStock(final String book_id, final String add_stock, final VolleyResponseListener listener) {
-        String url = "http://18.204.251.116/update_book.php";
+        String url = HOST + "update_book.php";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new com.android.volley.Response.Listener<String>() {
                     @Override

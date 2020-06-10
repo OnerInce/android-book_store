@@ -27,6 +27,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.zurefaseverler.kithub.StartUp.HOST;
+
 public class SystemTraffic extends AppCompatActivity{
 
     private String operation_type;
@@ -54,8 +56,6 @@ public class SystemTraffic extends AppCompatActivity{
         op.setAdapter(op_type_adapter);
         time.setAdapter(time_filter_adapter);
 
-
-
         apply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,7 +81,7 @@ public class SystemTraffic extends AppCompatActivity{
     }
 
     public void fill(final String operation_type, final String time_filter, final VolleyResponseListener volleyResponseListener){
-        String url = "http://18.204.251.116/get_log_record.php";
+        String url = HOST + "get_log_record.php";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override

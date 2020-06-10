@@ -31,8 +31,9 @@ import retrofit2.http.Field;
 import retrofit2.http.POST;
 import retrofit2.http.FormUrlEncoded;
 
+import static com.zurefaseverler.kithub.StartUp.HOST;
+
 public class Search extends AppCompatActivity {
-    private static final String BASE_URL = "http://18.204.251.116";
 
     static class SearchResults {
 
@@ -91,7 +92,7 @@ public class Search extends AppCompatActivity {
         static Retrofit getRetrofitInstance() {
             if (retrofit == null) {
                 retrofit = new Retrofit.Builder()
-                        .baseUrl(BASE_URL)
+                        .baseUrl(HOST)
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
             }

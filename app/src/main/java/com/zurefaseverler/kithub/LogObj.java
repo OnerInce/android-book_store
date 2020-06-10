@@ -81,7 +81,5 @@ public class LogObj {
         this.commentRate = commentRate;
         this.comment = comment;
 
-
-
     }
 }

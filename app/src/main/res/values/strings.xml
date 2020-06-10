@@ -72,6 +72,12 @@
     <string name="order_confirm_yes">Sipariş onaylandı</string>
     <string name="order_confirm_no">Sipariş reddedildi</string>
     <string name="order_confirm_fail">İşlem başarısız</string>
+    <string name="delete_book_confirm">\" adlı kitabı silmek istedğinizden emin misiniz?\"</string>
+    <string name="delete_book_confirm_screen">Kitap silme onaylama ekranı</string>
+    <string name="delete_book_yes">Evet</string>
+    <string name="delete_book_success">Kitap sistemden başarıyla silindi.</string>
+    <string name="delete_book_no">Hayır</string>
+    <string name="delete_book_cancel">İşlem iptal edildi</string>
 
     <string-array name="operation_type">
         <item>Giriş yapma</item>

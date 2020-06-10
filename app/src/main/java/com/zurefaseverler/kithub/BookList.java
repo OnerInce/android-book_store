@@ -25,6 +25,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.zurefaseverler.kithub.StartUp.HOST;
+
 interface VolleyBookListInterface {
     void onResponse(List<MainPageBook> list);
 }
@@ -87,7 +89,7 @@ public class BookList extends Activity{
     }
 
     public void fillMore(final String more, final VolleyBookListInterface listener){
-        String url = "http://18.204.251.116/get_more_book.php";
+        String url = HOST + "get_more_book.php";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -141,14 +143,6 @@ public class BookList extends Activity{
         @Override
         public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
             super.onScrolled(recyclerView, dx, dy);
-
-            if(islastItemDisplaying(recyclerView)){
-                Log.i("Listeden geliyor","daha fazla yükle");
-                //get data request atılacak bir adamın videosu üzerinden yaptım aynı fonksiypn buraya uyarlanacak
-                //video linki :    https://www.youtube.com/watch?v=hJZClhRzjAo ardından https://www.youtube.com/watch?v=hFkFBjS7-vQ
-                //ilk video req kısmı ve getData() adındaki fonksiyon ikinci kısmı biraz uyguladım zaten sadece yazılan getData() fonksiyonu burada çağırılacak
-
-            }
         }
     };
 
@@ -164,7 +158,7 @@ public class BookList extends Activity{
     }
 
     public void fillCategory(final String category_name, final String book_type, final VolleyBookListInterface listener){
-        String url = "http://18.204.251.116/get_book_by_category.php";
+        String url = HOST + "get_book_by_category.php";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -201,8 +195,6 @@ public class BookList extends Activity{
         NetworkRequests.getInstance(this).addToRequestQueue(stringRequest);
 
     }
-
-
 
     public void goback(View view) {
         onBackPressed();

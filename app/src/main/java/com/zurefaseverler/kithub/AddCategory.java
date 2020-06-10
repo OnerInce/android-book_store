@@ -24,6 +24,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.zurefaseverler.kithub.StartUp.HOST;
+
 public class AddCategory extends AppCompatActivity {
 
     private String category;
@@ -93,7 +95,7 @@ public class AddCategory extends AppCompatActivity {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             RequestQueue mQueue = Volley.newRequestQueue(AddCategory.this);
-                            String url = "http://18.204.251.116/add_category.php";
+                            String url = HOST + "add_category.php";
                             StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
                                 @Override
                                 public void onResponse(String response) {

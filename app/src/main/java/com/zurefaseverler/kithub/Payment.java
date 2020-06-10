@@ -33,6 +33,8 @@ import com.craftman.cardform.Card;
 import com.craftman.cardform.CardForm;
 import com.craftman.cardform.OnPayBtnClickListner;
 
+import static com.zurefaseverler.kithub.StartUp.HOST;
+
 class RequestMember
 {
     private String customerID;
@@ -108,7 +110,6 @@ public class Payment extends AppCompatActivity {
 
         TextView txtDes = findViewById(R.id.payment_amount);
         TextView txtPayment = findViewById(R.id.payment_amount_holder);
-        //Button btnPay = findViewById(R.id.btn_pay);
         EditText expiryDate = findViewById(R.id.expiry_date);
         EditText cardNumber = findViewById(R.id.card_number);
         EditText cardName = findViewById(R.id.card_name);
@@ -194,7 +195,7 @@ public class Payment extends AppCompatActivity {
     }
 
     private void orderToDatabase() {
-        String url = "http://18.204.251.116/place_order.php";
+        String url = HOST + "place_order.php";
         JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.POST, url, orderJSONObject,
                 new Response.Listener<JSONObject>() {
                     @Override
@@ -213,7 +214,7 @@ public class Payment extends AppCompatActivity {
     }
 
     private void getAddress(final String id) {
-        String url = "http://18.204.251.116/get_address.php";
+        String url = HOST + "get_address.php";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override

@@ -34,8 +34,9 @@ import retrofit2.http.Field;
 import retrofit2.http.POST;
 import retrofit2.http.FormUrlEncoded;
 
+import static com.zurefaseverler.kithub.StartUp.HOST;
+
 public class UpdateBookSearch extends AppCompatActivity {
-    private static final String BASE_URL = "http://18.204.251.116";
 
     static class SearchResults {
 
@@ -94,7 +95,7 @@ public class UpdateBookSearch extends AppCompatActivity {
         static Retrofit getRetrofitInstance() {
             if (retrofit == null) {
                 retrofit = new Retrofit.Builder()
-                        .baseUrl(BASE_URL)
+                        .baseUrl(HOST)
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
             }
@@ -144,7 +145,6 @@ public class UpdateBookSearch extends AppCompatActivity {
 
             return view;
         }
-
     }
 
     private GridView mGridView;
@@ -225,27 +225,27 @@ public class UpdateBookSearch extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 final SearchResults book = (SearchResults) mGridView.getItemAtPosition(position);
 
-                String query = book.getTitle()+ " adli kitabin bilgilerini guncellemek istediginizden emin misiniz?";
+                String query = book.getTitle()+ " adlı kitabin bilgilerini güncellemek istediğinizden emin misiniz?";
 
 
                 AlertDialog.Builder alert = new AlertDialog.Builder(UpdateBookSearch.this);
-                alert.setTitle("Kitap bilgileri guncellemesi onaylama ekrani");
+                alert.setTitle("Kitap bilgileri güncellemesi onaylama ekranı");
                 alert.setMessage(query);
 
                 alert.setPositiveButton("Evet", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        Toast.makeText(UpdateBookSearch.this, "Gerekli sayfaya yonlendiriliyorsunuz.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(UpdateBookSearch.this, "Gerekli sayfaya yönlendiriliyorsunuz", Toast.LENGTH_SHORT).show();
 
                         Intent intent = new Intent(UpdateBookSearch.this, UpdateBookInfo.class);
                         intent.putExtra("book_id", book.getId());
                         startActivity(intent);
                     }
                 });
-                alert.setNegativeButton("Hayir", new DialogInterface.OnClickListener() {
+                alert.setNegativeButton("Hayır", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        Toast.makeText(UpdateBookSearch.this, "Islem iptal edildi.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(UpdateBookSearch.this, "İşlem iptal edildi", Toast.LENGTH_SHORT).show();
                     }
                 });
                 alert.create().show();

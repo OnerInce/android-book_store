@@ -2,9 +2,8 @@ package com.zurefaseverler.kithub;
 
 public class OldCommentsObj {
 
-    String bookname, comment, date;
-
-    int rate;
+    private String bookname, comment, date;
+    private int rate;
 
     public OldCommentsObj(String bookname, String comment, String date, int rate) {
         this.bookname = bookname;
@@ -25,10 +24,6 @@ public class OldCommentsObj {
         return comment;
     }
 
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
-
     public String getDate() {
         return date;
     }
@@ -39,9 +34,5 @@ public class OldCommentsObj {
 
     public int getRate() {
         return rate;
-    }
-
-    public void setRate(int rate) {
-        this.rate = rate;
     }
 }

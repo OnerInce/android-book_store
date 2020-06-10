@@ -1,18 +1,8 @@
 package com.zurefaseverler.kithub;
 
 public class Cart {
-    private String image;
-    private String pid;
-    private String pname;
-
-
-
-    private String quantity;
-
-
-
-    private float discount;
-    private float price, totalPrice = 0;
+    private String image, pid, pname, quantity;
+    private float discount, price, totalPrice = 0;
 
     public Cart(String pid, String pname, float price, String quantity, float discount, String image, float totalPrice) {
         this.pid = pid;

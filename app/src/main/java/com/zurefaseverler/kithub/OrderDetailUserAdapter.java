@@ -16,6 +16,8 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+import static com.zurefaseverler.kithub.StartUp.HOST;
+
 public class OrderDetailUserAdapter extends RecyclerView.Adapter<OrderDetailUserAdapter.setDetail> {
 
     private Context context;
@@ -46,7 +48,7 @@ public class OrderDetailUserAdapter extends RecyclerView.Adapter<OrderDetailUser
             Picasso.get().load(temp[0]).into(holder.orderDetailUserPhoto);
         }
         else{
-            Picasso.get().load("http://18.204.251.116/" + temp[1]).into(holder.orderDetailUserPhoto);
+            Picasso.get().load(HOST + temp[1]).into(holder.orderDetailUserPhoto);
         }
 
 

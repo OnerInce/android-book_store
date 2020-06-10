@@ -12,7 +12,6 @@ import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
 public class CartViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
     private ItemClickListener itemClickListener;
-    private ElegantNumberButton urunsayisi;
 
     public CartViewHolder(View itemView) {
         super(itemView);

@@ -26,6 +26,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.zurefaseverler.kithub.StartUp.HOST;
+
 public class OrderDetails extends AppCompatActivity {
 
     List<OrderDetailsBookObj> list = new ArrayList<>();
@@ -125,7 +127,7 @@ public class OrderDetails extends AppCompatActivity {
     }
 
     public void getOrderDetails(final String order_id, final VolleyResponseListener listener){
-        String url = "http://18.204.251.116/get_order_details.php";
+        String url = HOST + "get_order_details.php";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -175,7 +177,7 @@ public class OrderDetails extends AppCompatActivity {
     }
 
     public void sendOrderDecision(final String order_id, final String decision, final VolleyResponseListener listener){
-        String url = "http://18.204.251.116/order_decision.php";
+        String url = HOST + "order_decision.php";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override

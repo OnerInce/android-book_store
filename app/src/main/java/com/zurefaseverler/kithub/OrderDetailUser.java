@@ -23,6 +23,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.zurefaseverler.kithub.StartUp.HOST;
+
 
 public class OrderDetailUser extends AppCompatActivity {
 
@@ -79,7 +81,7 @@ public class OrderDetailUser extends AppCompatActivity {
     }
 
     public void listFill(final String order_id, final VolleyResponseListener listener){
-        String url = "http://18.204.251.116/get_details_by_order_id.php";
+        String url = HOST + "get_details_by_order_id.php";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override

@@ -21,7 +21,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 
 public class StartUp extends AppCompatActivity {
-    RequestQueue mQueue;
+    static String HOST = "http://18.204.251.116/";
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +46,7 @@ public class StartUp extends AppCompatActivity {
         AdapterCategories.categories = new ArrayList<>();
         AdapterCategories.bookTypes = new HashMap<>();
 
-        String url = "http://18.204.251.116/categories.php";
+        String url = HOST + "categories.php";
         StringRequest request = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override

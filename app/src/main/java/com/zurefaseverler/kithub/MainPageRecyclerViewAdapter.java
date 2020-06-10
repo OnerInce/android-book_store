@@ -16,6 +16,8 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 import java.util.Locale;
 
+import static com.zurefaseverler.kithub.StartUp.HOST;
+
 public class MainPageRecyclerViewAdapter extends RecyclerView.Adapter<MainPageRecyclerViewAdapter.ViewHolder>{
     @NonNull
     private Context context;
@@ -54,7 +56,7 @@ public class MainPageRecyclerViewAdapter extends RecyclerView.Adapter<MainPageRe
             Picasso.get().load(list.get(position).getImagepath()).into(holder.bookimage);
         }
         else{
-            Picasso.get().load("http://18.204.251.116/" + temp[1]).into(holder.bookimage);
+            Picasso.get().load(HOST + temp[1]).into(holder.bookimage);
         }
 
 

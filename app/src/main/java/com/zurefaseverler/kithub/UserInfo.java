@@ -24,6 +24,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.zurefaseverler.kithub.StartUp.HOST;
+
 public class UserInfo extends AppCompatActivity {
     static class User{
         private String id, name, phone, e_mail, address, image;
@@ -114,11 +116,11 @@ public class UserInfo extends AppCompatActivity {
         address.setText(thisUser.getAddress());
 
         String[] temp = thisUser.getImage().split("html/");
-        Picasso.get().load("http://18.204.251.116/" + temp[1]).transform(new CircleTransform()).into(image);
+        Picasso.get().load(HOST + temp[1]).transform(new CircleTransform()).into(image);
     }
 
     public void fill_order(final String user_id, final VolleyResponseListener listener){
-        String url = "http://18.204.251.116/get_user_details.php";
+        String url = HOST + "get_user_details.php";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -164,7 +166,7 @@ public class UserInfo extends AppCompatActivity {
     }
 
     public void fill_comment(final String user_id, final VolleyResponseListener listener){
-        String url = "http://18.204.251.116/user_comments.php";
+        String url = HOST + "user_comments.php";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
