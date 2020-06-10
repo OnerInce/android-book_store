@@ -59,6 +59,7 @@ public class SystemTraffic extends AppCompatActivity{
         apply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                list.clear();
                 operation_type = op.getSelectedItem().toString();
                 time_filter = time.getSelectedItem().toString();
                 Toast.makeText(SystemTraffic.this,operation_type+" "+time_filter, Toast.LENGTH_LONG).show();
@@ -91,14 +92,15 @@ public class SystemTraffic extends AppCompatActivity{
                             for(int i=0; i < jsonArray.length(); i++){
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                                 String actionTime = jsonObject.getString("action_time");
-                                if(operation_type.equals("Giriş yapma") || operation_type.equals("Çıkış Yapma")
+                                if(operation_type.equals("Giriş yapma") || operation_type.equals("Çıkış yapma")
                                         || operation_type.equals("Kaydolma") || operation_type.equals("Kullanıcı bilgileri güncelleme")){
                                     String customer_id = jsonObject.getString("customer_id");
                                     String e_mail = jsonObject.getString("e_mail");
                                     String complete_name = jsonObject.getString("complete_name");
                                     String phone = jsonObject.getString("phone");
+                                    String address = jsonObject.getString("address");
                                     LogObj temp = new LogObj(operation_type, customer_id, complete_name, e_mail,
-                                            phone, null, actionTime, null, null, null,
+                                            phone, address, actionTime, null, null, null,
                                             null, null, null, null,
                                             null);
                                     list.add(temp);
@@ -120,7 +122,7 @@ public class SystemTraffic extends AppCompatActivity{
                                     String complete_name = jsonObject.getString("complete_name");
                                     String total_price = jsonObject.getString("total_price");
                                     String nof_books = jsonObject.getString("nof_books");
-                                    LogObj temp = new LogObj(operation_type, null, complete_name, null,
+                                    LogObj temp = new LogObj(operation_type, complete_name, null, null,
                                             null, null, actionTime, null, null, total_price,
                                             nof_books, order_id, null, null,
                                             null);
@@ -132,7 +134,7 @@ public class SystemTraffic extends AppCompatActivity{
                                     String complete_name = jsonObject.getString("complete_name");
                                     String review_text = jsonObject.getString("review_text");
                                     String rating = jsonObject.getString("rating");
-                                    LogObj temp = new LogObj(operation_type, null, complete_name, null,
+                                    LogObj temp = new LogObj(operation_type, complete_name, null, null,
                                             null, null, actionTime, null, title, null,
                                             null, null, review_id, rating,
                                             review_text);
