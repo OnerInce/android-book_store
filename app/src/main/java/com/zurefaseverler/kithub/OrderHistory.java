@@ -58,7 +58,7 @@ public class OrderHistory extends AppCompatActivity {
     }
 
     public void listFill(final String customer_id, final VolleyResponseListener listener){
-        String url = HOST + "hget_orders_by_user_id.php";
+        String url = HOST + "get_orders_by_user_id.php";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new com.android.volley.Response.Listener<String>() {
                     @Override

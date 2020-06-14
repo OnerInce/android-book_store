@@ -78,6 +78,7 @@
     <string name="delete_book_success">Kitap sistemden başarıyla silindi.</string>
     <string name="delete_book_no">Hayır</string>
     <string name="delete_book_cancel">İşlem iptal edildi</string>
+    <string name="addCart_notLogin">Sepete ekleme işlemi için lütfen giriş yapınız.</string>
 
     <string-array name="operation_type">
         <item>Giriş yapma</item>
