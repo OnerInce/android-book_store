@@ -36,8 +36,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
         ImageButton go_back = findViewById(R.id.go_back);
         go_back.setOnClickListener(this);
-        TextView forgot = findViewById(R.id.unuttum);
-        forgot.setOnClickListener(this);
 
         mQueue = Volley.newRequestQueue(this);
         findViewById(R.id.login_button).setOnClickListener(new View.OnClickListener() {
@@ -119,9 +117,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                 onBackPressed();
                 break;
 
-            case R.id.unuttum:
-                Toast.makeText(Login.this, "(0)))",Toast.LENGTH_SHORT).show();
-                break;
+
 
 
         }

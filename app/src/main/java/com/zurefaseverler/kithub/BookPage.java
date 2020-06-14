@@ -44,7 +44,7 @@ import java.util.Map;
 import static com.zurefaseverler.kithub.StartUp.HOST;
 
 public class BookPage extends AppCompatActivity implements View.OnClickListener {
-
+    private int id;
     private TextView summary, discount;
     private boolean boolSummary, boolAuthor;
     RatingBar ratingBar;
@@ -59,6 +59,9 @@ public class BookPage extends AppCompatActivity implements View.OnClickListener 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_page);
 
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        id = sharedPref.getInt("id", -1);
+
         Intent intent = getIntent();
         book_id = intent.getStringExtra("book_id");
         discount = findViewById(R.id.discountText);
@@ -69,7 +72,7 @@ public class BookPage extends AppCompatActivity implements View.OnClickListener 
         go_back.setOnClickListener(this);
 
         TextView userName = findViewById(R.id.users_name);
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+
         name = sharedPref.getString("name", "");
         userName.setText(name);
 
@@ -214,6 +217,10 @@ public class BookPage extends AppCompatActivity implements View.OnClickListener 
 
             case R.id.bookPage_addCartButton:
                 if(book.getStockQuantity() == 0) Toast.makeText(getApplicationContext(),"stokta yok",Toast.LENGTH_SHORT).show();
+                else if(id == -1){
+                    Toast.makeText(getApplicationContext(), R.string.addCart_notLogin, Toast.LENGTH_SHORT).show();
+                    break;
+                }
                 else addItem_intoCart(book.getBook_id(), new VolleyResponseListener() {
                     @Override
                     public void onResponse(String response) {
@@ -248,8 +255,7 @@ public class BookPage extends AppCompatActivity implements View.OnClickListener 
                 break;
 
             case R.id.comment_send:
-                SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-                int id = sharedPref.getInt("id", -1);
+
 
                 if(id == -1){
                     Toast.makeText(getApplicationContext(), R.string.bookpage_comment_login, Toast.LENGTH_SHORT).show();
