@@ -78,23 +78,24 @@ public class CartActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(cartList.size() == 0)
                     Toast.makeText(getApplicationContext(), R.string.cart_no_book, Toast.LENGTH_SHORT).show();
+                else{
+                    Intent intent = new Intent(CartActivity.this, Payment.class);
+                    for (int i = 0; i < cartList.size(); i++){
 
-                Intent intent = new Intent(CartActivity.this, Payment.class);
-                for (int i = 0; i < cartList.size(); i++){
+                        Cart currentObj = cartList.get(i);
+                        String cartItemID = "ITEM" + i;
+                        String book_id = currentObj.getPid();
+                        String quantity = currentObj.getQuantity();
+                        String book_price = Float.toString(currentObj.getPrice());
 
-                    Cart currentObj = cartList.get(i);
-                    String cartItemID = "ITEM" + i;
-                    String book_id = currentObj.getPid();
-                    String quantity = currentObj.getQuantity();
-                    String book_price = Float.toString(currentObj.getPrice());
-
-                    intent.putExtra(cartItemID + " BOOK", book_id);
-                    intent.putExtra(cartItemID + " QUANTITY", quantity);
-                    intent.putExtra(cartItemID + " PRICE", book_price);
-                    intent.putExtra(cartItemID + " CUSTOMER", customer_id);
+                        intent.putExtra(cartItemID + " BOOK", book_id);
+                        intent.putExtra(cartItemID + " QUANTITY", quantity);
+                        intent.putExtra(cartItemID + " PRICE", book_price);
+                        intent.putExtra(cartItemID + " CUSTOMER", customer_id);
+                    }
+                    intent.putExtra("TOTAL_ORDER_PRICE", total);
+                    startActivity(intent);
                 }
-                intent.putExtra("TOTAL_ORDER_PRICE", total);
-                startActivity(intent);
             }
         });
 
