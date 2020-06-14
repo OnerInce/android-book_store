@@ -61,7 +61,7 @@ public class LogAdapter extends RecyclerView.Adapter<LogAdapter.setDetails>{
             case("Sepet İşlemleri"):
 
                 holder.text3.setText("İşlem türü: " + list.get(position).getCartOpType());
-                holder.text4.setText("Kitap no: " + list.get(position).getBookId());
+                holder.text4.setText("Kitap: " + list.get(position).getBookId());
                 holder.text5.setVisibility(View.GONE);
                 holder.text6.setVisibility(View.GONE);
                 break;
@@ -73,15 +73,15 @@ public class LogAdapter extends RecyclerView.Adapter<LogAdapter.setDetails>{
                 break;
             case("Yorum yapma"):
                 holder.text3.setText("Yorum no: " + list.get(position).getCommentID());
-                holder.text4.setText("Puan: " + list.get(position).getCommentRate());
+                holder.text6.setText("Puan: " + list.get(position).getCommentRate());
                 holder.text5.setText("Yorum: " + list.get(position).getComment());
-                holder.text6.setText("Kitap no: " + list.get(position).getBookId());
+                holder.text4.setText("Kitap: " + list.get(position).getBookId());
                 break;
             default:
                 holder.text3.setText("İsim: " + list.get(position).getUsername());
                 holder.text4.setText("email: " + list.get(position).getUseremail());
                 holder.text5.setText("Adres: " + list.get(position).getAdress());
-                holder.text6.setText("Telefon: " + list.get(position).getPhone());
+                holder.text6.setText("Tel: " + list.get(position).getPhone());
                 break;
         }
     }
