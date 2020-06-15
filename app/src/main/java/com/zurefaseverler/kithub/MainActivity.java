@@ -132,7 +132,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         loggedInId = sharedPref.getInt("id",-1);
-        isAdmin = sharedPref.getInt("isAdmin",0);
+        isAdmin = sharedPref.getInt("is_admin",0);
 
         /*  drawer  */
         drawer = findViewById(R.id.drawer_layout);
@@ -195,7 +195,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         loggedInId = sharedPref.getInt("id",-1);
-        isAdmin = sharedPref.getInt("isAdmin",0);
+        isAdmin = sharedPref.getInt("is_admin",0);
 
         /*  drawer  */
         drawer = findViewById(R.id.drawer_layout);

@@ -75,7 +75,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                                 SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                                 SharedPreferences.Editor editor = sharedPref.edit();
                                 editor.putInt("id", Integer.parseInt(id));
-                                editor.putInt("isAdmin", Integer.parseInt(isAdmin));
+                                editor.putInt("is_admin", Integer.parseInt(isAdmin));
                                 editor.putString("name", name);
                                 editor.apply();
 
