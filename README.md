@@ -3,7 +3,7 @@
  <img width=200px height=200px src="https://i.ibb.co/9hJ1Wkk/kithub-logo-text-orange.png" alt="Project logo"></a>
 </p>
 
-<h3 align="center">kitHUB</h3>
+<h3 align="center">kitHub</h3>
 
 <div align="center">
 
