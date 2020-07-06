@@ -25,6 +25,12 @@
 - [Built Using](#built_using)
 - [Acknowledgments](#acknowledgement)
 
+<p align="center">
+  <a href="" rel="noopener">
+ <img width=3498px height=320px src="https://i.ibb.co/RBpFMhj/ISIM-1.jpg" alt="Project logo"></a>
+</p>
+
+
 ## 🧐 About <a name = "about"></a>
 KitHub is a mobile e-commerce app for selling books on Android platform. With its user-friendly interface, it aims at a quick shopping experience. On the administrative side of the application, you can access and edit many data such as books, users, orders with fast and simple operations.
 An application from users to users.
