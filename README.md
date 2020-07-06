@@ -27,7 +27,7 @@
 
 <p align="center">
   <a href="" rel="noopener">
- <img width=3498px height=300px src="https://i.ibb.co/RBpFMhj/ISIM-1.jpg" alt="Project logo"></a>
+ <img width=3498px height=310px src="https://i.ibb.co/RBpFMhj/ISIM-1.jpg" alt="Project logo"></a>
 </p>
 
 
