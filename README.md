@@ -1,6 +1,6 @@
 <p align="center">
   <a href="" rel="noopener">
- <img width=200px height=200px src="https://i.ibb.co/9hJ1Wkk/kithub-logo-text-orange.png" alt="Project logo"></a>
+ <img width=200px height=200px src="https://s7.gifyu.com/images/animation_500_kchwr3ox.gif" alt="Project logo"></a>
 </p>
 
 <h3 align="center">kitHub</h3>
