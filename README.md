@@ -20,6 +20,7 @@
 
 ## 📝 Table of Contents
 - [About](#about)
+- [Demo / Working](#demo)
 - [Getting Started](#getting_started)
 - [Deployment](#deployment)
 - [Built Using](#built_using)
@@ -34,6 +35,9 @@
 ## 🧐 About <a name = "about"></a>
 KitHub is a mobile e-commerce app for selling books on Android platform. With its user-friendly interface, it aims at a quick shopping experience. On the administrative side of the application, you can access and edit many data such as books, users, orders with fast and simple operations.
 An application from users to users.
+
+## 🎥 Demo / Working <a name = "demo"></a>
+<img align="center" src="/demo.gif">
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
 To use this app with all specifications, create a MySQL database and run SQL queries which is in sql folder. This queries will create and update corresponding database tables.
